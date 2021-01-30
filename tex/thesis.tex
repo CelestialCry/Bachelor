@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\graphicspath{{../images/}{../../images/}}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{subfiles} % Best loaded last in the preamble
+
+\title{Thesis}
+\author{Thomas Wilskow Thorbjørnsen}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \section{Introduction}
+    
+    Write about reasons for writing this text, who is it meant for etc?
+
+    Maybe write some history of triangulated and derived categories and where they find their uses, etc?
+
+    Introduce notation which will be used in text.
+    When an 
+    \section{Triangulated Categories}
+        Probably introduce this section, what is happening and what will be done etc.
+        \subsection{Definition and first properties}
+        In this section $\mathcal{T}$ denotes an additive category and $T:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$.
+        \begin{definition}
+            A sextuple is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow TA$. These sextuples can be drawn as diagrams in the following way:
+
+            \begin{center}
+                \begin{tikzcd}
+                    A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                \end{tikzcd}
+            \end{center}
+        \end{definition}
+
+        When these sextuples fulfill some extra conditions they are referred to as triangles. This name stems from an alternate description of these diagrams:
+
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{a} & \\
+                & B \arrow{dl}{b} \\
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+            \end{tikzcd}
+        \end{center}
+
+        Describe a morphism of sextuples here.
+
+        \begin{definition}
+            A \emph{triangulated category} is a triple ($\mathcal{T}$, T, $\Delta$), where $\mathcal{T}$ is an additive category, T is an autoequivalence on $\mathcal{T}$ and a triangulation $\Delta$ which is a collection of sextuples satisfying the following axioms:
+
+            \begin{enumerate}
+                \item Formation axiom
+                
+                \item Rotation axiom
+                \item Morphism axiom
+                \item Octahedron axiom
+            \end{enumerate}
+        \end{definition}
+        %Maybe use later if this file gets way too crammed %\subfile{sections/triangles}
+    \section{Exact Categories (and the Frobenius category)}
+    \section{The Derived Categories (of Exact Categories)}
+    \section{Auslander-Reiten Triangles (in the Derived category)}
+\end{document}
