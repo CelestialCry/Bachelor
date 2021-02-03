@@ -1,2 +1,2 @@
 # Bachelor
-My very own bachelors project
+My very own bachelor project
