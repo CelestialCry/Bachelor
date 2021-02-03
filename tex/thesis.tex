@@ -1,12 +1,13 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \graphicspath{{../images/}{../../images/}}
 
 \usepackage{tikz}
 \usetikzlibrary{cd}
-\usepackage{amsthm}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}  
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
@@ -46,29 +47,115 @@
                     A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
                 \end{tikzcd}
             \end{center}
+
+            A morphism between sextuples is a triple of morphism $(\alpha, \beta, \gamma)$, where $\alpha : A \rightarrow A'$, $\beta : B \rightarrow B'$ and $\gamma : C \rightarrow C'$ such that the following diagram commutes:
+
+        \begin{center}
+            \begin{tikzcd}
+                A \arrow{r}{a} \arrow{d}{\alpha} & B \arrow{r}{b} \arrow{d}{\beta} & C \arrow{r}{c} \arrow{d}{\gamma} & TA \arrow{d}{T\alpha} \\
+                A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
+            \end{tikzcd}
+        \end{center}
+
         \end{definition}
 
-        When these sextuples fulfill some extra conditions they are referred to as triangles. This name stems from an alternate description of these diagrams:
+        The naming convention of the sextuples isn't standarized, some literatures calls the sextuples for triangles instead [literature here, learn bibtex you lazy fuck]. This name arises from an alternate description of the diagrams given above. To remove confusion about the domain or codomain of the arrows, one arrow of the triangle is decorated with "$_T$|". This decorator means that the functor T has to be applied to the corresponding edge of the arrow. Thus the c arrow points to TA, not A.
 
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{a} & \\
-                & B \arrow{dl}{b} \\
+                & B \arrow{dl}{b} & & \\
                 C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}[description]{a} \arrow{rrr}{\phi_a} & & & A' \arrow[ld, "a'" description] \\
+                & B \arrow{dl}[description]{b} \arrow{r}{\phi_b} & B' \arrow{rd}[description]{b'}\\
+                C \arrow{uu}[very near end, marking]{|}[near start, description]{c}[near end]{T} \arrow{rrr}{\phi_c} & & & C' \arrow{uu}[very near end, marking]{|}[near start, description]{c'}[near end]{T}
             \end{tikzcd}
         \end{center}
 
-        Describe a morphism of sextuples here.
+        A triangulated category is an additive category together with an autoequivalence $T$ and a triangulation $\Delta$ consisting of sextuples. When a sextuple is an element of $\Delta$ it is usually called a distinguished triangle, an exact triangles or just a triangle. Note that if sextuples are referred to as triangles it is common to either call the elements of $\Delta$ for distinguished triangles or exact triangles. As this is not the case for this thesis these objects will be referred to as triangles.
 
         \begin{definition}
-            A \emph{triangulated category} is a triple ($\mathcal{T}$, T, $\Delta$), where $\mathcal{T}$ is an additive category, T is an autoequivalence on $\mathcal{T}$ and a triangulation $\Delta$ which is a collection of sextuples satisfying the following axioms:
+            A triangulation of an additive category $\mathcal{T}$ with autoequivalence $T$ is a collection $\Delta$ of sextuples in $\mathcal{T}$ satisfying the following axioms: 
 
             \begin{enumerate}
-                \item Formation axiom
+                \item (TR1) Formation axiom
+
+                    \begin{enumerate}
+                        \item A sextuple isomorphic to a triangle is a triangle.
+                        \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle:
+                        \begin{center}
+                            \begin{tikzcd}
+                                A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                            \end{tikzcd}
+                        \end{center}
+                        \item For every object A there is a triangle:
+                        \begin{center}
+                            \begin{tikzcd}
+                                A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & TA
+                            \end{tikzcd}
+                        \end{center}
+                    \end{enumerate}
+                \item (TR2) Rotation axiom
+
+                    For every triangle
+                    \begin{tikzcd}
+                        A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                    \end{tikzcd}
+                    in $\Delta$,
+
+                    there is a triangle
+                    \begin{tikzcd}
+                        B \arrow{r}{b} & C \arrow{r}{c} & TA \arrow{r}{-Ta} & TB
+                    \end{tikzcd}
+                    in $\Delta$
+                \item (TR3) Morphism axiom
                 
-                \item Rotation axiom
-                \item Morphism axiom
-                \item Octahedron axiom
+                    Given the two triangles
+                    \begin{tikzcd}[column sep=small]
+                        A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
+                    \end{tikzcd} 
+                    and 
+                    \begin{tikzcd}[column sep=small]
+                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                    \end{tikzcd}
+                    , and morphism $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that the square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
+                    
+                    \begin{center}
+                        (1)
+                        \begin{tikzcd}
+                            A \ar{r}{a} \ar{d}{\phi_A} & B \ar{d}{\phi_B} & \\
+                            A' \ar{r}{a'} & B'
+                        \end{tikzcd}
+                        (2)
+                        \begin{tikzcd}
+                            A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & TA \ar{d}{T\phi_A} \\
+                            A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                        \end{tikzcd}
+                    \end{center}
+                \item (TR4) Octahedron axiom
+                
+                    Given the triangles 
+                    \begin{tikzcd}[column sep=small]
+                        A \ar{r}{a} & B \ar{r}{x} & C' \ar{r}{x'} & TA
+                    \end{tikzcd},
+                    \begin{tikzcd}[column sep=small]
+                        B \ar{r}{b} & C \ar{r}{y} & A' \ar{r}{y'} & TB
+                    \end{tikzcd} and
+
+                    \begin{tikzcd}[column sep=small]
+                        A \ar{r}{b\circ a} & C \ar{r}{z} & B' \ar{r}{z'} & TA
+                    \end{tikzcd} then there exist morphisms $f : C' \rightarrow B'$ and $g : B' \rightarrow A'$ following diagram commutes and the third row is a triangle:
+
+                    \begin{center}
+                        \begin{tikzcd}
+                            T^{-1}B' \ar{r}{T^{-1}z'} \ar{d}{T^{-1}g} & A \ar[equal]{r}{id_A} \ar{d}{a} & A \ar{d}{b\circ a} \\
+                            T^{-1}A' \ar{r}{T^{-1}y'} & B \ar{r}{b} \ar{d}{x} & C \ar{r}{y} \ar{d}{z} & A' \ar{r}{y'} \ar[equal]{d}{id_{A'}} & TB \ar{d}{Tx'} \\
+                            & C' \ar{r}{f} \ar{d}{x'} & B' \ar{r}{g} \ar{d}{z'} & A' \ar{r}{Ti \circ y'} & TC' \\
+                            & TA \ar[equal]{r}{id_{TA}} & TA
+                        \end{tikzcd}
+                    \end{center}
             \end{enumerate}
         \end{definition}
         %Maybe use later if this file gets way too crammed %\subfile{sections/triangles}
