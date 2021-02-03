@@ -1,0 +1,6 @@
+#Don't track the following file types
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.gz
