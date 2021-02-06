@@ -37,7 +37,7 @@
     \section{Triangulated Categories}
         Probably introduce this section, what is happening and what will be done etc. I can maybe say something about algebraic triangulated categories and topological triangulated categories, and explaining the name cone, fiber and cofiber.
         \subsection{Definition and first properties}
-        In this section $\mathcal{T}$ denotes an additive category and $T:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$.
+        In this section $\mathcal{T}$ denotes an additive category and $T:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$, which is often called translation or suspension functor.
         \begin{definition}
             A sextuple is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow TA$. These sextuples can be drawn as diagrams in the following way:
 
@@ -73,23 +73,23 @@
             \end{tikzcd}
         \end{center}
 
-        A triangulated category is an additive category together with an autoequivalence $T$ and a triangulation $\Delta$ consisting of sextuples. When a sextuple is an element of $\Delta$ it is usually called a distinguished triangle, an exact triangles or just a triangle. Note that if sextuples are referred to as triangles it is common to either call the elements of $\Delta$ for distinguished triangles or exact triangles. As this is not the case for this thesis these objects will be referred to as triangles.
+        A triangulated category is an additive category together with a translation functor $T$ and a triangulation $\Delta$ consisting of sextuples. When a sextuple is an element of $\Delta$ it is usually called a distinguished triangle, an exact triangles or just a triangle. Note that if sextuples are referred to as triangles it is common to either call the elements of $\Delta$ for distinguished triangles or exact triangles. As this is not the case for this thesis these objects will be referred to as triangles.
 
         \begin{definition}
-            A triangulation of an additive category $\mathcal{T}$ with autoequivalence $T$ is a collection $\Delta$ of sextuples in $\mathcal{T}$ satisfying the following axioms: 
+            A triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta$ of triangles consisting of sextuples in $\mathcal{T}$ satisfying the following axioms: 
 
             \begin{enumerate}
                 \item (TR1) Formation axiom
 
                     \begin{enumerate}
                         \item A sextuple isomorphic to a triangle is a triangle.
-                        \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle:
+                        \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle $(A,B,C,a,b,c)$:
                         \begin{center}
                             \begin{tikzcd}
                                 A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
                             \end{tikzcd}
                         \end{center}
-                        \item For every object A there is a triangle:
+                        \item For every object A there is a triangle $(A,A,0,id_A,0,0)$:
                         \begin{center}
                             \begin{tikzcd}
                                 A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & TA
@@ -98,28 +98,30 @@
                     \end{enumerate}
                 \item (TR2) Rotation axiom
 
-                    For every triangle
-                    \begin{tikzcd}
-                        A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
-                    \end{tikzcd}
-                    in $\Delta$,
-
-                    there is a triangle
-                    \begin{tikzcd}
-                        B \arrow{r}{b} & C \arrow{r}{c} & TA \arrow{r}{-Ta} & TB
-                    \end{tikzcd}
-                    in $\Delta$
+                    For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,Ta)$
+                    \begin{center}
+                        \begin{tikzcd}
+                            A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                        \end{tikzcd} $\implies$
+                        \begin{tikzcd}
+                            B \arrow{r}{b} & C \arrow{r}{c} & TA \arrow{r}{-Ta} & TB
+                        \end{tikzcd}
+                        
+                    \end{center}
                 \item (TR3) Morphism axiom
                 
-                    Given the two triangles
-                    \begin{tikzcd}[column sep=small]
-                        A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
-                    \end{tikzcd} 
-                    and 
-                    \begin{tikzcd}[column sep=small]
-                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
-                    \end{tikzcd}
-                    , and morphism $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that the square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
+                    Given the two triangles $(A,B,C,a,b,c)$ (1) and $(A',B',C',a',b',c')$ (2)
+                    \begin{center}
+                        (1)
+                        \begin{tikzcd}[column sep=small]
+                            A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
+                        \end{tikzcd}
+                        (2) 
+                        \begin{tikzcd}[column sep=small]
+                            A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                        \end{tikzcd}
+                    \end{center}
+                    and morphisms $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that the square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
                     
                     \begin{center}
                         (1)
@@ -135,17 +137,24 @@
                     \end{center}
                 \item (TR4) Octahedron axiom
                 
-                    Given the triangles 
-                    \begin{tikzcd}[column sep=small]
-                        A \ar{r}{a} & B \ar{r}{x} & C' \ar{r}{x'} & TA
-                    \end{tikzcd},
-                    \begin{tikzcd}[column sep=small]
-                        B \ar{r}{b} & C \ar{r}{y} & A' \ar{r}{y'} & TB
-                    \end{tikzcd} and
+                    Given the triangles $(A,B,C',a,x,x')$ (1), $(B,C,A',b,y,y')$ (2) \\ and $(A,C,B',b\circ a,z,z')$ (3)
+                    \begin{center}
+                        (1)
+                        \begin{tikzcd}[column sep=small]
+                            A \ar{r}{a} & B \ar{r}{x} & C' \ar{r}{x'} & TA
+                        \end{tikzcd}
 
-                    \begin{tikzcd}[column sep=small]
-                        A \ar{r}{b\circ a} & C \ar{r}{z} & B' \ar{r}{z'} & TA
-                    \end{tikzcd} then there exist morphisms $f : C' \rightarrow B'$ and $g : B' \rightarrow A'$ following diagram commutes and the third row is a triangle:
+                        (2)
+                        \begin{tikzcd}[column sep=small]
+                            B \ar{r}{b} & C \ar{r}{y} & A' \ar{r}{y'} & TB
+                        \end{tikzcd}
+    
+                        (3)
+                        \begin{tikzcd}[column sep=small]
+                            A \ar{r}{b\circ a} & C \ar{r}{z} & B' \ar{r}{z'} & TA
+                        \end{tikzcd}                         
+                    \end{center}
+                    then there exist morphisms $f : C' \rightarrow B'$ and $g : B' \rightarrow A'$, the following diagram commutes and the third row is a triangle:
 
                     \begin{center}
                         \begin{tikzcd}
@@ -158,43 +167,121 @@
             \end{enumerate}
         \end{definition}
 
-
+        A triangulated category is denoted as $(\mathcal{T}, T, \Delta)$, where $\mathcal{T}$ is the additive category, $T$ is the translation and $\Delta$ is the triangulation. When $\mathcal{T}$ is called a triangulated category, it should be understanded as the triple given above.
 
         \begin{remark}
-            The rotation axiom have a dual, and that is a rotation in the opposite direction. This dual can be proved by the other axioms, so it is omitted as an axiom. 
-            
-            The dual to the roation axiom goes as:
+            The rotation axiom has a dual, and it can be thought of as a rotation in the opposite direction. This dual can be proved by the other axioms, so it is here omitted as an axiom. The dual roation axiom goes as:
+
             Given a triangle \begin{tikzcd}[column sep=small]
                 A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
             \end{tikzcd}, there is a triangle \begin{tikzcd}[column sep=small]
                 T^{-1}C \ar{r}{-T^{-1}c} & A \ar{r}{a} & B \ar{r}{b} & C
-            \end{tikzcd}
+            \end{tikzcd} \\ %Hvordan fikser jeg linebreaks for at det blir pent??? Mener at denne skal kun brukes innad i en setning, idk man.
+            To be able to prove this, some more lemmata are needed.
         \end{remark}
 
-        \begin{proof}
-            
-        \end{proof}
-
-
-
         \begin{remark}
-            Why is it called the Octahedron axiom. Draw that Octahedron!
+            The final axiom is referred to as the octahedron axiom. By using the alternative description of the triangle diagram, it is possible to rewrite the diagram as an octahedron. The axiom can be restated as the following:
+            
+            Given the triangles $(A,B,C',a,x,x')$ (1), $(B,C,A',b,y,y')$ (2) \\ and $(A,C,B',b\circ a,z,z')$ (3)
+            \begin{center}
+                (1)
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow[red]{rd}[black]{a} & \\
+                    & B \arrow[red]{dl}[black]{x} & & \\
+                    C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{T}
+                \end{tikzcd}
+                (2)
+                \begin{tikzcd}[row sep=tiny]
+                    B \arrow[orange]{rd}[black]{b} & \\
+                    & C \arrow[orange]{dl}[black]{y} & & \\
+                    A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{T}
+                \end{tikzcd}
+                (3)
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow[violet]{rd}[black]{b\circ a} & \\
+                    & C \arrow[violet]{dl}[black]{z} & & \\
+                    B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{T}
+                \end{tikzcd}
+            \end{center}
+            then there exists morphisms $f: C' \rightarrow B'$ and $g: B' \rightarrow A'$, the following diagram commutes and the teal back face is a triangle.
+            \begin{center}
+                \begin{tikzcd}[row sep=tiny]
+                    . & & B' \ar[teal, dashed]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{z'}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
+                    . \\
+                    . \\
+                    . \\
+                    C' \ar[teal]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{x'}[very near end, marking]{|}[near end]{T} & & & A' \ar[teal, dashed]{lll}[pos=0.45, black, description]{Tx\circ y'}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{y'}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
+                    . & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{b\circ a} & & & C \ar[orange, dashed]{ul}[black, description]{y} \ar[violet]{uuuuull}[black, description]{z}\\
+                    . \\
+                    . \\
+                    . \\
+                    & & B \ar[orange]{uuuurr}[black, description]{b} \ar[red]{uuuuull}[black, description]{x} & &
+
+                \end{tikzcd}
+            \end{center}
         \end{remark}
 
         \begin{lemma}
-            composition of morphisms is zero
+            Let $(A,B,C,a,b,c)$ be a triangle, then $b\circ a=0$
         \end{lemma}
 
-        \begin{corollary}
-            isomorphisms in triangles
-        \end{corollary}
+        \begin{proof}
+            By TR2 the triangle $(A,B,C,a,b,c)$ can be rotated to $(B,C,TA,b,c,Ta)$.
+            \begin{center}
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow{rd}{a} & \\
+                    & B \arrow{dl}{b}\\
+                    C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                \end{tikzcd} $\implies$
+                \begin{tikzcd}[row sep=tiny]
+                    B \arrow{rd}{b} \\
+                    & C \arrow{dl}{c} \\
+                    TA \arrow{uu}[near start]{-Ta}[very near end, marking]{|}[near end]{T}
+                \end{tikzcd}
+            \end{center}
+            The triangle exists $(C,C,0,id_C,0,0)$ by TR1 and TR3 says there exists a morphism from TA to 0 making the diagram below commute.
+            \begin{center}
+                \begin{tikzcd}
+                    B \ar{r}{b} \ar{d}{b} & C \ar{r}{c} \ar{d}{id_C} & TA \ar{r}{-Ta} \ar[dashed]{d}{0} & TB \ar{d}{Tb} \\
+                    C \ar{r}{id_C} & C \ar{r}{0} & 0 \ar{r}{0} & TC
+                \end{tikzcd}
+            \end{center}
+            Thus $0 = Tb\circ -Ta = T(-ba) \implies b\circ a = 0$ as T is a translation.
+        \end{proof}
 
         \begin{definition}
-            An additive functor between triangulated categories $F: (\mathcal{T}, T, \Delta) \rightarrow (\mathcal{R}, R, \Gamma)$ is called exact or triangulated if there exist a natural transformation $\alpha : FT \rightarrow RF$ such that $F(\Delta) \subseteq \Gamma$
+            An additive functor between triangulated categories $F: (\mathcal{T}, T, \Delta) \rightarrow (\mathcal{R}, R, \Gamma)$ is called exact or triangulated if there exist a natural isomorphisms $\alpha : FT \rightarrow RF$ such that $F(\Delta) \subseteq \Gamma$.
+
+            A functor $F : \mathcal{T} \rightarrow \mathcal{R}$ is called a triangle-equivalence if it is triangulated and an equivalence of categories. In this case $\mathcal{T}$ and $\mathcal{R}$ are called triangle-equivalent.
         \end{definition}
 
         \begin{definition}
-            Define homological functors
+            Let $\mathcal{T}$ be a triangulated category and $\mathcal{A}$ be an abelian category. A covariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called a homological functor if $\forall (A,B,C,a,b,c):\Delta$ there is a long exact sequence in $\mathcal{A}$.
+            \begin{center}
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow{rd}{a} & \\
+                    & B \arrow{dl}{b}\\
+                    C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                \end{tikzcd} $\implies$
+                \begin{tikzcd}[column sep=small]
+                    ... \ar{r} & H(T^{i}A) \arrow{r}{H(T^ia)} & H(T^iB)\arrow{r}{H(T^ib)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(T^iC) \arrow[dll, "H(T^ic)" description, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
+                    & H(T^{i+1}A) \arrow[r]& H(T^{i+1}B) \arrow[r]& H(T^{i+1}C) \ar{r} & ...
+                \end{tikzcd}
+            \end{center}
+
+            Dually, a contravariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called cohomological if $\forall (A,B,C,a,b,c):\Delta$ there is a long exact sequence in $\mathcal{A}$.
+            \begin{center}
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow{rd}{a} & \\
+                    & B \arrow{dl}{b}\\
+                    C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                \end{tikzcd} $\implies$
+                \begin{tikzcd}[column sep=small]
+                    ... & H(T^{i-1}A) \arrow{l} & H(T^{i-1}B) \arrow{l}{H(T^{i-1}a)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(T^{i-1}C) \ar{l}{H(T^{i-1}b)} \\
+                    & H(T^{i}A) \arrow[urr, "H(T^ic)" description, rounded corners,to path={ --([xshift=-2ex]\tikztostart.west)|- (Z)[near end]\tikztonodes-| ([xshift=2ex]\tikztotarget.east)-- (\tikztotarget)}] & H(T^{i}B) \ar{l}{H(T^ia)} & H(T^{i}C) \ar{l}{H(T^ib)} & ... \ar{l}
+                \end{tikzcd}
+            \end{center}
         \end{definition}
 
         \begin{lemma}
@@ -204,6 +291,10 @@
         \begin{lemma}
             2 out of 3 property
         \end{lemma}
+
+        \begin{corollary}
+            isomorphisms in triangles
+        \end{corollary}
 
         \begin{lemma}
             splitmonos, splitepis and zeros
