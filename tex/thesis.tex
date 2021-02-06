@@ -158,9 +158,24 @@
             \end{enumerate}
         \end{definition}
 
+
+
         \begin{remark}
-            Opposite rotation
+            The rotation axiom have a dual, and that is a rotation in the opposite direction. This dual can be proved by the other axioms, so it is omitted as an axiom. 
+            
+            The dual to the roation axiom goes as:
+            Given a triangle \begin{tikzcd}[column sep=small]
+                A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
+            \end{tikzcd}, there is a triangle \begin{tikzcd}[column sep=small]
+                T^{-1}C \ar{r}{-T^{-1}c} & A \ar{r}{a} & B \ar{r}{b} & C
+            \end{tikzcd}
         \end{remark}
+
+        \begin{proof}
+            
+        \end{proof}
+
+
 
         \begin{remark}
             Why is it called the Octahedron axiom. Draw that Octahedron!
@@ -170,16 +185,12 @@
             composition of morphisms is zero
         \end{lemma}
 
-        \begin{lemma}
-            2 out of 3 property
-        \end{lemma}
-
         \begin{corollary}
             isomorphisms in triangles
         \end{corollary}
 
         \begin{definition}
-            Define exact/triangulated functors
+            An additive functor between triangulated categories $F: (\mathcal{T}, T, \Delta) \rightarrow (\mathcal{R}, R, \Gamma)$ is called exact or triangulated if there exist a natural transformation $\alpha : FT \rightarrow RF$ such that $F(\Delta) \subseteq \Gamma$
         \end{definition}
 
         \begin{definition}
@@ -188,6 +199,10 @@
 
         \begin{lemma}
             long exact sequence of hom(ology)
+        \end{lemma}
+
+        \begin{lemma}
+            2 out of 3 property
         \end{lemma}
 
         \begin{lemma}
