@@ -38,6 +38,7 @@
         Probably introduce this section, what is happening and what will be done etc. I can maybe say something about algebraic triangulated categories and topological triangulated categories, and explaining the name cone, fiber and cofiber.
         \subsection{Definition and first properties}
         In this section $\mathcal{T}$ denotes an additive category and $T:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$, which is often called translation or suspension functor.
+        % Definition Sextuple
         \begin{definition}
             A sextuple is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow TA$. These sextuples can be drawn as diagrams in the following way:
 
@@ -75,6 +76,7 @@
 
         A triangulated category is an additive category together with a translation functor $T$ and a triangulation $\Delta$ consisting of sextuples. When a sextuple is an element of $\Delta$ it is usually called a distinguished triangle, an exact triangles or just a triangle. Note that if sextuples are referred to as triangles it is common to either call the elements of $\Delta$ for distinguished triangles or exact triangles. As this is not the case for this thesis these objects will be referred to as triangles.
 
+        % Definition of Triangulation
         \begin{definition}
             A triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta$ of triangles consisting of sextuples in $\mathcal{T}$ satisfying the following axioms: 
 
@@ -168,7 +170,7 @@
         \end{definition}
 
         A triangulated category is denoted as $(\mathcal{T}, T, \Delta)$, where $\mathcal{T}$ is the additive category, $T$ is the translation and $\Delta$ is the triangulation. When $\mathcal{T}$ is called a triangulated category, it should be understanded as the triple given above.
-
+        % Rotation axiom dual
         \begin{remark}
             The rotation axiom has a dual, and it can be thought of as a rotation in the opposite direction. This dual can be proved by the other axioms, so it is here omitted as an axiom. The dual roation axiom goes as:
 
@@ -179,7 +181,7 @@
             \end{tikzcd} \\ %Hvordan fikser jeg linebreaks for at det blir pent??? Mener at denne skal kun brukes innad i en setning, idk man.
             To be able to prove this, some more lemmata are needed.
         \end{remark}
-
+        % Octahedron axiom alternate
         \begin{remark}
             The final axiom is referred to as the octahedron axiom. By using the alternative description of the triangle diagram, it is possible to rewrite the diagram as an octahedron. The axiom can be restated as the following:
             
@@ -249,13 +251,13 @@
             \end{center}
             Thus $0 = Tb\circ -Ta = T(-ba) \implies b\circ a = 0$ as T is a translation.
         \end{proof}
-
+        % Triangulatd functor
         \begin{definition}
             An additive functor between triangulated categories $F: (\mathcal{T}, T, \Delta) \rightarrow (\mathcal{R}, R, \Gamma)$ is called exact or triangulated if there exist a natural isomorphisms $\alpha : FT \rightarrow RF$ such that $F(\Delta) \subseteq \Gamma$.
 
             A functor $F : \mathcal{T} \rightarrow \mathcal{R}$ is called a triangle-equivalence if it is triangulated and an equivalence of categories. In this case $\mathcal{T}$ and $\mathcal{R}$ are called triangle-equivalent.
         \end{definition}
-
+        % Homological functor
         \begin{definition}
             Let $\mathcal{T}$ be a triangulated category and $\mathcal{A}$ be an abelian category. A covariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called a homological functor if $\forall (A,B,C,a,b,c):\Delta$ there is a long exact sequence in $\mathcal{A}$.
             \begin{center}
@@ -266,7 +268,7 @@
                 \end{tikzcd} $\implies$
                 \begin{tikzcd}[column sep=small]
                     ... \ar{r} & H(T^{i}A) \arrow{r}{H(T^ia)} & H(T^iB)\arrow{r}{H(T^ib)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(T^iC) \arrow[dll, "H(T^ic)" description, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
-                    & H(T^{i+1}A) \arrow[r]& H(T^{i+1}B) \arrow[r]& H(T^{i+1}C) \ar{r} & ...
+                    & H(T^{i+1}A) \arrow{r}{H(T^{i+1}a)} & H(T^{i+1}B) \arrow{r}{H(T^{i+1}b)} & H(T^{i+1}C) \ar{r} & ...
                 \end{tikzcd}
             \end{center}
 
@@ -283,13 +285,38 @@
                 \end{tikzcd}
             \end{center}
         \end{definition}
-
+        % Long exact sequence of representations
         \begin{lemma}
-            long exact sequence of hom(ology)
+            Let $M:\mathcal{T}$ be any object of $\mathcal{T}$, then the representing functors $\mathcal{T}(M,\_)$ is homological and $\mathcal{T}(\_,M)$ is cohomological.
         \end{lemma}
 
+        \begin{proof}
+            Only the covariant case needs to be proved, as the contravariant case is dual. For $\mathcal{T}(M,\_)$ to be homological, it has to create long exact sequences for every triangle in $\Delta$. Let $(A,B,C,a,b,c):\Delta$ be a triangle, then there can be extracted sequences in Ab for any $i:\mathbb{N}$.
+
+            \begin{center}
+                \begin{tikzcd}[row sep=tiny]
+                    A \ar{dr}{a} \\
+                    & B \ar{dl}{b} \\
+                    C \ar{uu}{c}[near end]{T}[very near end, marking]{|}
+                \end{tikzcd} $\implies$
+                \begin{tikzcd}
+                    \mathcal{T}(M,T^iA) \ar{r}{T^ia_*} & \mathcal{T}(M,T^iB) \ar{r}{T^ib_*} & \mathcal{T}(M,T^iC)
+                \end{tikzcd}
+            \end{center}
+            Observe that it is enough to prove that these types of diagrams are exact, as the other diagrams can be obtained by the rotation axiom, thus reducing it to same case. The goal is then to prove that $Im(T^ia_*)=Ker(T^ib_*)$.
+
+            Since $ba=0$ it follows that $Im(T^ia_*) \subseteq Ker(T^ib_*)$. Assume that $f:Ker(T^ib_*)$, that is $f:M\rightarrow T^iB$ such that $b_*(f)=0$. The current goal is to show that $f$ factors through $T^iA$, as this means that $Ker(T^ib_*)\subseteq Im(T^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; thus $\mathcal{T}(M,T^iB) \simeq\mathcal{T}(T^{-i}M,B)$, and by this assertion it suffices to assume that $f:T^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(T^{-i}M,0,T^{-i+1}M,0,0,-T^{-i+1}id)$ and $(B,C,TA,b,c,-Ta)$. 
+            \begin{center}
+                \begin{tikzcd}
+                    T^{-i}M \ar{r}{0} \ar{d}{f} & 0 \ar{r}{0} \ar{d}{0} & T^{-i+1}M \ar{r}{-T^{-i+1}id} \ar[dashed]{d}{g} & T^{-i+1}M \ar{d}{Tf} \\
+                    B \ar{r}{b} & C \ar{r}{c} & TA \ar{r}{-Ta} & TB
+                \end{tikzcd}
+            \end{center}
+            The left square commutes by the assumption, thus the morphism g exist by TR3, such that $-Ta\circ h = -Tf\circ T^{-i+1}id = -Tf \implies Ta\circ h = Tf$, thus $f = a\circ T^{-1}h$ asserting that $f$ factors through A.
+        \end{proof}
+        % 2 out of 3 lemma
         \begin{lemma}
-            2 out of 3 property
+            
         \end{lemma}
 
         \begin{corollary}
