@@ -505,16 +505,33 @@
             \end{proof}
 
             \begin{remark}
-                The Octahedron axiom have not been used once in this section. This leads to the definition of a pre-triangulated category, that is a triangulation satisfying all axioms except TR4. Note that these properties also holds for pre-triangulated categories. However, the octahedron axiom is still important, since TR3 can be proved from the other 3 axioms.
+                The Octahedron axiom have not been used once in this section. This motivates the definition of a pre-triangulated category, that is a triangulation satisfying all axioms except TR4. Note that these properties also holds for pre-triangulated categories. However, the octahedron axiom is still important, since TR3 can be proved from the other 3 axioms. [Need sources here]
             \end{remark}
             %Maybe use later if this file gets way too crammed %\subfile{sections/triangles}
 
-        \subsection{Self-injective Algebras}
-            something about algebras goes here.
+        \subsection{$K[x]/(x^n)$}
+            In this section quotients of the module categories of the K-algebras $K[x]/(x^n)$ will be studied and proved to be triangulated. As a first example it would be more instructive with a more canonical triangulated category, such as the homotopy category of chain complexes. In this type of categories one would be able to see the underlying triangulated structure much more clearly, and how it interplays with long exact sequences. Never the less, this class of categories will be more instructive in showing how flexible the notion of a triangulated category may be.
+
+
+            The more skilled reader may notice that the algebra $K[x]/(x^n)$ is self-injective and is of finite length. Therefore the category of modules over $K[x]/(x^n)$ is a Frobenius category, and the stabilization admits a triangulation. What all of this means will be clarified in the next section, for now we will focus on the structure of this very specific category, and prove that it's stabilized module category has a triangulation.
+
+            \begin{definition}
+                The injective stable mod-$K[x]/(x^n)$ category is the quotient category of morphisms factoring over injective objects. This means that if $I_1, I_2$ is injective and $f,g:A\rightarrow B$ are morphisms factoring over $I_1$ and $I_2$ respectively, then $f$ and $g$ are related in the quotient.
+
+                The projective stable categories are defined in the same way, but with projective objects instead.
+            \end{definition}
+
+            \begin{remark}
+                Cosyzygies are in fact a functor for injective stable categories, and syzygies are functors for the projective stable categories.
+            \end{remark}
+
+            Write about the indecomposable objects in this category. Find the projective and injective modules, i.e. show that $K[x]/(x^n)$ is injective.
 
         \subsection{Localizations of Triangulated Categories}
+            Verdier quotient goes here. And more stuff about these localizations, probably state Gabriel-Zisman and how this is often a good trick too prove that the localization actually exists.
 
         \subsection{Discussion of Triangulations}
+            Maybe do some Yoneda-embedding into sheaves and use that to deduce how the triangulation are in fact a shadow of some other abelian category
     
     \clearpage
     
@@ -548,5 +565,12 @@
 
             \subsection{Description of Derived Categories}
 
+    \clearpage
+
+    \section*{Appendix A: Category theory}
+            \subsection{Quotient Categories}
+            \subsection{Additive and Abelian Categories}
+            \subsection{Freyd-Mitchell Embedding???}
+    
     \clearpage
 \end{document}
