@@ -5,6 +5,10 @@
 \usepackage{graphicx}
 \graphicspath{{../images/}{../../images/}}
 
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
 \usepackage{tikz}
 \usetikzlibrary{cd}
 \usepackage{amsmath,amsthm,amssymb,amsfonts}  
@@ -306,9 +310,9 @@
                         \mathcal{T}(M,T^iA) \ar{r}{T^ia_*} & \mathcal{T}(M,T^iB) \ar{r}{T^ib_*} & \mathcal{T}(M,T^iC)
                     \end{tikzcd}
                 \end{center}
-                Observe that it is enough to prove that these types of diagrams are exact, as the other diagrams can be obtained by the rotation axiom, thus reducing it to same case. The goal is then to prove that $Im(T^ia_*)=Ker(T^ib_*)$.
-
-                Since $ba=0$ it follows that $Im(T^ia_*) \subseteq Ker(T^ib_*)$. Assume that $f:Ker(T^ib_*)$, that is $f:M\rightarrow T^iB$ such that $b_*(f)=0$. The current goal is to show that $f$ factors through $T^iA$, as this means that $Ker(T^ib_*)\subseteq Im(T^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; thus $\mathcal{T}(M,T^iB) \simeq\mathcal{T}(T^{-i}M,B)$, and by this assertion it suffices to assume that $f:T^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(T^{-i}M,0,T^{-i+1}M,0,0,-T^{-i+1}id)$ and $(B,C,TA,b,c,-Ta)$. 
+                Observe that it is enough to prove that these types of diagrams are exact, as the other diagrams can be obtained by the rotation axiom, thus reducing it to same case. 
+                
+                The goal is then to prove that $Im(T^ia_*)=Ker(T^ib_*)$. Since $ba=0$ it follows that $Im(T^ia_*) \subseteq Ker(T^ib_*)$. Assume that $f:Ker(T^ib_*)$, that is $f:M\rightarrow T^iB$ such that $b_*(f)=0$. The current goal is to show that $f$ factors through $T^iA$, as this means that $Ker(T^ib_*)\subseteq Im(T^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; thus $\mathcal{T}(M,T^iB) \simeq\mathcal{T}(T^{-i}M,B)$, and by this assertion it suffices to assume that $f:T^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(T^{-i}M,0,T^{-i+1}M,0,0,-T^{-i+1}id)$ and $(B,C,TA,b,c,-Ta)$. 
                 \begin{center}
                     \begin{tikzcd}
                         T^{-i}M \ar{r}{0} \ar{d}{f} & 0 \ar{r}{0} \ar{d}{0} & T^{-i+1}M \ar{r}{-T^{-i+1}id} \ar[dashed]{d}{g} & T^{-i+1}M \ar{d}{Tf} \\
@@ -509,14 +513,17 @@
             \end{remark}
             %Maybe use later if this file gets way too crammed %\subfile{sections/triangles}
 
-        \subsection{$K[x]/(x^n)$}
-            In this section quotients of the module categories of the K-algebras $K[x]/(x^n)$ will be studied and proved to be triangulated. As a first example it would be more instructive with a more canonical triangulated category, such as the homotopy category of chain complexes. In this type of categories one would be able to see the underlying triangulated structure much more clearly, and how it interplays with long exact sequences. Never the less, this class of categories will be more instructive in showing how flexible the notion of a triangulated category may be.
+        \subsection{Triangulation of \underline{mod}-$K[x]/(x^n)$}
+            In this section a quotient of the finitely genereated module categories of the K-algebras $K[x]/(x^n)$ will be studied and proved to be triangulated. As a first example it would be more instructive with a more canonical triangulated category, such as the homotopy category of chain complexes. For such type of categories the underlying triangulated structure would be more intuitive, and it is easier to see how it interplays with long exact sequences in an abelian category. Never the less, this class of categories will be more instructive in showing how flexible the notion of a triangulated category may be.
 
+            The more skilled reader may notice that the algebra $K[x]/(x^n)$ is self-injective and is of finite length. Therefore the category of finitely generated modules over $K[x]/(x^n)$ is a Frobenius category, and the stabilization admits a triangulation. What all of this means will be clarified in the next section, for now we will focus on the structure of this very specific category, and prove that it's stabilized module category has a triangulation.
 
-            The more skilled reader may notice that the algebra $K[x]/(x^n)$ is self-injective and is of finite length. Therefore the category of modules over $K[x]/(x^n)$ is a Frobenius category, and the stabilization admits a triangulation. What all of this means will be clarified in the next section, for now we will focus on the structure of this very specific category, and prove that it's stabilized module category has a triangulation.
+            When it comes to stabilization of module categories, there is a projective stabilization and an injective stabilization. They use the same method to construct a new category, but uses different classes of objects to form the quotient. We are however interested in the case where these two notions coincide, so we can talk about a stable category.
+
+            \textbf{I don't really like how this section is written, it feels very clumsy, should I postpone the example? I think that would be a lot cleaner as the Frobenius category is the way we actually construct these categories. I AM POSTPONING THIS CHAPTER}
 
             \begin{definition}
-                The injective stable mod-$K[x]/(x^n)$ category is the quotient category of morphisms factoring over injective objects. This means that if $I_1, I_2$ is injective and $f,g:A\rightarrow B$ are morphisms factoring over $I_1$ and $I_2$ respectively, then $f$ and $g$ are related in the quotient.
+                The injective stable mod-$K[x]/(x^n)$ category is the quotient category of morphisms factoring over injective objects. This means that if $I_1, I_2$ is injective and $f,g:A\rightarrow B$ are morphisms factoring over $I_1$ and $I_2$ respectively, then $f$ and $g$ are related in the quotient. We will denote the category as \underline{mod}-$K[x]/(x^n)$.
 
                 The projective stable categories are defined in the same way, but with projective objects instead.
             \end{definition}
@@ -536,41 +543,85 @@
     \clearpage
     
     \section{Exact Categories}
+            
+        I can maybe write some of the history of the development of the idea of exact categories. 
 
-            \subsection{Definitions and First Properties}
+        \subsection{Definitions and First Properties}
 
-            \subsection{The Frobenis Category}
+            In this section we will focus on defining what an exact category is and the first elementary properties. We will prove the axiom dubbed as "the obscure axiom" and motivate that it is not as obscure as its name suggest. "Short" variants of some homological diagram lemmas will also be proved.
 
-            \subsection{The Homotopy Category}
+            To start with the exact categories we will first take a look towards the abelian ones first. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
+
+            \begin{definition}
+                A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p.
+            \end{definition}
+
+            \begin{definition}
+                An exact category is an additive category $\mathcal{A}$ together with a class $\mathcal{E}$ of kernel-cokernel pairs. A pair $(p,q):\mathcal{E}$ is called a conflation, $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
+                \begin{itemize}
+                    \item (QE0) $\forall A:\mathcal{A}$ $id_A$ is an inflation.
+                    \item (QE0$^{op}$) $\forall A:\mathcal{A}$ $id_A$ is a deflation.
+                    \item (QE1) Inflations are closed under composition.
+                    \item (QE1$^{op}$) Deflations are closed under composition.
+                    \item (QE2) The pushout of an inflation is an inflation.
+                    \item (QE2$^{op}$) The pullback of a deflation is a deflation.
+
+                \end{itemize}
+            \end{definition}
+
+
+            \begin{remark}
+                When writing diagrams we use decorated arrows to indicate that a morphism is either an inflation or a deflation. A tail with a circle means inflation: \begin{tikzcd}
+                    A \ar[tail]{r}[marking]{\circ} & B
+                \end{tikzcd}. Double heads with a circle means deflation: \begin{tikzcd}
+                    A \ar[two heads]{r}[marking]{\circ} & B
+                \end{tikzcd}. We can now rewrite the (QE2) axioms as:
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[tail]{r}[marking]{\circ} \ar{d} \ar[phantom]{dr}[very near end]{\lrcorner} & B \ar{d} \\
+                        C \ar[tail]{r}[marking]{\circ} & D
+                    \end{tikzcd}
+                    \begin{tikzcd}
+                        A \ar[two heads]{r}[marking]{\circ} \ar{d} \ar[phantom]{dr}[very near start]{\ulcorner} & B \ar{d} \\
+                        C \ar[two heads]{r}[marking]{\circ} & D
+                    \end{tikzcd}
+                \end{center}
+            \end{remark}
+
+        \subsection{The Frobenis Category}
+
+        \subsection{Self-injective Algebras}
+
+        \subsection{The Homotopy Category}
 
     \clearpage
 
     \section{The Derived Category}
 
-            \subsection{Admissable Morphisms}
+        \subsection{Admissable Morphisms}
 
-            \subsection{Homology and Long Exact Sequences}
+        \subsection{Homology and Long Exact Sequences}
 
-            \subsection{The Derived Category}
+        \subsection{The Derived Category}
 
-            \subsection{If time, derived functors as well}
+        \subsection{If time, derived functors as well}
 
     \clearpage
     
     \section{Auslander-Reiten Triangles}
 
-            \subsection{Krull-Schmidt Categories}
+        \subsection{Krull-Schmidt Categories}
 
-            \subsection{Definition and First Properties}
+        \subsection{Definition and First Properties}
 
-            \subsection{Description of Derived Categories}
+        \subsection{Description of Derived Categories}
 
     \clearpage
 
     \section*{Appendix A: Category theory}
-            \subsection{Quotient Categories}
-            \subsection{Additive and Abelian Categories}
-            \subsection{Freyd-Mitchell Embedding???}
-    
+        \subsection{Quotient Categories}
+        \subsection{Additive and Abelian Categories}
+        \subsection{Freyd-Mitchell Embedding???}
+
     \clearpage
 \end{document}
