@@ -16,6 +16,7 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -548,21 +549,56 @@
 
         \subsection{Definitions and First Properties}
 
-            In this section we will focus on defining what an exact category is and the first elementary properties. We will prove the axiom dubbed as "the obscure axiom" and motivate that it is not as obscure as its name suggest. "Short" variants of some homological diagram lemmas will also be proved.
+            In this section we will focus on defining what an exact category is and the first elementary properties. We will prove the axiom dubbed as "the obscure axiom" and motivate that it is not as obscure as its name suggest. Some "short" variants of some homological diagram lemmas will also be proved.
 
             To start with the exact categories we will first take a look towards the abelian ones first. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
 
             \begin{definition}
-                A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p.
+                A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. 
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar{r}{p} \ar{d}{f} & B \ar{r}{q} \ar{d}{g} & C \ar{d}{h} \\
+                        A' \ar{r}{p'} & B' \ar{r}{q'} & C'
+                    \end{tikzcd}
+                \end{center}
             \end{definition}
 
+            \begin{lemma}
+                Let $(p,q)$ be a kernel-cokernel pair, then the image and coimage of p exists and are isomorphic. I.e. this diagram exists, such that the left square is a pushout and the right square is a pullback:
+                \begin{center}
+                    \begin{tikzcd}
+                        0 \ar{r}{0} \ar{rd}{0} & A \ar{r}{p} \ar{d} & B \ar{r}{q} & C \\
+                        & Coim(p) \ar{r}{iso} & Im(p) \ar{u} \ar{ur}{0}
+                    \end{tikzcd}
+                \end{center}
+            \end{lemma}
+            
+            %Usikker på om dette beviset er riktig, jeg burde ha en måte å konstruere isomorfien på, ettersom at vi ønsker at analyse morfien skal være isomorfien, ikke at vi kan velge identiteten
+            \begin{proof}
+                Since $(p,q)$ is a kernel-cokernel pair we have that the first square is bicartesian and the second square is a push-out.
+                \begin{center}
+                    \begin{tikzcd}
+                    A \ar{r}{p} \ar{rd}{0} & B \ar{d}{q} \\ & C
+                    \end{tikzcd}
+                    \begin{tikzcd}
+                        0 \ar{r}{0} \ar{rd}{0} & A \ar[equal]{d} \\ & A
+                    \end{tikzcd}
+                \end{center}
+                Thus $Im(p)=Coim(p)=A$, asserting the isomorphism as the identity in the diagram.
+                \begin{center}
+                    \begin{tikzcd}
+                        0 \ar{r}{0} \ar{rd}{0} & A \ar{r}{p} \ar[equal]{d} & B \ar{r}{q} & C \\
+                        & A \ar[equal]{r} & A \ar{u}{p} \ar{ur}{0}
+                    \end{tikzcd}
+                \end{center}
+            \end{proof}
+
             \begin{definition}
-                An exact category is an additive category $\mathcal{A}$ together with a class $\mathcal{E}$ of kernel-cokernel pairs. A pair $(p,q):\mathcal{E}$ is called a conflation, $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
+                An exact category is an additive category $\mathcal{A}$ together with a class $\mathcal{E}$ of kernel-cokernel pairs. A pair $(p,q):\mathcal{E}$ is called a conflation, here $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
+                % Kan korte ned på antallet av aksiomer, jeg trenger ikke å ha op for alle, blir nok mer oversiktelig om jeg kobler noen sammen.
                 \begin{itemize}
-                    \item (QE0) $\forall A:\mathcal{A}$ $id_A$ is an inflation.
-                    \item (QE0$^{op}$) $\forall A:\mathcal{A}$ $id_A$ is a deflation.
-                    \item (QE1) Inflations are closed under composition.
-                    \item (QE1$^{op}$) Deflations are closed under composition.
+                    \item (QE0) $\forall A:\mathcal{A}$ $id_A$ is both an inflation and a deflation.
+                    \item (QE1) Both inflations and deflations are closed under composition.
                     \item (QE2) The pushout of an inflation is an inflation.
                     \item (QE2$^{op}$) The pullback of a deflation is a deflation.
 
@@ -587,6 +623,83 @@
                     \end{tikzcd}
                 \end{center}
             \end{remark}
+
+            \begin{lemma}
+                Split exact sequences are exact
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{prop}
+                Consider the commutative square
+                \begin{tikzcd}
+                    A \ar[tail]{r}{i} \ar{d}{f} & B \ar{d}{g} \\
+                    C \ar[tail]{r}{j} & D
+                \end{tikzcd}. The following statements are equivalent:
+                \begin{itemize}
+                    \item The square is a pushout.
+                    \item The sequence \begin{tikzcd}
+                        A \ar[tail]{r}{\begin{pmatrix} 
+                            i \\ -f 
+                        \end{pmatrix}} & B\oplus C \ar[two heads]{r}{\begin{pmatrix} 
+                            g \ j
+                        \end{pmatrix}} & D \end{tikzcd} is a conflation.
+                    \item The square is bicartesian.
+                    \item The square is a part of the commutative diagram \begin{tikzcd}
+                        A \ar[tail]{r}{i} \ar{d}{f} & B \ar[two heads]{r}{p} \ar{d}{g} & E \ar[equal]{d} \\
+                        C \ar[tail]{r}{j} & D \ar[two heads]{r}{q} & E
+                    \end{tikzcd}
+                \end{itemize}
+            \end{prop}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{prop}
+                The pullback of an inflation along a deflation is an inflation.
+            \end{prop}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{theorem}
+                The obscure axiom
+            \end{theorem}
+
+            %Add the classical homological diagram lemmatas down here
+            \begin{lemma}
+                Let $(p,q)$ be the conflation \begin{tikzcd}
+                    A \ar[tail]{r}{p} & B \ar[two heads]{r}{q} & C
+                \end{tikzcd}, $(p',q')$ be the conflation \begin{tikzcd}
+                    A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'
+                \end{tikzcd}. A morphism of the conflations $(f,g,h):(p,q)\rightarrow (p',q')$ factors through the conflation \begin{tikzcd}
+                    A \ar[tail]{r} & D \ar[two heads]{r} & C'
+                \end{tikzcd}
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{corollary}
+                The short five lemma
+            \end{corollary}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{lemma}
+                Noethers isomorphism lemma
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
 
         \subsection{The Frobenis Category}
 
