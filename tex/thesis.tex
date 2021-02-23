@@ -625,12 +625,42 @@
             \end{remark}
 
             \begin{lemma}
-                Split exact sequences are exact
+                The map $0:0\rightarrow A$ is an inflation. Dually, the map $0:A\rightarrow 0$ is a deflation.
             \end{lemma}
 
             \begin{proof}
-                
+                Consider the diagram \begin{tikzcd}
+                    0 \ar[tail]{r}{0} & A \ar[two heads]{r}{id_A} & A
+                \end{tikzcd}. The left morphism is the kernel of the right morphism making a kernel-cokernel pair $(0,id_A)$. The identity $id_A$ is assumed to be a deflation, implying that the pair is a conflation.
             \end{proof}
+
+            \begin{corollary}
+                A kernel-cokernel pair $(i,p)$ found as sequence (1) is a conflation. 
+                
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}
+                        A \ar{r}{i} & A \oplus B \ar{r}{p} & B
+                    \end{tikzcd}
+                \end{center}
+            \end{corollary}
+
+            \begin{proof}
+                In a category with an initial object the coproduct can be thought of as the pushout with the initial in the upper right corner. This can be assembled into pushout (1).
+                By the lemma the zero morphisms are inflations, asserting that $i$ and $i'$ are inflations by (QE2). Thus there are conflations $(i,p)$ and $(i',p')$.
+
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}
+                        0 \ar[tail]{r}{0} \ar[tail]{d}{0} & A \ar[tail]{d}{i} \\
+                        B \ar[tail]{r}{i'} & A \oplus B
+                    \end{tikzcd}
+                \end{center}
+            \end{proof}
+
+            \begin{corollary}
+                Split-monomorphisms admitting a cokernel is an inflation, with dual statement as split-epimorphisms admitting a kernel is a deflation. 
+            \end{corollary}
 
             \begin{prop}
                 Consider the commutative square
