@@ -554,7 +554,7 @@
             To start with the exact categories we will first take a look towards the abelian ones first. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
 
             \begin{definition}
-                A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. 
+                A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. An isomorphisms is a triple in which each morphism is an isomorphism.
                 \begin{center}
                     \begin{tikzcd}
                         A \ar{r}{p} \ar{d}{f} & B \ar{r}{q} \ar{d}{g} & C \ar{d}{h} \\
@@ -564,7 +564,7 @@
             \end{definition}
 
             \begin{lemma}
-                Let $(p,q)$ be a kernel-cokernel pair, then the image and coimage of p exists and are isomorphic. I.e. this diagram exists, such that the left square is a pushout and the right square is a pullback:
+                Let $(p,q)$ be a kernel-cokernel pair, then the image and coimage of p exists and are isomorphic. I.e. this diagram exists, such that the left square is a push-out and the right square is a pull-back:
                 \begin{center}
                     \begin{tikzcd}
                         0 \ar{r}{0} \ar{rd}{0} & A \ar{r}{p} \ar{d} & B \ar{r}{q} & C \\
@@ -594,15 +594,16 @@
             \end{proof}
 
             \begin{definition}
-                An exact category is an additive category $\mathcal{A}$ together with a class $\mathcal{E}$ of kernel-cokernel pairs. A pair $(p,q):\mathcal{E}$ is called a conflation, here $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
+                An exact structure for an additive category $\mathcal{A}$ is a class $\mathcal{E}$ of kernel-cokernel pairs which are closed under isomorphisms. A pair $(p,q):\mathcal{E}$ is called a conflation, here $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
                 % Kan korte ned på antallet av aksiomer, jeg trenger ikke å ha op for alle, blir nok mer oversiktelig om jeg kobler noen sammen.
                 \begin{itemize}
                     \item (QE0) $\forall A:\mathcal{A}$ $id_A$ is both an inflation and a deflation.
                     \item (QE1) Both inflations and deflations are closed under composition.
-                    \item (QE2) The pushout of an inflation is an inflation.
-                    \item (QE2$^{op}$) The pullback of a deflation is a deflation.
-
+                    \item (QE2) The push-out of an inflation is an inflation.
+                    \item (QE2$^{op}$) The pull-back of a deflation is a deflation.
                 \end{itemize}
+
+                An exact category is the additive category $\mathcal{A}$ together with an exact structure $\mathcal{E}$.
             \end{definition}
 
 
@@ -624,6 +625,14 @@
                 \end{center}
             \end{remark}
 
+            \begin{remark}
+                Inflations are also called admissable monomorphisms, deflations are also called admissable epimorphisms and conflations are also called short exact sequences.
+            \end{remark}
+
+            \begin{remark}
+                The axioms for an exact category is made in such a way that $\mathcal{E}$ is an exact structure for $\mathcal{A}$ if and only if $\mathcal{E}^{op}$ is an exact structure for $\mathcal{A}^{op}$.
+            \end{remark}
+
             \begin{lemma}
                 The map $0:0\rightarrow A$ is an inflation. Dually, the map $0:A\rightarrow 0$ is a deflation.
             \end{lemma}
@@ -634,71 +643,289 @@
                 \end{tikzcd}. The left morphism is the kernel of the right morphism making a kernel-cokernel pair $(0,id_A)$. The identity $id_A$ is assumed to be a deflation, implying that the pair is a conflation.
             \end{proof}
 
+            \begin{remark}
+                It can be seen that isomorphisms are deflations. Let $f:A\rightarrow B$ be an isomorphism, then there are two kernel-cokernel pairs: $(0,id_A)$ and $(0,f)$. Between these there is an isomorphism which is the triple $(0,id_A,f^{-1})$. As the conflations are closed under isomorphism, $(0,f)$ is a conflation, making f into a deflation. By dualizing this argument f is also an inflation.
+                \begin{center}
+                    \begin{tikzcd}
+                        0 \ar{r}{0} \ar{d}{0} & A \ar{r}{f} \ar{d}{id_A} & B \ar{d}{f^{-1}} \\
+                        0 \ar[tail]{r}{0}[marking]{\circ} & A \ar[two heads]{r}{id_A}[marking]{\circ} & A
+                    \end{tikzcd}
+                \end{center}
+            \end{remark}
+
             \begin{corollary}
-                A kernel-cokernel pair $(i,p)$ found as sequence (1) is a conflation. 
+                A kernel-cokernel pair $(i,p)$ found as a split short-exact sequence (1) is a conflation. 
                 
                 \begin{center}
                     (1)
                     \begin{tikzcd}
-                        A \ar{r}{i} & A \oplus B \ar{r}{p} & B
+                        A \ar[tail]{r}{i}[marking]{\circ} & A \oplus B \ar[two heads]{r}{p}[marking]{\circ} & B
                     \end{tikzcd}
                 \end{center}
             \end{corollary}
 
             \begin{proof}
-                In a category with an initial object the coproduct can be thought of as the pushout with the initial in the upper right corner. This can be assembled into pushout (1).
+                In a category with an initial object the coproduct can be thought of as the push-out with the initial in the upper right corner. This can be assembled into push-out (1).
                 By the lemma the zero morphisms are inflations, asserting that $i$ and $i'$ are inflations by (QE2). Thus there are conflations $(i,p)$ and $(i',p')$.
 
                 \begin{center}
                     (1)
                     \begin{tikzcd}
-                        0 \ar[tail]{r}{0} \ar[tail]{d}{0} & A \ar[tail]{d}{i} \\
-                        B \ar[tail]{r}{i'} & A \oplus B
+                        0 \ar[tail]{r}{0}[marking]{\circ} \ar[tail]{d}{0}[marking]{\circ} & A \ar[tail]{d}{i}[marking]{\circ} \\
+                        B \ar[tail]{r}{i'}[marking]{\circ} & A \oplus B
                     \end{tikzcd}
                 \end{center}
             \end{proof}
 
             \begin{corollary}
-                Split-monomorphisms admitting a cokernel is an inflation, with dual statement as split-epimorphisms admitting a kernel is a deflation. 
+                The direct sum of conflations is a conflation. I.e. there is a diagram:
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[tail]{r}{i}[marking]{\circ} & B \ar[two heads]{r}{p}{\circ} & C
+                    \end{tikzcd} \&
+                    \begin{tikzcd}
+                        A' \ar[tail]{r}{i'}[marking]{\circ} & B' \ar[two heads]{r}{p'}[marking]{\circ} & C'
+                    \end{tikzcd} \\
+                    $\Downarrow$ \\
+                    \begin{tikzcd}
+                        A\oplus A' \ar[tail]{r}{i\oplus i'}[marking]{\circ} & B\oplus B' \ar[two heads]{r}{p\oplus p'}[marking]{\circ} & C\oplus C'
+                    \end{tikzcd}
+                \end{center}
             \end{corollary}
 
-            \begin{prop}
-                Consider the commutative square
-                \begin{tikzcd}
-                    A \ar[tail]{r}{i} \ar{d}{f} & B \ar{d}{g} \\
-                    C \ar[tail]{r}{j} & D
-                \end{tikzcd}. The following statements are equivalent:
-                \begin{itemize}
-                    \item The square is a pushout.
-                    \item The sequence \begin{tikzcd}
-                        A \ar[tail]{r}{\begin{pmatrix} 
-                            i \\ -f 
-                        \end{pmatrix}} & B\oplus C \ar[two heads]{r}{\begin{pmatrix} 
-                            g \ j
-                        \end{pmatrix}} & D \end{tikzcd} is a conflation.
-                    \item The square is bicartesian.
-                    \item The square is a part of the commutative diagram \begin{tikzcd}
-                        A \ar[tail]{r}{i} \ar{d}{f} & B \ar[two heads]{r}{p} \ar{d}{g} & E \ar[equal]{d} \\
-                        C \ar[tail]{r}{j} & D \ar[two heads]{r}{q} & E
-                    \end{tikzcd}
-                \end{itemize}
-            \end{prop}
-
             \begin{proof}
-                
+                We start with only considering the conflation $(i,p)$. $\forall{D}$ there is a conflation $(i\oplus id_D, p\oplus 0)$, drawn as the diagram.
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A\oplus D \ar[tail]{r}{\begin{pmatrix}i & 0 \\ 0 & 1\end{pmatrix}}[marking]{\circ} \& B\oplus D \ar[two heads]{r}{\begin{pmatrix}p & 0\end{pmatrix}}[marking]{\circ} \& C
+                    \end{tikzcd}
+                \end{center}
+                As kernels and cokernels are preserved by direct sums, this pair is in fact a kernel-cokernel pair. The epimorphism is a deflation as it can be factored by the deflations:
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        B\oplus D \ar[two heads]{r}{\begin{pmatrix}1 & 0\end{pmatrix}}[marking]{\circ} \& B \ar[two heads]{r}{p}[marking]{\circ} \& C
+                    \end{tikzcd}
+                \end{center}
+                Thus it is seen that $(i\oplus id_D, p\oplus 0)$ is a conflation, and dually $(i\oplus 0, p\oplus id_D)$ is also a conflation. To finish off the proof it is seen that the morphism $i\oplus i'$ factors as $i\oplus id_{A'}\circ id_A\oplus i'$ asserting that it is an inflation by (QE1). By the dual argument we then get that the direct sum of conflations is a conflation.
             \end{proof}
 
-            \begin{prop}
-                The pullback of an inflation along a deflation is an inflation.
+            \begin{definition}
+                A square is bicartesian if it is both a pull-back and a push-out.
+                \begin{tikzcd}
+                    A \ar{r}{} \ar{d}{} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} & B \ar{d}{} \\
+                    C \ar{r}{} & D
+                \end{tikzcd}
+            \end{definition}
+
+            \begin{prop} 
+                The following statements are equivalent:
+                \begin{enumerate}
+                    \item The square (1) is a push-out.
+                    \item The sequence (2) is a conflation.
+                    \item The square (1) is bicartesian.
+                    \item The square (1) is a part of the commutative diagram (3)
+                \end{enumerate}
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}
+                        A \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \\
+                        C \ar[tail]{r}{j}[marking]{\circ} & D
+                    \end{tikzcd}
+                    \space (2)
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar[tail]{r}{\begin{pmatrix} 
+                            i \\ -f 
+                        \end{pmatrix}}[marking]{\circ} \& B\oplus C \ar[two heads]{r}{\begin{pmatrix}
+                            g & j
+                        \end{pmatrix}}[marking]{\circ} \& D 
+                    \end{tikzcd}
+                    \space (3)
+                    \begin{tikzcd}
+                        A \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar[two heads]{r}{p}[marking]{\circ} \ar{d}{g} & E \ar[equal]{d} \\
+                        C \ar[tail]{r}{j}[marking]{\circ} & D \ar[two heads]{r}{q}[marking]{\circ} & E
+                    \end{tikzcd}
+                \end{center}
             \end{prop}
 
+            Before the proof for this proposition will be presented a useful lemma will be proved first.
+
+            \begin{lemma}
+                Assume that there is a commutative square (1) and an associatied sequence (2). (1) is a push-out square if and only if $\begin{pmatrix}
+                    p & q
+                \end{pmatrix}$ is the cokernel of the morphism $\begin{pmatrix}
+                    i \\ -j
+                \end{pmatrix}$
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}
+                        A \ar{r}{i} \ar{d}{j} & B \ar{d}{p} \\
+                        C \ar{r}{q} & D
+                    \end{tikzcd}
+                    \space (2)
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar{r}{\begin{pmatrix}i \\ -j\end{pmatrix}} \& B\oplus C \ar{r}{\begin{pmatrix}p & q\end{pmatrix}} \& D
+                    \end{tikzcd}
+                \end{center}
+            \end{lemma}
+
             \begin{proof}
+                For any test object $T$ and two maps $t_1:B\rightarrow T$ and $t_2:C\rightarrow T$, we can construct the diagrams for the universal properties of both the cokernel and the push-out. It is seen that these diagrams are equivalent, proving the lemma.
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar{rd}{0} \ar{r}{\begin{pmatrix}i \\ -f\end{pmatrix}} \& B\oplus C \ar[two heads]{d}{\begin{pmatrix}g & j\end{pmatrix}} \ar[bend left]{rd}{\begin{pmatrix}t_1 & t_2\end{pmatrix}} \\
+                        \& D \ar[dashed]{r}{t'}\& T
+                    \end{tikzcd}
+                    $\Leftrightarrow$
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{i} \ar{d}{f} \& B \ar{d}{g} \ar[bend left]{rdd}{t_1} \\
+                        C \ar{r}{j} \ar[bend right]{rrd}{t_2} \& D \ar[dashed]{rd}{t'} \\
+                        \&\& T
+                    \end{tikzcd}
+                \end{center}
+            \end{proof}
+
+            \begin{corollary}
+                For the same diagrams (1) and (2) as above the dual statement is also true. (1) is a pull-back square if and only if $\begin{pmatrix}
+                    i \\ -j
+                \end{pmatrix}$ is kernel of the morphism $\begin{pmatrix}
+                    p & q
+                \end{pmatrix}$. Thus we have that (1) is bicartesian (i.e. both a pull-back and a push-out) if and only if the morphisms make a kernel-cokernel pair.
+            \end{corollary}
+
+            \begin{proof}
+                \textbf{of Proposition 3.3} 1. $\Rightarrow$ 2.: By the previous lemma we know that $\begin{pmatrix}
+                    g & j
+                \end{pmatrix}$ is the cokernel of $\begin{pmatrix}
+                    i \\ -j
+                \end{pmatrix}$. Thus proving that $\begin{pmatrix}
+                    i \\ -j
+                \end{pmatrix}$ is an inflation, will prove that the pair is a conflation. 
                 
+                Observe that the morphism $\begin{pmatrix}
+                    i \\ -f
+                \end{pmatrix}$ can be factored through the sequence. 
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar[tail]{r}{\begin{pmatrix}
+                            1 \\ 
+                            0
+                        \end{pmatrix}}[marking]{\circ} \& A\oplus C \ar[tail, two heads]{r}{\begin{pmatrix}
+                            1 & 0 \\
+                            -f & 1
+                        \end{pmatrix}}[below]{\simeq}[marking]{\circ} \& A\oplus C \ar[tail]{r}{\begin{pmatrix}
+                            i & 0 \\
+                            0 & 1
+                        \end{pmatrix}}[marking]{\circ} \& B\oplus C
+                    \end{tikzcd}
+                \end{center}
+                By corollary 3.2.1 the first map is an inflation, as the second map is an isomorphism it is also an inflation and the last map is the direct sum of two inflations. Thus the composite of all these maps surely is an inflation by (QE1), proving the first implication.
+
+                2. $\Rightarrow$ 3.: This follows from corollary 3.4.1.
+                
+                3 $\Rightarrow$ 1.: This is by definition.
+
+                1. $\Rightarrow$ 4.: Let $p$ be the cokernel of $i$, then we can form the diagram below.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \ar[two heads, bend left]{rdd}{p}[marking]{\circ} \\
+                        C \ar[tail]{r}{j}[marking]{\circ} \ar[bend right]{rrd}{0} & D \ar[dashed, two heads]{rd}{p'} \\
+                        & & T
+                    \end{tikzcd}
+                \end{center}
+                $p'$ is an epimorphism as $p=p'g$ is epi. To prove that $p'$ is the cokernel of $j$ we let $T'$ be another test object with a map $t':D\rightarrow T'$ such that $0 = t'j$. By doing some diagram chases we have that $0=t'jf=t'gi$, thus by the universal property of $p$ the morphism $t'g$ factors through $T$ such that $t'g=tp$ for some unique $t$. By rearranging we have that $t'g=tp'g$, and with some push-out magic $t'=tp'$\textbf{I MUST FIGURE THIS OUT}. $t$ is also unique, for if there exist another map $h$ such that $tp'=hp'$, then $t=h$ as $p'$ is epic. The unique existence proves the universal property, and $p'$ is the cokernel of $j$.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \ar[two heads]{r}{p}[marking]{\circ} & T \ar[equal]{d} \\
+                        C \ar[tail]{r}{j}[marking]{\circ} \ar[bend right]{rrd}{0} & D \ar{rd}{t'} \ar[dashed, two heads]{r}{p'} & T \ar[dashed]{d}{t} \\
+                        & & T'
+                    \end{tikzcd}
+                \end{center}
+
+                4. $\Rightarrow$ 2.: We start by taking the pullback of $p$ and $p'$ using $(QE2^{op})$, and determines the diagram with the dual statement of the last implication.
+                \begin{center}
+                    \begin{tikzcd}
+                        & A \ar[equal]{r} \ar[tail]{d}{i'}[marking]{\circ} & A \ar[tail]{d}{i}[marking]{\circ} \\
+                        C \ar[equal]{d} \ar[tail]{r}{j'}[marking]{\circ} & E \ar[two heads]{r}{q'}[marking]{\circ} \ar[two heads]{d}{q}[marking]{\circ} \ar[phantom]{dr}[very near start]{\ulcorner} & B \ar[dashed]{ld}[above]{g} \ar[two heads]{d}{p}[marking]{\circ} \\
+                        C \ar[tail]{r}{j}[marking]{\circ} & D \ar[two heads]{r}{p'}[marking]{\circ} & T
+                    \end{tikzcd}
+                    \space $\Rightarrow$
+                    \begin{tikzcd}
+                        B \ar[dashed]{rd}{k} \ar[bend left, equal]{rrd} \ar[bend right]{ddr}{g} \\
+                        & E \ar[two heads]{r}{q'}[marking]{\circ} \ar[two heads]{d}{q}[marking]{\circ} & B \ar[two heads]{d}{p}[marking]{\circ} \\
+                        & D \ar[two heads]{r}{p'}[marking]{\circ} & T
+                    \end{tikzcd}
+                \end{center}
+                From these diagrams we can deduce that $q'$ is a split-epimorphism. The composite $q'(id_E-kq')=q'-q'kq'=q'-q'=0$ as q' is split-epi, so $(id_E-kq')$ factors over $j'$ as in the following diagram.
+                \begin{center}
+                    \begin{tikzcd}
+                        E \ar[dashed]{rd}{l} \ar[bend left]{rrd}{id_E-kq'} \\
+                        & C \ar[tail]{r}{j'}[marking]{\circ} \ar{rd}{0} & E \ar[two heads]{d}{q'}[marking]{\circ} \\
+                        & & B
+                    \end{tikzcd}
+                \end{center}
+                From these diagrams we can extract three different equations:
+                \begin{itemize}
+                    \item $0=k-k=k-kq'k=(id_E-kq')k=j'lk \implies lk=0$ as $j'$ is monic
+                    \item $j'lj'=(id_E-kq')j'=j'\implies lj'=id_C$ as $j'$ is monic
+                    \item $jli'=(qj')li'=q(id_E-kq')i'=-(qk)(q'i')=-gi=-jf \implies li'=-f$ as $j$ is monic
+                \end{itemize}
+                The morphisms $\begin{pmatrix}
+                    k & j'
+                \end{pmatrix}$ and $\begin{pmatrix}
+                    q' \\ l
+                \end{pmatrix}$ are inverses:
+                \begin{itemize}
+                    \item $\begin{pmatrix}
+                        k & j'
+                    \end{pmatrix}\begin{pmatrix}
+                        q' \\ l
+                    \end{pmatrix}=kq'+j'l=kq'+id_E-kq'=id_E$
+                    \item $\begin{pmatrix}
+                        q' \\ l
+                    \end{pmatrix}\begin{pmatrix}
+                        k & j'
+                    \end{pmatrix}=\begin{pmatrix}
+                        q'k & q'j' \\ lk & lj'
+                    \end{pmatrix} = \begin{pmatrix}
+                        id_B & 0 \\ 0 & id_C
+                    \end{pmatrix}$
+                \end{itemize}
+                Thus we have an isomorphism of kernel-cokernel pairs $(id_A,,\begin{pmatrix}
+                    q' \\ l
+                \end{pmatrix}\begin{pmatrix}
+                    k & j'
+                \end{pmatrix})$, \\ from $(\begin{pmatrix}i \\ -f\end{pmatrix},\begin{pmatrix}f' & i'\end{pmatrix})$ to $(i',q)$. This proves 2.
+            \end{proof}
+
+            \begin{corollary}
+                The pull-back of an inflation along a deflation is an inflation.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[tail]{r}{i'}[marking]{\circ} \ar[two heads]{d}{e'}[marking]{\circ} \ar[phantom]{rd}[very near start]{\ulcorner} & B \ar[two heads]{d}{e}[marking]{\circ} \\
+                        C \ar[tail]{r}{i}[marking]{\circ} & D
+                    \end{tikzcd}
+                \end{center}
+            \end{corollary}
+
+            \begin{proof}
+                By (QE2) this pullback exists, as there is a deflation in the pullback. Extend the diagram by adding the deflation of the inflation in the following manner.
+                \begin{center}
+                    \begin{tikzcd}
+                        & T \ar{d}{t} \ar[bend left]{rd}{0} \ar[bend right, dashed]{ld}{t'} \ar[bend left, dashed]{ddl}[above, near end]{t''} & \\
+                        A \ar[tail]{r}{i'} \ar[two heads]{d}{e'}[marking]{\circ} \ar[phantom]{rd}[very near start]{\ulcorner} & B \ar[two heads]{d}{e}[marking]{\circ} \ar[two heads]{r}{pe}[marking]{\circ} & C \ar[equal]{d} \\
+                        C \ar[tail]{r}{i}[marking]{\circ} & D \ar[two heads]{r}{p}[marking]{\circ} & C
+                    \end{tikzcd}
+                \end{center}
+                $pe$ is a deflation by (QE1), and $i'$ is a mono as a limit of a mono is a mono. Our goal is to prove that $i'$ is the kernel of $pe$. Let T be a test object such that $pet=0$. Then we have that $te$ factorizes over $i$, such that we can apply the universal property of the pullback to factorize $te$ over $i'$. Uniqueness of $t'$ is achieved with $i'$ being monic. This proves that $(i',pe)$ is a conflation.
             \end{proof}
 
             \begin{theorem}
-                The obscure axiom
+                Assume that $i:A\rightarrow B$ is a morphism with a cokernel. If there is a morphism $j:B\rightarrow C$ such that $ji$ is an inflation, then $i$ is an inflation.
             \end{theorem}
+
+            \begin{proof}
+                
+            \end{proof}
 
             %Add the classical homological diagram lemmatas down here
             \begin{lemma}
@@ -712,8 +939,37 @@
             \end{lemma}
 
             \begin{proof}
-                
+                Let $p:B\rightarrow D$ be the cokernel of $i$. We start the proof with forming the push-out of $i$ and $ji$.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{ji}[marking]{\circ} \ar{d}{i} & C \ar{d} \\
+                        B \ar[tail]{r}[marking]{\circ} & E
+                    \end{tikzcd}
+                \end{center}
+                By proposition 3.3 we get that $\begin{pmatrix}
+                    i \\ ji
+                \end{pmatrix}$ is an inflation. $\begin{pmatrix}
+                    i \\ 0
+                \end{pmatrix}=\begin{pmatrix}
+                    id_B & 0 \\ -j & id_C
+                \end{pmatrix}\begin{pmatrix}
+                    i \\ ji
+                \end{pmatrix}$, this is an inflation by (QE1) as the 2x2 matrix is an isomorphism. Observer that the cokernel of this map is $\begin{pmatrix}
+                    k & 0 \\ 0 & id_C
+                \end{pmatrix}$. Our final trich will be to show that there is a pullback square, and then use (QE2) to say that k is a deflation.
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        T \ar[bend left]{rrd}{t_1} \ar[bend right]{ddr}[below]{\begin{pmatrix}t_2 \\ 0\end{pmatrix}} \ar[dashed]{rd}{t} \\
+                        \& B \ar{r}{k} \ar{d}{\begin{pmatrix}1 \\ 0\end{pmatrix}} \& D \ar{d}{\begin{pmatrix}1 \\ 0\end{pmatrix}} \\
+                        \& B\oplus C \ar[two heads]{r}[below]{\begin{pmatrix}k & 0 \\ 0 & id_C\end{pmatrix}}[marking]{\circ} \& D\oplus C
+                    \end{tikzcd}
+                \end{center}
+                Note that setting $t=t_2$ we get the universal property. This is well defined as $kt_2=t_1$ by assumption, thus $kt=t_1$. This is what we need to prove that the square is a pullback, proving the obscure axiom.
             \end{proof}
+
+            \begin{remark}
+                Write a bit about the dual of the obscure axiom.
+            \end{remark}
 
             \begin{corollary}
                 The short five lemma
