@@ -593,6 +593,10 @@
                 \end{center}
             \end{proof}
 
+            \begin{corollary}
+                Suppose that $(p,q)$ is a kernel-cokernel pair. If $p$ is an epimorphism, then $p$ is an isomorphism.
+            \end{corollary}
+
             \begin{definition}
                 An exact structure for an additive category $\mathcal{A}$ is a class $\mathcal{E}$ of kernel-cokernel pairs which are closed under isomorphisms. A pair $(p,q):\mathcal{E}$ is called a conflation, here $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
                 % Kan korte ned på antallet av aksiomer, jeg trenger ikke å ha op for alle, blir nok mer oversiktelig om jeg kobler noen sammen.
@@ -832,7 +836,7 @@
                         & & T
                     \end{tikzcd}
                 \end{center}
-                $p'$ is an epimorphism as $p=p'g$ is epi. To prove that $p'$ is the cokernel of $j$ we let $T'$ be another test object with a map $t':D\rightarrow T'$ such that $0 = t'j$. By doing some diagram chases we have that $0=t'jf=t'gi$, thus by the universal property of $p$ the morphism $t'g$ factors through $T$ such that $t'g=tp$ for some unique $t$. By rearranging we have that $t'g=tp'g$, and with some push-out magic $t'=tp'$\textbf{I MUST FIGURE THIS OUT}. $t$ is also unique, for if there exist another map $h$ such that $tp'=hp'$, then $t=h$ as $p'$ is epic. The unique existence proves the universal property, and $p'$ is the cokernel of $j$.
+                $p'$ is an epimorphism as $p=p'g$ is epi. To prove that $p'$ is the cokernel of $j$ we let $T'$ be another test object with a map $t':D\rightarrow T'$ such that $0 = t'j$. By doing some diagram chases we have that $0=t'jf=t'gi$, thus by the universal property of $p$ the morphism $t'g$ factors through $T$ such that $t'g=tp$ for some unique $t$. By rearranging we have that $t'g=tp'g=tp$, and $t'j=tp'j=0$, thus since $t'$ is the unique morphism satisfying this equation we demand that $t'=tp'$. $t$ is also unique, for if there exist another map $h$ such that $tp'=hp'$, then $t=h$ as $p'$ is epic. The unique existence proves the universal property, and $p'$ is the cokernel of $j$.
                 \begin{center}
                     \begin{tikzcd}
                         A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \ar[two heads]{r}{p}[marking]{\circ} & T \ar[equal]{d} \\
@@ -962,36 +966,69 @@
 
             %Add the classical homological diagram lemmatas down here
             \begin{lemma}
-                Let $(p,q)$ be the conflation \begin{tikzcd}
-                    A \ar[tail]{r}{p} & B \ar[two heads]{r}{q} & C
-                \end{tikzcd}, $(p',q')$ be the conflation \begin{tikzcd}
-                    A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'
-                \end{tikzcd}. A morphism of the conflations $(f,g,h):(p,q)\rightarrow (p',q')$ factors through the conflation \begin{tikzcd}
+                Let $(p,q)$ and $(p',q')$ be the conflations:
+                \begin{itemize}
+                    \item $(p,q)$: \begin{tikzcd}A \ar[tail]{r}{p} & B \ar[two heads]{r}{q} & C\end{tikzcd}
+                    \item $(p',q')$: \begin{tikzcd}A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'\end{tikzcd}
+                \end{itemize}
+                A morphism of the conflations $(f,g,h):(p,q)\rightarrow (p',q')$ factors through the conflation 
+                \begin{tikzcd}
                     A \ar[tail]{r} & D \ar[two heads]{r} & C'
-                \end{tikzcd} such that we have the following diagram.
+                \end{tikzcd} such that we have the following diagram where $g = g_2g_1$.
                 \begin{center}
                     \begin{tikzcd}
-                        A \ar[tail]{r}{p}[marking]{\circ} \ar[equal]{d} & B \ar[two heads]{r}{q}[marking]{\circ} \ar{d} & C \ar{d} \\
-                        A \ar[tail]{r}[marking]{\circ} \ar[two heads]{r}[marking]{\circ} & D & C' \\
-                        A' & B' & C'
+                        A \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} & B \ar[two heads]{r}{q}[marking]{\circ} \ar{d}{g_1} & C \ar[equal]{d} \\
+                        A' \ar[tail]{r}[marking]{\circ}  \ar[equal]{d} & D \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}[marking]{\circ} \ar{d}{g_2} & C \ar{d}{h} \\
+                        A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
                     \end{tikzcd}
                 \end{center}
             \end{lemma}
 
+            \begin{proof}
+                Observe that the upper part of the diagram is made by taking a push-out of $p$ and $f$, where the right part is gained from proposition 3.3. Next we will combine the upper part with the lower part using the push-out property.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} \ar[phantom]{rd}[very near end]{\lrcorner} & B \ar{d}{g_1} \ar[bend left]{rdd}{g} \\
+                        A' \ar[tail]{r}[marking]{\circ} \ar[tail, bend right]{rrd}{p'}[marking]{\circ} & D \ar[dashed]{rd}{g_2} \\
+                        & & B'
+                    \end{tikzcd} $\implies$
+                    \begin{tikzcd}
+                        A \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} \ar[phantom]{rd}[very near start]{\urcorner}[very near end]{\lrcorner} & B \ar{d}{g_1} \ar[two heads]{r}{q}[marking]{\circ} & C \ar[equal]{d} \\
+                        A' \ar[equal]{d} \ar[tail]{r}{a}[marking]{\circ} & D \ar{d}{g_2} \ar[two heads]{r}{c}[marking]{\circ} & C \ar{d}{h} \\
+                        A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
+                    \end{tikzcd}
+                \end{center}
+                It remains to show that the lower right square is commutative, then we can apply the dual of proposition 3.3 to see that the square is bicartesian. Note that $q=cg_1$ by prop 3.3 thus $q'g_2g_1=q'g=hq=hcg_1$. By uniqueness of the push-out property we have that $hc=q'g_2$.
+            \end{proof}
+
             \begin{corollary}
-                The short five lemma
+                \textbf{The short five lemma}. Suppose that there is a morphism of conflations $(f,g,h)$ as above. If $f$ and $h$ are isomorphisms, then $g$ is an isomorphism.
             \end{corollary}
 
             \begin{proof}
-                
+                Since $f$ is an isomorphism it is at least an inflation, thus $g_1$ is an inflation by (QE2). As colimits preserve epis, $g_1$ is also an epimorphism. by corollary 3.1.1 we know that $g_1$ is an iso, and dually that $g_2$ is an iso. Since isomorphisms are closed under composition we have that $g$ is an isomorphism. 
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{r}{p}[marking]{\circ} \ar[tail]{d}{f}[rotate=90, above]{\simeq} & B \ar[two heads]{r}{q}[marking]{\circ} \ar[tail]{d}{g_1}[rotate=90, above]{\simeq}& C \ar[equal]{d} \\
+                        A' \ar[tail]{r}[marking]{\circ}  \ar[equal]{d} & D \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}[marking]{\circ} \ar[two heads]{d}{g_2}[rotate=90, above]{\simeq} & C \ar[two heads]{d}{h}[rotate=90, above]{\simeq} \\
+                        A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
+                    \end{tikzcd}
+                \end{center}
             \end{proof}
 
             \begin{lemma}
-                Noethers isomorphism lemma
+                \textbf{Noethers isomorphism lemma}. Suppose there is a diagram with rows as conflations and the first column as a conflation. Then the final column is also a conflation.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[equal]{d} \ar[tail]{r}[marking]{\circ} & B \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}[marking]{\circ} \ar[tail]{d}[marking]{\circ} & X \ar[tail, dashed]{d}[marking]{\circ} \\
+                        A \ar[tail]{r}[marking]{\circ} & C \ar[two heads]{d}[marking]{\circ} \ar[two heads]{r}[marking]{\circ} & Y \ar[two heads, dashed]{d}[marking]{\circ} \\
+                        & Z \ar[equal]{r} & Z
+                    \end{tikzcd}
+                \end{center}
             \end{lemma}
 
             \begin{proof}
-                
+                Assume that we only have the solid part of the diagram above. By the universal property of cokernels, the upper dashed map exists, and by the dual of proposition 3.3 the square is bicartesian. We can state that the upper dashed map is an inflation, and since the square is a push-out we get that the lower dashed map exists such that the final column is a conflation by proposition 3.3.
             \end{proof}
 
         \subsection{The Frobenis Category}
