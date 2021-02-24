@@ -920,23 +920,12 @@
             \end{proof}
 
             \begin{theorem}
-                Assume that $i:A\rightarrow B$ is a morphism with a cokernel. If there is a morphism $j:B\rightarrow C$ such that $ji$ is an inflation, then $i$ is an inflation.
+                \textbf{The obscure axiom.} Assume that $i:A\rightarrow B$ is a morphism with a cokernel. If there is a morphism $j:B\rightarrow C$ such that $ji$ is an inflation, then $i$ is an inflation.
             \end{theorem}
 
             \begin{proof}
                 
             \end{proof}
-
-            %Add the classical homological diagram lemmatas down here
-            \begin{lemma}
-                Let $(p,q)$ be the conflation \begin{tikzcd}
-                    A \ar[tail]{r}{p} & B \ar[two heads]{r}{q} & C
-                \end{tikzcd}, $(p',q')$ be the conflation \begin{tikzcd}
-                    A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'
-                \end{tikzcd}. A morphism of the conflations $(f,g,h):(p,q)\rightarrow (p',q')$ factors through the conflation \begin{tikzcd}
-                    A \ar[tail]{r} & D \ar[two heads]{r} & C'
-                \end{tikzcd}
-            \end{lemma}
 
             \begin{proof}
                 Let $p:B\rightarrow D$ be the cokernel of $i$. We start the proof with forming the push-out of $i$ and $ji$.
@@ -970,6 +959,24 @@
             \begin{remark}
                 Write a bit about the dual of the obscure axiom.
             \end{remark}
+
+            %Add the classical homological diagram lemmatas down here
+            \begin{lemma}
+                Let $(p,q)$ be the conflation \begin{tikzcd}
+                    A \ar[tail]{r}{p} & B \ar[two heads]{r}{q} & C
+                \end{tikzcd}, $(p',q')$ be the conflation \begin{tikzcd}
+                    A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'
+                \end{tikzcd}. A morphism of the conflations $(f,g,h):(p,q)\rightarrow (p',q')$ factors through the conflation \begin{tikzcd}
+                    A \ar[tail]{r} & D \ar[two heads]{r} & C'
+                \end{tikzcd} such that we have the following diagram.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar[tail]{r}{p}[marking]{\circ} \ar[equal]{d} & B \ar[two heads]{r}{q}[marking]{\circ} \ar{d} & C \ar{d} \\
+                        A \ar[tail]{r}[marking]{\circ} \ar[two heads]{r}[marking]{\circ} & D & C' \\
+                        A' & B' & C'
+                    \end{tikzcd}
+                \end{center}
+            \end{lemma}
 
             \begin{corollary}
                 The short five lemma
