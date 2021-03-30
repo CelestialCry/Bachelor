@@ -23,6 +23,7 @@
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
+\newtheorem*{prototype}{Prototype}
 
 \usepackage{subfiles} % Best loaded last in the preamble
 
@@ -33,6 +34,10 @@
 \begin{document}
     \maketitle
     \clearpage
+
+    \clearpage
+
+    \tableofcontents
 
     \section{Introduction}
         This is an introduction, welcome! 
@@ -46,9 +51,9 @@
         
         \subsection{Definition and First Properties}
             In this section $\mathcal{T}$ denotes an additive category and $T:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$, which is often called translation or suspension functor.
-            % Definition Sextuple
+            % Definition candidate triangle
             \begin{definition}
-                A sextuple is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow TA$. These sextuples can be drawn as diagrams in the following way:
+                A candidate triangle is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow TA$. These candidate triangles can be drawn as diagrams in the following way:
 
                 \begin{center}
                     \begin{tikzcd}
@@ -56,7 +61,7 @@
                     \end{tikzcd}
                 \end{center}
 
-                A morphism between sextuples is a triple of morphism $(\alpha, \beta, \gamma)$, where $\alpha : A \rightarrow A'$, $\beta : B \rightarrow B'$ and $\gamma : C \rightarrow C'$ such that the following diagram commutes:
+                A morphism between candidate triangles is a triple of morphism $(\alpha, \beta, \gamma)$, where $\alpha : A \rightarrow A'$, $\beta : B \rightarrow B'$ and $\gamma : C \rightarrow C'$ such that the following diagram commutes:
 
             \begin{center}
                 \begin{tikzcd}
@@ -67,7 +72,7 @@
 
             \end{definition}
 
-            The naming convention of the sextuples isn't standarized, some literatures calls the sextuples for triangles instead [literature here, learn bibtex you lazy fuck]. This name arises from an alternate description of the diagrams given above. To remove confusion about the domain or codomain of the arrows, one arrow of the triangle is decorated with "$_T$|". This decorator means that the functor T has to be applied to the corresponding edge of the arrow. Thus the c arrow points to TA, not A.
+            The naming convention of the candidate triangles isn't standarized, some literatures calls the candidate triangles for triangles instead; see \cite{keller}. This name arises from an alternate description of the diagrams given above. To remove confusion about the domain or codomain of the arrows, one arrow of the triangle is decorated with "$_T$|". This decorator means that the functor T has to be applied to the corresponding edge of the arrow. Thus the c arrow points to TA, not A.
 
             \begin{center}
                 \begin{tikzcd}[row sep=tiny]
@@ -82,17 +87,17 @@
                 \end{tikzcd}
             \end{center}
 
-            A triangulated category is an additive category together with a translation functor $T$ and a triangulation $\Delta$ consisting of sextuples. When a sextuple is an element of $\Delta$ it is usually called a distinguished triangle, an exact triangles or just a triangle. Note that if sextuples are referred to as triangles it is common to either call the elements of $\Delta$ for distinguished triangles or exact triangles. As this is not the case for this thesis these objects will be referred to as triangles.
+            A triangulated category is an additive category together with a translation functor $T$ and a triangulation $\Delta$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta$ it is usually called a  triangle, an exact triangles or just a triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta$ for  triangles or exact triangles. As this is not the case for this thesis these objects will be referred to as triangles.
 
             % Definition of Triangulation
             \begin{definition}
-                A triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta$ of triangles consisting of sextuples in $\mathcal{T}$ satisfying the following axioms: 
+                A triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying the following axioms: 
 
                 \begin{enumerate}
                     \item (TR1) Formation axiom
 
                         \begin{enumerate}
-                            \item A sextuple isomorphic to a triangle is a triangle.
+                            \item A candidate triangle isomorphic to a triangle is a triangle.
                             \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle $(A,B,C,a,b,c)$:
                             \begin{center}
                                 \begin{tikzcd}
@@ -506,40 +511,633 @@
                         C \ar{r}{c} & TA \ar{r}{Ta} & TB \ar{r}{Tb} & TC
                     \end{tikzcd}
                 \end{center}
-                By the 2 out of 3 property it is seen that h is an isomorphism, so the triple $(id_{T^{-1}C}, id_A, T^{-1}h)$ is an isomorphism of sextuples, and by TR1, is an isomorphism of triangles, asserting that $(T^{-1}C,A,B,T^{-1}c,a,b)$ is in fact a triangle.
+                By the 2 out of 3 property it is seen that h is an isomorphism, so the triple $(id_{T^{-1}C}, id_A, T^{-1}h)$ is an isomorphism of candidate triangles, and by TR1, is an isomorphism of triangles, asserting that $(T^{-1}C,A,B,T^{-1}c,a,b)$ is in fact a triangle.
             \end{proof}
 
+            
+            \subsection{Mapping Cones, Homotopies and Contractibility}
             \begin{remark}
-                The Octahedron axiom have not been used once in this section. This motivates the definition of a pre-triangulated category, that is a triangulation satisfying all axioms except TR4. Note that these properties also holds for pre-triangulated categories. However, the octahedron axiom is still important, since TR3 can be proved from the other 3 axioms. [Need sources here]
+                The observant reader might have seen that the Octahedron axiom have not jet been used once! A lot of the theory proven for triangulated categories work without this axiom, and this motivates the definition of a pre-triangulated category. This odd axiom might seem to be pointless, but it is one of the most fundamental axioms, as TR3 can be proven with TR1, TR2 and TR4; see [need sources here].
             \end{remark}
-            %Maybe use later if this file gets way too crammed %\subfile{sections/triangles}
-
-        \subsection{Triangulation of \underline{mod}-$K[x]/(x^n)$}
-            In this section a quotient of the finitely genereated module categories of the K-algebras $K[x]/(x^n)$ will be studied and proved to be triangulated. As a first example it would be more instructive with a more canonical triangulated category, such as the homotopy category of chain complexes. For such type of categories the underlying triangulated structure would be more intuitive, and it is easier to see how it interplays with long exact sequences in an abelian category. Never the less, this class of categories will be more instructive in showing how flexible the notion of a triangulated category may be.
-
-            The more skilled reader may notice that the algebra $K[x]/(x^n)$ is self-injective and is of finite length. Therefore the category of finitely generated modules over $K[x]/(x^n)$ is a Frobenius category, and the stabilization admits a triangulation. What all of this means will be clarified in the next section, for now we will focus on the structure of this very specific category, and prove that it's stabilized module category has a triangulation.
-
-            When it comes to stabilization of module categories, there is a projective stabilization and an injective stabilization. They use the same method to construct a new category, but uses different classes of objects to form the quotient. We are however interested in the case where these two notions coincide, so we can talk about a stable category.
-
-            \textbf{I don't really like how this section is written, it feels very clumsy, should I postpone the example? I think that would be a lot cleaner as the Frobenius category is the way we actually construct these categories. I AM POSTPONING THIS CHAPTER}
 
             \begin{definition}
-                The injective stable mod-$K[x]/(x^n)$ category is the quotient category of morphisms factoring over injective objects. This means that if $I_1, I_2$ is injective and $f,g:A\rightarrow B$ are morphisms factoring over $I_1$ and $I_2$ respectively, then $f$ and $g$ are related in the quotient. We will denote the category as \underline{mod}-$K[x]/(x^n)$.
+                A pre-triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta '$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying the following axioms: 
 
-                The projective stable categories are defined in the same way, but with projective objects instead.
+                \begin{enumerate}
+                    \item (TR1) Formation axiom
+
+                        \begin{enumerate}
+                            \item A candidate triangle isomorphic to a triangle is a triangle.
+                            \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle $(A,B,C,a,b,c)$:
+                            \begin{center}
+                                \begin{tikzcd}
+                                    A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                                \end{tikzcd}
+                            \end{center}
+                            \item For every object A there is a triangle $(A,A,0,id_A,0,0)$:
+                            \begin{center}
+                                \begin{tikzcd}
+                                    A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & TA
+                                \end{tikzcd}
+                            \end{center}
+                        \end{enumerate}
+                    \item (TR2) Rotation axiom
+
+                        For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,Ta)$
+                        \begin{center}
+                            \begin{tikzcd}
+                                A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                            \end{tikzcd} $\implies$
+                            \begin{tikzcd}
+                                B \arrow{r}{b} & C \arrow{r}{c} & TA \arrow{r}{-Ta} & TB
+                            \end{tikzcd}
+                            
+                        \end{center}
+                    \item (TR3) Morphism axiom
+                    
+                        Given the two triangles $(A,B,C,a,b,c)$ (1) and $(A',B',C',a',b',c')$ (2)
+                        \begin{center}
+                            (1)
+                            \begin{tikzcd}[column sep=small]
+                                A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
+                            \end{tikzcd}
+                            (2) 
+                            \begin{tikzcd}[column sep=small]
+                                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                            \end{tikzcd}
+                        \end{center}
+                        and morphisms $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that the square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
+                        
+                        \begin{center}
+                            (1)
+                            \begin{tikzcd}
+                                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{d}{\phi_B} & \\
+                                A' \ar{r}{a'} & B'
+                            \end{tikzcd}
+                            (2)
+                            \begin{tikzcd}
+                                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & TA \ar{d}{T\phi_A} \\
+                                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                            \end{tikzcd}
+                        \end{center}
+                \end{enumerate}
+
+                The category $\mathcal{T}$ with the pre-triangulation $\Delta '$ is called a pre-triangulated category, and the candidate triangles in $\Delta '$ are called  triangles. We will only use this notion of triangles in this subsection.
+            \end{definition}
+
+            The main goal of this subsection is to see how we can find  triangles, and when these are triangles. We will also look at triangulated functors and triangulated subcategories. For the rest of this subsection it is assumed that we work in a pre-triangulated category $\mathcal{T}$.
+
+            \begin{definition}
+                Suppose there is a morphism of candidate triangles $\phi : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \arrow{r}{a} \arrow{d}{\phi_A} & B \arrow{r}{b} \arrow{d}{\phi_B} & C \arrow{r}{c} \arrow{d}{\phi_C} & TA \arrow{d}{T\phi_A} \\
+                        A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
+                    \end{tikzcd}
+                \end{center}
+                We define the mapping cone to be the candidate triangle:
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        B \oplus A' \ar{r}{\begin{pmatrix}
+                            -b & 0 \\ \phi_B & a'
+                        \end{pmatrix}} \& C\oplus B' \ar{r}{\begin{pmatrix}
+                            -c & 0 \\ \phi_C & b'
+                    \end{pmatrix}} \& TA\oplus C' \ar{r}{\begin{pmatrix}
+                        -Ta & 0 \\ T\phi_A & c'
+                    \end{pmatrix}} \& TB\oplus TA'
+                    \end{tikzcd}
+                \end{center}
+            \end{definition}
+
+            \begin{definition}
+                A morphism $\alpha : A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ between candidate triangles is called null-homotopic if it factors through a homotopy. That is, there exists maps $\Theta, \Phi, \Psi$ in the following diagram:
+                \begin{center}
+                    \begin{tikzcd}
+                        A \arrow{r}{a} \arrow{d}{\alpha_A} & B \arrow{r}{b} \arrow{ld}{\Theta} \ar{d}{\alpha_B} & C \arrow{r}{c} \arrow{ld}{\Phi} \ar{d}{\alpha_C} & TA \arrow{ld}{\Psi} \ar{d}{T\alpha_A} \\
+                        A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
+                    \end{tikzcd}
+                \end{center}
+                such that $\alpha_A  = \Theta a + T^{-1}(c'\Psi)$, $\alpha_B = \Phi b + a'\Theta$ and $\alpha_C = \Psi c + b'\Phi$.
+                Two maps are called homotopic if their difference is null-homotopic
+            \end{definition}
+
+            \begin{lemma}
+                The mapping cone only depends on morphisms up to homotopy. I.e. if two maps are homotopic, their mapping cones are isomorphic.
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{lemma}
+                Suppose $\alpha, \beta : A \rightarrow B$ are two homotopic morphisms of candidate triangles. Then for any map $\gamma : A' \rightarrow A$ and any map $\delta : B \rightarrow B'$ the maps $\delta\alpha\gamma$ and $\delta\beta\gamma$ are homotopic as well.
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{definition}
+                A candidate triangle $A$ is called a contractible triangle if $id_A$ is null-homotopic.
+            \end{definition}
+
+            \begin{lemma}
+                If A is a contractible triangle, then any map in $\mathcal{T}(A,\_)$ or $\mathcal{T}(\_,A)$ is null-homotopic.
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{lemma}
+                A contractible triangle is a triangle.
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{corollary}
+                The mapping cone of the zero map between  triangles is a  triangle. 
+            \end{corollary}
+
+            \begin{proof}
+            \end{proof}
+
+            \begin{corollary}
+                The mapping cone of a null-homotopic map between  triangles is a triangle.
+            \end{corollary}
+
+            \begin{remark}
+                Suppose we have a morphism of triangles where one of the triangles are contractible, then the mapping cone is a triangle as well.
+            \end{remark}
+
+            \begin{definition}
+                A morphism of triangles will be called good if the mapping cone of the morphism is a triangle.
+            \end{definition}
+
+            \begin{theorem}
+                A pre-triangulated category $\mathcal{T}$ is triangulated if given two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$ and diagram (1) commutes, then diagram (1) can be completed to diagram (2) such that $\phi$ is good. That is the mapping cone of $\phi$ is a triangle.
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}
+                        A \ar{r}{a} \ar{d}{\phi_A} & B \ar{d}{\phi_B} & \\
+                        A' \ar{r}{a'} & B'
+                    \end{tikzcd}
+                    (2)
+                    \begin{tikzcd}
+                        A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & TA \ar{d}{T\phi_A} \\
+                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                    \end{tikzcd}
+                \end{center}
+            \end{theorem}
+
+            \begin{remark}
+                This condition is equivalent to the Octahedron axiom.
+            \end{remark}
+                
+
+        \subsection{Calculus of Fractions and Localizations of Triangulated Categories}
+            Localization is a method for adding inverses to a category. It is most notably known in commutative algebra where we can invert elements in some ideal of the ring. The rational numbers can be shown to be a localization of the integers at every number except 0. The category gained from localizing at some set $S$ of morphisms is the universal category where these morphisms are isomorphisms.
+            \begin{definition}
+                Let $S$ be a collection of morphisms in the category $\mathcal{C}$. We say that the Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $Q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
+                \begin{itemize}
+                    \item $\forall s:S|Q(s)$ is an isomorphism
+                    \item For any functor $F:\mathcal{C}\rightarrow\mathcal{D}$ such that $\forall s:S$ such that $F(s)$ is an isomorphism, then $F$ factors through $Q$. That is to say that there is a natural isomorphism $\eta : F\rightarrow F'\circ Q$ so that $\mathcal{C}[S^{-1}]$ is the universal category where morphisms in $S$ are isomorphisms.
+                \end{itemize}
+                \begin{center}
+                    \begin{tikzcd}[row sep = tiny]
+                        \mathcal{C} \ar{rr}{F} \ar{rd}[below]{Q} & & \mathcal{D} \\
+                        & S^{-1}\mathcal{C} \ar[dashed]{ru}[below]{F'}
+                    \end{tikzcd}
+                \end{center}
             \end{definition}
 
             \begin{remark}
-                Cosyzygies are in fact a functor for injective stable categories, and syzygies are functors for the projective stable categories.
+                Given that $\mathcal{C}$ is locally small, then we cannot be sure that the category $\mathcal{C}[S^{-1}]$ is again locally small.
             \end{remark}
 
-            Write about the indecomposable objects in this category. Find the projective and injective modules, i.e. show that $K[x]/(x^n)$ is injective.
+            These categories are in generel pretty hard to describe. When the set of morphisms is what we call a multiplicative system, we get the same calculus of fractions description of these localization the same way as for localizations of rings.
 
-        \subsection{Localizations of Triangulated Categories}
-            Verdier quotient goes here. And more stuff about these localizations, probably state Gabriel-Zisman and how this is often a good trick too prove that the localization actually exists.
+            \begin{definition}
+                A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
+                \begin{itemize}
+                    \item $S$ is closed under composition, i.e. if $f,g : S$ are composable then $gf : S$. Every identity morphism in $\mathcal{C}$ is in $S$.
+                    \item (Right Ore condition) If $t : X \rightarrow Y$ is a morphism in $S$, then $\forall g:Z\rightarrow Y$ there is a commutative square (1) such that $f:W\rightarrow X$ and $s:W\rightarrow Z$ exists and $s:S$ as well.
+                    \begin{center}
+                        (1)
+                        \begin{tikzcd}
+                            W \ar[dashed]{r}{f} \ar[dashed]{d}{s} & X \ar{d}{t} \\
+                            Z \ar{r}{g} & Y
+                        \end{tikzcd}
+                    \end{center}
+                    \item (Right cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+                    \begin{enumerate}
+                        \item $sf = sg$ for som $s:S$ starting at $Y$
+                        \item $ft = gt$ for som $t:S$ ending at $X$
+                    \end{enumerate}
+                \end{itemize}
+            \end{definition}
+
+            \begin{remark}
+                The previous definition has an obvious dual statement. We say that a set $S$ of morphisms is a left multiplicative system if it satisfies:
+                \begin{itemize}
+                    \item $S$ is closed under composition, i.e. if $f,g : S$ are composable then $gf : S$. Every identity morphism in $\mathcal{C}$ is in $S$.
+                    \item (Left Ore condition) If $s : Y \rightarrow Z$ is a morphism in $S$, then $\forall f:Y\rightarrow X$ there is a commutative square (1) such that $g:Z\rightarrow W$ and $t:X\rightarrow W$ exists and $t:S$ as well.
+                    \begin{center}
+                        (1)\begin{tikzcd}
+                            Y \ar{r}{f} \ar{d}{s} & X \ar[dashed]{d}{t} \\
+                            Z \ar[dashed]{r}{g} & W
+                        \end{tikzcd}
+                    \end{center}
+                    \item (Left cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+                    \begin{enumerate}
+                        \item $ft = gt$ for som $t:S$ ending at $X$
+                        \item $sf = sg$ for som $s:S$ starting at $Y$
+                    \end{enumerate}
+                \end{itemize}
+                If $S$ is both right multiplicative and left multiplicative then we just say that it is multiplicative.
+            \end{remark}
+
+            \begin{prototype}
+                Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
+            \end{prototype}
+
+            As with the definition of localization of rings, localization of a category $\mathcal{C}$ at a multiplicative system will be defined with fractions. That is the morphisms will be "fractions" of morphisms. These morphisms will be described as diagrams over spans (or dually cospans), together with an equivalence relation.
+
+            \begin{definition}
+                A span is a diagram of the form:
+                \begin{center}
+                    \begin{tikzcd}
+                        \cdot & \cdot \ar{l} \ar{r} & \cdot
+                    \end{tikzcd}
+                \end{center}
+            \end{definition}
+
+            \begin{definition}
+                Let $S$ be a right multiplicative system of morphisms in a category $\mathcal{C}$. Given a morphism $s : Y\rightarrow X$ in $S$ and a morphism $t:Y\rightarrow Z$ we define the right fraction of $s$ and $t$ to be the span of the morphisms. That is $s$ and $t$ fit in the diagram:
+                \begin{center}
+                    \begin{tikzcd}
+                        X & Y \ar{l}{s} \ar{r}{t} & Z
+                    \end{tikzcd}
+                \end{center}
+                We denote the right fraction as $ts^{-1}$.
+                Let $\sim$ be the equivalence relation of right fractions given by the diagram (1) such that $ts^{-1}\sim t's'^{-1}$ if and only if $\exists w,w':S$ making the diagram commute.
+                \begin{center}
+                    \begin{tikzcd}
+                        & Y \ar{ld}[above]{s} \ar{rd}{t} \\
+                        X & W \ar{r} \ar{l} \ar{u}{w} \ar{d}{w'} & Z \\
+                        & Y' \ar{lu}{s'} \ar{ru}[below]{t'}
+                    \end{tikzcd}
+                \end{center}
+            \end{definition}
+
+            Dually, we define left fractions as diagrams over cospans such that if $t:S$ we get a left fraction $t^{-1}s$ as the diagram:
+            \begin{center}
+                \begin{tikzcd}
+                    X \ar{r}{s} & Y & Z \ar{l}{t}
+                \end{tikzcd}
+            \end{center}
+
+            The equivalence relation $\sim$ is given by the diagram in the same manner as above.
+            \begin{center}
+                \begin{tikzcd}
+                    & Y \ar{d}{w} \\
+                    X \ar{ru}{s} \ar{r} \ar{rd}{s'} & W & Z \ar{lu}{t} \ar{l} \ar{ld}{t'} \\
+                    & Y' \ar{u}{w'}
+                \end{tikzcd}
+            \end{center}
+
+            \begin{prop}
+                Suppose that $S$ is a right multiplicative system, then the relation stated above is in fact an equivalence relation.
+            \end{prop}
+
+            \begin{proof}
+                We will need to prove that $\sim$ is reflexive, symmetric and transitive.
+                \begin{itemize}
+                    \item (Reflexive) Let $fs^{-1}$ be a right fraction. Then $fs^{-1}\sim fs^{-1}$ by the diagram:
+                    \begin{center}
+                        \begin{tikzcd}
+                            & W \ar{ld}{s} \ar{rd}{f} \ar[equal]{d} \\
+                            X & W \ar{r}{s} \ar{l}{f} & Y \\
+                            & W \ar{lu}{s} \ar[equal]{u} \ar{ru}{f}
+                        \end{tikzcd}
+                    \end{center}
+                    \item (Symmetric) Let $fs^{-1}$ and $gt^{-1}$ be two right fractions such that $fs^{-1}\sim gt^{-1}$, that is the diagram commute. Due to inherent symmetric nature of the diagram it follows that $gt^{-1}\sim fs^{-1}$.
+                    \begin{center}
+                        \begin{tikzcd}
+                            & W \ar{ld}{s} \ar{rd}{f} \\
+                            X & \widetilde{W} \ar{r} \ar{l} \ar{u}{w} \ar{d}{w'} & Y \\
+                            & W' \ar{lu}{t} \ar{ru}{g}
+                        \end{tikzcd}
+                        $\implies$
+                        \begin{tikzcd}
+                            & W' \ar{ld}{t} \ar{rd}{g} \\
+                            X & \widetilde{W} \ar{l} \ar{r} \ar{u}{w'} \ar{d}{w} & Y \\
+                            & W \ar{lu}{s} \ar{ru}{f}
+                        \end{tikzcd}
+                    \end{center}
+                    \item (Transitive) Suppose that there are three right fractions $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ such that $fs^{-1}\sim gt^{-1}$ and $gt^{-1}\sim hu^{-1}$. That is, diagrammically speaking:
+                    \begin{center}
+                        \begin{tikzcd}
+                            & W' \ar{ld}{s} \ar{rd}{f} \\
+                            X & \widetilde{W} \ar{r} \ar{l} \ar{u}{w'} \ar{d}{\widetilde{w'}} & Y \\
+                            & W \ar{lu}{t} \ar{ru}{g}
+                        \end{tikzcd}
+                        \begin{tikzcd}
+                            & W \ar{ld}{t} \ar{rd}{g} \\
+                            X & \widetilde{\widetilde{W}} \ar{r} \ar{l} \ar{u}{\widetilde{w''}} \ar{d}{w''} & Y \\
+                            & W'' \ar{lu}{u} \ar{ru}{h}
+                        \end{tikzcd}
+                    \end{center}
+                    By the Ore condition we can create two new maps from $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, then we get that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it commutes.
+                    \begin{center}
+                        \begin{tikzcd}
+                            \widetilde{\widetilde{\widetilde{W}}} \ar{d}{\widetilde{\widetilde{w'}}} \ar{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar{d}{\widetilde{w''}} \\
+                            \widetilde{W} \ar{r}{\widetilde{w'}} & W
+                        \end{tikzcd}
+                        \begin{tikzcd}
+                            & W' \ar{ldd}{s} \ar{rdd}{f} \\
+                            & \widetilde{W} \ar{ld} \ar{rd} \ar{u}{\widetilde{w'}} \\
+                            X & \widetilde{\widetilde{\widetilde{W}}} \ar{l} \ar{r} \ar{u}{\widetilde{\widetilde{w'}}} \ar{d}{\widetilde{\widetilde{w''}}}& Y \\
+                            & \widetilde{\widetilde{W}} \ar{lu} \ar{ru} \ar{d}{\widetilde{w''}} \\
+                            & W'' \ar{luu}{u} \ar{ruu}{h}
+                        \end{tikzcd}
+                    \end{center}
+                \end{itemize}
+            \end{proof}
+
+            \begin{definition}
+                Let $S$ be a multiplicate system in a category $\mathcal{C}$. Given two right fractions $fs^{-1}$ and $gt^{-1}$ in the diagrams:
+                \begin{center}
+                    \begin{tikzcd}
+                        X & W \ar{l}{s} \ar{r}{f} & Y
+                    \end{tikzcd}
+                    \&
+                    \begin{tikzcd}
+                        Y & W' \ar{l}{t} \ar{r}{g} & Z
+                    \end{tikzcd}
+                \end{center}
+                we can define the composite of these fractions $gt^{-1}\circ fs^{-1}$ by the Ore condition:
+                \begin{center}
+                    \begin{tikzcd}
+                        & \widetilde{W} \ar{d}{u} \ar{r}{h} & W' \ar{d}{t} \ar{r}{g} & Z \\
+                        X & W \ar{l}{s} \ar{r}{f} & Y
+                    \end{tikzcd}
+                \end{center}
+                The composite is then the right fraction $gt^{-1}\circ fs^{-1} = gh(su)^{-1}$.
+            \end{definition}
+
+            \begin{prop}
+                The composition of right fractions is well-defined up to equivalence.
+            \end{prop}
+
+            \begin{proof}
+                In order to prove that the composite is well-defined we need to prove that the composite is independent from the different choices of the right Ore condition and that it is independent from choice of right fraction. There will only be presented a proof for that the choice of Ore maps is independent, as the other two cases are analogous.
+
+                Suppose we have two right fractions $fs^{-1}$ and $gt^{-1}$ as indicated from the diagrams.
+                \begin{center}
+                    \begin{tikzcd}
+                        X & W_1 \ar{l}{s} \ar{r}{f} & Y
+                    \end{tikzcd}
+                    \&
+                    \begin{tikzcd}
+                        Y & W_2 \ar{l}{t} \ar{r}{g} & Z
+                    \end{tikzcd}
+                \end{center}
+                Further suppose that there are at least two different choices for the maps gained by the right Ore condition. That is for example $(\widetilde{W},\widetilde{s},\widetilde{f})$ and $(\widehat{W},\widehat{s}, \widehat{g})$. We can draw the two compositions as:
+                \begin{center}
+                    \begin{tikzcd}
+                        & \widetilde{W} \ar{r}{\widetilde{g}} \ar{d}{\widetilde{s}} & W_2 \ar{r}{g} \ar{d}{t} & Z \\
+                        X & W_1 \ar{r}{f} \ar{l}{s} & Y
+                    \end{tikzcd}
+                    \begin{tikzcd}
+                        & \widehat{W} \ar{r}{\widehat{f}} \ar{d}{\widehat{s}} & W_2 \ar{r}{g} \ar{d}{t} & Z \\
+                        X & W_1 \ar{l}{s} \ar{r}{f} & Y
+                    \end{tikzcd}
+                \end{center}
+                By combining the diagrams at $W_1$ by using the right Ore condition again we can find $(W, \widetilde{w}, \widehat{w})$ as in the diagram below. 
+                \begin{center}
+                    \begin{tikzcd}
+                        \bar{W} \ar[dashed]{rd}{\xi} \\
+                        & W \ar{r}{\widehat{w}} \ar{d}{\widetilde{w}} & \widehat{W} \ar{d}[near start, below]{\widehat{s}} \ar{r}{\widehat{f}} & W_2 \ar{d}{t} \ar{r}{g} & Z \\
+                        & \widetilde{W} \ar{r}{\widetilde{s}} \ar{rru}[near start]{\widetilde{g}} & W_1 \ar{r}{f} \ar{d}{s} & Y \\
+                        & & X
+                    \end{tikzcd}
+                \end{center}
+                We see that the three squares commute, as by the definition of right Ore condition. Thus we have that $s\widetilde{s}\widetilde{w} = s\widehat{s}\widehat{w}$. As the three squares commute we get that $t\widehat{f}\widehat{w}=t\widetilde{g}\widetilde{w}$. As $t:S$ we can use right cancellation to find a $\xi:\bar{W}\rightarrow W$ such that $\widehat{f}\widehat{w}\xi = \widetilde{g}\widetilde{w}\xi \implies g\widehat{f}\widehat{w}\xi = g\widetilde{g}\widetilde{w}\xi$. Thus the equivalence relation diagram commutes:
+                \begin{center}
+                    \begin{tikzcd}
+                        & \widehat{W} \ar{ld}[above]{s\widehat{s}} \ar{rd}{g\widehat{f}} \\
+                        X & \bar{W} \ar{u}{\widehat{w}\xi} \ar{d}{\widetilde{w}\xi} \ar{l} \ar{r} & Z \\
+                        & \widetilde{W} \ar{lu}{s\widetilde{s}} \ar{ru}[below]{g\widetilde{g}}
+                    \end{tikzcd}
+                \end{center}
+            \end{proof}
+
+            \begin{prop}
+                The composition of right fractions is associative.
+            \end{prop}
+
+            \begin{proof}
+                Let $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ be right fractions as in the diagrams below:
+                \begin{center}
+                    \begin{tikzcd}
+                        A & X \ar{l}{s} \ar{r}{f} & B
+                    \end{tikzcd}
+                    ,
+                    \begin{tikzcd}
+                        B & Y \ar{l}{t} \ar{r}{g} & C
+                    \end{tikzcd}
+                    \&
+                    \begin{tikzcd}
+                        C & Z \ar{l}{u} \ar{r}{h} & D
+                    \end{tikzcd}
+                \end{center}
+                There are two different ways of calculating the compostion. Every morphism in $S$ will be marked blue.
+                \begin{center}
+                    \begin{minipage}[c]{0.4\textwidth}
+                        \underline{$hu^{-1}\circ (gt^{-1}\circ fs^{-1})$}\\
+                        \begin{tikzcd}
+                            W \ar{rr} \ar[blue]{d}{} & & Z \ar{r}{} \ar[blue]{d}{} & D \\
+                            V \ar[blue]{d}{} \ar{r}{} & Y \ar{r}{} \ar[blue]{d}{} & C \\
+                            X \ar[blue]{d}{} \ar{r}{} & B \\
+                            A
+                        \end{tikzcd}
+                    \end{minipage}
+                    \begin{minipage}[c]{0.4\textwidth}
+                        \underline{$(hu^{-1}\circ gt^{-1})\circ fs^{-1}$}\\
+                        \begin{tikzcd}
+                            V' \ar{r}{} \ar[blue]{dd}{} & W' \ar{r}{} \ar[blue]{d}{} & Z \ar{r}{} \ar[blue]{d}{} & D \\
+                            & Y \ar{r}{} \ar[blue]{d}{} & C \\
+                            X \ar{r}{} \ar[blue]{d}{} & B \\
+                            A
+                        \end{tikzcd}
+                    \end{minipage}
+                \end{center}
+                To be able to find a relation between these diagrams we create another diagram with the right Ore condition.
+                \begin{center}
+                    \begin{minipage}[c]{0.3\textwidth}
+                        \begin{tikzcd}
+                            T \ar[dashed, blue]{r}{} \ar[dashed, blue]{d}{} & V' \ar[blue]{d} \\
+                            W \ar[blue]{r}{} & X
+                        \end{tikzcd}
+                    \end{minipage}
+                    \begin{minipage}[c]{0.5\textwidth}
+                        To finish the proof, one would need to show that the maps to $A$ and $D$ commute. The maps to A commute right out of the bat, by the right Ore condition. To prove that the maps to D commute, first apply right cancellation on the maps to B, then on the maps to C.
+                    \end{minipage}
+                \end{center}
+            \end{proof}
+
+            \begin{definition}
+                Let $S$ be a right multiplicative system in a category $\mathcal{C}$. We define a category $\mathfrak{r}S^{-1}\mathcal{C}$ to have objects $\mathfrak{Obr}S^{-1}\mathcal{C}=\mathfrak{Ob}\mathcal{C}$ and morphisms $\mathfrak{Morr}S^{-1}\mathcal{C} = \{$right fractions of $S\}/\sim$. This means that the morphisms $S^{-1}\mathcal{C}(X,Y)$ are spans in $\mathcal{C}$ where one of the maps are in $S$ up to equivalence.
+                \begin{center}
+                    \begin{tikzcd}
+                        X & A \ar[blue]{l} \ar{r} & Y
+                    \end{tikzcd}
+                \end{center}
+                This is well-defined by the previous results and the identity morphisms are the right fractions of the form:
+                \begin{center}
+                    \begin{tikzcd}
+                        X & X \ar[equal]{l} \ar[equal]{r} & X
+                    \end{tikzcd}
+                \end{center}
+            \end{definition}
+
+            \begin{remark}
+                Dually there is a category $\mathfrak{l}S^{-1}\mathcal{C}$ for a left multiplicative system $S$ in a category $\mathcal{C}$. It is defined in the same manner as $\mathfrak{r}S^{-1}\mathcal{C}$, but with left fractions instead.
+            \end{remark}
+
+            There is nothing telling us that these categories are locally small, thus the morphism classes might be bigger than sets. One way to be sure that the localization does indeed exist is to use locally small multiplicative systems.
+
+            \begin{definition}
+                A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the left if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ there is a morphism $f' : X'\rightarrow X$ in $S$ factoring thorugh $f$.
+
+                The dual of this definition will be called a locally small multiplicative system on the right. If it is both locally small on the left and the right, we will simply call it locally small. 
+            \end{definition}
+
+            \begin{remark}
+                Equipped with this notion we are now able to prove that the localizations exists as locally small categories. Locally small right multiplicative systems allows us to prove that the classes $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are sets. Details of why this is true can be found in \cite{weibel} (Snakk om dette med din veileder. Du er nesten i mål med å forstå argumentet tho.)
+            \end{remark}
+
+            \begin{theorem}
+                (Gabriel-Zisman) Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and is the localization of $\mathcal{C}$ on $S$. That is there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $Q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $fid_X^{-1}$.
+            \end{theorem}
+
+            \begin{proof}
+                To prove the theorem we have to show that $Q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $Q(gf)=(gf)id_X^{-1}$ and $Q(g)Q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. We can then choose the compostion to be defined by the diagram:
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar{r}{f} \ar[equal,blue]{d} & Y \ar{r}{g} \ar[equal,blue]{d} & Z\\
+                        X \ar{r}{f} \ar[equal,blue]{d} & Y \\
+                        X
+                    \end{tikzcd}
+                \end{center}
+                Thus we can see that $(gid_Y^{-1})\circ(fid_X^{-1})=(gf)id_X^{-1}$ asserting the functoriality of $Q$.
+
+                To see that $Q$ is universal let $\mathcal{D}$ be a category where every morphism of $S$ is an isomorphism, and suppose there is a functor $F:\mathcal{C}\rightarrow\mathcal{D}$. We can define a functor $\mathfrak{r}S^{-1}F : \mathfrak{r}S^{-1}\mathcal{C}\rightarrow\mathcal{D}$ by $\mathfrak{r}S^{-1}F(fs^{-1})=F(f)F(s)^{-1}$. One can see that $F = \mathfrak{r}S^{-1}F\circ Q$, it remains to show that it is well-defined. Suppose $fs^{-1}=gt^{-1}$, that means there is a diagram in $\mathcal{C}$ with the blue arrows in $S$:
+                \begin{center}
+                    \begin{tikzcd}
+                        & W' \ar[blue]{ld}{s} \ar{rd}{f}  \\
+                        X & W \ar[blue]{u}{w'} \ar[blue]{d}{w''} & Y \\
+                        & W'' \ar[blue]{lu}{t} \ar{ru}{g}
+                    \end{tikzcd}
+                \end{center}
+                Thus in $\mathcal{D}$ we have that $F(t)=F(sw')F(w'')^{-1}$ and $F(g)=F(fw')F(w'')^{-1}$, and this again gives us that 
+                \begin{multline*}
+                    \mathfrak{r}S^{-1}F(gt^{-1})=F(g)F(t)^{-1}\\
+                    =F(fw')F(w'')^{-1}(F(fw')F(w'')^{-1})^{-1}=F(fw')F(w'')^{-1}F(w'')F(sw')^{-1}\\
+                    =F(f)F(w')F(w')^{-1}F(s)^{-1}=F(f)F(s)^{-1}=\mathfrak{r}S^{-1}F(fs^{-1})
+                \end{multline*}
+                Thus $\mathfrak{r}S^{-1}F$ is well-defined and is unique by construction.
+            \end{proof}
+
+            \begin{corollary}
+                If $S$ is a locally small left multiplicative system instead then $\mathfrak{l}S^{-1}\mathcal{C}$ is the localization of $\mathcal{C}$ on $S$.
+
+                If moreover $S$ is a locally small multiplicative system, then there is an equivalence of categories $\mathfrak{r}S^{-1}\mathcal{C}\simeq\mathfrak{l}S^{-1}\mathcal{C}$.
+            \end{corollary}
+
+            \begin{proof}
+                The first statement is dual to the theorem.
+
+                To see the other statement, note that both $\mathfrak{r}S^{-1}\mathcal{C}$ and $\mathfrak{l}S^{-1}\mathcal{C}$ are the universal categories where the morphisms of $S$ are isomorphisms. Thus it follows that these categories have to be equivalent.
+            \end{proof}
+
+            \begin{remark}
+                Since righthandedness of lefthandedness of the multiplicative system $S$ doesn't affect the localization we can simply call the localization of a (left/right) multiplicative system for $S^{-1}\mathcal{C}$.
+            \end{remark}
+
+            \begin{definition}
+                A triangulated functor $F: \mathcal{T} \rightarrow \mathcal{S}$ between two triangulated categories $\mathcal{T}$ and $\mathcal{S}$, is an additive functor along with a natural isomorphism $\phi_X : F(T(X)) \rightarrow S(F(X))$ such that $F(\Delta_{\mathcal{T}}) \subseteq \Delta_{\mathcal{S}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
+                \begin{center}
+                    \begin{tikzcd}[row sep=tiny]
+                        A \arrow{rd}{a} & \\
+                        & B \arrow{dl}{b} & & \\
+                        C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                    \end{tikzcd}
+                    $\implies$
+                    \begin{tikzcd}[row sep=tiny]
+                        F(A) \arrow{rd}{F(a)} & \\
+                        & F(B) \ar{dl}{F(b)} & & \\
+                        F(C) \arrow[very near end, "|" marking]{uu}[near start]{F(c)}[near end]{T}
+                    \end{tikzcd}
+                \end{center}
+            \end{definition}
+
+            \begin{definition}
+                A triangulated subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is a full additive subcategory closed under isomorphisms such that the inclusion functor is triangulated.
+            \end{definition}
+
+            \begin{definition}
+                Let $\mathcal{T}$ be a triangulated category and $\mathcal{S} \subseteq \mathcal{T}$ be a triangulated subcategory. Define a collection $Mor_{\mathcal{S}}$ to be a collection of morphisms in $\mathcal{T}$ such that for any $f : Mor_{\mathcal{S}}$ there is a triangle with $C : \mathcal{S}$.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \ar{r}{f} & B \ar{r} & C \ar{r} & TA 
+                    \end{tikzcd}
+                \end{center}
+            \end{definition}
+
+            \begin{remark}
+                Every isomorphism is in $Mor_{\mathcal{S}}$. That is because isomorphisms are found in triangles $(A,B,0,f,0,0)$ and $0 : \mathcal{S}$ for any triangulated subcategory.
+            \end{remark}
+
+            \begin{lemma}
+                Let $f : X \rightarrow Y$ and $g : Y \rightarrow Y'$ be two morphisms. If any two of the morphisms $f$, $g$ and $gf$ are in $Mor_{\mathcal{S}}$ then so is the third.
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{definition}
+                Let $F : \mathcal{S} \rightarrow \mathcal{T}$ be a triangulated functor. The kernel of $F$ is defined to be the full subcategory $Ker(F)$ of $\mathcal{S}$ such that every object in $Ker(F)$ gets mapped to $0$ by $F$. That is, $Ker(F)$ is the class of objects $\{K : \mathcal{S} | F(K)\simeq 0\}$.
+            \end{definition}
+
+            \begin{lemma}
+                The kernel of a triangulated functor $F$ is a triangulated subcategory.
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{definition}
+                A subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is called thick if it contains all the direct summands of its objects.
+            \end{definition}
+
+            \begin{lemma}
+                The kernel of a triangulated functor $F$ is thick.
+            \end{lemma}
+
+            \begin{proof}
+                
+            \end{proof}
+
+
 
         \subsection{Discussion of Triangulations}
-            Maybe do some Yoneda-embedding into sheaves and use that to deduce how the triangulation are in fact a shadow of some other abelian category
+            Do Yoneda embedding into functor categories.
     
     \clearpage
     
@@ -1061,10 +1659,16 @@
 
     \clearpage
 
-    \section*{Appendix A: Category theory}
-        \subsection{Quotient Categories}
-        \subsection{Additive and Abelian Categories}
-        \subsection{Freyd-Mitchell Embedding???}
+    \nocite{*}
+    \bibliographystyle{unsrt}
+    \bibliography{bib}
 
     \clearpage
+
+    %    \section*{Appendix A: Category theory}
+    %    \subsection{Quotient Categories}
+    %    \subsection{Additive and Abelian Categories}
+    %    \subsection{Freyd-Mitchell Embedding???}
+
+    %\clearpage
 \end{document}
