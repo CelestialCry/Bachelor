@@ -698,26 +698,26 @@
                 
 
         \subsection{Calculus of Fractions and Localizations of Triangulated Categories}
-            Localization is a method for adding inverses to a category. It is most notably known in commutative algebra where we can invert elements in some ideal of the ring. The rational numbers can be shown to be a localization of the integers at every number except 0. The category gained from localizing at some set $S$ of morphisms is the universal category where these morphisms are isomorphisms.
+            Localization is a method for adding formal inverses to a category. It is most notably known in commutative algebra where we can invert elements with respect to some ideal of the ring. The rational numbers can be shown to be a localization of the integers at every number except 0. The category gained from localizing at some set $S$ of morphisms is the universal category where these morphisms are isomorphisms.
             \begin{definition}
-                Let $S$ be a collection of morphisms in the category $\mathcal{C}$. We say that the Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $Q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
+                Let $S$ be a collection of morphisms in the category $\mathcal{C}$. We say that the Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
                 \begin{itemize}
-                    \item $\forall s:S|Q(s)$ is an isomorphism
-                    \item For any functor $F:\mathcal{C}\rightarrow\mathcal{D}$ such that $\forall s:S$ such that $F(s)$ is an isomorphism, then $F$ factors through $Q$. That is to say that there is a natural isomorphism $\eta : F\rightarrow F'\circ Q$ so that $\mathcal{C}[S^{-1}]$ is the universal category where morphisms in $S$ are isomorphisms.
+                    \item $\forall s:S|q(s)$ is an isomorphism
+                    \item For any functor $F:\mathcal{C}\rightarrow\mathcal{D}$ such that $\forall s:S$ such that $F(s)$ is an isomorphism, then $F$ factors through $q$. That is to say that there is a natural isomorphism $\eta : F\rightarrow F'\circ q$ so that $\mathcal{C}[S^{-1}]$ is the universal category where morphisms in $S$ are isomorphisms.
                 \end{itemize}
                 \begin{center}
                     \begin{tikzcd}[row sep = tiny]
-                        \mathcal{C} \ar{rr}{F} \ar{rd}[below]{Q} & & \mathcal{D} \\
+                        \mathcal{C} \ar{rr}{F} \ar{rd}[below]{q} & & \mathcal{D} \\
                         & S^{-1}\mathcal{C} \ar[dashed]{ru}[below]{F'}
                     \end{tikzcd}
                 \end{center}
             \end{definition}
 
             \begin{remark}
-                Given that $\mathcal{C}$ is locally small, then we cannot be sure that the category $\mathcal{C}[S^{-1}]$ is again locally small.
+                Even though if we know that $\mathcal{C}$ is locally small, then we cannot be sure that the category $\mathcal{C}[S^{-1}]$ is again locally small.
             \end{remark}
 
-            These categories are in generel pretty hard to describe. When the set of morphisms is what we call a multiplicative system, we get the same calculus of fractions description of these localization the same way as for localizations of rings.
+            These categories are in generel pretty hard to describe. When the set of morphisms is what we call a multiplicative system, we get the same calculus of fractions description of these localization the same style as for localizations of rings.
 
             \begin{definition}
                 A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
@@ -731,7 +731,7 @@
                             Z \ar{r}{g} & Y
                         \end{tikzcd}
                     \end{center}
-                    \item (Right cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+                    \item (Left cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
                     \begin{enumerate}
                         \item $sf = sg$ for som $s:S$ starting at $Y$
                         \item $ft = gt$ for som $t:S$ ending at $X$
@@ -750,7 +750,7 @@
                             Z \ar[dashed]{r}{g} & W
                         \end{tikzcd}
                     \end{center}
-                    \item (Left cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+                    \item (Right cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
                     \begin{enumerate}
                         \item $ft = gt$ for som $t:S$ ending at $X$
                         \item $sf = sg$ for som $s:S$ starting at $Y$
@@ -763,7 +763,7 @@
                 Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
             \end{prototype}
 
-            As with the definition of localization of rings, localization of a category $\mathcal{C}$ at a multiplicative system will be defined with fractions. That is the morphisms will be "fractions" of morphisms. These morphisms will be described as diagrams over spans (or dually cospans), together with an equivalence relation.
+            As with the definition of localization of rings, localization of a category $\mathcal{C}$ at a multiplicative system will be defined with fractions. That is the morphisms will be "fractions" of morphisms. These morphisms will be described as diagrams over spans for right multiplicative systems (or dually cospans for left multiplicative systems), together with an equivalence relation.
 
             \begin{definition}
                 A span is a diagram of the form:
@@ -782,7 +782,7 @@
                     \end{tikzcd}
                 \end{center}
                 We denote the right fraction as $ts^{-1}$.
-                Let $\sim$ be the equivalence relation of right fractions given by the diagram (1) such that $ts^{-1}\sim t's'^{-1}$ if and only if $\exists w,w':S$ making the diagram commute.
+                Let $\sim$ be the equivalence relation of right fractions given by the diagram (1) such that $ts^{-1}\sim t's'^{-1}$ if and only if $\exists w,w':\mathcal{C}$ making the diagram commute and that the middle row is a right fraction.
                 \begin{center}
                     \begin{tikzcd}
                         & Y \ar{ld}[above]{s} \ar{rd}{t} \\
@@ -819,7 +819,7 @@
                     \begin{center}
                         \begin{tikzcd}
                             & W \ar{ld}{s} \ar{rd}{f} \ar[equal]{d} \\
-                            X & W \ar{r}{s} \ar{l}{f} & Y \\
+                            X & W \ar{r}{f} \ar{l}{s} & Y \\
                             & W \ar{lu}{s} \ar[equal]{u} \ar{ru}{f}
                         \end{tikzcd}
                     \end{center}
@@ -850,7 +850,7 @@
                             & W'' \ar{lu}{u} \ar{ru}{h}
                         \end{tikzcd}
                     \end{center}
-                    By the Ore condition we can create two new maps from $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, then we get that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it commutes.
+                    By the Ore condition we can create two new maps from $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, then we get that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it is commutative.
                     \begin{center}
                         \begin{tikzcd}
                             \widetilde{\widetilde{\widetilde{W}}} \ar{d}{\widetilde{\widetilde{w'}}} \ar{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar{d}{\widetilde{w''}} \\
@@ -990,7 +990,7 @@
             \end{proof}
 
             \begin{definition}
-                Let $S$ be a right multiplicative system in a category $\mathcal{C}$. We define a category $\mathfrak{r}S^{-1}\mathcal{C}$ to have objects $\mathfrak{Obr}S^{-1}\mathcal{C}=\mathfrak{Ob}\mathcal{C}$ and morphisms $\mathfrak{Morr}S^{-1}\mathcal{C} = \{$right fractions of $S\}/\sim$. This means that the morphisms $S^{-1}\mathcal{C}(X,Y)$ are spans in $\mathcal{C}$ where one of the maps are in $S$ up to equivalence.
+                Let $S$ be a right multiplicative system in a category $\mathcal{C}$. We define a category $\mathfrak{r}S^{-1}\mathcal{C}$ to have objects $\mathfrak{Obr}S^{-1}\mathcal{C}=\mathfrak{Ob}\mathcal{C}$ and morphisms $\mathfrak{Morr}S^{-1}\mathcal{C} = \{$right fractions of $S\}/\sim$. This means that the morphisms $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are spans in $\mathcal{C}$ where one of the maps are in $S$ up to equivalence.
                 \begin{center}
                     \begin{tikzcd}
                         X & A \ar[blue]{l} \ar{r} & Y
@@ -1008,24 +1008,33 @@
                 Dually there is a category $\mathfrak{l}S^{-1}\mathcal{C}$ for a left multiplicative system $S$ in a category $\mathcal{C}$. It is defined in the same manner as $\mathfrak{r}S^{-1}\mathcal{C}$, but with left fractions instead.
             \end{remark}
 
-            There is nothing telling us that these categories are locally small, thus the morphism classes might be bigger than sets. One way to be sure that the localization does indeed exist is to use locally small multiplicative systems.
+            \begin{remark}
+                Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ ending in $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its domain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondance between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\mathcal{\delta b, B}$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
+            \end{remark}
+
+            To ensure us that these categories $\mathfrak{r}S^{-1}\mathcal{C}$ does indeed exist there are many different criteria which we can place upon our assumptions. A natural restriction is to ensure that the colimits above exists as sets
 
             \begin{definition}
-                A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the left if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ there is a morphism $f' : X'\rightarrow X$ in $S$ factoring thorugh $f$.
+                A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ in $S$ there is a morphism $f' : X'\rightarrow X$ in $S_X$ factoring thorugh $f$.
 
-                The dual of this definition will be called a locally small multiplicative system on the right. If it is both locally small on the left and the right, we will simply call it locally small. 
+                The dual of this definition will be called a locally small multiplicative system on the left. If it is both locally small on the left and the right, we will simply call it locally small. 
             \end{definition}
 
             \begin{remark}
-                Equipped with this notion we are now able to prove that the localizations exists as locally small categories. Locally small right multiplicative systems allows us to prove that the classes $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are sets. Details of why this is true can be found in \cite{weibel} (Snakk om dette med din veileder. Du er nesten i mål med å forstå argumentet tho.)
+                If $S$ is a left multiplicative system, then $S\downarrow A$ is a filtered category for every object $A$. Dually, if $S$ is right multiplicative then $A\downarrow S$ is cofiltered.
+            \end{remark}
+
+            \begin{remark}
+                Equipped with this notion we are now able to prove that the localizations exists as locally small categories. Locally small right multiplicative systems allows us to prove that the classes $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are sets. This can be seen as we can regard $S_X$ as a small category. By using the right Ore condition and left cancellation we can extend $S_X$ such that it is again cofiltered and admits the same colimit, i.e.\\
+                 $\varinjlim\mathcal{C}(\delta\_,B):A\downarrow S\rightarrow Set\simeq\varinjlim\mathcal{C}(\delta\_,B):S_A\rightarrow Set$. 
             \end{remark}
 
             \begin{theorem}
-                (Gabriel-Zisman) Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and is the localization of $\mathcal{C}$ on $S$. That is there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $Q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $fid_X^{-1}$.
+                (Gabriel-Zisman) Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and is the localization of $\mathcal{C}$ on $S$. That is there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $fid_X^{-1}$.
             \end{theorem}
 
             \begin{proof}
-                To prove the theorem we have to show that $Q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $Q(gf)=(gf)id_X^{-1}$ and $Q(g)Q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. We can then choose the compostion to be defined by the diagram:
+                To prove the theorem we have to show that $q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $q(gf)=(gf)id_X^{-1}$ and $q(g)q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. We can then choose the compostion to be defined by the diagram:
                 \begin{center}
                     \begin{tikzcd}
                         X \ar{r}{f} \ar[equal,blue]{d} & Y \ar{r}{g} \ar[equal,blue]{d} & Z\\
@@ -1033,9 +1042,9 @@
                         X
                     \end{tikzcd}
                 \end{center}
-                Thus we can see that $(gid_Y^{-1})\circ(fid_X^{-1})=(gf)id_X^{-1}$ asserting the functoriality of $Q$.
+                Thus we can see that $(gid_Y^{-1})\circ(fid_X^{-1})=(gf)id_X^{-1}$ asserting the functoriality of $q$.
 
-                To see that $Q$ is universal let $\mathcal{D}$ be a category where every morphism of $S$ is an isomorphism, and suppose there is a functor $F:\mathcal{C}\rightarrow\mathcal{D}$. We can define a functor $\mathfrak{r}S^{-1}F : \mathfrak{r}S^{-1}\mathcal{C}\rightarrow\mathcal{D}$ by $\mathfrak{r}S^{-1}F(fs^{-1})=F(f)F(s)^{-1}$. One can see that $F = \mathfrak{r}S^{-1}F\circ Q$, it remains to show that it is well-defined. Suppose $fs^{-1}=gt^{-1}$, that means there is a diagram in $\mathcal{C}$ with the blue arrows in $S$:
+                To see that $q$ is universal let $\mathcal{D}$ be a category where every morphism of $S$ is an isomorphism, and suppose there is a functor $F:\mathcal{C}\rightarrow\mathcal{D}$. We can define a functor $\mathfrak{r}S^{-1}F : \mathfrak{r}S^{-1}\mathcal{C}\rightarrow\mathcal{D}$ by $\mathfrak{r}S^{-1}F(fs^{-1})=F(f)F(s)^{-1}$. One can see that $F = \mathfrak{r}S^{-1}F\circ q$, it remains to show that it is well-defined. Suppose $fs^{-1}=gt^{-1}$, that means there is a diagram in $\mathcal{C}$ with the blue arrows in $S$:
                 \begin{center}
                     \begin{tikzcd}
                         & W' \ar[blue]{ld}{s} \ar{rd}{f}  \\
@@ -1068,8 +1077,68 @@
                 Since righthandedness of lefthandedness of the multiplicative system $S$ doesn't affect the localization we can simply call the localization of a (left/right) multiplicative system for $S^{-1}\mathcal{C}$.
             \end{remark}
 
+            \begin{prop}
+                Let $\mathcal{C}$ be a category, and $S$ a right multiplicative set of morphisms. The cannonical functor $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ commutes with finite limits.
+            \end{prop}
+
+            \begin{proof}
+                Let $T:\mathcal{D}\rightarrow\mathcal{C}$ be a diagram over a finite category $\mathcal{D}$. Then for any object $A:S^{-1}\mathcal{C}$ we have the following equation.
+                \begin{multline*}
+                    S^{-1}\mathcal{C}(qA,q(\varprojlim T\_)\simeq \varinjlim\mathcal{C}(\delta\_,\varprojlim T\_))\\
+                    \simeq \varinjlim\varprojlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim\varinjlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim S^{-1}\mathcal{C}(qA,q(T\_))
+                \end{multline*}
+                The first isomorphism is by the remark, the second is by the representative nature of limits and the third isomorphism is from the fact that filtered colimits commute with finite limits. The colimits are filtered by the remark that $S_A$ is cofiltered and that the functor $\mathcal{C}(_,A)$ is contravariant.
+            \end{proof}
+
+            \begin{remark}
+                I am not quite sure yet how this argument proves the statement I want to prove, but that can be figure out later. I also don't know the proof for why filtered colimits commute with finite colimits, but it is in Riehls book.
+            \end{remark}
+
+            \begin{prop}
+                Let $\mathcal{C}$ be a category with a zero. That is an object which is both initial and terminal. Suppose that $S$ is a right multiplicative system, then $q0$ is a zero object in $S^{-1}\mathcal{C}$.
+            \end{prop}
+
+            \begin{proof}
+                The claim that $q0$ is initial follows from that initial is a limit of a diagram over the empty category. To see that $q0$ is terminal we only need to prove that every right fraction is equivalent with $0id_A^{-1}$. The following diagram proves this:
+                \begin{center}
+                    \begin{tikzcd}
+                        & X \ar{ld}[above]{f} \ar{d}{f} \ar{rd}{0}\\
+                        A & \ar[equal]{l} A \ar{r}{0} & 0
+                    \end{tikzcd}
+                \end{center}
+            \end{proof}
+
+            \begin{prop}
+                If $\mathcal{A}$ is an additive category and $S$ is a right multiplicative system, then $S^{-1}\mathcal{A}$ is additive as well.
+            \end{prop}
+
+            \begin{proof}
+                From the previous propositions we know that $q0$ is the zero object and that $q(A\times B)\simeq qA\times qB$. By proving that there is an addition induced by $\mathcal{A}$ and that $q$ preserves this addition we get that the product is the biproduct induced by the maps in $\mathcal{A}$.
+
+                Suppose that we have the fractions $fs^{-1}, gt^{-1}:S^{-1}\mathcal{C}(A,B)$. We define their addition by using the Ore condition  to find new morphisms $f$, $g'$ and $u$ such that $fs^{-1} = f'u^{-1}$ and $gt^{-1} = g'u^{-1}$. Then the addition is defined as follows:
+                \begin{equation*}
+                    fs^{-1}+gt^{-1} = (f'+g')u^{-1}
+                \end{equation*}
+                To prove that this is an addition we should prove that it is well defined, associativity, inverses and commutativity will be inherited from $\mathcal{A}$.
+                Let $v$ be another extension. That is $\bar{f}v^{-1}=fs^{-1}=f'u^{-1}$ and $\bar{g}v^{-1}=gt^{-1}=g'u^{-1}$, so our goal is to prove that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=0$. By definition we have that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=\bar{f}v^{-1}-f'u^{-1}+\bar{g}v^{-1}-g'u^{-1}$. So to prove that the whole sum is $0$ is the same to prove as $\bar{f}v^{-1}+(-f')u^{-1}=(\bar{\bar{f}}-f'')w^{-1}=0$. This can be done by writing out the diagrams after repeatedly applying right Ore condition.
+                \begin{center}
+                    \begin{tikzcd}
+                        \cdot \ar[bend right, dashed, blue]{rddd}{p} \ar[bend left, dashed, blue]{rrrd}{p} \ar[dashed, blue]{rd} \\
+                        & \cdot \ar[blue]{r} \ar[blue]{d} \ar[blue]{rd}{w} & \cdot \ar[blue]{r} \ar[blue]{d}{u} & \cdot \ar{r}{f} \ar[blue]{ld}{s} & B \\
+                        & \cdot \ar[blue]{d} \ar[blue]{r}{v} & A \\
+                        & \cdot \ar[blue]{ru}{s} \ar{d}{f} \\
+                        & B
+                    \end{tikzcd}
+                \end{center}
+                The line to the bottom represents $\bar{\bar{f}}$ and the line to the right represents $f''$. By using left cancellation on the common morphism $s$ into $A$ one obtains the morphism $p$ which relates the two fractions and makes the sum go to zero.
+            \end{proof}
+
+            \begin{corollary}
+                If $\mathcal{A}$ is abelian and $S$ is a multiplicative system, then $S^{-1}\mathcal{A}$ is abelian as well.
+            \end{corollary}
+
             \begin{definition}
-                A triangulated functor $F: \mathcal{T} \rightarrow \mathcal{S}$ between two triangulated categories $\mathcal{T}$ and $\mathcal{S}$, is an additive functor along with a natural isomorphism $\phi_X : F(T(X)) \rightarrow S(F(X))$ such that $F(\Delta_{\mathcal{T}}) \subseteq \Delta_{\mathcal{S}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
+                A triangulated functor $F: \mathcal{T} \rightarrow \mathcal{S}$ between two triangulated categories $(\mathcal{T}, T, \Delta_\mathcal{T}$ and $(\mathcal{S}, S, \Delta_\mathcal{S})$, is an additive functor along with a natural isomorphism $\phi_X : F(T(X)) \rightarrow S(F(X))$ such that $F(\Delta_{\mathcal{T}}) \subseteq \Delta_{\mathcal{S}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
                 \begin{center}
                     \begin{tikzcd}[row sep=tiny]
                         A \arrow{rd}{a} & \\
@@ -1103,11 +1172,44 @@
             \end{remark}
 
             \begin{lemma}
-                Let $f : X \rightarrow Y$ and $g : Y \rightarrow Y'$ be two morphisms. If any two of the morphisms $f$, $g$ and $gf$ are in $Mor_{\mathcal{S}}$ then so is the third.
+                Let $f : X \rightarrow Y$ and $g : Y \rightarrow Z$ be two morphisms. If any two of the morphisms $f$, $g$ and $gf$ are in $Mor_{\mathcal{S}}$ then so is the third.
             \end{lemma}
 
             \begin{proof}
-                
+                We are able to find three triangles in $\mathcal{T}$.
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}[row sep=tiny]
+                        X \arrow[red]{rd}[black]{f} & \\
+                        & Y \arrow[red]{dl} & & \\
+                        Z' \arrow[red, very near end, "|" marking]{uu}[black, near end]{T}
+                    \end{tikzcd}
+                    (2)
+                    \begin{tikzcd}[row sep=tiny]
+                        Y \arrow[orange]{rd}[black]{g} & \\
+                        & Z \arrow[orange]{dl} & & \\
+                        X' \arrow[orange, very near end, "|" marking]{uu}[black, near end]{T}
+                    \end{tikzcd}
+                    (3)
+                    \begin{tikzcd}[row sep=tiny]
+                        A \arrow[violet]{rd}[black]{g\circ f} & \\
+                        & C \arrow[violet]{dl} & & \\
+                        Y' \arrow[violet, very near end, "|" marking]{uu}[black, near end]{T}
+                    \end{tikzcd}
+                \end{center}
+                By the Octahedron axiom there exist another triangle in $\mathcal{T}$:
+                \begin{center}
+                    \begin{tikzcd}
+                        Z' \ar[teal]{r} & X' \ar[teal]{r} & Y' \ar[teal]{r} & TZ'
+                    \end{tikzcd}
+                \end{center}
+                Note that $f$ is in $Mor_\mathcal{S}$ if and only if $Z' : S$. WLOG assume that $f$ and $g$ is in $Mor_\mathcal{S}$, this can be done by the rotation axiom. Thus we can find the triangle $(Z',X',Y'')$ in $\mathcal{S}$ proving that $Y'$ is in $\mathcal{S}$ by the following diagram:
+                \begin{center}
+                    \begin{tikzcd}
+                        Z' \ar[teal]{r} \ar[equal]{d} & X' \ar[equal]{d} \ar[teal]{r} & Y' \ar[teal]{r} \ar{d}[rotate=90, below]{\simeq} & TZ' \ar[equal]{d} \\
+                        Z' \ar{r} & X' \ar{r} & Y'' \ar{r} & TZ'
+                    \end{tikzcd}
+                \end{center}
             \end{proof}
 
             \begin{definition}
