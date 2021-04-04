@@ -1006,7 +1006,7 @@
                 \end{center}
             \end{proof}
 
-        \subsection{Calculus of Fractions and Localizations of Triangulated Categories}
+        \subsection{Calculus of Fractions and the Verdier Quotient}
             Localization is a method for adding formal inverses to a category. It is most notably known in commutative algebra where we can invert elements with respect to some ideal of the ring. The rational numbers can be shown to be a localization of the integers at every number except 0. The category gained from localizing at some set $S$ of morphisms is the universal category where these morphisms are isomorphisms.
             \begin{definition}
                 Let $S$ be a collection of morphisms in the category $\mathcal{C}$. We say that the Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
@@ -1714,7 +1714,7 @@
 
             This proposition shows us that the kernel of $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the smallest thick subcategory of $\mathcal{C}$ such that $\mathcal{C}/Kerq$ is the universal category where every morphism in $Mor_\mathcal{S}$ is an isomorphism. For this reason $\widehat{\mathcal{S}}=Kerq$ is called the thick closure of $\mathcal{S}$.
 
-        \subsection{Discussion of Triangulations}
+        \subsection{Universal Homological Embedding}
             Do Yoneda embedding into functor categories.
     
     \clearpage
@@ -1733,8 +1733,8 @@
                 A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. An isomorphisms is a triple in which each morphism is an isomorphism.
                 \begin{center}
                     \begin{tikzcd}
-                        A \ar{r}{p} \ar{d}{f} & B \ar{r}{q} \ar{d}{g} & C \ar{d}{h} \\
-                        A' \ar{r}{p'} & B' \ar{r}{q'} & C'
+                        A \ar[tail]{r}{p} \ar[two heads]{d}{f} & B \ar{r}{q} \ar{d}{g} & C \ar{d}{h} \\
+                        A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'
                     \end{tikzcd}
                 \end{center}
             \end{definition}
@@ -1743,8 +1743,8 @@
                 Let $(p,q)$ be a kernel-cokernel pair, then the image and coimage of p exists and are isomorphic. I.e. this diagram exists, such that the left square is a push-out and the right square is a pull-back:
                 \begin{center}
                     \begin{tikzcd}
-                        0 \ar{r}{0} \ar{rd}{0} & A \ar{r}{p} \ar{d} & B \ar{r}{q} & C \\
-                        & Coim(p) \ar{r}{iso} & Im(p) \ar{u} \ar{ur}{0}
+                        0 \ar{r}{0} \ar{rd}{0} & A \ar[tail]{r}{p} \ar[two heads]{d} & B \ar[two heads]{r}{q} & C \\
+                        & Coim(p) \ar[tail, two heads]{r}{iso} & Im(p) \ar[tail]{u} \ar{ur}{0}
                     \end{tikzcd}
                 \end{center}
             \end{lemma}
@@ -1754,7 +1754,7 @@
                 Since $(p,q)$ is a kernel-cokernel pair we have that the first square is bicartesian and the second square is a push-out.
                 \begin{center}
                     \begin{tikzcd}
-                    A \ar{r}{p} \ar{rd}{0} & B \ar{d}{q} \\ & C
+                    A \ar[tail]{r}{p} \ar{rd}{0} & B \ar[two heads]{d}{q} \\ & C
                     \end{tikzcd}
                     \begin{tikzcd}
                         0 \ar{r}{0} \ar{rd}{0} & A \ar[equal]{d} \\ & A
@@ -1763,8 +1763,8 @@
                 Thus $Im(p)=Coim(p)=A$, asserting the isomorphism as the identity in the diagram.
                 \begin{center}
                     \begin{tikzcd}
-                        0 \ar{r}{0} \ar{rd}{0} & A \ar{r}{p} \ar[equal]{d} & B \ar{r}{q} & C \\
-                        & A \ar[equal]{r} & A \ar{u}{p} \ar{ur}{0}
+                        0 \ar{r}{0} \ar{rd}{0} & A \ar[tail]{r}{p} \ar[equal]{d} & B \ar[two heads]{r}{q} & C \\
+                        & A \ar[equal]{r} & A \ar[tail]{u}{p} \ar{ur}{0}
                     \end{tikzcd}
                 \end{center}
             \end{proof}
@@ -1827,7 +1827,7 @@
                 It can be seen that isomorphisms are deflations. Let $f:A\rightarrow B$ be an isomorphism, then there are two kernel-cokernel pairs: $(0,id_A)$ and $(0,f)$. Between these there is an isomorphism which is the triple $(0,id_A,f^{-1})$. As the conflations are closed under isomorphism, $(0,f)$ is a conflation, making f into a deflation. By dualizing this argument f is also an inflation.
                 \begin{center}
                     \begin{tikzcd}
-                        0 \ar{r}{0} \ar{d}{0} & A \ar{r}{f} \ar{d}{id_A} & B \ar{d}{f^{-1}} \\
+                        0 \ar{r}{0} \ar{d}{0} & A \ar[tail, two heads]{r}{f} \ar{d}{id_A} & B \ar[tail, two heads]{d}{f^{-1}} \\
                         0 \ar[tail]{r}{0}[marking]{\circ} & A \ar[two heads]{r}{id_A}[marking]{\circ} & A
                     \end{tikzcd}
                 \end{center}
@@ -2125,7 +2125,7 @@
                     i \\ ji
                 \end{pmatrix}$, this is an inflation by (QE1) as the 2x2 matrix is an isomorphism. Observer that the cokernel of this map is $\begin{pmatrix}
                     k & 0 \\ 0 & id_C
-                \end{pmatrix}$. Our final trich will be to show that there is a pullback square, and then use (QE2) to say that k is a deflation.
+                \end{pmatrix}$. Our final trick will be to show that there is a pullback square, and then use (QE2) to say that k is a deflation.
                 \begin{center}
                     \begin{tikzcd}[ampersand replacement=\&]
                         T \ar[bend left]{rrd}{t_1} \ar[bend right]{ddr}[below]{\begin{pmatrix}t_2 \\ 0\end{pmatrix}} \ar[dashed]{rd}{t} \\
@@ -2207,23 +2207,206 @@
                 Assume that we only have the solid part of the diagram above. By the universal property of cokernels, the upper dashed map exists, and by the dual of proposition 3.3 the square is bicartesian. We can state that the upper dashed map is an inflation, and since the square is a push-out we get that the lower dashed map exists such that the final column is a conflation by proposition 3.3.
             \end{proof}
 
-        \subsection{The Frobenis Category}
+        \subsection{The Stable Frobenis Category}
+
+            \begin{definition}
+                Let $(\mathcal{A},\mathcal{E})$ and $(\mathcal{A}',\mathcal{E}')$ be two exact categories. A functor $F:(\mathcal{A},\mathcal{E})\rightarrow (\mathcal{A}',\mathcal{E}')$ is called exact if it is additive and $F(\mathcal{E})\subseteq \mathcal{E}'$. That is to say that conflations get mapped to conflations. One speaks of a reflective exact functor for whenever the pair $(Fp,Fq)$ is a conflation, then $(p,q)$ is a conflation.
+            \end{definition}
+
+            \begin{definition}
+                Let $(\mathcal{A},\mathcal{E})$ be an exact category. An object $P:\mathcal{A}$ is called projective if $\mathcal{A}(P,\_):(\mathcal{A},\mathcal{E})\rightarrow \textbf{Ab}$ is an exact functor. Objects $I:\mathcal{A}$ are called injective whenever $\mathcal{A}(\_,I):\mathcal{A}^{op}\rightarrow\textbf{Ab}$ is an exact functor.
+            \end{definition}
+
+            \begin{remark}
+                In the case of exact functors $F:(\mathcal{A},\mathcal{E})\rightarrow\textbf{Ab}$, one generally speaks of a functor which maps conflations to short exact sequences.
+            \end{remark}
+
+            \begin{remark}
+                The hom-functor is something that is called left-exact. That means that conflations gets mapped to sequences which is only exact in the two first terms.
+            \end{remark}
+
+            \begin{prop}
+                Let $(\mathcal{A},\mathcal{E})$ be an exact ccategory. $P:\mathcal{A}$ is projective if and only if for every deflation $q:A\rightarrow B$ and morphism $f:P\rightarrow B$  there is a morphism $f':P\rightarrow A$ rendering the diagram below commutative.
+                \begin{center}
+                    \begin{tikzcd}
+                        & P \ar[dashed]{ld}[above]{f'} \ar{d}{f} \\
+                        A \ar[two heads]{r}[below]{q}[marking]{\circ} & B
+                    \end{tikzcd}
+                \end{center}
+            \end{prop}
+
+            \begin{proof}
+                Suppose that $P$ is projective, then $\mathcal{A}(P,\_)$ is an exact functor. Let $(p:A\rightarrow B,q:B\rightarrow C)$ be a conflation, then there is a short exact sequence.
+                \begin{center}
+                    \begin{tikzcd}
+                        0 \ar{r}{0} & \mathcal{A}(P,A) \ar[tail]{r}{p_*}& \mathcal{A}(P,B) \ar[two heads]{r}{q_*} & \mathcal{A}(P,C) \ar{r}{0} & 0
+                    \end{tikzcd}
+                \end{center}
+                Pick $f:\mathcal{A}(P,C)$, since $q_*$ is a surjection there exists an $f':\mathcal{A}(P,B)$ such that $pf'=f$.
+                Now, suppose that $P$ has the diagram property and that $(p:A\rightarrow B,q:B\rightarrow C)$ is a conflation. Then there is an exact sequence in $\textbf{Ab}$ by $\mathcal{A}(P,\_)$.
+                \begin{center}
+                    \begin{tikzcd}
+                        0 \ar{r}{0} & \mathcal{A}(P,A) \ar[tail]{r}{p_*}& \mathcal{A}(P,B) \ar{r}{q_*} & \mathcal{A}(P,C)
+                    \end{tikzcd}
+                \end{center}
+                To see that $q_*$ is a surjection and, let $f:P\rightarrow C$. As $q$ is a deflation there exists an $f':P\rightarrow B$ such that $q_*(f')=f$. Thus the sequence above is short exact and $P$ is projective. 
+            \end{proof}
+
+            \begin{corollary}
+                Let $P$ be projective, then if $q:A\rightarrow P$ is a deflation, it is split-epi.
+            \end{corollary}
+
+            \begin{corollary}
+                Two objects $P$ and $Q$ are projective if and only if $P\oplus Q$ is projective.
+            \end{corollary}
+
+            \begin{definition}
+                A category $(\mathcal{A}, \mathcal{E})$ has enough projective objects if for any object $A:\mathcal{A}$ there is a projective object $P$ along with a deflation $q:P\rightarrow A$.
+            \end{definition}
+
+            \begin{definition}
+                An exact category is called a Frobenius category if it has enough projective and injective objects and the class of projective objects coincide with the injective objects.
+            \end{definition}
+
+            From the Frobenius categories, one can construct the stable Frobenius category where every morphism factoring through an injective will be identified. These stable categories will give rise to a class of categories called the algebraic triangulated categories. In order to construct the stable Frobenius category we will use the construction of the quotient category.
+
+            \begin{definition}
+                A congruence relation $\sim$ on a category $\mathcal{C}$ is a relation on the homsets, such that:
+                \begin{enumerate}
+                    \item $\forall A,B:\mathcal{C}$ the relation $\sim_{A,B}$ is an equivalence relation.
+                    \item Given that $f,f':A\rightarrow B$ is related ($f\sim f'$) and morphisms $g:A'\rightarrow A$ and $h:B\rightarrow B'$, then $hgf\sim hf'g$.
+                \end{enumerate}
+            \end{definition}
+
+            \begin{prop}
+                Let $\mathcal{C}$ be a category and $\sim$ be a congruence relation. Then there is a universal category $\mathcal{C}/\sim$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}/\sim$ such that morphisms $f,g:A\rightarrow B$ are identified if $f\sim g$. Universality means that if there is a functor $H:\mathcal{C}\rightarrow \mathcal{D}$ such that $Hf=Hg$ for any $f,g$ such that $f\sim g$, then H factors uniquely through $\mathcal{C}/\sim$.
+            \end{prop}
+
+            \begin{proof}
+                Define the category $\mathcal{C}/\sim$ to have the same objects as $\mathcal{C}$, and define $\mathcal{C}/\sim (A,B)=\mathcal{C}(A,B)/\sim_{a,b}$. This definition is well defined as $\sim$ is a congruence relation. A sketch of this proof can be found in \cite{maclane}.
+            \end{proof}
+
+            \begin{remark}
+                Any functor gives rise to a congruence relation. That is, if $F:\mathcal{C}\rightarrow \mathcal{D}$ is a functor, then there is a congruence relation $\sim$ defined as follows: $\forall A,B:\mathcal{C}$ and $f,g:A\rightarrow B$, we define $f\sim_{A,B}g \iff Ff=Fg$. This is a congruence as equlity within $\mathcal{D}$ gives rise to an equivalence relation, and functoriality gives the congruence.
+            \end{remark}
+
+            \begin{remark}
+                For any relation $\sim$ the universal category $\mathcal{C}/\sim$ exists. As in the case for the Verdier quotient, $\mathcal{C}/\sim$ is the same as the quotient category of the smallest congruence relation having the same relations as $\sim$.
+            \end{remark}
+
+            If $\mathcal{A}$ is an additive category, the quotient categories which respects the additive structures are of interest. That is to say that the functor $q:\mathcal{A}\rightarrow \mathcal{C}/\sim$ is additive and the equivalence relation $\sim$ should respect the additive structure. Then a quotient category is additive if $f\sim f'$ and $g\sim g'$, then $f+g\sim f'+g'$. This leads to the following definition. 
+
+            \begin{definition}
+                Let $\mathcal{A}$ be an additive category. $\mathcal{I}$ is an ideal of $\mathcal{A}$ if:
+                \begin{enumerate}
+                    \item (subgroup) for every abelian group $\mathcal{A}(A,B)$ there is a subgroup $\mathcal{I}(A,B)\subseteq\mathcal{A}(A,B)$.
+                    \item (absorption) For every $g:A'\rightarrow A$, $h:B\rightarrow B'$ and $f:\mathcal{I}(A,B)$ we have that $hfg:\mathcal{I}(A',B')$
+                \end{enumerate}
+                This is equivalent of saying that the equivalence relation gained from $\mathcal{I}(A,B)$ ($f\sim g \iff f-g:\mathcal{I}(A,B)$) is a congruence relation.
+            \end{definition}
+
+            \begin{corollary}
+                Let $\mathcal{A}$ be an additive category and $\mathcal{I}$ be an ideal of $\mathcal{A}$, then $\mathcal{A}/\mathcal{I}$ is an additive category.
+            \end{corollary}
+
+            Let $\mathcal{A}$ be a Frobenius category. Define the ideal $\mathcal{I}$ as the subgroups of every morphism factoring through injective objects.
+
+            \begin{prop}
+                For any Frobenius category $\mathcal{A}$ the ideal $\mathcal{I}$ is well defined and $\underline{\mathcal{A}}=\mathcal{A}/\mathcal{I}$ is the stable Frobenius category.
+            \end{prop}
+
+            \begin{proof}
+                To prove this we have to show that $\mathcal{I}(A,B)$ is a subgroup for any $A,B:\mathcal{A}$, and that it is absorptive.
+                First observe that $0:\mathcal{I}(A,B)$. Let $f,g:\mathcal{I}(A,B)$. Since $\mathcal{A}$ has enough injectives there exists an injective object with an inflation from $A$.
+                \begin{center}
+                    \begin{tikzcd}
+                        & J_1 \ar{rd}{f_2}\\
+                        A \ar{ru}{f_1} \ar{rd}{g_1} \ar[tail]{r}{i}[marking]{\circ} & I \ar[dashed]{u}{f_1'} \ar[dashed]{d}{g_1'} & B \\
+                        & J_2 \ar{ru}{g_2}
+                    \end{tikzcd}
+                \end{center}
+                $f-g = f_2 \circ f_1 - g_2 \circ g_1 = (f_2 \circ f_1' - g_2 \circ g_1') \circ i$. Thus $f-g$ factors through an injective, and $\mathcal{I}(A,B)$ is a subgroup.
+                To see that it is absorptive is to see that if $f$ factors through an injective, then $gf$ factors through an injective as well.
+            \end{proof}
+
+            Objects in the stable Frobenius category is denoted as $\underline{X}$ and morphisms are denoted as $\underline{f}$. That is the functor $q:\mathcal{A}\rightarrow\underline{\mathcal{A}}$ is defined as $q(X)=\underline{X}$ and $q(f)=\underline{f}$. One important property is that in the stable Frobenius category, taking syzygies or cozysigies is a functor.
+
+            \begin{lemma}
+                Let $\mathcal{A}$ be a Frobenius category and suppose that there are two conflations with injectives as below. Then $\underline{X}'\simeq\underline{X}''$.
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar[tail]{r}{i}[marking]{\circ} & I \ar[tail]{r}{i'}[marking]{\circ} & X' \\
+                        X \ar[tail]{r}{j}[marking]{\circ} & J \ar[tail]{r}{j'}[marking]{\circ} & X'' 
+                    \end{tikzcd}
+                \end{center}
+            \end{lemma}
+
+            \begin{proof}
+                Observe that with the diagram we can find morphisms as $I$ and $J$ are injective.
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar{dr}{j} \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & I \ar[dashed]{d}{f} \\
+                        X \ar[tail]{r}{j}[marking]{\circ} & J
+                    \end{tikzcd}
+                \end{center}
+                By iterating this we get the following commutative diagram in $\mathcal{A}$.
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & I \ar[two heads]{r}{i'}[marking]{\circ} \ar{d}{f} & X' \ar[dashed]{d}{g} \\
+                        X \ar[equal]{d} \ar[tail]{r}{j}[marking]{\circ} & J \ar[two heads]{r}{j'}[marking]{\circ} \ar{d}{f'} & X'' \ar[dashed]{d}{g'} \\
+                        X \ar[tail]{r}{i}[marking]{\circ} & I \ar[two heads]{r}{i'}[marking]{\circ} & X'
+                    \end{tikzcd}
+                \end{center}
+                By chasing the diagram we get that $i-f'fi=(id_I-f'f)\circ i = 0$, this means that $(f'f-id_I)$ factors through $X'$, i.e. there exists $h:X'\rightarrow I$ and $f'f = hi'+id_I$. We also have that $g'gi' = i'f'f = i'(hi' +id_I) = i'hi' + i' = (i'h+id_{X'})i'$. As $i'$ is an epi we get that $g'g = i'h + id_{X'} \implies \underline{g'g}=id_{\underline{X}'}$ as $i'h$ factors through $I$. $\underline{gg'}=id_{\underline{X}''}$ is dual.
+            \end{proof}
+
+            \begin{corollary}
+                Cosyzygy is a well defined functor \rotatebox[origin=c]{180}{$\Omega$}$:\underline{\mathcal{A}}\rightarrow\underline{\mathcal{A}}$
+            \end{corollary}
+
+            \begin{proof}
+                Let $f:X\rightarrow Y$ be a morphism in $\mathcal{A}$. Then we have the following diagrams representing the different choices of syzygies.
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar{d}{f} \ar{r}{i} & I \ar{r}{p} \ar[dashed]{d} & \rotatebox[origin=c]{180}{$\Omega$}X \ar[dashed]{d}{\rotatebox[origin=c]{180}{$\Omega$}f} \\
+                        Y \ar{r}{j} & J \ar{r}{q} & \rotatebox[origin=c]{180}{$\Omega$}Y
+                    \end{tikzcd}
+                    \begin{tikzcd}
+                        X \ar{d}{f} \ar{r}{i'} & I' \ar{r}{p'} \ar[dashed]{d} & \rotatebox[origin=c]{180}{$\Omega$}'X \ar[dashed]{d}{\rotatebox[origin=c]{180}{$\Omega$}'f} \\
+                        Y \ar{r}{j'} & J' \ar{r}{q'} & \rotatebox[origin=c]{180}{$\Omega$}'Y
+                    \end{tikzcd}
+                \end{center}
+                By the previous proof we know there are maps between the diagrams making an almost commutative diagram where all the outer squares commute.
+                \begin{center}
+                    \begin{tikzcd}[row sep=tiny]
+                        X \ar{dddd}{f} \ar[equal]{rd}[above, pos=0.8]{\alpha (X)} \ar[tail]{rr}[marking]{\circ}[near start]{i} & & I \ar{rd}[above, pos=0.8]{\beta (X)} \ar[two heads]{rr}[marking]{\circ}[near start]{p} \ar[dashed]{dddd}{If} & &\rotatebox[origin=c]{180}{$\Omega$}X \ar{rd}[above, pos=0.8]{\gamma (X)} \ar[dashed]{dddd}{\rotatebox[origin=c]{180}{$\Omega$}f} \ar[dashed, squiggly]{lddddd}{\chi}\\
+                        \textcolor{white}{.} & X \ar[tail]{rr}[marking]{\circ}[near start]{i'} \ar{dddd}{f} && I' \ar[dashed]{dddd}{I'f} \ar[two heads]{rr}[marking]{\circ}[near start]{p'} && \rotatebox[origin=c]{180}{$\Omega$}'X \ar[dashed]{dddd}{\rotatebox[origin=c]{180}{$\Omega$}'f}\\
+                        \textcolor{white}{.} \\
+                        \textcolor{white}{.} \\
+                        Y \ar[equal]{rd}[above, pos=0.9]{\alpha (Y)}[below, pos=0.2]{\alpha '(Y)} \ar[tail]{rr}[marking]{\circ}[near start]{j} & & J \ar{rd}[above, pos=0.8]{\beta (Y)} \ar[two heads]{rr}[marking]{\circ}[near start]{q} & & \rotatebox[origin=c]{180}{$\Omega$}Y \ar{rd}[above, pos=0.8]{\gamma (Y)} \\
+                        & Y \ar[tail]{rr}[marking]{\circ}[near start]{j'} && J' \ar[two heads]{rr}[marking]{\circ}[near start]{q'} && \rotatebox[origin=c]{180}{$\Omega$}'Y
+                    \end{tikzcd}
+                \end{center}
+                To see that the definition of the cosyzygy is well defined is to show that the inner squares is commutative in the quotient category.
+                
+                Observe that the inner square commutes by definition, and that the central inner square commutes in the quotient as every morphism gets related to $0$. Thus it remains to show that \underline{$\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f$}$=$\underline{\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$}, which is the same as to say that $\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$ factors over an injective.
+
+                By doing a diagram chase in the left cube one may find the following equation $(I'f\circ \beta(X)-\beta (Y)\circ If)i=0$. This means that the map $I'f\circ \beta(X)-\beta (Y)\circ If$ factors through the cokernel of $i$ as $\chi p$. By chasing the right cube we get the following equation $q'\chi p = (\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X))p$, thus $q'\chi =$$\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$.
+            \end{proof}
+
+            \begin{corollary}
+                Cosyzygy is an autoequivalence with syzygy as inverse.
+            \end{corollary}
+
+
 
         \subsection{Self-injective Algebras}
 
         \subsection{The Homotopy Category}
 
-    \clearpage
-
-    \section{The Derived Category}
-
-        \subsection{Admissable Morphisms}
-
-        \subsection{Homology and Long Exact Sequences}
+        \subsection{Admissable Morphisms, Homology and Long Exact Sequences}
 
         \subsection{The Derived Category}
-
-        \subsection{If time, derived functors as well}
 
     \clearpage
     
