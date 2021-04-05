@@ -26,6 +26,8 @@
 \newtheorem*{remark}{Remark}
 \newtheorem*{prototype}{Prototype}
 
+\newcommand{\upside}[1]{\rotatebox[origin=c]{180}{#1}}
+
 \usepackage{subfiles} % Best loaded last in the preamble
 
 \title{Thesis}
@@ -326,14 +328,16 @@
                             \end{tikzcd}
                         \end{center}
                     \end{minipage}
-                    By following the blue squiggly lines there is a morphism $g'f:C\rightarrow C'$, it remains to see that this fits into the triangle morphism. By chasing the different paths in the octahedra and combining diagrams we get that the following diagrams are commutative, which is exactly the requirement for the collection $(\phi_A,\phi_B,g'f,T\phi_A)$ to be a morphism of triangles.
+                    By following the blue squiggly lines there is a morphism $g'f:C\rightarrow C'$, it remains to see that this fits into the triangle morphism. By chasing the different paths in the octahedra and combining diagrams we get that the following diagrams are commutative, which is exactly the requirement for the collection $(\phi_A,\phi_B,g'f)$ to be a morphism of triangles.
                     \begin{center}
                         \begin{tikzcd}
                             B \ar[red]{r}[black]{b} \ar[orange]{d}[black]{\phi_B'}& C \ar[red]{rd}[black]{c} \ar[teal]{d}[black]{f} \\
-                            B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & TA \ar[red]{d}[black]{Ta} \\
+                            B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & TA \ar[red]{d}[black]{T\phi_A} \\
                             & C' \ar[orange]{r}[black]{c'} & TA'
                         \end{tikzcd}
                     \end{center}
+
+                    \emph{Har jeg glemt å bruke TR2 et sted? Er octahedra for vanskelig å bruke ettersom det skjuler hvordan ting er rotert? Eller er det dette aksiomet som er litt sterkere enn Verdier sitt axiom?}
 
             \end{proof}
 
@@ -2398,7 +2402,128 @@
                 Cosyzygy is an autoequivalence with syzygy as inverse.
             \end{corollary}
 
+            \begin{proof}
+                Do I want/need to prove this? I should prove this to show why we need projectives to coincide with injectives or something.
+            \end{proof}
 
+            The triangulation of $\underline{\mathcal{A}}$ will be defined as the set of icandidate triangles in $\underline{\mathcal{A}}$ called standard triangles. Let $\underline{x}:\underline{X}\rightarrow\underline{Y}$ be a morphism, then by (QE2) there is a pushout in $\mathcal{A}$. Moreover, by Proposition 3.3 $(y,z)$ is a conflation.
+
+            \begin{minipage}[c]{0.6\textwidth}
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar{r}{x} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} & Y \ar[tail]{d}{y}[marking]{\circ} \ar[bend left]{rdd}{0}\\
+                        I(X) \ar[bend right, two heads]{rrd}{p}[marking]{\circ} \ar{r}{x'} & Z \ar[dashed, two heads]{dr}{z}[marking]{\circ} \\
+                        & & \rotatebox[origin=c]{180}{$\Omega$}X
+                    \end{tikzcd}
+                \end{center}
+            \end{minipage}
+            \begin{minipage}[c]{0.4\textwidth}
+                The set of standard triangles will be of the form $(\underline{X},\underline{Y},\underline{Z},\underline{x},\underline{y},\underline{z})$. Thus a triangle $(A,B,C,a,b,c):\Delta_{\underline{\mathcal{A}}}$ if and only if $(A,B,C,a,b,c)$ is isomorphic to a standard triangle.
+            \end{minipage}
+
+            \begin{prop}
+                $\Delta_{\underline{\mathcal{A}}}$ is a triangulation of $\underline{\mathcal{A}}$.
+            \end{prop}
+
+            \begin{proof}
+                I will give a sketch of how to prove this proposition. Most of the details will be omitted, and they can be found in [insert sources here]. In order to complete the proof we need to show the three defining axioms for a triangulated category, namely TR1, TR2 and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see the final part of TR1 is to observe that the following diagram is a pushout.
+                \begin{center}
+                    \begin{tikzcd}[row sep=large]
+                        X \ar[equal]{r}{} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} & X \ar[tail]{d}{i}[marking]{\circ} \\
+                        I(X) \ar[equal]{r}{} & I(X)
+                    \end{tikzcd}
+                \end{center}
+                Thus $(\underline{X},\underline{X},\underline{0},id_{\underline{X}},\underline{0},\underline{0})$ is a standard triangle.
+
+                % (TR3) Let $(\underline{A},\underline{B},\underline{C},\underline{a},\underline{b},\underline{c})$ and $(\underline{A}',\underline{B}',\underline{C}',\underline{a}',\underline{b}',\underline{c}')$ be two standard triangles. Suppose that there are two morphisms $\phi_A:A\rightarrow A'$ and $\phi_B:B\rightarrow B'$ suvh that $\underline{a'\phi_A}=\underline{\phi_B a}$. That means there is a morphism $\alpha:I(A)\rightarrow B'$ such that $a'\phi_A-\phi_B a = \alpha i(A)$. There is a map $I(\phi_A):I(A)\rightarrow I(A')$ induced by the map $i(A')\phi_A:A\rightarrow I(A')$, such that $I(\phi_A)i(A)=i(A')\phi_A$ and \rotatebox[origin=c]{180}{$\Omega$}$\phi_Ap(A)=p(A')I(\phi_A)$. By calculating $b'\phi_B\alpha=b'a'\phi_A-b'\alpha i(A) =\widetilde{a'}i(A')\phi_A-b'\alpha i(A)=\widetilde{a'}I(\phi_A)i(A)-b'\alpha i(A)=(\widetilde{a'}I(\phi_A)-b'\alpha)i(A)$. As $C$ is a pushout there exists a $\phi_C:C\rightarrow C'$ such that $\phi_C b = b'\phi_B$ and $\phi_C\widetilde{a}=\widetilde{a'}I(\phi_A)-b'\alpha$.
+                
+                % \begin{center}
+                %     \begin{tikzcd}
+                %         A \ar{r}{a} \ar[bend left]{rrr}{\phi_A} \ar{d}{i(A)} & B \ar{d}{b} \ar{r}{\phi_B} & B' \ar{d}{b'} & A' \ar{l}[above]{a'} \ar{d}{i(A')} \\
+                %         I(A) \ar[dashed, squiggly]{rru}{\alpha} \ar[bend right]{rrr}{I(\phi_A)} \ar{r}{\widetilde{a}} & C \ar[dashed]{r}{\phi_C} & C' & I(A') \ar{l}{\widetilde{a'}} \\
+                %     \end{tikzcd}
+                % \end{center}
+                % Now it remains to see that $c'\phi_C=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ c$. By using the universal property of the pushout we can instead verify that $c'\phi_Cb=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ cb$ and $c'\phi_C\widetilde{a}=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ c\widetilde{a}$. We first start by seeing that
+                % $c'\phi_Cb=c'b'\phi_B=0$ and \rotatebox[origin=c]{180}{$\Omega$}$a\circ cb = 0$, then $c'\phi_C\widetilde{a}=c'(\widetilde{a'}I(\phi_A)-b'\alpha)=c'\widetilde{a'}I(\phi_A)=p(A')I(\phi_A)=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ p(A)=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ c\widetilde{a}$.
+
+                (TR2) Consider the standard triangle $(\underline{X},\underline{Y},\underline{Z},\underline{x},\underline{y},\underline{z})$, the goal is to show that there is a triangle $(\underline{Y},\underline{Z},$\underline{\rotatebox[origin=c]{180}{$\Omega$}$X$}$,\underline{x},\underline{y},-$\underline{\rotatebox[origin=c]{180}{$\Omega$}$x$}$)$. Let $I(X)$ and $I(Y)$ be injectives with inflations from $X$ and $Y$ respectively. Since $I(Y)$ is injective there is a unique map by the pushout property in (1).
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}
+                        X \ar{r}{x} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i(X)}[marking]{\circ} & Y \ar{d}{y} \ar[bend left]{rdd}{i(Y)} \\
+                        I(X) \ar{r}{x'} \ar[bend right]{rrd}{f} & Z \ar[dashed]{rd}{g} \\
+                        & & I(Y)
+                    \end{tikzcd}
+                    (2)
+                    \begin{tikzcd}
+                        X \ar{r}{x} \ar[phantom]{rd}[very near end]{\lrcorner} \ar{d}{i(X)} & Y \ar{d}{y} \ar{rd}{0} \\
+                        I(X) \ar{rd}{f} \ar{r}{x'} & Z \ar{d}{g} \ar{r}{z} & \rotatebox[origin=c]{180}{$\Omega$}X \ar{d}{\rotatebox[origin=c]{180}{$\Omega$}x} \\
+                        & I(Y) \ar{r}{p(Y)} & \rotatebox[origin=c]{180}{$\Omega$}Y
+                    \end{tikzcd}
+                \end{center}
+                From (2) we are able to use the pushout to see that the lower right square commutes, that is the lower right square commute if $p(Y)fi(X)=$\rotatebox[origin=c]{180}{$\Omega$}$xzyz=0$. This is true as $p(Y)fi(X)=p(Y)gyx=p(Y)i(Y)x=0$ by (1). Note that since $z$ and $p(Y)$ is a deflation with equal kernels, Proposition 3.3 says that $(\begin{pmatrix}g \\ z\end{pmatrix},\begin{pmatrix}p(Y) & -\rotatebox[origin=c]{180}{$\Omega$}x\end{pmatrix})$ is a conflation. 
+
+                We are able to find a commutative diagram and by Proposition 3.3 we are able to say that the upper left square is bicartesian.
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        Y \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{d}{i(Y)}[marking]{\circ} \ar[tail]{r}{y}[marking]{\circ} \& Z \ar[tail]{d}{\begin{pmatrix}g \\ z\end{pmatrix}}[marking]{\circ} \ar[two heads]{r}{z}[marking]{\circ} \& \rotatebox[origin=c]{180}{$\Omega$}X \ar[equal]{d} \\
+                        I(Y) \ar[two heads]{d}{p(Y)}[marking]{\circ} \ar[tail]{r}[below]{\iota_1}[marking]{\circ} \& I(Y)\oplus \rotatebox[origin=c]{180}{$\Omega$}X \ar[two heads]{r}[below]{\pi_2}[marking]{\circ} \ar[two heads]{d}{\begin{pmatrix}p(Y) & -\rotatebox[origin=c]{180}{$\Omega$}x\end{pmatrix}}[marking]{\circ} \& \rotatebox[origin=c]{180}{$\Omega$}X. \\
+                        \rotatebox[origin=c]{180}{$\Omega$}Y \ar[equal]{r}{} \& \rotatebox[origin=c]{180}{$\Omega$}Y
+                    \end{tikzcd}
+                \end{center}
+
+                Thus $(\underline{Y},\underline{Z},$\underline{\rotatebox[origin=c]{180}{$\Omega$}$X$}$,\underline{y},\underline{z},-$\underline{\rotatebox[origin=c]{180}{$\Omega$}$x$}$)$ is a standard triangle.
+
+                (TR4) Suppose that there are three standard triangles where $\nu\upsilon=\omega$.
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{\upsilon} \ar{d}{x} & Y \ar{d}{i} \\
+                        I(X) \ar{r}{\bar{\upsilon}} \ar{d}{\bar{x}} & Z' \ar{d}{i'} \\
+                        \upside{$\Omega$}X \ar[equal]{r} & \upside{$\Omega$}X
+                    \end{tikzcd}
+                    \begin{tikzcd}
+                        Y \ar{r}{\nu} \ar[phantom]{rd}[very near end]{\lrcorner} \ar{d}{y} & Z \ar{d}{j} \\
+                        I(Y) \ar{r}{\bar{\nu}} \ar{d}{\bar{y}} & X' \ar{d}{j'} \\
+                        \upside{$\Omega$}Y \ar[equal]{r} & \upside{$\Omega$}Y
+                    \end{tikzcd}
+                    \begin{tikzcd}
+                        X \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{\omega} \ar{d}{x} & Z \ar{d}{k} \\
+                        I(X) \ar{d}{\bar{x}} \ar{r}{\bar{\omega}} & Y' \ar{d}{k'} \\
+                        \upside{$\Omega$}X \ar[equal]{r} & \upside{$\Omega$}X
+                    \end{tikzcd}
+                \end{center}
+                By Noethers isomorphism lemma there is a conflation passing through on the right column and the middle square is bicartesian. $z'$ exists by the injectivity of $I(Y)$ and that $i$ is an inflation. $z'$ is an inflation as $y$ is an inflation, thus $\bar{z'}$ exists.
+                \begin{center}
+                    \begin{tikzcd}
+                        Y \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & Z' \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{d}{z'}[marking]{\circ} \ar[two heads]{r}{i'}[marking]{\circ} & \upside{$\Omega$}X \ar[tail, dashed]{d}{s}[marking]{\circ} \\
+                        Y \ar[tail]{r}{y}[marking]{\circ} & I(Y) \ar[two heads]{r}{\bar{y}}[marking]{\circ} \ar[two heads]{d}{\bar{z'}}[marking]{\circ} & \upside{$\Omega$}Y \ar[two heads, dashed]{d}{r}[marking]{\circ} \\
+                        & \upside{$\Omega$}Z' \ar[equal]{r} & \upside{$\Omega$}Z'
+                    \end{tikzcd}
+                \end{center}
+                There is also a map $I_\upsilon:I(X)\rightarrow (Y)$ induced by the maps between $X$ and $I(Y)$. By using the following universal properties we can find the unique maps $f$ and $g$.
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{\upsilon} \ar[bend left]{rr}{\omega} \ar{d}{x} & Y \ar{d}{i} \ar{r}{\nu} & Z \ar{dd}{k} \\
+                        I(X) \ar[bend right]{rrd}{\bar{\omega}} \ar{r}{\bar{\upsilon}} & Z' \ar[dashed]{rd}{f} \\
+                        & & Y'
+                    \end{tikzcd}
+                    \begin{tikzcd}
+                        X \ar{r}{\omega} \ar{d}{x} & Z \ar{d}{k} \ar[bend left]{rdd}{j} \\
+                        I(X) \ar{r}{\bar{w}} \ar[bend right]{rd}{I_\upsilon} & Y' \ar[dashed]{rd}{g} \\
+                        & I(Y) \ar[bend right]{r}{\bar{\nu}}& X'
+                    \end{tikzcd}
+                \end{center}
+                These maps can be arranged in the following diagram. It can be seen that middle square is a pushout, by using the fact that the upper left square and the larger rectangles are pushouts.
+                \begin{center}
+                    \begin{tikzcd}
+                        X \ar{r}{\upsilon} \ar{d}{x} \ar[phantom]{rd}[very near end]{\lrcorner} & Y \ar{r}{\nu} \ar{d}{i} & Z \ar{d}{k} \\
+                        I(X) \ar{r}{\bar{\upsilon}} \ar{d}{\bar{x}} \ar{rd}{I_\upsilon} & Z' \ar{r}{f} \ar{d}{z'} & Y' \ar[bend left, phantom]{d}[very near start]{\lrcorner} \ar{d}{g} \\
+                        \upside{$\Omega$}X \ar{rd}{s} & I(Y)\ar{d}{r} \ar{r}{\bar{\nu}} & X' \ar[bend left, phantom]{d}[very near start]{\lrcorner} \ar{d}{\upside{$\Omega$}i\circ j'} \\
+                        & \upside{$\Omega$}Y \ar{r}{\upside{$\Omega$}i} & \upside{$\Omega$}Z'
+                    \end{tikzcd}
+                \end{center}
+                Thus $(Z',Y',X',f,g,$\upside{$\Omega$}$i\circ j')$ is a triangle. 
+            \end{proof}
 
         \subsection{Self-injective Algebras}
 
