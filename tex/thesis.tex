@@ -673,66 +673,7 @@
             \end{remark}
 
             \begin{definition}
-                A pre-triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta '$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying the following axioms: 
-
-                \begin{enumerate}
-                    \item (TR1) Formation axiom
-
-                        \begin{enumerate}
-                            \item A candidate triangle isomorphic to a triangle is a triangle.
-                            \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle $(A,B,C,a,b,c)$:
-                            \begin{center}
-                                \begin{tikzcd}
-                                    A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
-                                \end{tikzcd}
-                            \end{center}
-                            \item For every object A there is a triangle $(A,A,0,id_A,0,0)$:
-                            \begin{center}
-                                \begin{tikzcd}
-                                    A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & TA
-                                \end{tikzcd}
-                            \end{center}
-                        \end{enumerate}
-                    \item (TR2) Rotation axiom
-
-                        For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,Ta)$
-                        \begin{center}
-                            \begin{tikzcd}
-                                A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
-                            \end{tikzcd} $\implies$
-                            \begin{tikzcd}
-                                B \arrow{r}{b} & C \arrow{r}{c} & TA \arrow{r}{-Ta} & TB
-                            \end{tikzcd}
-                            
-                        \end{center}
-                    \item (TR3) Morphism axiom
-                    
-                        Given the two triangles $(A,B,C,a,b,c)$ (1) and $(A',B',C',a',b',c')$ (2)
-                        \begin{center}
-                            (1)
-                            \begin{tikzcd}[column sep=small]
-                                A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
-                            \end{tikzcd}
-                            (2) 
-                            \begin{tikzcd}[column sep=small]
-                                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
-                            \end{tikzcd}
-                        \end{center}
-                        and morphisms $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that the square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
-                        
-                        \begin{center}
-                            (1)
-                            \begin{tikzcd}
-                                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{d}{\phi_B} & \\
-                                A' \ar{r}{a'} & B'
-                            \end{tikzcd}
-                            (2)
-                            \begin{tikzcd}
-                                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & TA \ar{d}{T\phi_A} \\
-                                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
-                            \end{tikzcd}
-                        \end{center}
-                \end{enumerate}
+                A pre-triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta '$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying TR1, TR2 and TR3.
 
                 The category $\mathcal{T}$ with the pre-triangulation $\Delta '$ is called a pre-triangulated category, and the candidate triangles in $\Delta '$ are called  triangles. We will only use this notion of triangles in this subsection.
             \end{definition}
@@ -1324,6 +1265,8 @@
             \begin{remark}
                 Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ ending in $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its domain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondance between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\mathcal{\delta b, B}$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
             \end{remark}
+
+            Mitt lille utspill her må fikses. Jeg kan lage et addendum elns hvor det legges in alt som er relevant for å forstå hva som skjer elns...
 
             To ensure us that these categories $\mathfrak{r}S^{-1}\mathcal{C}$ does indeed exist there are many different criteria which we can place upon our assumptions. A natural restriction is to ensure that the colimits above exists as sets
 
@@ -2335,6 +2278,14 @@
 
             Objects in the stable Frobenius category is denoted as $\underline{X}$ and morphisms are denoted as $\underline{f}$. That is the functor $q:\mathcal{A}\rightarrow\underline{\mathcal{A}}$ is defined as $q(X)=\underline{X}$ and $q(f)=\underline{f}$. One important property is that in the stable Frobenius category, taking syzygies or cozysigies is a functor.
 
+            \begin{definition}
+                A syzygy of an object $X$, if it exists, is denoted $\Omega X$. The syzygy is the defined to be the kernel object of a deflation $p:P\rightarrow X$, where $P$ is projective. A cosyzygy, denoted as \upside{$\Omega$}$X$ is defined to be the cokernel of an inflation $i:X\rightarrow I$, where $I$ is injective.
+            \end{definition}
+
+            \begin{remark}
+                Note that this choice is not necessarily unique up to isomorphism. Thus syzygies and cosyzygies are not in general functors.
+            \end{remark}
+
             \begin{lemma}
                 Let $\mathcal{A}$ be a Frobenius category and suppose that there are two conflations with injectives as below. Then $\underline{X}'\simeq\underline{X}''$.
                 \begin{center}
@@ -2399,12 +2350,24 @@
             \end{proof}
 
             \begin{corollary}
-                Cosyzygy is an autoequivalence with syzygy as inverse.
+                Cosyzygy \upside{$\Omega$} is an autoequivalence with syzygy $\Omega$ as inverse.
             \end{corollary}
 
             \begin{proof}
-                Do I want/need to prove this? I should prove this to show why we need projectives to coincide with injectives or something.
+                The goal is to show that there is a natural isomorphisms \underline{$\Omega$\upside{$\Omega$}}$\simeq Id_{\underline{\mathcal{A}}}$ and \underline{\upside{$\Omega$}$\Omega$}$\simeq Id_{\underline{\mathcal{A}}}$. Note that since these are inverse operations we have that taking syzygy then cosyzygy is the same as taking cosyzygy then syzygy in $\mathcal{A}^{op}$.
+                Let $X:\mathcal{A}$, then we want to show that the following diagram gives a natural isomorphism at the rightmost arrow in $\underline{\mathcal{A}}$.
+                \begin{center}
+                    \begin{tikzcd}
+                        \Omega X \ar{r} \ar[equal]{d} & P \ar[dashed]{d} \ar{r} & X \ar[dashed]{d} \\
+                        \Omega X \ar{r} & I \ar{r} & \upside{$\Omega$}\Omega X
+                    \end{tikzcd}
+                \end{center}
+                Observe that this case is identical as the one proved previous. Thus there is a natural isomorphism from $X$ to \upside{$\Omega$}$\Omega$X.
             \end{proof}
+
+            \begin{remark}
+                A subtle, but important point is that the category $\mathcal{A}$ has enough projectives and injectives. This enables us to find the syzygies and cozysigies. It is also important that the projectives are the same as the injectives for this construction to give the isomorphisms as well.
+            \end{remark}
 
             The triangulation of $\underline{\mathcal{A}}$ will be defined as the set of icandidate triangles in $\underline{\mathcal{A}}$ called standard triangles. Let $\underline{x}:\underline{X}\rightarrow\underline{Y}$ be a morphism, then by (QE2) there is a pushout in $\mathcal{A}$. Moreover, by Proposition 3.3 $(y,z)$ is a conflation.
 
@@ -2521,9 +2484,32 @@
                         \upside{$\Omega$}X \ar{rd}{s} & I(Y)\ar{d}{r} \ar{r}{\bar{\nu}} & X' \ar[bend left, phantom]{d}[very near start]{\lrcorner} \ar{d}{\upside{$\Omega$}i\circ j'} \\
                         & \upside{$\Omega$}Y \ar{r}{\upside{$\Omega$}i} & \upside{$\Omega$}Z'
                     \end{tikzcd}
+                    \begin{tikzcd}
+                        Z' \ar{r}{f} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{z'}[marking]{\circ} & Y' \ar[tail]{d}{g}[marking]{\circ} \\
+                        I(Y) \ar{r}{\bar{\nu}} \ar[two heads]{d}{\bar{z'}}[marking]{\circ} & X' \ar[two heads]{d}{\upside{$\Omega$}i\circ j'}[marking]{\circ} \\
+                        \upside{$\Omega$}Z' \ar[equal]{r} & \upside{$\Omega$}Z'
+                    \end{tikzcd}
                 \end{center}
-                Thus $(Z',Y',X',f,g,$\upside{$\Omega$}$i\circ j')$ is a triangle. 
+                Thus $(\underline{Z'},\underline{Y'},\underline{X'},\underline{f},\underline{g},$\underline{\upside{$\Omega$}$i\circ j'$}$)$ is a triangle. 
             \end{proof}
+
+            \begin{remark}
+                A more detailed and different proof may be found in \cite{Hol12} or \cite{Mat20}.
+            \end{remark}
+
+            This construction of triangles givves a close relation to conflations. That is, if there is a conflation $(p:X\rightarrow Y,q:Y\rightarrow Z)$, then there is a triangle $(\underline{X},\underline{Y},\underline{Z},\underline{p},\underline{q},-\underline{r})$ constructed as follows. Let $P:\mathcal{A}$ be a projective object with a deflation $\bar{p}:P\rightarrow Y$. Then there exists a pullback (1), moreover the pullback square is bicartesian. By using TR2 one may find the triangle (2) as indicated in the diagram.
+            \begin{center}
+                (1)
+                \begin{tikzcd}
+                    \Omega Z \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}{\Omega r}[marking]{\circ} \ar[tail]{d}[marking]{\circ} & X \ar[tail]{d}{p}[marking]{\circ} \\
+                    P \ar[two heads]{r}{\bar{p}}[marking]{\circ} \ar[two heads]{d}[marking]{\circ} & Y \ar[two heads]{d}{q}[marking]{\circ} \\
+                    Z \ar[equal]{r}{} & Z 
+                \end{tikzcd}
+                (2)
+                \begin{tikzcd}
+                    \underline{X} \ar{r}{\underline{p}} & \underline{Y} \ar{r}{\underline{q}} & \underline{Z} \ar{r}{-\underline{r}} & \underline{\upside{$\Omega$}X}
+                \end{tikzcd}
+            \end{center}
 
         \subsection{Self-injective Algebras}
 
