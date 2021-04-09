@@ -2338,7 +2338,7 @@
                         \textcolor{white}{.} & X \ar[tail]{rr}[marking]{\circ}[near start]{i'} \ar{dddd}{f} && I' \ar[dashed]{dddd}{I'f} \ar[two heads]{rr}[marking]{\circ}[near start]{p'} && \rotatebox[origin=c]{180}{$\Omega$}'X \ar[dashed]{dddd}{\rotatebox[origin=c]{180}{$\Omega$}'f}\\
                         \textcolor{white}{.} \\
                         \textcolor{white}{.} \\
-                        Y \ar[equal]{rd}[above, pos=0.9]{\alpha (Y)}[below, pos=0.2]{\alpha '(Y)} \ar[tail]{rr}[marking]{\circ}[near start]{j} & & J \ar{rd}[above, pos=0.8]{\beta (Y)} \ar[two heads]{rr}[marking]{\circ}[near start]{q} & & \rotatebox[origin=c]{180}{$\Omega$}Y \ar{rd}[above, pos=0.8]{\gamma (Y)} \\
+                        Y \ar[equal]{rd}[above, pos=0.9]{\alpha (Y)} \ar[tail]{rr}[marking]{\circ}[near start]{j} & & J \ar{rd}[above, pos=0.8]{\beta (Y)} \ar[two heads]{rr}[marking]{\circ}[near start]{q} & & \rotatebox[origin=c]{180}{$\Omega$}Y \ar{rd}[above, pos=0.8]{\gamma (Y)} \\
                         & Y \ar[tail]{rr}[marking]{\circ}[near start]{j'} && J' \ar[two heads]{rr}[marking]{\circ}[near start]{q'} && \rotatebox[origin=c]{180}{$\Omega$}'Y
                     \end{tikzcd}
                 \end{center}
@@ -2389,7 +2389,7 @@
             \end{prop}
 
             \begin{proof}
-                I will give a sketch of how to prove this proposition. Most of the details will be omitted, and they can be found in [insert sources here]. In order to complete the proof we need to show the three defining axioms for a triangulated category, namely TR1, TR2 and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see the final part of TR1 is to observe that the following diagram is a pushout.
+                I will give a sketch of how to prove this proposition. Most of the details will be omitted, and they can be found in \cite{Mat20} or \cite{May01}. In order to complete the proof we need to show the three defining axioms for a triangulated category, namely TR1, TR2 and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see the final part of TR1 is to observe that the following diagram is a pushout.
                 \begin{center}
                     \begin{tikzcd}[row sep=large]
                         X \ar[equal]{r}{} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} & X \ar[tail]{d}{i}[marking]{\circ} \\
@@ -2511,13 +2511,153 @@
                 \end{tikzcd}
             \end{center}
 
+            \begin{remark}
+                For any morphism $f:A\rightarrow B$ in $\mathcal{A}$, there is an inflation $\begin{pmatrix}f \\ -i \end{pmatrix}:A\rightarrow B\oplus I$ which is in the same equivalence class as $f$. Thus $\underline{f}=\underline{\begin{pmatrix}f \\ -i \end{pmatrix}}$, and any morphism in $\underline{\mathcal{A}}$ can be obtained from an inflation in $\mathcal{A}$.
+            \end{remark}
+
         \subsection{Self-injective Algebras}
 
+            The first example of a triangulated category is going to be derived from finite dimensional artin algebras. More specifically, let $\Lambda$ be a self-injective finite dimensional artin $R$-algebra; that is $_{\Lambda}\Lambda$ is injective as left $\Lambda$-module, then the finitely generated projective objects coincide with the finitely generated injective objects.
+
+            \begin{prop}
+                If $\Lambda$ is a self-injective finite dimensional artin $R$-algebra, then $mod_{\Lambda}$ is a Frobenius category.
+            \end{prop}
+
+            To prove this statement we will need the following propositions.
+
+            \begin{lemma}
+                The category $mod_{\Lambda}$ has enough projectives
+            \end{lemma}
+
+            \begin{proof}
+                Let $A:mod_{\Lambda}$, then $A$ is finitely generated. This means there exists an epimorphism $p:R^n\rightarrow A$, where $n$ is the number of generators of $A$.
+            \end{proof}
+
+            \begin{lemma}
+                Let $R$ be an artin ring and $\mathfrak{r}$ denote the nilradical of $R$. Moreover, let $J$ be the injective envelope of $R/\mathfrak{r}$, then functor $Hom_R(\_,J):mod_{\Lambda}\rightarrow mod_{\Lambda^{op}}$ is a duality.
+            \end{lemma}
+
+            \begin{corollary}
+                The category $mod_{\Lambda}$ has enough injectives
+            \end{corollary}
+
+            Detailed proofs of these statements can be found in \cite{Rei95}.
+
+            \begin{proof}
+                Suppose that $\Lambda$ is self-injective. By the lemmas above we know that $mod_{\Lambda}$ has enough projectives and enough injectives. It remains to show that the class of injectives coincide with the projectives. Since every indecomposable $\Lambda$ module is a summand of $\Lambda$ up to isomorphism, we have that they are injective. As they also are projective, we have that the class of injectives and projectives coincide.
+            \end{proof}
+
+            This shows that $mod_{\Lambda}$ is a Frobenius category, thus \underline{$mod_{\Lambda}$} is triangulated. The triangles in \underline{$mod_{\Lambda}$} are the quotients of every short exact sequence in $mod_{\Lambda}$. Note that the map $c$ can be further described by the snake lemma.
+            \begin{center}
+                \begin{tikzcd}
+                    0 \ar{r}{} & X \ar[tail]{r}{a} & Y \ar[two heads]{r}{b} & Z \ar{r}{} & 0 
+                \end{tikzcd}
+                $\implies$
+                \begin{tikzcd}
+                    \underline{X} \ar{r}{\underline{a}} & \underline{Y} \ar{r}{\underline{b}} & \underline{Z} \ar{r}{\underline{c}} & \underline{\upside{$\Omega$}X}
+                \end{tikzcd}
+            \end{center}
+
+            % \begin{prop}
+            %     Let $G$ be a group, then the group ring $R[G]$ for any artinian ring $R$ is self-injective.
+            % \end{prop}
+
+            % \begin{proof}
+            %     Do I even want this?
+            % \end{proof}
+
+            \begin{prop}
+                Let $K$ be a field, then $K[x]/(x^n)$ is self-injective.
+            \end{prop}
+
+            \begin{proof}
+                As $K[x]/(x^n)$ modules, there is only one indecomposable projective module up to isomorphism, that is $K[x]/(x^n)$. Since $K[x]/(x^n)$ is commutative, the duality functor is an automorphism of $mod_{K[x]/(x^n)}$, thus $Hom_K(K[x]/(x^n),K)$ is the indecomposable injective $K[x]/(x^n)$ module. As the duality functor preserves length the modules have equal length. By finding a monomorphism $i:K[x]/(x^n)\rightarrow Hom_K(K[x]/(x^n),K)$ we have that it is an isomorphism as the cokernel has length $0$. The socle $soc(K[x]/x^n)$ is the simple module $K$, this means that the injective envelope of $K[x]/(x^n)$ is indecomposable, thus it is in the same isomorphism class as $Hom_K(K[x]/(x^n),K)$, proving that there is a monomorphism as stated.
+            \end{proof}
+
+            In this particular case the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations! This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these.
+
+            Observe that every submodule of $K[x]/(x^n)$ is indecomposable, these make up the class of the indecomposable modules up to isomorphism. Further observe that the cosyzygy of any submodule is \upside{$\Omega$}$(x^k)/(x^n)\simeq (x^{n-k})/(x^n)$. The repetition of the triangles can be seen as the natural isomorphism \upside{$\Omega$}$^2(x^k)/(x^n)\simeq (x^{n-(n-k)})/(x^n) = (x^k)/(x^n)$.
+
+            To find the triangles we let $A,B:mod_{K[x]/(x^n)}$ and $T:A\rightarrow B$ be $K[x]/(x^n)$-linear. Then $T$ is in the same equivalence class as $\begin{pmatrix} T \\ -i \end{pmatrix}:A\rightarrow B\oplus I$ with $i$ as the injective envelope of $A$. Then there is a triangle as the diagram below:
+
+            \begin{center}
+                \begin{tikzcd}
+                    \underline{A} \ar{r}{\underline{T}} & \underline{B} \ar{r}{} & Cok\underline{T}\oplus Ker\underline{\upside{$\Omega$}T} \ar{r}{} & \underline{\upside{$\Omega$}A}
+                \end{tikzcd}
+            \end{center}
+
+            Observe that $Cok\underline{\begin{pmatrix} f \\ -i \end{pmatrix}} \simeq Cok\underline{T}\oplus Ker$\underline{\upside{$\Omega$}$T$}, so the triangle above is in fact well-defined.
+
+            \begin{lemma}
+                The category $Vect(K)$ is triangulated.
+            \end{lemma}
+
+            \begin{proof}
+                This follows immediately from the discussion above. Look at $mod_{K[x]/(x^2)}$, the indecomposable objects of this category are $K[x]/(x^2)$ and $K$ up to isomorphism. As $K[x]/(x^2)$ is injective we have that $K$ is the only indecomposable object of \underline{$mod_{K[x]/(x^2)}$}, thus every object is a direct summand $K$. Also observe that the cosyzygy is naturally isomorphic to the identity functor on the quotient. In order to be precise, one would need to show that there is an equivalence of categories $Vect(K)\simeq mod_{K[x]/(x^2)}$. The triangles in $Vect(K)$ can then be seen as this three term repeating triangle.
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        V \ar{r}{T} \& W \ar{r}{\begin{pmatrix} \pi_T \\ 0 \end{pmatrix}} \& CokT\oplus KerT \ar{r}{\begin{pmatrix} 0 & \iota_T \end{pmatrix}} \& V
+                    \end{tikzcd}
+                \end{center}
+            \end{proof}
+
+            Suppose now that $\Lambda$ is not a self-injective artin $R$-algebra, then there is an extension to this ring which makes it self injective.
+
+            \begin{definition}
+                Let $\Lambda$ be an artin $R$-algebra. Then there is an associated product called the semi-direct proudct with this ring and it's dual. That is we define $\Lambda \rtimes Hom_R(\Lambda,J)$ to have the elements $(\lambda, \phi)$, where $\lambda:\Lambda$ and $\phi:\Lambda\rightarrow J$. Let $(\lambda, \phi)$ and $(\mu, \psi)$ be two elements in this set. We define $(\lambda, \phi) + (\mu, \psi) = (\lambda + \mu, \phi + \psi)$ and $(\lambda, \phi)(\mu, \psi) = (\lambda\mu, \lambda\cdot\psi + \phi\cdot\mu)$, where $\lambda\phi (\chi)\mu = \phi(\lambda\chi\mu)$.
+            \end{definition}
+
+            \begin{prop}
+                The trivial extension $\Lambda\rtimes Hom_R(\Lambda,J)$ is self-injective.
+            \end{prop}
+
+            \begin{proof}
+                HELP (jeg er kaskje litt dramatisk her, for jeg har ikke prøvd å bevise det enda.)
+            \end{proof}
+
         \subsection{The Homotopy Category}
+            
+            The next example of a triangulated category is something which is referred to as \emph{the} triangulated category. The homotopy category is the category which is the prototype for every triangulated category. It can be defined with the following exact category.
+
+            \begin{definition}
+                Define the category of cochains
+            \end{definition}
+
+            \begin{remark}
+                Give a remark that if the base category is abelian then the category of cochains is abelian as well.
+            \end{remark}
+
+            Write something about the exact structure which we can append on the category of cochains.
+
+            \begin{prop}
+                Show that this gives a Frobenius category. I will probably the need the notion of cones here, idk.
+            \end{prop}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{definition}
+                Define Homotopies
+            \end{definition}
+
+            \begin{prop}
+                Show that the quotient defined by the exact structure is the same as the quotient defined by homotopies.
+            \end{prop}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            [Give a more explicit description of the triangle maps. I can maybe use the map defined in Steffens notes.]
 
         \subsection{Admissable Morphisms, Homology and Long Exact Sequences}
+            
+            Need to define exact sequences, maybe prove 5 lemma and snake lemma, idk. With exact sequences I am going to descrive the subcategory of acyclic cochains. Should I deduce derived categories here. Probably write something about when the different versions of derived categories exists.
 
-        \subsection{The Derived Category}
+        \subsection{The Derived Category/Derived Functors}
+
+            Goal is to deduce the derived category via the Verdier quotient. Should I maybe write something about derived functors here? Maybe if I find time.
 
     \clearpage
     
@@ -2525,9 +2665,15 @@
 
         \subsection{Krull-Schmidt Categories}
 
+            Define and prove basic results for Krull-Schmidt categories. See your own OneNote.
+
         \subsection{Definition and First Properties}
 
+            Define AR-triangles and prove the basic properties about them, and how they are acting in the derived category.
+            
         \subsection{Description of Derived Categories}
+
+            Add something to the introduction about derived categories. The goal is to describe the derived category of a fairly simple algebra.
 
     \clearpage
 
