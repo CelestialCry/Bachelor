@@ -44,24 +44,24 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         \end{tikzcd}
     \end{center}
 
-    \todo[color=pink]{Kommer definisjonen av triangulerte kategorier for brått?} A triangulated category is an additive category together with a translation functor $T$ and a triangulation class $\Delta$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta$ it is usually called a  triangle, an exact triangles or just a triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta$ for  triangles or exact triangles. As this is not the case for this thesis these objects will be referred to as triangles.
+    \todo[color=pink]{Kommer definisjonen av triangulerte kategorier for brått?} A triangulated category is an additive category together with a translation functor $T$ and a triangulation class $\Delta$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta$ it is usually called a triangle, an exact triangle or a distuingished triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta$ for exact triangles or distuingished triangles. In this thesis the elements of $\Delta$ will be called for triangles.
 
     % Definition of Triangulation
     \begin{definition}
         A triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying the following axioms: 
 
         \begin{enumerate}
-            \item (TR1) Formation axiom
+            \item (TR1) Bookeeping axiom
 
                 \begin{enumerate}
                     \item A candidate triangle isomorphic to a triangle is a triangle.
-                    \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle $(A,B,C,a,b,c)$:
+                    \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle $(A,B,C,a,b,c)$.
                     \begin{center}
                         \begin{tikzcd}
                             A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
                         \end{tikzcd}
                     \end{center}
-                    \item For every object A there is a triangle $(A,A,0,id_A,0,0)$:
+                    \item For every object A there is a triangle $(A,A,0,id_A,0,0)$.
                     \begin{center}
                         \begin{tikzcd}
                             A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & TA
@@ -70,7 +70,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \end{enumerate}
             \item (TR2) Rotation axiom
 
-                For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,Ta)$
+                For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,-Ta)$.
                 \begin{center}
                     \begin{tikzcd}
                         A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
@@ -126,7 +126,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                         A \ar{r}{b\circ a} & C \ar{r}{z} & B' \ar{r}{z'} & TA
                     \end{tikzcd}                         
                 \end{center}
-                then there exist morphisms $f : C' \rightarrow B'$ and $g : B' \rightarrow A'$, the following diagram commutes and the third row is a triangle:
+                then there exist morphisms $f : C' \rightarrow B'$ and $g : B' \rightarrow A'$, the following diagram commutes and the third row is a triangle.
 
                 \begin{center}
                     \begin{tikzcd}
@@ -139,67 +139,81 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         \end{enumerate}
     \end{definition}
 
-    A triangulated category is denoted as $(\mathcal{T}, T, \Delta)$, where $\mathcal{T}$ is the additive category, $T$ is the translation and $\Delta$ is the triangulation. When $\mathcal{T}$ is called a triangulated category, it should be understanded as the triple given above.
+    A triangulated category is denoted as $(\mathcal{T}, T, \Delta)$, where $\mathcal{T}$ is the additive category, $T$ is the translation and $\Delta$ is the triangulation. When $\mathcal{T}$ is called a triangulated category, it should be understood as the triple given above.
+    
     \begin{remark}
-        The third object in a triangle is usually called cone, fiber, cofiber. These names are more historic than describing what these objects are, as the prototypes for these categories used these names for the third object. In this thesis it will be referred to as cone.
+        The third object in a triangle is usually called cone, fiber or cofiber. These names are in use due to historic reasons, rather than portraying their functionality. The names weak kernel or weak cokernel would be better in the sense that it tells what the function of this object is. In this thesis it will either be referred to as cone, weak kernel or weak cokernel.
     \end{remark}
     % Rotation axiom dual
     \begin{remark}
-        The rotation axiom has a dual, and it can be thought of as a rotation in the opposite direction. This dual can be proved by the other axioms, so it is here omitted as an axiom. The dual roation axiom goes as:
-
-        Given a triangle \begin{tikzcd}[column sep=small]
-            A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
-        \end{tikzcd}, there is a triangle \begin{tikzcd}[column sep=small]
-            T^{-1}C \ar{r}{-T^{-1}c} & A \ar{r}{a} & B \ar{r}{b} & C
-        \end{tikzcd} \\ %Hvordan fikser jeg linebreaks for at det blir pent??? Mener at denne skal kun brukes innad i en setning, idk man.
+        The rotation axiom has a dual, and it can be thought of as a shift in the opposite direction. The dual roation axiom goes as:
+        
+        \begin{quote}
+            Given a triangle \begin{tikzcd}[column sep=small]
+                A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
+            \end{tikzcd},\\
+            there is a triangle \begin{tikzcd}[column sep=small]
+                T^{-1}C \ar{r}{-T^{-1}c} & A \ar{r}{a} & B \ar{r}{b} & C
+            \end{tikzcd}
+        \end{quote} %Hvordan fikser jeg linebreaks for at det blir pent??? Mener at denne skal kun brukes innad i en setning, idk man.
+        
         To be able to prove this, some more lemmata are needed.
     \end{remark}
+
+    \begin{remark}
+        By the previous remark one may see that the definition of a triangulated category is self dual. That is a category $\mathcal{T}$ is triangulated if and only if $\mathcal{T}^{op}$ is triangulated.
+    \end{remark}
+
     % Octahedron axiom alternate
     \begin{remark}
-        The final axiom is referred to as the octahedron axiom. By using the alternative description of the triangle diagram, it is possible to rewrite the diagram as an octahedron. The axiom can be restated as the following:
-        
-        Given the triangles $(A,B,C',a,x,x')$ (1), $(B,C,A',b,y,y')$ (2) \\ and $(A,C,B',b\circ a,z,z')$ (3)
-        \begin{center}
-            (1)
-            \begin{tikzcd}[row sep=tiny]
-                A \arrow[red]{rd}[black]{a} & \\
-                & B \arrow[red]{dl}[black]{x} & & \\
-                C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{T}
-            \end{tikzcd}
-            (2)
-            \begin{tikzcd}[row sep=tiny]
-                B \arrow[orange]{rd}[black]{b} & \\
-                & C \arrow[orange]{dl}[black]{y} & & \\
-                A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{T}
-            \end{tikzcd}
-            (3)
-            \begin{tikzcd}[row sep=tiny]
-                A \arrow[violet]{rd}[black]{b\circ a} & \\
-                & C \arrow[violet]{dl}[black]{z} & & \\
-                B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{T}
-            \end{tikzcd}
-        \end{center}
-        then there exists morphisms $f: C' \rightarrow B'$ and $g: B' \rightarrow A'$, the following diagram commutes and the squiggly teal back face is a triangle.
-        \begin{center}
-            \begin{tikzcd}[row sep=tiny]
-                \color{white}.\color{black} & & B' \ar[teal, dashed, squiggly]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{z'}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
-                \textcolor{white}{.} \\
-                \textcolor{white}{.} \\
-                \textcolor{white}{.} \\
-                C' \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{x'}[very near end, marking]{|}[near end]{T} & & & A' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{Tx\circ y'}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{y'}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
-                \color{white}.\color{black} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{b\circ a} & & & C \ar[orange, dashed]{ul}[black, description]{y} \ar[violet]{uuuuull}[black, description]{z}\\
-                \textcolor{white}{.} \\
-                \textcolor{white}{.} \\
-                \textcolor{white}{.} \\
-                & & B \ar[orange]{uuuurr}[black, description]{b} \ar[red]{uuuuull}[black, description]{x} & &
+        The final axiom is referred to as the octahedron axiom. By using the alternative description of the triangle diagram, it is possible to rewrite the diagram as an octahedron. The axiom can be restated as the following.
 
-            \end{tikzcd}
-        \end{center}
+        \begin{quote}
+            Given the triangles $(A,B,C',a,x,x')$ (1), $(B,C,A',b,y,y')$ (2) \\ and $(A,C,B',b\circ a,z,z')$ (3)
+            \begin{center}
+                (1)
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow[red]{rd}[black]{a} & \\
+                    & B \arrow[red]{dl}[black]{x} & & \\
+                    C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{T}
+                \end{tikzcd}
+                (2)
+                \begin{tikzcd}[row sep=tiny]
+                    B \arrow[orange]{rd}[black]{b} & \\
+                    & C \arrow[orange]{dl}[black]{y} & & \\
+                    A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{T}
+                \end{tikzcd}\\                
+                (3)
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow[violet]{rd}[black]{b\circ a} & \\
+                    & C \arrow[violet]{dl}[black]{z} & & \\
+                    B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{T}
+                \end{tikzcd}
+            \end{center}
+            then there exists morphisms $f: C' \rightarrow B'$ and $g: B' \rightarrow A'$, the following diagram commutes and the squiggly teal back face is a triangle.
+            \begin{center}
+                \begin{tikzcd}[row sep=tiny]
+                    \color{white}.\color{black} & & B' \ar[teal, dashed, squiggly]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{z'}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    C' \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{x'}[very near end, marking]{|}[near end]{T} & & & A' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{Tx\circ y'}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{y'}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
+                    \color{white}.\color{black} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{b\circ a} & & & C \ar[orange, dashed]{ul}[black, description]{y} \ar[violet]{uuuuull}[black, description]{z}\\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    & & B \ar[orange]{uuuurr}[black, description]{b} \ar[red]{uuuuull}[black, description]{x} & &
+                    
+                \end{tikzcd}
+            \end{center}
+        \end{quote}
     \end{remark}
+
 
     \begin{prop}
         The axiom TR3 can be proven from TR1 and TR4.
     \end{prop}
+
 
     \begin{proof}
         Suppose that there are two triangles and a commutative square as follows.
@@ -213,7 +227,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
             \end{tikzcd}
         \end{center}
-        Now we are able to use the Octahedron axiom twice after the square has been completed to triangles in the following sense. The upper commutative simplex and the lower commutative simplex form the following diagrams, and thus the following octahedra:
+        The upper and lower simplex of the square may be completed to two sets of triangles satisfying the condition of TR4. Applying the Octahedron axiom twice yields the diagrams as below.
         \begin{center}
             (1)
             \begin{tikzcd}[row sep=tiny]
@@ -248,51 +262,48 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 E \ar[violet, very near end, "|" marking]{uu}[black, near start]{{\eta}''}[near end]{T}
             \end{tikzcd}
         \end{center}
-            \begin{minipage}[t]{0.47\textwidth}
-                \begin{center}
-                    (1) \\
-                    \begin{tikzcd}[row sep=tiny]
-                        \textcolor{white}{.} & & E \ar[teal, dashed, squiggly]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        C \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{c}[very near end, marking]{|}[near end]{T} & & & B'' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{Tc\circ \phi_B''}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{\phi_B''}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
-                        \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{\phi_B'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        & & B \ar[orange]{uuuurr}[black, description]{\phi_B} \ar[red]{uuuuull}[black, description]{b} & &
-                    \end{tikzcd}
-                \end{center}
-            \end{minipage}
-            \begin{minipage}[t]{0.48\textwidth}
-                \begin{center}
-                    (2) \\
-                    \begin{tikzcd}[row sep=tiny]
-                        \textcolor{white}{.} & & E \ar[teal, dashed, squiggly]{ddddr}[black, description]{g'} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        A'' \ar[teal, squiggly]{uuuurr}[black, description]{f'} \ar[red]{dr}[black, description]{\phi_A''}[very near end, marking]{|}[near end]{T} & & & C' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{T\phi_A''\circ c'}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{c'}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
-                        \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{\phi_A} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{b'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        \textcolor{white}{.} \\
-                        & & A' \ar[orange]{uuuurr}[black, description]{a'} \ar[red]{uuuuull}[black, description]{\phi_A'} & &
-                    \end{tikzcd}
-                \end{center}
-            \end{minipage}
-            By following the blue squiggly lines there is a morphism $g'f:C\rightarrow C'$, it remains to see that this fits into the triangle morphism. By chasing the different paths in the octahedra and combining diagrams we get that the following diagrams are commutative, which is exactly the requirement for the collection $(\phi_A,\phi_B,g'f)$ to be a morphism of triangles.
+        \begin{minipage}[t]{0.47\textwidth}
             \begin{center}
-                \begin{tikzcd}
-                    B \ar[red]{r}[black]{b} \ar[orange]{d}[black]{\phi_B'}& C \ar[red]{rd}[black]{c} \ar[teal]{d}[black]{f} \\
-                    B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & TA \ar[red]{d}[black]{T\phi_A} \\
-                    & C' \ar[orange]{r}[black]{c'} & TA'
+                (1) \\
+                \begin{tikzcd}[row sep=tiny]
+                    \textcolor{white}{.} & & E \ar[teal, dashed]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    C \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{c}[very near end, marking]{|}[near end]{T} & & & B'' \ar[teal, dashed]{lll}[pos=0.45, black, description]{Tc\circ \phi_B''}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{\phi_B''}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
+                    \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{\phi_B'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    & & B \ar[orange]{uuuurr}[black, description]{\phi_B} \ar[red]{uuuuull}[black, description]{b} & &
                 \end{tikzcd}
             \end{center}
-
-            \emph{Har jeg glemt å bruke TR2 et sted? Er octahedra for vanskelig å bruke ettersom det skjuler hvordan ting er rotert? Eller er det dette aksiomet som er litt sterkere enn Verdier sitt axiom?}
-
+        \end{minipage}
+        \begin{minipage}[t]{0.48\textwidth}
+            \begin{center}
+                (2) \\
+                \begin{tikzcd}[row sep=tiny]
+                    \textcolor{white}{.} & & E \ar[teal, dashed, squiggly]{ddddr}[black, description]{g'} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    A'' \ar[teal]{uuuurr}[black, description]{f'} \ar[red]{dr}[black, description]{\phi_A''}[very near end, marking]{|}[near end]{T} & & & C' \ar[teal, dashed]{lll}[pos=0.45, black, description]{T\phi_A''\circ c'}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{c'}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
+                    \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{\phi_A} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{b'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    & & A' \ar[orange]{uuuurr}[black, description]{a'} \ar[red]{uuuuull}[black, description]{\phi_A'} & &
+                \end{tikzcd}
+            \end{center}
+        \end{minipage} \\
+        The teal squiggly lines at the back faces of each octahedra forms a morphism $g'f:C\rightarrow C'$. It remains to see that the morphism is a triangle morphism. Diagram chasing reveals that the following diagram is commutative, which is exactly the requirement for the collection $(\phi_A,\phi_B,g'f)$ to be a morphism of triangles.
+        \begin{center}
+            \begin{tikzcd}
+                B \ar[red]{r}[black]{b} \ar[orange]{d}[black]{\phi_B'}& C \ar[red]{rd}[black]{c} \ar[teal]{d}[black]{f} \\
+                B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & TA \ar[red]{d}[black]{T\phi_A} \\
+                & C' \ar[orange]{r}[black]{c'} & TA'
+            \end{tikzcd}
+        \end{center}
     \end{proof}
 
     \begin{lemma}
@@ -300,7 +311,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        By TR2 the triangle $(A,B,C,a,b,c)$ can be rotated to $(B,C,TA,b,c,Ta)$.
+        By TR2 the triangle $(A,B,C,a,b,c)$ can be rotated to $(B,C,TA,b,c,-Ta)$.
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{a} & \\
@@ -313,7 +324,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 TA \arrow{uu}[near start]{-Ta}[very near end, marking]{|}[near end]{T}
             \end{tikzcd}
         \end{center}
-        The triangle exists $(C,C,0,id_C,0,0)$ by TR1 and TR3 says there exists a morphism from TA to 0 making the diagram below commute.
+        The triangle $(C,C,0,id_C,0,0)$ exists by TR1 and TR3 states that there exists a morphism from TA to 0 making the diagram below commute.
         \begin{center}
             \begin{tikzcd}
                 B \ar{r}{b} \ar{d}{b} & C \ar{r}{c} \ar{d}{id_C} & TA \ar{r}{-Ta} \ar[dashed]{d}{0} & TB \ar{d}{Tb} \\
@@ -323,14 +334,19 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Thus $0 = Tb\circ -Ta = T(-ba) \implies b\circ a = 0$ as T is a translation.
     \end{proof}
     % Triangulatd functor
+    \todo{Burde jeg introdusere triangulerte funktorer, eller går det greit å bare definere de brått?}
     \begin{definition}
-        An additive functor between triangulated categories $F: (\mathcal{T}, T, \Delta) \rightarrow (\mathcal{R}, R, \Gamma)$ is called exact or triangulated if there exist a natural isomorphisms $\alpha : FT \rightarrow RF$ such that $F(\Delta) \subseteq \Gamma$.
+        An additive functor between triangulated categories $F: (\mathcal{T}, T, \Delta) \rightarrow (\mathcal{R}, R, \Gamma)$ is called triangulated if there exist a natural isomorphisms $\alpha : FT \rightarrow RF$ such that $F(\Delta) \subseteq \Gamma$.
 
         A functor $F : \mathcal{T} \rightarrow \mathcal{R}$ is called a triangle-equivalence if it is triangulated and an equivalence of categories. In this case $\mathcal{T}$ and $\mathcal{R}$ are called triangle-equivalent.
     \end{definition}
+
+    \begin{remark}
+        Some literatures refer to triangulated functors as exact functor. \todo[color = red]{Trenger kilder her}
+    \end{remark}
     % Homological functor
     \begin{definition}
-        Let $\mathcal{T}$ be a triangulated category and $\mathcal{A}$ be an abelian category. A covariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called a homological functor if $\forall (A,B,C,a,b,c):\Delta$ there is a long exact sequence in $\mathcal{A}$.
+        Let $\mathcal{T}$ be a triangulated category and $\mathcal{A}$ be an abelian category. A covariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called homological if $\forall (A,B,C,a,b,c):\Delta$ there is a long exact sequence in $\mathcal{A}$.
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{a} & \\
@@ -358,11 +374,11 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
     % Long exact sequence of representations
     \begin{lemma}
-        Let $M:\mathcal{T}$ be any object of $\mathcal{T}$, then the represented functors $\mathcal{T}(M,\_)$ is homological and $\mathcal{T}(\_,M)$ is cohomological.
+        Let $M:\mathcal{T}$ be any object of $\mathcal{T}$, then the represented functor $\mathcal{T}(M,\_)$ is homological and $\mathcal{T}(\_,M)$ is cohomological.
     \end{lemma}
 
     \begin{proof}
-        Only the covariant case needs to be proved, as the contravariant case is dual. For $\mathcal{T}(M,\_)$ to be homological, it has to create long exact sequences for every triangle in $\Delta$. Let $(A,B,C,a,b,c):\Delta$ be a triangle, then there can be extracted sequences in Ab for any $i:\mathbb{N}$.
+        Only the covariant case needs to be proved, as the contravariant case is dual. For $\mathcal{T}(M,\_)$ to be homological, it has to create long exact sequences for every triangle in $\Delta$. Let $(A,B,C,a,b,c):\Delta$ be a triangle, then sequences in Ab can be extracted for any $i:\mathbb{Z}$.
 
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
@@ -374,18 +390,18 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \mathcal{T}(M,T^iA) \ar{r}{T^ia_*} & \mathcal{T}(M,T^iB) \ar{r}{T^ib_*} & \mathcal{T}(M,T^iC)
             \end{tikzcd}
         \end{center}
-        Observe that it is enough to prove that these types of diagrams are exact, as the other diagrams can be obtained by the rotation axiom, thus reducing it to same case. 
-        
-        The goal is then to prove that $Im(T^ia_*)=Ker(T^ib_*)$. Since $ba=0$ it follows that $Im(T^ia_*) \subseteq Ker(T^ib_*)$. Assume that $f:Ker(T^ib_*)$, that is $f:M\rightarrow T^iB$ such that $b_*(f)=0$. The current goal is to show that $f$ factors through $T^iA$, as this means that $Ker(T^ib_*)\subseteq Im(T^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; thus $\mathcal{T}(M,T^iB) \simeq\mathcal{T}(T^{-i}M,B)$, and by this assertion it suffices to assume that $f:T^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(T^{-i}M,0,T^{-i+1}M,0,0,-T^{-i+1}id)$ and $(B,C,TA,b,c,-Ta)$. 
+
+        It is enough to prove that these types of diagrams are exact at $B$, as the other diagrams are obtained by the rotation axiom. Thus it remains to prove that $Im(T^ia_*)=Ker(T^ib_*)$. Since $ba=0$ it follows that $Im(T^ia_*) \subseteq Ker(T^ib_*)$. Assume that $f:Ker(T^ib_*)$, that is $f:M\rightarrow T^iB$ such that $b_*(f)=0$. Showing that $f$ factors through $T^iA$ proves exactness, as this means that $Ker(T^ib_*)\subseteq Im(T^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; $\mathcal{T}(M,T^iB) \simeq\mathcal{T}(T^{-i}M,B)$ and by this assertion it suffices to assume that $f:T^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(T^{-i}M,0,T^{-i+1}M,0,0,-T^{-i+1}id)$ and $(B,C,TA,b,c,-Ta)$. 
         \begin{center}
             \begin{tikzcd}
                 T^{-i}M \ar{r}{0} \ar{d}{f} & 0 \ar{r}{0} \ar{d}{0} & T^{-i+1}M \ar{r}{-T^{-i+1}id} \ar[dashed]{d}{g} & T^{-i+1}M \ar{d}{Tf} \\
                 B \ar{r}{b} & C \ar{r}{c} & TA \ar{r}{-Ta} & TB
             \end{tikzcd}
         \end{center}
-        The left square commutes by the assumption, thus the morphism g exist by TR3, such that $-Ta\circ h = -Tf\circ T^{-i+1}id = -Tf \implies Ta\circ h = Tf$, thus $f = a\circ T^{-1}h$ asserting that $f$ factors through A.
+        The left square commutes by the assumption, thus the morphism g exist by TR3 such that $-Ta\circ h = -Tf\circ T^{-i+1}id = -Tf \implies Ta\circ h = Tf$. This shows that $f = a\circ T^{-1}h$, asserting that $f$ factors through A.
     \end{proof}
-    % 2 out of 3 lemma
+    % 2 out of 3 property
+    \todo{Her kan det også være veldig naturlig å skrive noe. Sammenligne med 5-lemma er vel det jeg tenker på.}
     \begin{lemma}
         Let $(\phi_A, \phi_B, \phi_C):(A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of triangles. If 2 of the maps are isomorphisms, then the last one is an isomorphism as well.
         \begin{center}
@@ -397,14 +413,14 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        Without loss of generality, assume that $\phi_A$ and $\phi_B$ are the isomorphisms. This can be done as the rotation axiom reduce the other cases to this case. Then we have the following diagram:
+        Without loss of generality, assume that $\phi_A$ and $\phi_B$ are the isomorphisms. This can be done as the rotation axiom reduce the other cases to this case. Then the diagram depicted below exists.
         \begin{center}
             \begin{tikzcd}
                 A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} & B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} & C \ar{r}{c} \ar{d}{\phi_C} & TA \ar{d}{T\phi_A}[rotate=90, above]{\simeq} \\
                 A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
             \end{tikzcd}
         \end{center}
-        By applying the functor $\mathcal{T}(C',\_)$ we get the following diagram in Ab:
+        Applying the functor $\mathcal{T}(C',\_)$ to the diagram yields the following diagram in Ab:
         \begin{center}
             \begin{tikzcd}
                 \mathcal{T}(C',A) \ar{r}{a_*} \ar{d}{(\phi_A)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',B) \ar{r}{b_*} \ar{d}{(phi_B)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',C) \ar{r}{c_*} \ar{d}{(\phi_C)_*} & \mathcal{T}(C',TA) \ar{r}{Ta_*} \ar{d}{(\phi_TA)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',TB) \ar{d}{(T\phi_B)_*}[rotate=90, above]{\simeq} \\
@@ -420,7 +436,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \mathcal{T}(A',C) \ar{u}{(\phi_A)^*}[rotate=90, below]{\simeq} & \mathcal{T}(B,C) \ar{l}{a'^*} \ar{u}{(\phi_B)^*}[rotate=90, below]{\simeq} & \mathcal{T}(C',C) \ar{l}{b'^*} \ar{u}{(\phi_C)^*} & \mathcal{T}(TA',C) \ar{l}{c'^*} \ar{u}{(\phi_TA)^*}[rotate=90, below]{\simeq} & \mathcal{T}(TB',C) \ar{l}{Ta'^*} \ar{u}{(\phi_TB)^*}[rotate=90, below]{\simeq}
             \end{tikzcd}
         \end{center}
-        By the 5-lemma, we get that $(\phi_C)^*$ is an isomorphisms. By the same argument $id_{C} = s'\circ\phi_C$ for some unique $s'$. $\phi_C$ is both split mono and split epi, which means it is an isomorphism.
+        Again, the 5-lemma asserts that $(\phi_C)^*$ is an isomorphisms, and by the same argument $id_{C} = s'\circ\phi_C$ for some unique $s'$. $\phi_C$ is both split mono and split epi, which means it is an isomorphism.
     \end{proof}
 
     \begin{corollary}
@@ -460,9 +476,9 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        The proof has two parts. First assume that $a$ is split mono, and prove that $b$ is split epi, and $c = 0$. By duality, it is then known that $b$ being split epi implies that $a$ is split mono and $c = 0$. The final part is to assume that $c = 0$, and prove either $a$ is split mono or $b$ is split epi.
+        The proof has two parts. First assume that $a$ is split mono, then prove that $b$ is split epi and $c = 0$. By duality, it is then known that $b$ being split epi implies that $a$ is split mono and $c = 0$. The final part is to assume that $c = 0$, and prove either $a$ is split mono or $b$ is split epi.
 
-        Assume that $a$ is split mono, then there exist an $a^{-1}$ such that $id_A = a^{-1}a$. Let $M:\mathcal{T}$ be any object, then we can make a long exact sequence:
+        Assume that $a$ is split mono, then there exist an $a^{-1}$ such that $id_A = a^{-1}a$. Let $M:\mathcal{T}$ be any object, then there is a long exact sequence.
         \begin{center}
             \begin{tikzcd}
                 \mathcal{T}(M,T^{-1}C) \ar{r}{T^{-1}c_*} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{c_*} & \mathcal{T}(M,TA)
@@ -474,9 +490,9 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 0 \ar{r}{0} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar[bend left]{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{0} \ar[dashed, bend left]{l}{b^{-1}_*} & 0
             \end{tikzcd}
         \end{center}
-        This gives that b is split epi, completing the first part of the proof.
+        This shows that b is split epi, completing the first part of the proof.
 
-        For the next part, assume that $c = 0$; then we can construct the following triangles.
+        For the final part, assume that $c = 0$; construct the following triangles.
         \begin{center}
             (1)
             \begin{tikzcd}[row sep=tiny]
@@ -503,7 +519,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 TA \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{T}
             \end{tikzcd}
         \end{center}
-        (1) is constructed by applying TR2 twice, while (2) is constructed with TR1 and TR2 twice. Observe that there is a commutative square between the triangles, allowing for TR3 to make a morphism of triangles.
+        \todo{Dette kan jeg nok utdype mer, slik at det ikke er så forvirrende} (1) is constructed by applying TR2 twice, while (2) is constructed with TR1 and TR2 twice. Observe that there is a commutative square between the triangles, allowing for TR3 to make a morphism of triangles.
         \begin{center}
             \begin{tikzcd}
                 C \ar{r}{0} \ar{d}{0} & TA \ar{r}{-Ta} \ar[equal]{d}{id_{TA}} & TB \ar{r}{-Tb} \ar[dashed]{d}{Ta^{-1}} & TC \ar{d}{0} \\
@@ -533,22 +549,24 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        $1. \implies 2.$ as the composition $ba = 0 = b'a'$, so assume 2. The existence of $f$ and $h$ is evident from the long exact sequence of the bottom triangle at the functor represented by $A$. 
+        $1. \implies 2.$ The composition $b'ga = ba = 0$ shows the claim. 
+        
+        $2. \implies 1.$ The existence of $f$ and $h$ are \todo[color = pink]{er det virkelig så evident?} evident from the long exact sequence of the bottom triangle at the covariant functor represented by $A$. 
         \begin{center}
             \begin{tikzcd}
                 \mathcal{T}(A,T^{-1}C') \ar{r}{T^{-1}c'_*} & \mathcal{T}(A,A') \ar{r}{a'_*} & \mathcal{T}(A,B') \ar{r}{b'_*} & \mathcal{T}(A,C')
             \end{tikzcd}
         \end{center}
-        The morphism $ga:\mathcal{T}(A,B')$ such that $b'ga=b'_*(ga)=0$, thus $ga:Ker(b'_*)$. By exactness $\exists f:\mathcal{T}(A,A')$ such that $a'f = ga$, and by TR3 $\exists h: C \rightarrow C'$ such that $(f,g,h)$ is a morphism of triangles.
+        \todo{Hva som foregår her burde komme fram tydeligere} The morphism $ga:\mathcal{T}(A,B')$ such that $b'ga=b'_*(ga)=0$, thus $ga:Ker(b'_*)$. By exactness $\exists f:\mathcal{T}(A,A')$ such that $a'f = ga$, and by TR3 $\exists h: C \rightarrow C'$ such that $(f,g,h)$ is a morphism of triangles.
         Now assume that $\mathcal{T}(A,T^{-1}C')\simeq 0$. Exactness determines that $a'_*$ is a monomorphism, and $f$ is then unique. Since $T$ is a translation, we have that $\mathcal{T}(A,T^{-1}C')\simeq\mathcal{T}(TA,C')$. By using the functor $\mathcal{T}(\_,C')$ at the top triangle, we get that $b^*$ is a monomorphism, and thus $h$ is chosen uniquely.
     \end{proof}
 
-    \begin{lemma}
-        If $(A,B,C,a,b,c)$ is a triangle, then $(T^{-1}C,A,B,T^{-1}c,a,b)$ is a triangle.
+    \begin{lemma} \textbf{Opposite Rotation Axiom; $TR2^{op}$.}
+        If $(A,B,C,a,b,c)$ is a triangle, then $(T^{-1}C,A,B,-T^{-1}c,a,b)$ is a triangle.
     \end{lemma}
 
     \begin{proof}
-        By TR2 we can construct a triangle.
+        Apply TR2 twice to construct the triangle below.
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 A \ar{rd}{a} \\
@@ -558,18 +576,18 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             $\implies$
             \begin{tikzcd}[row sep=tiny]
                 C \ar{rd}{c} \\
-                & TA \ar{ld}{Ta} \\
-                TB \ar{uu}[near start]{Tb}[very near end, marking]{|}[near end]{T}
+                & TA \ar{ld}{-Ta} \\
+                TB \ar{uu}[near start]{-Tb}[very near end, marking]{|}[near end]{T}
             \end{tikzcd}
         \end{center}
-        By TR1 we can create a triangle $(T^{-1}C,A,B',T^{-1}c,a',b')$, and then use TR3 to find a morphism.
+        The morphism $T^{-1}c$ has a triangle $(T^{-1}C,A,B',T^{-1}c,a',b')$ by TR1. Use TR3 to find a morphism between these associated candidate triangles.
         \begin{center}
             \begin{tikzcd}
                 C \ar{r}{c} \ar[equal]{d}{id_C} & TA \ar{r}{Ta'} \ar[equal]{d}{id_{TA}} & TB' \ar{r}{Tb'} \ar[dashed]{d}{h} & TC \ar[equal]{d}{id_{TC}} \\
-                C \ar{r}{c} & TA \ar{r}{Ta} & TB \ar{r}{Tb} & TC
+                C \ar{r}{c} & TA \ar{r}{-Ta} & TB \ar{r}{-Tb} & TC
             \end{tikzcd}
         \end{center}
-        By the 2 out of 3 property it is seen that h is an isomorphism, so the triple $(id_{T^{-1}C}, id_A, T^{-1}h)$ is an isomorphism of candidate triangles, and by TR1, is an isomorphism of triangles, asserting that $(T^{-1}C,A,B,T^{-1}c,a,b)$ is in fact a triangle.
+        By the 2 out of 3 property it is seen that h is an isomorphism, so the triple $(id_{T^{-1}C}, id_A, T^{-1}h)$ is an isomorphism of candidate triangles, and by TR1, is an isomorphism of triangles, asserting that $(T^{-1}C,A,B,-T^{-1}c,a,b)$ is in fact a triangle.
     \end{proof}
 
     \begin{lemma}
@@ -577,7 +595,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        Observe that for any functor $\mathcal{T}(K,\_)$ there is still a long exact sequence of Hom(ology)since $\mathcal{T}(K,A\oplus A')\simeq\mathcal{T}(K,A)\oplus\mathcal{T}(K,A')$. Thus for the direct sum of the triangles we have the following.
+        \todo{Hva er det jeg prøvde å si her???} Observe that for any functor $\mathcal{T}(K,\_)$ there is still a long exact sequence of Hom(ology)since $\mathcal{T}(K,A\oplus A')\simeq\mathcal{T}(K,A)\oplus\mathcal{T}(K,A')$. Thus for the direct sum of the triangles we have the following.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 A\oplus A' \ar{r}{\begin{pmatrix}a & 0 \\ 0 & a'\end{pmatrix}} \& B\oplus B' \ar{r}{\begin{pmatrix}b & 0 \\ 0 & b'\end{pmatrix}} \& C\oplus C' \ar{r}{\begin{pmatrix}c & 0 \\ 0 & c'\end{pmatrix}} \& TA\oplus TC
