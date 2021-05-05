@@ -1,0 +1,412 @@
+\chapter{The Derived Category}
+
+\section{Idempotent Completeness and Krull-Schmidt Categories}
+
+    This section is based of the ideas from \cite{buhler}, \cite{Kra12} and \cite{Rei95}. At first the ideas of idempotent complete categories will be introduced, the we will look at a weakening and a strengthening of this condition, known as weak idempotent complete and Krull-Schmidt.
+
+    \begin{definition}
+        An idempotent complete category is an additive category where every idempotent split. That is, if there is an idempotent $p:A\rightarrow A$ $(p^2=p)$, and there is an isomorphism $A\simeq I\oplus K$ such that $p\simeq \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$. 
+    \end{definition}
+
+    Every idempotent in an idempotent complete category admits an anlysis. That is the idempotent $p:A\rightarrow A$ has a kernel, cokernel, image and coimage. In fact, the kernel is isomorphic to the cokerenl, and the image is cannonically isomorphic to the coimage. As $p$ is isomorphic to the matrix $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ we can observe that the inclusion $\iota_1:I\rightarrow A$ is the kernel of $p$, while the projection $\pi_1:A\rightarrow I$ is the cokernel. Similarly we have that the maps $\iota_2:K\rightarrow A$ and $\pi_2:A\rightarrow K$ which are the kernel and cokernel of the map $1-p$ respectively. Using the fact that $p$ splits we are able to construct the following analysis.
+
+    \begin{center}
+        \begin{tikzcd}
+            & A \ar{rr}{p} \ar[two heads]{rd}{\pi_2}[marking]{\circ} & & A \ar[two heads]{rd}{\pi_1}[marking]{\circ} \\
+            I \ar[tail]{ru}{\iota_1}[marking]{\circ} & & K \ar[tail]{ru}{\iota_2}[marking]{\circ} & & I 
+        \end{tikzcd}
+    \end{center}
+
+    \begin{remark}
+        Assuming that every idempotent in an additive category $\mathcal{A}$ has a kernel is sufficient for $\mathcal{A}$ to be idempotent complete. The limits and colimits as described above may be found with the idempotents $p$ and $1-p$.
+    \end{remark}
+
+    Every additive category $\mathcal{A}$ has a fully faithful embedding $i_{\mathcal{A}}:\mathcal{A}\rightarrow \widehat{\mathcal{A}}$ into an idempotent complete category $\widehat{\mathcal{A}}$. This completion satisfies the universal property in which if there is a functor $F:\mathcal{A}\rightarrow\mathcal{B}$ which sends every idempotent $p$ in $\mathcal{A}$ to a splitting idempotent, then the functor factors through the idempotent complete category $\widehat{\mathcal{A}}$.
+
+    \begin{center}
+        \begin{tikzcd}
+            \mathcal{A} \ar{rd}{i_{\mathcal{A}}} \ar{rr}{F} & & \mathcal{B} \\
+            & \widehat{\mathcal{A}} \ar{ru}{\widehat{F}}
+        \end{tikzcd}
+    \end{center}
+
+    We can define this completion $\widehat{\mathcal{A}}$ to be the category with objects $(A,p)$, where $A$ is an object of $\mathcal{A}$ and $p:A\rightarrow A$ is an idempotent. A morphism $\widehat{f}:(A,p)\rightarrow (B,q)$ is defined as the morphism $\widehat{f} = q \circ f \circ p$ for some morphism $f:A\rightarrow B$. The injection functor is then defined as $i_{\mathcal{A}}(A)=(A,id_A)$. More on this injection can be found in \cite{buhler}.
+    
+    Many of the useful theorems needed to describe the triangulated subcategory needed for the construction of the derived category will arise from the weaker condition of weakly split idempotents.
+
+    \begin{lemma}
+        The following are equivalent in an additive category:
+        \begin{enumerate}
+            \item Every split-epi has a kernel
+            \item Every split-mono has a cokernel
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+        We will prove that (1.) $\implies$ (2.), the other claim is dual. Suppose that $g:B\rightarrow A$ is split-epi with $f:A\rightarrow B$ as the corresponding split-mono such that $gf=id_A$. Since $g$ is split-epi it has a kernel $h:C\rightarrow B$.
+        
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[bend left]{r}{f} & \ar[bend left]{l}{g} B \ar[dashed, bend left]{r}{i} & \ar[bend left]{l}{h} C
+            \end{tikzcd}
+        \end{center}
+
+        If we look at the map $id_B-fg$, we see that $g(id_B-fg)=g-gfg=g-g=0$, thus $id_B-fg$ factors over the kernel of h as indicated by the dashed arrow.
+
+        h is split-mono as $hih = (id_B-fg)h=h-fgh=h$. As h is mono from being a kernel, we have that $ih=id_C$. Thus $B\simeq A\oplus C$ as $id_B -fg = hi \iff id_B = fg + hi$. This in turn implies that $i$ is the cokernel of $f$.
+    \end{proof}
+
+    With this lemma we are able to define a weakly idempotent complete category.
+
+    \begin{definition}
+        An additive category $\mathcal{A}$ is weakly idempotent complete if it satisfies either of the conditions of Lemma 4.1.
+    \end{definition}
+
+    \begin{corollary}
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category, then the following are equivalent:
+        \begin{enumerate}
+            \item The category $\mathcal{A}$ is weakly idempotent complete
+            \item Every split-mono is an inflation
+            \item Every split-epi is a deflation
+        \end{enumerate}
+    \end{corollary}
+
+    With the notion of a weakly idempotent complete category we are able to strenghten the Obscure axiom into Heller's cancellation axiom.
+
+    \begin{prop}
+        For an exact category $(\mathcal{A},\mathcal{E})$ the following are equivalent:
+        \begin{enumerate}
+            \item $\mathcal{A}$ is weakly idempotent complete
+            \item Let $f: A\rightarrow B$ and $g: B\rightarrow C$ be two morphisms in $\mathcal{A}$. Then if $gf:A\rightarrow C$ is a deflation, then $g$ is.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        Suppose (1.). Let $f:A\rightarrow B$ and $g:B\rightarrow C$ be morphisms such that their composition $gf:A\rightarrow C$ is a deflation. Since $gf$ is a deflation we are able to form a pullback square.
+
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[bend right]{ddr}{id_A} \ar[bend left]{rrd}{f} \ar[dashed]{rd}{f'} \\
+                & B' \ar[phantom]{rd}[very near start]{\ulcorner} \ar{d}{h} \ar[two heads]{r}{f'}[marking]{\circ} & B \ar{d}{g} \\
+                & A \ar[two heads]{r}{gf}[marking]{\circ} & C
+            \end{tikzcd}
+        \end{center}
+
+        By using the universal property, we are able to see that $g'$ is split-mono, hence it admits an inflation $h':A'\rightarrow B'$. The claim is that $hh':A'\rightarrow B$ is the kernel of $g$. If the claim is true, the Obscure axiom yields that $g$ is a deflation.
+
+        To show that $hh'$ is the kernel we will need to show the universal property. Let $t:T\rightarrow B$ be a test object, such that $gt=0$.
+
+        \begin{center}
+            \begin{tikzcd}
+                T \ar[bend left]{rrd}{t} \ar[dashed]{rd}{t'} \\
+                & A' \ar{r}{hh'} \ar{rd}{0} & B \ar{d}{g} \\
+                & & C
+            \end{tikzcd}
+        \end{center}
+
+        We know that $t'$ exists as $t$ factors through $B'$ with $t''$, by the pull-back property. As $g't''=0$, we get that $t''$ factors through $A'$ using the fact that $h'$ is the kernel of $g'$, this proves the claim.
+        
+        For the other direction, suppose (2.) instead. Then we let $gf=id_A$, thus $gf$ is a deflation and $g$ is split-mono. By the assumption, we get that $g$ is a deflation, so it has a kernel.
+    \end{proof}
+
+    For the final part, if $\mathcal{A}$ is an idempotent complete category and there are idempotents over an object $A$, these idempotents admits a description of A as a direct sum of kernels and cokernels. There is however no guarantee that these decompositions are unique. To fix this we define the following category. These results will not be proved, and the reader is instead reffered to Henning Krause (\cite{Kra12}) and Auslander, Reiten and Smalø (\cite{Rei95}).
+
+    \begin{definition}
+        Let $\mathcal{A}$ be an additive category. An object $A$ is called indecomposable if the endomorphism ring of $A$ is local.
+
+        An object is called decomposable if it is not indecomposable.
+    \end{definition}
+
+    \begin{definition}
+        An additive category $\mathcal{A}$ is called Krull-Schmidt if any object $A$ decomposes into a finite direct sum of indecomposable objects.
+    \end{definition}
+
+    Having that each indecomposable object is local is enough for the following proposition to hold.
+
+    \begin{prop}
+        Every decomposition in a Krull-Schmidt category is unique up to isomorphism
+    \end{prop}
+
+    As being Krull-Schmidt admits decomposition whenever an endomorphism ring is not local implies a connection to idempotent completeness. That is whenever there is an idempotent over an object, this idempotent give rise to two comaximal ideals for the endomorphism ring. This gives us the decomposition which is required for the idempotent to split. Moreover, there is a deeper connection with being Krull-Schmidt and idempotent complete.
+
+    \begin{definition}
+        Let R be a ring. We say that R is semiperfect if $R$ as a module over itself admits a decomposition $_RR\simeq P_1\oplus P_2\oplus ... \oplus P_n$ such that each $P_i$ has a local endomorphism ring.
+    \end{definition}
+
+    \begin{remark}
+        For a ring R the following conditions are equivalent:
+        \begin{itemize}
+            \item The category $mod_R$ is a Krull-Schmidt category
+            \item R is semiperfect
+            \item Every simple R-module has a projective cover
+            \item Every finitely generated R-module has a projective cover
+        \end{itemize}
+        Thus any of these conditions can be taken to be the definition of semiperfect.
+    \end{remark}
+
+    With this definition we are able to state the following proposition, which says whenever an idempotent complete category is Krull-Schmidt.
+
+    \begin{prop}
+        Let $\mathcal{A}$ be an additive category, then the following are equivalent:
+        \begin{enumerate}
+            \item $\mathcal{A}$ is Krull-Schmidt
+            \item $\mathcal{A}$ is idempotent complete and every endomorphism ring are semiperfect.
+        \end{enumerate}
+    \end{prop}
+
+    %\begin{proof}
+    %    Suppose that $\mathcal{A}$ is Krull-Schmidt. We need to show that every idempotent splits, and that every endomorphism ring are semiperfect.
+
+    %    Let $p:A\rightarrow A$ be an idempotent. Then $End(A)$ is not local, as the ideals $(p)$ and $(1-p)$ are comaximal. Thus $A\simeq A_1\oplus A_2$ and $p\simeq \begin{pmatrix} 0 & \\ 0 & 1 \end{pmatrix}$. Thus every idempotent split.
+
+    %    If $A$ is indecomposable, then by assumption $End(A)$ is local. Converesly, assume that $A$ is decomposable, then $A$ admits a finite decomposition $\bigoplus_{i=1}^{n}A_i$. 
+    %\end{proof}
+
+    \begin{example}
+        Let $\Lambda$ be any artin R-algebra, then $mod_{\Lambda}$ is a Krull-Schmidt category. As an example, the category of finitely generated real vector spaces is Krull-Schmidt. Every vector space is a finite direct summand of the only indecomposable vector space $\mathbb{R}$.
+    \end{example}
+
+    More details and examples of Krull-Schmidt categories may be found in Henning Krause notes (\cite{Kra12}).
+
+\section{Admissable Morphisms, Homology and Long Exact Sequences}
+    
+    \begin{definition}
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category. A morphism $f:A\rightarrow B$ is called normal if it has a deflation-inflation factorization. They will be drawn as in the following diagram.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[two heads]{rd}[marking]{\circ} \ar{rr}{f}[marking]{\circ} & & B \\
+                & I \ar[tail]{ru}[marking]{\circ}
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{remark}
+        A monomorphism is normal if and only if it is an inflation. Dually, an epimorphism is normal if and only if it is a deflation.
+    \end{remark}
+
+    \begin{remark}
+        In general the composition $gf$ of two normal morphisms $f$ and $g$ are not normal. However, if g is a deflation, the composition can be seen to normal, as deflations are closed under composition. One may also observe that an exact category is abelian if and only if normal morphisms are closed under composition.
+    \end{remark}
+
+    \begin{lemma}
+        \textbf{Heller's factorization lemma}. The factorization of normal morphisms are unique up to unique isomorphisms.
+    \end{lemma}
+
+    \begin{proof}
+        Suppose that a normal morphism admits two differnt factorization. That means there exists a commutative diagram as follows.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[two heads]{r}{p}[marking]{\circ} \ar[two heads]{d}{q}[marking]{\circ} & I \ar[dashed, shift left]{ld}{\phi} \ar[tail]{d}{i}[marking]{\circ} \\
+                I' \ar[dashed, shift left]{ru}{\phi '} \ar[tail]{r}{j}[marking]{\circ} & B
+            \end{tikzcd}
+        \end{center}
+        By assumption $ip=jq$, thus $jq\circ Ker(p)=0$. $q\circ Ker(p)=0$ as $j$ is mono, thus there exists a morphism $\phi:I\rightarrow I'$ uniquely such that $q=\phi p$. Now $ip=jq=j\phi p$, and as $p$ is epi it follows that $i=j\phi$. Reiterating the argument, but with $Ker(q)$ instead there exists an $\phi '$ uniquely such that $p = \phi 'q$ and $j=i\phi '$. Thus we get that $i=j\phi = i\phi '\phi$, since $i$ is mono it follows that $id_I=\phi '\phi$; dually $Id_{I'}=\phi\phi '$.
+    \end{proof}
+
+    \begin{remark}
+        Du to Heller's factorization axiom we are able to see that normal morphisms admits analysis.
+
+        \begin{center}
+            \begin{tikzcd}
+                & A \ar{rr}{f}[marking]{\circ} \ar[two heads]{rd}{p}[marking]{\circ} & & B \ar[two heads]{rd}{Cok(i)}[marking]{\circ} \\
+                K \ar[tail]{ru}{Ker(p)}[marking]{\circ} & & I \ar[tail]{ru}{i}[marking]{\circ} & & C 
+            \end{tikzcd}
+        \end{center}
+
+        We may observe that the object $I$ coincide with the image and coimage of $f$. This object will then be reffered to the image of $f$. As a consequence of this unique factorization we get that a normal morphism is iso if and only if it is mono and epi.
+    \end{remark}
+
+    \begin{definition}
+        A sequence of normal morphisms is exact if the inflation of the factorization together with the consecutive deflation forms a conflation. That is there are conflations between morphisms as in the following diagram. The conflations are highlighted with different colors.
+
+        \begin{center}
+            \begin{tikzcd}
+                \dots \ar[two heads, orange]{rd}[black]{p_{-2}}[marking]{\circ} \ar{rr}{f_{-2}}[marking]{\circ} & & A_{-1} \ar[two heads, green]{rd}[black]{p_{-1}}[marking]{\circ} \ar{rr}{f_{-1}}[marking]{\circ} & & A_0 \ar[two heads, teal]{rd}[black]{p_0}[marking]{\circ} \ar{rr}{f_0}[marking]{\circ} & & A_1 \ar{rr}{f_1}[marking]{\circ} \ar[two heads, magenta]{rd}[black]{p_1}[marking]{\circ} & & \dots \\
+                & I_{-2} \ar[tail, green]{ru}[black]{i_{-2}}[marking]{\circ} & & I_{-1} \ar[tail, teal]{ru}[black]{i_{-1}}[marking]{\circ} & & I_0 \ar[tail, magenta]{ru}[black]{i_0}[marking]{\circ} & & I_1 \ar[tail, purple]{ru}[black]{i_1}[marking]{\circ}
+            \end{tikzcd}
+        \end{center}
+
+        A morphism of exact sequences is the same as a morphism of sequences. That is a collection of morphisms $(...,\phi_{-1},\phi_0,\phi_1,...)$ such that the squares in the diagram commute.
+
+        \begin{center}
+            \begin{tikzcd}
+                \dots \ar{r}{a_{-2}}[marking]{\circ} & A_{-1} \ar{d}{\phi_{-1}} \ar{r}{a_{-1}}[marking]{\circ} & A_0 \ar{d}{\phi_0} \ar{r}{a_0}[marking]{\circ} & A_1 \ar{d}{\phi_1} \ar{r}{a_1}[marking]{\circ} & \dots \\
+                \dots \ar{r}{b_{-2}}[marking]{\circ} & B_{-1} \ar{r}{b_{-1}}[marking]{\circ} & B_0 \ar{r}{b_0}[marking]{\circ} & B_1 \ar{r}{b_1}[marking]{\circ} & \dots
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{remark}
+        An exact sequence of normal morphisms is called short exact if it consists of morphisms on the form $(,0,i,p,0,)$, i.e. as in the following diagram.
+
+        \begin{center}
+            \begin{tikzcd}[cramped, row sep=small]
+                0 \ar[equal, orange]{rd}{} \ar{rr}{0}[marking]{\circ} & & A \ar[equal, green]{rd}{} \ar{rr}{i}[marking]{\circ} & & B \ar[two heads, teal]{rd}[black, below]{p}[marking]{\circ} \ar{rr}{p}[marking]{\circ} & & C \ar{rr}{0}[marking]{\circ} \ar[two heads, magenta]{rd}[black]{0}[marking]{\circ} & & 0 \\
+                & 0 \ar[tail, green]{ru}[black]{0}[marking]{\circ} & & A \ar[tail, teal]{ru}[black, below]{i}[marking]{\circ} & & C \ar[equal, magenta]{ru}{} & & 0 \ar[equal, purple]{ru}{}
+            \end{tikzcd}
+        \end{center}
+
+        Observe how conflations are exactly the class of short exact sequences.
+    \end{remark}
+
+    For this definition we have the following properties which mimics properties found in homologicial algebra.
+
+    \begin{lemma}
+        \textbf{5 Lemma}. Given two 5 term exact sequences and a morphism between them as in the diagram. Then $\phi$ is an isomorphism as well.
+        \begin{center}
+            \begin{tikzcd}
+                A_0 \ar{r}{a_0}[marking]{\circ} \ar{d}{\simeq} & A_1 \ar{r}{a_1}[marking]{\circ} \ar{d}{\simeq} & A_2 \ar{r}{a_2}[marking]{\circ} \ar{d}{\phi} & A_3 \ar{r}{a_3}[marking]{\circ} \ar{d}{\simeq} & A_4 \ar{d}{\simeq} \\
+                B_0 \ar{r}{b_0}[marking]{\circ} & B_1 \ar{r}{b_1}[marking]{\circ} & B_2 \ar{r}{b_2}[marking]{\circ} & B_3 \ar{r}{b_3}[marking]{\circ} & B_4
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        Later, or maybe never
+    \end{proof}
+
+    \begin{lemma}
+        \textbf{Kernel-Cokernel sequence}.
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category which is weakly idempotent complete. Suppose that there are composable normal morphism $f$ and $g$ such that $gf$ is normal as well. Then there exists an exact sequence.
+        \begin{center}
+            \begin{tikzcd}
+                Ker(f) \ar{r}[marking]{\circ} & Ker(gf) \ar{r}[marking]{\circ} & Ker(h) \ar{r}[marking]{\circ} & Cok(f) \ar{r}[marking]{\circ} & Cok(gf) \ar{r}[marking]{\circ} & Cok(g)
+            \end{tikzcd}
+        \end{center} 
+    \end{lemma}
+
+    \begin{proof}
+        Probably not
+    \end{proof}
+
+    \begin{remark}
+        If $(\mathcal{A},\mathcal{E})$ is an exact category, then one may show that the category $\mathcal{A}$ admits Kernel-Cokernel sequences if and only if it is weakly idempotent complete.
+    \end{remark}
+
+    With the Kernel-Cokernel sequence we are able to prove that the snake lemma holds in weakly idempotent complete categories.
+
+    \begin{corollary}
+        \textbf{Snake Lemma.}
+        Let $(\mathcal{A},\mathcal{E})$ be a weakly idempotent complete category. Suppose there is a diagram in $\mathcal{A}$ having exact rows.
+        \begin{center}
+            \begin{tikzcd}
+                & A \ar{d}{f}[marking]{\circ} \ar{r}[marking]{\circ} & B \ar{d}{g}[marking]{\circ} \ar{r}[marking]{\circ} & C \ar{d}{h}[marking]{\circ} \ar{r} & 0 \\
+                0 \ar{r} & A' \ar{r}[marking]{\circ} & B' \ar{r}[marking]{\circ} & C'
+            \end{tikzcd}
+        \end{center}
+
+        Then there is an exact sequence.
+        \begin{center}
+            \begin{tikzcd}
+                Ker(f) \ar{r}[marking]{\circ} & Ker(g) \ar{r}[marking]{\circ} & Ker(h) \ar[dashed]{r}{\delta}[marking]{\circ} & Cok(f) \ar{r}[marking]{\circ} & Cok(g) \ar{r}[marking]{\circ} & Cok(h)
+            \end{tikzcd}
+        \end{center}
+    \end{corollary}
+
+    \begin{proof}
+        Nooooooooooo
+    \end{proof}
+
+    The action which defines homological algebra is to find the homology of cochain complexes. For abelian groups homology is defined to be the quotient of the kernel of a map by the image of the preceeding map. We would like to find a similar definition for exact categories. For this discussion, let $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ be an exact category. In order for a complex to have kernels and images we need it to consist fully of normal morphisms. This will allow us to find analyses of every differential. Let $\chain{A}$ be such a complex. The question is when does the homology exists?
+
+    \begin{center}
+        \begin{tikzcd}
+            \dots \ar{r}{d_{\chain{A}}^{-2}}[marking]{\circ} & A_{-1} \ar[two heads]{d}{p}[marking]{\circ} \ar{r}{d_{\chain{A}}^{-1}}[marking]{\circ} & A_0 \ar{r}{d_{\chain{A}}^0}[marking]{\circ} & A_1 \ar{r}{d_{\chain{A}}^1}[marking]{\circ} & \dots \\
+            & Im(d_{\chain{A}}^{-1}) \ar[tail]{ru}{\iota}[marking]{\circ} \ar[dashed]{r}{h} & Ker(d_{\chain{A}}^0) \ar{u}{\kappa}[marking]{\circ} \ar[dotted]{r}{?} & H^0(\chain{A})
+        \end{tikzcd}
+    \end{center}
+
+    By looking at the 0-th homology we can find one condition  for when the homology exists. Using the fact that $d^0_{\chain{A}}\iota = 0$ we get that there is an unique morphism $h$, such that $\iota = \kappa h$. The 0-th homology exists whenever the morphism $h$ has a cokernel, and then $h$ satisfies the assumption of the Obscure axiom, making $h$ and inflation. One way to circumvent this assumption is to assume that $\mathcal{A}$ is weakly idempotent complete. Then by Heller's cancellation axiom we know that $h$ is an inflation, which then proves the existence of the cokernel. 
+
+    
+\section{The Derived Category/Derived Functors}  
+    
+    In homological algebra, we want to localize the homotopy category over quasi-isomorphisms. A quasi-isomorphism is a chain map $\chain{f}:\chain{A}\rightarrow\chain{B}$ such that $H^*(\chain{f}):H^*(\chain{A})\rightarrow H^*(\chain{B})$ is an isomorphism in homology. One may observe by the long exact sequence in homology of short exact sequence that a chain map like $\chain{f}$ is a quasi-isomorphism if and only if $cone(\chain{f})\simeq 0$. Moreover, the cone is isomorphic to $0$ in homology if it is an exact sequence. This motivates the definition of the subcategory of acyclic complexes.
+
+    \begin{definition}
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category. We define the category $Ac(\mathcal{A})\subset K(\mathcal{A})$ to be the full category whose objects are exact sequences.
+    \end{definition}
+
+    The exact complexes are also referred to as acyclic complexes. Note that this subcategory is not in general closed under isomorphisms. To be able to show that it is a triangulated subcategory, it suffices to show that the mapping cone of two acyclic complexes is again acyclic.
+
+    \begin{lemma}
+        Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map between acyclic chain complexes. Then the mapping cone $cone(\chain{f})$ is acyclic as well.
+    \end{lemma}
+
+    \begin{proof}
+        Write diagrams here
+    \end{proof}
+
+    Since $Ac(\mathcal{A})$ is triangulated, it makes sense to talk about the class of morphisms $Mor_{Ac(\mathcal{A})}$. Observe that in the case of the category $\mathcal{A}$ being abelian, we see that this is the class of quasi-isomorphic chain maps. Thus we may regard the class of morphisms $Mor_{Ac(\mathcal{A})}$ as quasi-isomorphisms.
+
+    \begin{definition}
+        The derived category is the Verdier quotient $D(\mathcal{A})=K(\mathcal{A})/Ac(\mathcal{A})$ whenever it exists. 
+    \end{definition}
+
+    Given some conditions on the category $(\mathcal{A},\mathcal{E})$ we are able to get a nice description of the derived category. That is we want the category of acyclic chain complexes to be closed under isomorphisms. The following proposition tells us whener this is true.
+
+    \begin{lemma}
+        The following are equivalent:
+        \begin{enumerate}
+            \item Every null-homotopic chain complex is acyclic
+            \item The category $\mathcal{A}$ is idempotent complete
+            \item The subcategory $Ac(\mathcal{A})$ is closed under isomorphisms
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{corollary}
+        The subcategory $Ac(\mathcal{A})$ is thick if and only if $\mathcal{A}$ is idempotent complete.
+    \end{corollary}
+
+    We may also set boundedness conditions on the chain complex to get weaker assumptions to get nice acyclic chain complexes. We say that a chain complex is called left bounded if there is some $m$ such that for any $n$ $n\leq m<0$ we have that $A^n = 0$. Likewise, right bounded complexes are the defined for $n\geq m>0$ we have that $A^n=0$. A chain complex is called bounded if it is both left bounded and right bounded. 
+
+    \begin{definition}
+        The category $K(\mathcal{A})^+$,$K(\mathcal{A})^-$ and $K(\mathcal{A})^{\flat}$ are the homotopy categories of left bounded, right bounded and bounded respectively. $Ac(\mathcal{A})^* \subset K(\mathcal{A})^*$ for $*:\{+,-,\flat\}$ will be the subcategory of acyclic chain complexes satisfying the correct boundedness condition.
+    \end{definition}
+
+    \begin{lemma}
+        The following are equivalent:
+        \begin{enumerate}
+            \item The subcategories $Ac(\mathcal{A})^* \subset K(\mathcal{A})^*$ for $*:\{+,-\}$ are thick
+            \item The subcategory $Ac(\mathcal{A})^{\flat}$
+            \item The category $\mathcal{A}$ is weakly idempotent complete
+        \end{enumerate}
+    \end{lemma}
+
+\section{Auslander-Reiten triangles}
+
+    For the rest of this thesis we will assume that $\mathcal{A}$ is an additive $\mathbb{K}$-linear category, which is also Krull-Schmidt. With these assumptions we will be able to define a special set of triangles whenever $\mathcal{A}$ has a triangulation. As $\mathcal{A}$ is Krull-Schmidt, we have a notion of indecomposable objects, our goal is to be able to find triangles which acts as indecomposable triangles.
+
+    \todo[color = cyan]{What is a $\mathbb{K}$-linear category?}
+
+    \begin{definition}
+        Define an Auslander-Reiten triangle
+    \end{definition}
+
+    \begin{prop}
+        Selfduality of AR-triangles
+    \end{prop}
+
+    \begin{definition}
+        Define irreducible morphisms
+    \end{definition}
+
+    \begin{prop}
+        irreducible morphisms have the following properties:
+    \end{prop}
+    
+\section{Description of Derived Categories}
+
+    Add something to the introduction about derived categories. The goal is to describe the derived category of a fairly simple algebra.
+
+\clearpage
+
+% \nocite{*}
+% \bibliographystyle{unsrt}
+% \bibliography{bib}
+
+\clearpage

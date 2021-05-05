@@ -1,0 +1,72 @@
+\documentclass[american,titlepage]{ntnuthesis}
+
+\title{Thesis On Triangulated Categories, Working title}
+\shorttitle{Triangulated Categories}
+\author{Thomas Wilskow Thorbjørnsen}
+\shortauthor{Thorbjørnsen}
+\date{CC-BY \ntnuthesisdate}
+
+\addbibresource{thesis.bib}
+
+\input{glossary.tex} % add glossary and acronym lists before document
+
+% Div packages
+    \usepackage[colorinlistoftodos]{todonotes}
+
+% Graphic libraries
+    \usepackage{graphicx}
+    \graphicspath{{../images/}{../../images/}}
+    \usepackage{xcolor}
+
+% Mathtype libraries
+    \usepackage{tikz}
+    \usetikzlibrary{cd}
+    \usetikzlibrary{decorations.pathmorphing}
+    \usepackage{amsmath,amsthm}
+    % \usepackage{amssymb,amsfonts}  
+
+    \newtheorem{theorem}{Theorem}[section]
+    \newtheorem{corollary}{Corollary}[theorem]
+    \newtheorem{lemma}[theorem]{Lemma}
+    \newtheorem{prop}[theorem]{Proposition}
+
+    \theoremstyle{definition}
+    \newtheorem{definition}{Definition}[section]
+
+    \theoremstyle{remark}
+    \newtheorem*{remark}{Remark}
+    \newtheorem*{prototype}{Prototype} % Do I even use this environment?
+    \newtheorem*{example}{Example}
+
+% Macros
+    \newcommand{\upside}[1]{\rotatebox[origin=c]{180}{#1}}
+    \newcommand{\chain}[1]{#1^{\bullet}}
+
+% Things which should be loaded last
+    \usepackage{subfiles} % Best loaded last in the preamble
+
+\begin{document}
+
+    \input{chapters/intro.tex}
+
+    \tableofcontents
+%    \listoffigures
+%    \listoftables
+%    \lstlistoflistings
+    \listoftodos
+
+    \input{chapters/triCat.tex}
+    \input{chapters/exCat.tex}
+    \input{chapters/derivedCat.tex}
+
+    \printglossary[type=\acronymtype] % Print acronyms
+    \printglossary                    % Print glossary
+
+    \chapter*{\bibname}
+
+    \printbibliography[heading=none]
+
+
+    \appendix
+
+\end{document}
