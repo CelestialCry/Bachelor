@@ -933,12 +933,12 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{proof}
 
 \section{Calculus of Fractions and the Verdier Quotient}
-    Localization is a method for adding formal inverses to a category. It is most notably known in commutative algebra where we can invert elements with respect to some ideal of the ring. The rational numbers can be shown to be a localization of the integers at every number except 0. The category gained from localizing at some set $S$ of morphisms is the universal category where these morphisms are isomorphisms.
+    \todo[noline]{Dette avsnittet er skrevet litt rart. Flyten kan bli mye bedre.} Localization is a method for adding formal inverses to a category. It is most notably known in commutative algebra where we can invert elements with respect to some ideal of the ring. The rational numbers can be shown to be a localization of the integers at every number except 0. The category gained from localizing at some set $S$ of morphisms is the universal category where these morphisms are isomorphisms.
     \begin{definition}
-        Let $S$ be a collection of morphisms in the category $\mathcal{C}$. We say that the Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
+        Let $S$ be a collection of morphisms in the category $\mathcal{C}$. The Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
         \begin{itemize}
             \item $\forall s:S|q(s)$ is an isomorphism
-            \item For any functor $F:\mathcal{C}\rightarrow\mathcal{D}$ such that $\forall s:S$ such that $F(s)$ is an isomorphism, then $F$ factors through $q$. That is to say that there is a natural isomorphism $\eta : F\rightarrow F'\circ q$ so that $\mathcal{C}[S^{-1}]$ is the universal category where morphisms in $S$ are isomorphisms.
+            \item Any functor $F:\mathcal{C}\rightarrow\mathcal{D}$ such that $\forall s:S$ $F(s)$ is an isomorphism, then $F$ factors through $q$. That is to say that there is a natural isomorphism $\eta : F\rightarrow F'\circ q$ so that $\mathcal{C}[S^{-1}]$ is the universal category where morphisms in $S$ are isomorphisms.
         \end{itemize}
         \begin{center}
             \begin{tikzcd}[row sep = tiny]
@@ -949,10 +949,10 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
 
     \begin{remark}
-        Even though if we know that $\mathcal{C}$ is locally small, then we cannot be sure that the category $\mathcal{C}[S^{-1}]$ is again locally small.
+        Even though it is known that $\mathcal{C}$ is locally small, it is not clear a priori that the category $\mathcal{C}[S^{-1}]$ is again locally small.
     \end{remark}
 
-    These categories are in generel pretty hard to describe. When the set of morphisms is what we call a multiplicative system, we get the same calculus of fractions description of these localization the same style as for localizations of rings.
+    \todo[color = pink]{Burde jeg endre på noe her. Kan det være greit å forklare hvorfor de er vanskelig å beskrive?} These categories are in generel pretty hard to describe. When the set of morphisms is a multiplicative system, there is a calculus of fractions description of these localization in the same style as for localizations of rings.
 
     \begin{definition}
         A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
@@ -975,7 +975,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
 
     \begin{remark}
-        The previous definition has a dual statement. We say that a set $S$ of morphisms is a left multiplicative system if it satisfies:
+        The previous definition has a dual statement. A set $S$ of morphisms is left multiplicative if it satisfies:
         \begin{itemize}
             \item $S$ is closed under composition, i.e. if $f,g : S$ are composable then $gf : S$. Every identity morphism in $\mathcal{C}$ is in $S$.
             \item (Left Ore condition) If $s : Y \rightarrow Z$ is a morphism in $S$, then $\forall f:Y\rightarrow X$ there is a commutative square (1) such that $g:Z\rightarrow W$ and $t:X\rightarrow W$ exists and $t:S$ as well.
@@ -991,11 +991,11 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \item $sf = sg$ for som $s:S$ starting at $Y$
             \end{enumerate}
         \end{itemize}
-        If $S$ is both right multiplicative and left multiplicative then we just say that it is multiplicative.
+        If $S$ is both right multiplicative and left multiplicative then it is called multiplicative.
     \end{remark}
 
     \begin{prototype}
-        Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
+        \todo[color = pink]{Fjerne dette?} Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
     \end{prototype}
 
     As with the definition of localization of rings, localization of a category $\mathcal{C}$ at a multiplicative system will be defined with fractions. That is the morphisms will be "fractions" of morphisms. These morphisms will be described as diagrams over spans for right multiplicative systems (or dually cospans for left multiplicative systems), together with an equivalence relation.
@@ -1010,13 +1010,13 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
 
     \begin{definition}
-        Let $S$ be a right multiplicative system of morphisms in a category $\mathcal{C}$. Given a morphism $s : Y\rightarrow X$ in $S$ and a morphism $t:Y\rightarrow Z$ we define the right fraction of $s$ and $t$ to be the span of the morphisms. That is $s$ and $t$ fit in the diagram:
+        Let $S$ be a right multiplicative system of morphisms in a category $\mathcal{C}$. Given a morphism $s : Y\rightarrow X$ in $S$ and a morphism $t:Y\rightarrow Z$, define the right fraction of $s$ and $t$ to be the span of the morphisms. That is $s$ and $t$ fit in the diagram below.
         \begin{center}
             \begin{tikzcd}
                 X & Y \ar{l}{s} \ar{r}{t} & Z
             \end{tikzcd}
         \end{center}
-        We denote the right fraction as $ts^{-1}$.
+        Right fractions are denoted as $ts^{-1}$.
         Let $\sim$ be the equivalence relation of right fractions given by the diagram (1) such that $ts^{-1}\sim t's'^{-1}$ if and only if $\exists w,w':\mathcal{C}$ making the diagram commute and that the middle row is a right fraction.
         \begin{center}
             \begin{tikzcd}
@@ -1027,7 +1027,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         \end{center}
     \end{definition}
 
-    Dually, we define left fractions as diagrams over cospans such that if $t:S$ we get a left fraction $t^{-1}s$ as the diagram:
+    Dually, define left fractions as diagrams over cospans such that if $t:S$, then there is a left fraction $t^{-1}s$ as the diagram below.
     \begin{center}
         \begin{tikzcd}
             X \ar{r}{s} & Y & Z \ar{l}{t}
@@ -1048,7 +1048,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{prop}
 
     \begin{proof}
-        We will need to prove that $\sim$ is reflexive, symmetric and transitive.
+        An equivalence relation is proven by showing that $\sim$ is reflexive, symmetric and transitive.
         \begin{itemize}
             \item (Reflexive) Let $fs^{-1}$ be a right fraction. Then $fs^{-1}\sim fs^{-1}$ by the diagram:
             \begin{center}
@@ -1085,7 +1085,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                     & W'' \ar{lu}{u} \ar{ru}{h}
                 \end{tikzcd}
             \end{center}
-            By the Ore condition we can create two new maps from $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, then we get that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it is commutative.
+            \todo{fiks i morgen} By the Ore condition we can create two new maps from $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, then we get that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it is commutative.
             \begin{center}
                 \begin{tikzcd}
                     \widetilde{\widetilde{\widetilde{W}}} \ar{d}{\widetilde{\widetilde{w'}}} \ar{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar{d}{\widetilde{w''}} \\
