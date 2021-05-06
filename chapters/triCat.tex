@@ -642,49 +642,47 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
 
 \section{Mapping Cones, Homotopies and Contractibility}
 
-    \begin{remark}
-        The observant reader might have seen that the Octahedron axiom have not jet been used once! A lot of the theory proven for triangulated categories work without this axiom, and this motivates the definition of a pre-triangulated category. This odd axiom might seem to be pointless, but it is one of the most fundamental axioms, as TR3 can be proven with TR1, TR2 and TR4; see [need sources here].
-    \end{remark}
+    The observant reader might have seen that the Octahedron axiom have not yet been used once, other than for proving TR3. A lot of the theory proven for triangulated categories works without this axiom, and this motivates the definition of a pre-triangulated category.
 
     \begin{definition}
         A pre-triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta '$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying TR1, TR2 and TR3.
 
-        The category $\mathcal{T}$ with the pre-triangulation $\Delta '$ is called a pre-triangulated category, and the candidate triangles in $\Delta '$ are called  triangles. We will only use this notion of triangles in this subsection.
+        The category $\mathcal{T}$ with the pre-triangulation $\Delta '$ is called a pre-triangulated category, and the candidate triangles in $\Delta '$ are called  triangles. This notion of triangles will only be used in this subsection.
     \end{definition}
 
-    The main goal of this subsection is to see how we can find  triangles, and when these are triangles. We will also look at triangulated functors and triangulated subcategories. For the rest of this subsection it is assumed that we work in a pre-triangulated category $\mathcal{T}$.
+    \todo{Kanskje få denne biten tidligere?} The main goal of this subsection is to see how we can find  triangles, and when these are triangles. We will also look at triangulated functors and triangulated subcategories. For the rest of this subsection it is assumed that we work in a pre-triangulated category $\mathcal{T}$.
 
     \begin{definition}
-        Suppose there is a morphism of candidate triangles $\phi : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$.
+        Let $\phi : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of candidate triangles.
         \begin{center}
             \begin{tikzcd}
                 A \arrow{r}{a} \arrow{d}{\phi_A} & B \arrow{r}{b} \arrow{d}{\phi_B} & C \arrow{r}{c} \arrow{d}{\phi_C} & TA \arrow{d}{T\phi_A} \\
                 A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
             \end{tikzcd}
         \end{center}
-        We define the mapping cone to be the candidate triangle:
+        The mapping cone of $\phi$ is defined to be the candidate triangle below.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
-                B \oplus A' \ar{r}{\begin{pmatrix}
-                    -b & 0 \\ \phi_B & a'
-                \end{pmatrix}} \& C\oplus B' \ar{r}{\begin{pmatrix}
-                    -c & 0 \\ \phi_C & b'
-            \end{pmatrix}} \& TA\oplus C' \ar{r}{\begin{pmatrix}
-                -Ta & 0 \\ T\phi_A & c'
-            \end{pmatrix}} \& TB\oplus TA'
+                A' \oplus B \ar{r}{\begin{pmatrix}
+                    -b & \phi_B \\ 0 & a'
+                \end{pmatrix}} \& B'\oplus C \ar{r}{\begin{pmatrix}
+                    -c & \phi_C \\ 0 & b'
+            \end{pmatrix}} \& C'\oplus TA \ar{r}{\begin{pmatrix}
+                -Ta & T\phi_A \\ 0 & c'
+            \end{pmatrix}} \& TA'\oplus TB
             \end{tikzcd}
         \end{center}
     \end{definition}
 
     \begin{definition}
-        A morphism $\alpha : A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ between candidate triangles is called null-homotopic if it factors through a homotopy. That is, there exists maps $\Theta, \Phi, \Psi$ in the following diagram:
+        A morphism $\alpha : A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ between candidate triangles is called null-homotopic if it factors through a homotopy. A homotopy is defined to be a triple of maps $\Theta, \Phi, \Psi$ in the following sense.
         \begin{center}
             \begin{tikzcd}
                 A \arrow{r}{a} \arrow{d}{\alpha_A} & B \arrow{r}{b} \arrow{ld}{\Theta} \ar{d}{\alpha_B} & C \arrow{r}{c} \arrow{ld}{\Phi} \ar{d}{\alpha_C} & TA \arrow{ld}{\Psi} \ar{d}{T\alpha_A} \\
                 A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
             \end{tikzcd}
         \end{center}
-        such that $\alpha_A  = \Theta a + T^{-1}(c'\Psi)$, $\alpha_B = \Phi b + a'\Theta$ and $\alpha_C = \Psi c + b'\Phi$.
+        It is required that $\alpha_A  = \Theta a + T^{-1}(c'\Psi)$, $\alpha_B = \Phi b + a'\Theta$ and $\alpha_C = \Psi c + b'\Phi$ for the triple to be a homotopy.
         Two maps are called homotopic if their difference is null-homotopic
     \end{definition}
 
@@ -703,33 +701,33 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Let $(\Theta,\Phi,\Psi)$ be the homotopy between the triangle morphisms. Then there is an isomorphism of triangles.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
-                B \oplus A' \ar{r}{\begin{pmatrix}
-                    -b & 0 \\ g & a'
-                \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & 0 \\ \Theta & 1 \end{pmatrix}} \& C\oplus B' \ar{r}{\begin{pmatrix}
-                    -c & 0 \\ h & b'
-            \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & 0 \\ \Phi & 1\end{pmatrix}} \& TA\oplus C' \ar{r}{\begin{pmatrix}
-                -Ta & 0 \\ Tf & c'
-            \end{pmatrix}} \ar{d}{\begin{pmatrix}1 & 0 \\ \Psi & 1\end{pmatrix}} \& TB\oplus TA' \ar{d}{\begin{pmatrix}1 & 0 \\ T\Theta & 1 \end{pmatrix}}\\
-            B \oplus A' \ar{r}[below]{\begin{pmatrix}
-                -b & 0 \\ g' & a'
-            \end{pmatrix}} \& C\oplus B' \ar{r}[below]{\begin{pmatrix}
-                -c & 0 \\ h' & b'
-        \end{pmatrix}} \& TA\oplus C' \ar{r}[below]{\begin{pmatrix}
-            -Ta & 0 \\ Tf' & c'
-        \end{pmatrix}} \& TB\oplus TA'
+                A' \oplus B \ar{r}{\begin{pmatrix}
+                    -b & g \\ 0 & a'
+                \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & \Theta \\ 0 & 1 \end{pmatrix}} \& B'\oplus C \ar{r}{\begin{pmatrix}
+                    -c & h \\ 0 & b'
+            \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & \Phi \\ 0 & 1\end{pmatrix}} \& C'\oplus TA \ar{r}{\begin{pmatrix}
+                -Ta & Tf \\ 0 & c'
+            \end{pmatrix}} \ar{d}{\begin{pmatrix}1 & \Psi \\ 0 & 1\end{pmatrix}} \& TA'\oplus TB \ar{d}{\begin{pmatrix}1 & T\Theta \\ 0 & 1 \end{pmatrix}}\\
+            A' \oplus B \ar{r}[below]{\begin{pmatrix}
+                -b & g' \\ 0 & a'
+            \end{pmatrix}} \& B'\oplus C \ar{r}[below]{\begin{pmatrix}
+                -c & h' \\ 0 & b'
+        \end{pmatrix}} \& C'\oplus TA \ar{r}[below]{\begin{pmatrix}
+            -Ta & Tf' \\ 0 & c'
+        \end{pmatrix}} \& TA'\oplus TB
             \end{tikzcd}
         \end{center}
     \end{proof}
 
     \begin{lemma}
-        Let $A$ denote the triangle $(A,A',A'')$ and $B$ denote $(B,B',B'')$. Suppose $\alpha, \beta : A \rightarrow B$ are two homotopic morphisms of candidate triangles. Then for any map $\gamma : \widetilde{A} \rightarrow A$ and any map $\delta : B \rightarrow \widetilde{B}$ the maps $\delta\alpha\gamma$ and $\delta\beta\gamma$ are homotopic as well.
+        Let $A$ denote the candidate triangle $(A,A',A'')$ and $B$ denote $(B,B',B'')$. Suppose $\alpha, \beta : A \rightarrow B$ are two homotopic morphisms of candidate triangles. Then for any map $\gamma : \widetilde{A} \rightarrow A$ and any map $\delta : B \rightarrow \widetilde{B}$ the maps $\delta\alpha\gamma$ and $\delta\beta\gamma$ are homotopic as well.
     \end{lemma}
 
     \begin{proof}
-        To prove this statement it is enough to prove that $\alpha\gamma$ is homotopic to $\beta\gamma$ du to the symmetry of the statement. The goal is then to show that $(\Theta\gamma ',\Phi\gamma '',\Psi T\gamma)$ is the homotopy. This can be seen as
+        To prove this statement it is enough to prove that $\alpha\gamma$ is homotopic to $\beta\gamma$ du to the symmetry of the statement. The goal is then to show that $(\Theta\gamma ',\Phi\gamma '',\Psi T\gamma)$ is the homotopy between these maps. This can be seen as
         \begin{multline*}
             {\alpha}'{\gamma}'-{\beta}'{\gamma}' = ({\alpha}'-{\beta}'){\gamma}' = (b\Theta +\Phi a'){\gamma}' = b\Theta {\gamma}' + \Phi a'{\gamma}' = b({\Theta}{\gamma}') + ({\Phi}{\gamma}'')\widetilde{a}'
-        \end{multline*}
+        \end{multline*}.
     \end{proof}
 
     \begin{definition}
@@ -737,13 +735,13 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
 
     \begin{remark}
-        If $A$ is a contractible triangle and $F:\mathcal{T}\rightarrow \mathcal{A}$ is an additive functor to an abelian category, then the identity of the cochain 
+        If $A$ is a contractible triangle and $F:\mathcal{T}\rightarrow \mathcal{A}$ is an additive functor to an abelian category, then the identity of the cochain is null-homotopic as well.
         \begin{center}
             \begin{tikzcd}
                 ... \ar{r} & F(A) \ar{r} & F(A') \ar{r} & F(A'') \ar{r} & F(TA) \ar{r} & ...
             \end{tikzcd}
         \end{center}
-        is null-homotopic as well. Thus the homology of this sequence is $0$, asserting that it is an exact sequence.
+        The homology of this sequence is therefore $0$ everywhere, asserting that it is an exact sequence.
         The exactness of such sequences allow us to use the 2 out of 3 property on morphisms between contractible triangles.
     \end{remark}
 
@@ -752,7 +750,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{corollary}
 
     \begin{proof}
-        Being null-homotopic is the same as that there is a homotopy between the map and the zero map. If $id_A\sim 0 \implies f\circ id_A = f \sim f\circ 0 = 0$. So any map $f$ is null-homotopic.
+        By definition, being contractible is the same as the existence of a homotopy between the map and the zero map. If $id_A\sim 0 \implies f\circ id_A = f \sim f\circ 0 = 0$. So any map $f$ is null-homotopic.
     \end{proof}
 
     \begin{lemma}
@@ -760,14 +758,14 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        Let $A$ be the triangle $(A,A',A'')$ such that $id_A \sim 0$. This means that there is a homotopy
+        Let $A$ be the contractible triangle $(A,A',A'')$. Writing everything out, there is a homotopy between candidate triangles.
         \begin{center}
             \begin{tikzcd}
                 A \ar{r}{a} \ar{d}{id_A} & A' \ar{r}{a'} \ar{d}{id_{A'}} \ar{ld}{\Theta} & A'' \ar{r}{a''} \ar{d}{id_{A''}} \ar{ld}{\Phi} & TA \ar{d}{id_{TA}} \ar{ld}{\Psi} \\
                 A \ar{r}{a} & A' \ar{r}{a'} & A'' \ar{r}{a''} & TA
             \end{tikzcd}
         \end{center}
-        By using TR1 there is a triangle, and a long exact sequence.
+        By using TR1 there is a triangle, and consequently, a long exact sequence.
         \begin{center}
             \begin{tikzcd}
                 A \ar{r}{a} & A' \ar{r}{e} & E \ar{r}{e'} & TA
@@ -777,7 +775,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 ... \ar{r} & \mathcal{T}(TA,A) \ar{r} & \mathcal{T}(TA,A') \ar{r} & \mathcal{T}(TA,E) \ar{r}{e'_*} & \mathcal{T}(TA,TA) \ar{r}{Ta_*} & ...    
             \end{tikzcd}
         \end{center}
-        Since the map $Ta\circ a''\Psi = 0$, the kernel $KerTa_*=Ime'_*\neq 0$. This means that there is a map ${\Psi}':\mathcal{T}(TA,E)$ such that $e'{\Psi}'=a''\Psi$. Then the map $(id_A,id_{A'},e\Theta+{\Psi}'a'')$ is a well defined map of candidate triangles. By the remark, we can use the 2 out of 3 properties to assert that the map found is an isomorphism, giving an isomorphism of triangles, asserting that the contractible triangle is a triangle. 
+        Since the map $Ta\circ a''\Psi = 0$ and by exactness at $\mathcal{T}(TA,TA)$, the kernel $KerTa_*=Ime'_*\neq 0$. This shows that there is a map ${\Psi}':\mathcal{T}(TA,E)$ such that $e'{\Psi}'=a''\Psi$, and the map $(id_A,id_{A'},e\Theta+{\Psi}'a'')$ is a well defined map of candidate triangles. By the remark, we can use the 2 out of 3 properties to assert that the map found is an isomorphism, giving an isomorphism of triangles, showing that the contractible triangle is a triangle by Bookeeping. 
     \end{proof}
 
     \begin{corollary}
@@ -789,19 +787,21 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{proof}
 
     \begin{corollary}
-        The mapping cone of a null-homotopic map between  triangles is a triangle.
+        The mapping cone of a null-homotopic map between triangles is a triangle.
     \end{corollary}
 
     \begin{remark}
         Suppose we have a morphism of triangles where one of the triangles are contractible, then the mapping cone is a triangle as well.
     \end{remark}
 
+    \todo{Skriv noe om hvordan dette har bygget opp til en annen variant av TR4.}
+
     \begin{definition}
         A morphism of triangles will be called good if the mapping cone of the morphism is a triangle.
     \end{definition}
 
     \begin{theorem}
-        A pre-triangulated category $\mathcal{T}$ is triangulated if given two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$ and diagram (1) commutes, then diagram (1) can be completed to diagram (2) such that $\phi$ is good. That is the mapping cone of $\phi$ is a triangle.
+        A pre-triangulated category $\mathcal{T}$ is triangulated if given two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$ and diagram (1) commutes, then diagram (1) can be completed to diagram (2) such that $\phi$ is good.
         \begin{center}
             (1)
             \begin{tikzcd}
@@ -817,11 +817,13 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{theorem}
 
     \begin{remark}
-        This condition is equivalent to the Octahedron axiom.
+        \todo{Utdyp hva som står her} This condition is equivalent to the Octahedron axiom. \todo[color = red]{Legg til kilder}
     \end{remark}
 
+    \todo[color = pink]{Skal jeg skrive også om Verdier sitt aksiom her? Jeg synes det kan være en gøy med en exposition av alt kaoset man kan finne :)}
+
     \begin{definition}
-        A commutative square (1) is called homotopy cartesian if it arises from a triangle. That is, (2) is a triangle.
+        \todo[color = pink]{Denne definisjonen er rar og er ikke presis, men jeg synes den er litt søt} A commutative square (1) is called homotopy cartesian if it arises from a triangle. That is, (2) is a triangle.
         \begin{center}
             (1)
             \begin{tikzcd}
@@ -839,7 +841,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
         
     \begin{remark}
-        A way to construct homotopy cartesian squares is with homotopy pullbacks. That is to us TR1 on the following map to get a triangle.
+        A way to construct homotopy cartesian squares is with homotopy pullbacks. This is done by using TR1 on the following map to get a triangle.
         \begin{center}
             \begin{tikzcd}
                 & A \ar{d}{a} \\
@@ -860,7 +862,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \end{tikzcd}
         \end{center}
 
-        Dually, one can use homotopy push-outs to get homotopy cartesian squares.
+        Dually, one may use homotopy push-outs to get homotopy cartesian squares.
     \end{remark}
 
     \begin{remark}
@@ -884,19 +886,21 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        There is a commutative square which satisfies the requirements of the octahedron axiom.
+        There is a commutative square (1) which satisfies the requirements of the octahedron axiom (2), yielding a triangle (3).
         \begin{center}
+            (1)
             \begin{tikzcd}[ampersand replacement=\&]
                 D \ar{r}{\begin{pmatrix}g' \\ f'\end{pmatrix}} \ar[equal]{d} \& A\oplus B \ar{d}{\begin{pmatrix}1 & 0\end{pmatrix}} \\
                 D \ar{r}{g'} \& A
-            \end{tikzcd}
+            \end{tikzcd} \\
+            (2)
             \begin{tikzcd}[row sep=small, ampersand replacement=\&]
                 D \ar[red]{rd}{\begin{pmatrix}g' \\ f'\end{pmatrix}} \\
                 \& A\oplus B \ar[red]{ld}{\begin{pmatrix}f & g\end{pmatrix}} \\
                 C \ar[red, very near end, "|" marking]{uu}[near end]{T}[pos=0.5]{0}
             \end{tikzcd}
             \begin{tikzcd}[row sep=small, ampersand replacement=\&]
-                A\oplus B \ar[orange]{rd}{\begin{pmatrix} 0 & 1\end{pmatrix}} \\
+                A\oplus B \ar[orange]{rd}{\begin{pmatrix} 1 & 0\end{pmatrix}} \\
                 \& A \ar[orange]{ld}{0} \\
                 TB \ar[orange, very near end, "|" marking]{uu}[near end]{T}[near start]{\begin{pmatrix}0 \\ 1\end{pmatrix}}
             \end{tikzcd}
@@ -904,19 +908,22 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 D \ar[violet]{rd}{f'} \\
                 & A \ar[violet]{ld}{} \\
                 E \ar[violet, very near end, "|" marking]{uu}[near end]{T}
+            \end{tikzcd} \\
+            (3)
+            \begin{tikzcd}
+                \textcolor{white}{.} \\
+                C \ar[teal]{r} & E \ar[teal]{r}{} & TB \ar[teal]{r}{} & TC \\
+                \textcolor{white}{.}
             \end{tikzcd}
         \end{center}
-        This setup shows that there is a triangle with a commutative square:
+        This setup shows that there is a triangle with a commutative square as below.
         \begin{center}
-            \begin{tikzcd}
-                C \ar[teal]{r} & E \ar[teal]{r}{} & TB \ar[teal]{r}{} & TC
-            \end{tikzcd}
             \begin{tikzcd}[ampersand replacement=\&]
                 A\oplus B \ar{r}{\begin{pmatrix}1 & 0\end{pmatrix}} \ar{d}{\begin{pmatrix}f & g\end{pmatrix}} \& A \ar{d}{} \\
                 C \ar{r}{} \& E
             \end{tikzcd}
         \end{center}.
-        Since $\begin{pmatrix}1 & 0\end{pmatrix}$ is a splitmono, we have that the following is a morphism of triangles.
+        Since $\begin{pmatrix}1 & 0\end{pmatrix}$ is a splitmono, there is a morphism of triangles proving the statement.
         \begin{center}
             \begin{tikzcd}
                 D \ar{r}{} \ar{d}{} & A \ar{r}{} \ar{d}{} & E \ar{r}{} \ar[equal]{d}{} & TD \ar{d}{} \\
