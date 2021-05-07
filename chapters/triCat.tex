@@ -1085,7 +1085,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                     & W'' \ar{lu}{u} \ar{ru}{h}
                 \end{tikzcd}
             \end{center}
-            \todo{fiks i morgen} By the Ore condition we can create two new maps from $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, then we get that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it is commutative.
+            Two new maps may be created by applying the Ore condition on $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, it follows that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it is commutative.
             \begin{center}
                 \begin{tikzcd}
                     \widetilde{\widetilde{\widetilde{W}}} \ar{d}{\widetilde{\widetilde{w'}}} \ar{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar{d}{\widetilde{w''}} \\
@@ -1113,7 +1113,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 Y & W' \ar{l}{t} \ar{r}{g} & Z
             \end{tikzcd}
         \end{center}
-        we can define the composite of these fractions $gt^{-1}\circ fs^{-1}$ by the Ore condition:
+        Define the composite of these fractions $gt^{-1}\circ fs^{-1}$ by the Ore condition:
         \begin{center}
             \begin{tikzcd}
                 & \widetilde{W} \ar{d}{u} \ar{r}{h} & W' \ar{d}{t} \ar{r}{g} & Z \\
@@ -1128,9 +1128,9 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{prop}
 
     \begin{proof}
-        In order to prove that the composite is well-defined we need to prove that the composite is independent from the different choices of the right Ore condition and that it is independent from choice of right fraction. There will only be presented a proof for that the choice of Ore maps is independent, as the other two cases are analogous.
+        In order to prove that the composite is well-defined it is \todo[color=pink]{Har spurt Håkon om hjelp her.} needed to prove that the composite is independent from the different choices of the right Ore condition, and that it is independent from choice of right fraction. There will only be presented a proof for that the choice of Ore maps is independent, as the other two cases are analogous.
 
-        Suppose we have two right fractions $fs^{-1}$ and $gt^{-1}$ as indicated from the diagrams.
+        Suppose there are two right fractions $fs^{-1}$ and $gt^{-1}$ as indicated from the diagrams.
         \begin{center}
             \begin{tikzcd}
                 X & W_1 \ar{l}{s} \ar{r}{f} & Y
@@ -1140,7 +1140,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 Y & W_2 \ar{l}{t} \ar{r}{g} & Z
             \end{tikzcd}
         \end{center}
-        Further suppose that there are at least two different choices for the maps gained by the right Ore condition. That is for example $(\widetilde{W},\widetilde{s},\widetilde{f})$ and $(\widehat{W},\widehat{s}, \widehat{g})$. We can draw the two compositions as:
+        Further suppose that there are at least two different choices for the maps gained by the right Ore condition. That is for example $(\widetilde{W},\widetilde{s},\widetilde{f})$ and $(\widehat{W},\widehat{s}, \widehat{g})$. The two compositions may be drawn as the diagrams below.
         \begin{center}
             \begin{tikzcd}
                 & \widetilde{W} \ar{r}{\widetilde{g}} \ar{d}{\widetilde{s}} & W_2 \ar{r}{g} \ar{d}{t} & Z \\
@@ -1151,7 +1151,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 X & W_1 \ar{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
         \end{center}
-        By combining the diagrams at $W_1$ by using the right Ore condition again we can find $(W, \widetilde{w}, \widehat{w})$ as in the diagram below. 
+        Combining the diagrams at $W_1$ by using the right Ore condition, the objects and maps \todo[color = magenta]{Er dette inkonsekvent?} $(W, \widetilde{w}, \widehat{w})$ exists as in the diagram below. 
         \begin{center}
             \begin{tikzcd}
                 \bar{W} \ar[dashed]{rd}{\xi} \\
