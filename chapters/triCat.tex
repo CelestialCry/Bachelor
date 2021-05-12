@@ -1050,16 +1050,16 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \begin{proof}
         An equivalence relation is proven by showing that $\sim$ is reflexive, symmetric and transitive.
         \begin{itemize}
-            \item (Reflexive) Let $fs^{-1}$ be a right fraction. Then $fs^{-1}\sim fs^{-1}$ by the diagram:
-            \begin{center}
+            \item (Reflexive) Let $fs^{-1}$ be a right fraction. Then diagram (1) shows that $fs^{-1}\sim fs^{-1}$.
+            \begin{center} (1)
                 \begin{tikzcd}
                     & W \ar{ld}{s} \ar{rd}{f} \ar[equal]{d} \\
                     X & W \ar{r}{f} \ar{l}{s} & Y \\
                     & W \ar{lu}{s} \ar[equal]{u} \ar{ru}{f}
                 \end{tikzcd}
             \end{center}
-            \item (Symmetric) Let $fs^{-1}$ and $gt^{-1}$ be two right fractions such that $fs^{-1}\sim gt^{-1}$, that is the diagram commute. Due to inherent symmetric nature of the diagram it follows that $gt^{-1}\sim fs^{-1}$.
-            \begin{center}
+            \item (Symmetric) Let $fs^{-1}$ and $gt^{-1}$ be two right fractions such that $fs^{-1}\sim gt^{-1}$, that is diagram (2) commute. Due to inherent symmetric nature of the diagram it follows that $gt^{-1}\sim fs^{-1}$.
+            \begin{center} (2)
                 \begin{tikzcd}
                     & W \ar{ld}{s} \ar{rd}{f} \\
                     X & \widetilde{W} \ar{r} \ar{l} \ar{u}{w} \ar{d}{w'} & Y \\
@@ -1072,25 +1072,27 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                     & W \ar{lu}{s} \ar{ru}{f}
                 \end{tikzcd}
             \end{center}
-            \item (Transitive) Suppose that there are three right fractions $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ such that $fs^{-1}\sim gt^{-1}$ and $gt^{-1}\sim hu^{-1}$. That is, diagrammically speaking:
-            \begin{center}
+            \item (Transitive) Suppose that there are three right fractions $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ such that $fs^{-1}\sim gt^{-1}$ and $gt^{-1}\sim hu^{-1}$. This may be written as diagram (3) and (4).
+            \begin{center} (3)
                 \begin{tikzcd}
                     & W' \ar{ld}{s} \ar{rd}{f} \\
                     X & \widetilde{W} \ar{r} \ar{l} \ar{u}{w'} \ar{d}{\widetilde{w'}} & Y \\
                     & W \ar{lu}{t} \ar{ru}{g}
-                \end{tikzcd}
+                \end{tikzcd} 
+                (4)
                 \begin{tikzcd}
                     & W \ar{ld}{t} \ar{rd}{g} \\
                     X & \widetilde{\widetilde{W}} \ar{r} \ar{l} \ar{u}{\widetilde{w''}} \ar{d}{w''} & Y \\
                     & W'' \ar{lu}{u} \ar{ru}{h}
                 \end{tikzcd}
             \end{center}
-            \todo{fiks i morgen} By the Ore condition we can create two new maps from $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, then we get that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$. The following diagram then shows that $fs^{-1}\sim hu^{-1}$. A simple diagram chase shows that it is commutative.
-            \begin{center}
+            Diagram (5) may be created by using the Ore condition on the maps $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, it follows that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$ as well. Diagram (6) then shows that $fs^{-1}\sim hu^{-1}$.
+            \begin{center} (5)
                 \begin{tikzcd}
                     \widetilde{\widetilde{\widetilde{W}}} \ar{d}{\widetilde{\widetilde{w'}}} \ar{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar{d}{\widetilde{w''}} \\
                     \widetilde{W} \ar{r}{\widetilde{w'}} & W
                 \end{tikzcd}
+                (6)
                 \begin{tikzcd}
                     & W' \ar{ldd}{s} \ar{rdd}{f} \\
                     & \widetilde{W} \ar{ld} \ar{rd} \ar{u}{\widetilde{w'}} \\
@@ -1103,7 +1105,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{proof}
 
     \begin{definition}
-        Let $S$ be a multiplicate system in a category $\mathcal{C}$. Given two right fractions $fs^{-1}$ and $gt^{-1}$ in the diagrams:
+        Let $S$ be a multiplicate system in a category $\mathcal{C}$. Given two right fractions $fs^{-1}$ and $gt^{-1}$
         \begin{center}
             \begin{tikzcd}
                 X & W \ar{l}{s} \ar{r}{f} & Y
@@ -1113,14 +1115,14 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 Y & W' \ar{l}{t} \ar{r}{g} & Z
             \end{tikzcd}
         \end{center}
-        we can define the composite of these fractions $gt^{-1}\circ fs^{-1}$ by the Ore condition:
+        the composition of the fractions are defined to be $gt^{-1}\circ fs^{-1}$. The Ore condition describes how this composition should be defined,
         \begin{center}
             \begin{tikzcd}
                 & \widetilde{W} \ar{d}{u} \ar{r}{h} & W' \ar{d}{t} \ar{r}{g} & Z \\
                 X & W \ar{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
         \end{center}
-        The composite is then the right fraction $gt^{-1}\circ fs^{-1} = gh(su)^{-1}$.
+        the composite is the right fraction $gt^{-1}\circ fs^{-1} = gh(su)^{-1}$.
     \end{definition}
 
     \begin{prop}
@@ -1128,9 +1130,9 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{prop}
 
     \begin{proof}
-        In order to prove that the composite is well-defined we need to prove that the composite is independent from the different choices of the right Ore condition and that it is independent from choice of right fraction. There will only be presented a proof for that the choice of Ore maps is independent, as the other two cases are analogous.
+        In order to prove that the composite is well-defined one must prove that the composite is independent from the different options of morphisms provided by the right Ore condition, and that it is therefore independent from the choice of right fraction. There will only be presented a proof for that the choice of Ore maps is independent, as the other other case is analogous.
 
-        Suppose we have two right fractions $fs^{-1}$ and $gt^{-1}$ as indicated from the diagrams.
+        Suppose there are two right fractions $fs^{-1}$ and $gt^{-1}$ as indicated by the diagrams.
         \begin{center}
             \begin{tikzcd}
                 X & W_1 \ar{l}{s} \ar{r}{f} & Y
@@ -1140,7 +1142,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 Y & W_2 \ar{l}{t} \ar{r}{g} & Z
             \end{tikzcd}
         \end{center}
-        Further suppose that there are at least two different choices for the maps gained by the right Ore condition. That is for example $(\widetilde{W},\widetilde{s},\widetilde{f})$ and $(\widehat{W},\widehat{s}, \widehat{g})$. We can draw the two compositions as:
+        Further suppose that there are at least two different choices for the morphisms provided by the right Ore condition, for example \todo[color = pink]{Dette er et incosist format}$(\widetilde{W},\widetilde{s},\widetilde{f})$ and $(\widehat{W},\widehat{s}, \widehat{g})$. The two compositions may be drawn as the diagrams below.
         \begin{center}
             \begin{tikzcd}
                 & \widetilde{W} \ar{r}{\widetilde{g}} \ar{d}{\widetilde{s}} & W_2 \ar{r}{g} \ar{d}{t} & Z \\
@@ -1151,7 +1153,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 X & W_1 \ar{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
         \end{center}
-        By combining the diagrams at $W_1$ by using the right Ore condition again we can find $(W, \widetilde{w}, \widehat{w})$ as in the diagram below. 
+        By combining the diagrams at $W_1$ using the right Ore condition again one may find $(W, \widetilde{w}, \widehat{w})$ fitting in the diagram below. 
         \begin{center}
             \begin{tikzcd}
                 \bar{W} \ar[dashed]{rd}{\xi} \\
@@ -1160,7 +1162,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 & & X
             \end{tikzcd}
         \end{center}
-        We see that the three squares commute, as by the definition of right Ore condition. Thus we have that $s\widetilde{s}\widetilde{w} = s\widehat{s}\widehat{w}$. As the three squares commute we get that $t\widehat{f}\widehat{w}=t\widetilde{g}\widetilde{w}$. As $t:S$ we can use right cancellation to find a $\xi:\bar{W}\rightarrow W$ such that $\widehat{f}\widehat{w}\xi = \widetilde{g}\widetilde{w}\xi \implies g\widehat{f}\widehat{w}\xi = g\widetilde{g}\widetilde{w}\xi$. Thus the equivalence relation diagram commutes:
+        Observe that the three squares commute, as by the definition of right Ore condition. Thus it follows that $s\widetilde{s}\widetilde{w} = s\widehat{s}\widehat{w}$, and that $t\widehat{f}\widehat{w}=t\widetilde{g}\widetilde{w}$. As $t:S$ one may use right cancellation to find a $\xi:\bar{W}\rightarrow W$ such that $\widehat{f}\widehat{w}\xi = \widetilde{g}\widetilde{w}\xi \implies g\widehat{f}\widehat{w}\xi = g\widetilde{g}\widetilde{w}\xi$. Thus the equivalence relation diagram commutes.
         \begin{center}
             \begin{tikzcd}
                 & \widehat{W} \ar{ld}[above]{s\widehat{s}} \ar{rd}{g\widehat{f}} \\
@@ -1175,7 +1177,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{prop}
 
     \begin{proof}
-        Let $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ be right fractions as in the diagrams below:
+        \todo[color = pink]{Kommer det fram at dette er en proof sketch?} Let $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ be right fractions as in the diagrams below.
         \begin{center}
             \begin{tikzcd}
                 A & X \ar{l}{s} \ar{r}{f} & B
@@ -1210,7 +1212,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \end{tikzcd}
             \end{minipage}
         \end{center}
-        To be able to find a relation between these diagrams we create another diagram with the right Ore condition.
+        To be able to find a relation between these diagrams create another diagram with the right Ore condition.
         \begin{center}
             \begin{minipage}[c]{0.3\textwidth}
                 \begin{tikzcd}
@@ -1225,7 +1227,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{proof}
 
     \begin{definition}
-        Let $S$ be a right multiplicative system in a category $\mathcal{C}$. We define a category $\mathfrak{r}S^{-1}\mathcal{C}$ to have objects $\mathfrak{Obr}S^{-1}\mathcal{C}=\mathfrak{Ob}\mathcal{C}$ and morphisms $\mathfrak{Arr}S^{-1}\mathcal{C} = \{$right fractions of $S\}/\sim$. This means that the morphisms $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are spans in $\mathcal{C}$ where one of the maps are in $S$ up to equivalence.
+        Let $S$ be a right multiplicative system in a category $\mathcal{C}$. Define a category $\mathfrak{r}S^{-1}\mathcal{C}$ to have objects $\mathfrak{Obr}S^{-1}\mathcal{C}=\mathfrak{Ob}\mathcal{C}$ and morphisms $\mathfrak{Arr}S^{-1}\mathcal{C} = \{$right fractions of $S\}/\sim$. This means that the morphisms $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are spans in $\mathcal{C}$ where one of the maps are in $S$ up to equivalence.
         \begin{center}
             \begin{tikzcd}
                 X & A \ar[blue]{l} \ar{r} & Y
@@ -1244,15 +1246,13 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{remark}
 
     \begin{remark}
-        Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ ending in $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its domain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondance between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\mathcal{\delta b, B}$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
+        \todo{Det virker som at det som foregår her er galt. Jeg må først skaffe oversikt over hva som skjer} Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ starting at $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its codomain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondance between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\delta(b, B)\rightarrow B'$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
     \end{remark}
-
-    Mitt lille utspill her må fikses. Jeg kan lage et addendum elns hvor det legges in alt som er relevant for å forstå hva som skjer elns...
 
     To ensure us that these categories $\mathfrak{r}S^{-1}\mathcal{C}$ does indeed exist there are many different criteria which we can place upon our assumptions. A natural restriction is to ensure that the colimits above exists as sets
 
     \begin{definition}
-        A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ in $S$ there is a morphism $f' : X'\rightarrow X$ in $S_X$ factoring thorugh $f$.
+        \todo{Dette må også fikses etter at det over er fikset!!!} A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ in $S$ there is a morphism $f' : X'\rightarrow X$ in $S_X$ factoring thorugh $f$.
 
         The dual of this definition will be called a locally small multiplicative system on the left. If it is both locally small on the left and the right, we will simply call it locally small. 
     \end{definition}
@@ -1267,11 +1267,11 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{remark}
 
     \begin{theorem}
-        (Gabriel-Zisman) Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and is the localization of $\mathcal{C}$ on $S$. That is there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $fid_X^{-1}$.
+        \textbf{Gabriel-Zisman}. Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and it is the localization of $\mathcal{C}$ on $S$. This mean that there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $fid_X^{-1}$.
     \end{theorem}
 
     \begin{proof}
-        To prove the theorem we have to show that $q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $q(gf)=(gf)id_X^{-1}$ and $q(g)q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. We can then choose the compostion to be defined by the diagram:
+        To prove the theorem one must show that $q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $q(gf)=(gf)id_X^{-1}$ and $q(g)q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. Choose the compostion to be defined by the diagram below.
         \begin{center}
             \begin{tikzcd}
                 X \ar{r}{f} \ar[equal,blue]{d} & Y \ar{r}{g} \ar[equal,blue]{d} & Z\\
@@ -1279,9 +1279,9 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 X
             \end{tikzcd}
         \end{center}
-        Thus we can see that $(gid_Y^{-1})\circ(fid_X^{-1})=(gf)id_X^{-1}$ asserting the functoriality of $q$.
+        Observe that $(gid_Y^{-1})\circ(fid_X^{-1})=(gf)id_X^{-1}$, asserting the functoriality of $q$.
 
-        To see that $q$ is universal let $\mathcal{D}$ be a category where every morphism of $S$ is an isomorphism, and suppose there is a functor $F:\mathcal{C}\rightarrow\mathcal{D}$. We can define a functor $\mathfrak{r}S^{-1}F : \mathfrak{r}S^{-1}\mathcal{C}\rightarrow\mathcal{D}$ by $\mathfrak{r}S^{-1}F(fs^{-1})=F(f)F(s)^{-1}$. One can see that $F = \mathfrak{r}S^{-1}F\circ q$, it remains to show that it is well-defined. Suppose $fs^{-1}=gt^{-1}$, that means there is a diagram in $\mathcal{C}$ with the blue arrows in $S$:
+        To see that $q$ is universal let $\mathcal{D}$ be a category where every morphism of $S$ is an isomorphism, and suppose there is a functor $F:\mathcal{C}\rightarrow\mathcal{D}$. Define a functor $\mathfrak{r}S^{-1}F : \mathfrak{r}S^{-1}\mathcal{C}\rightarrow\mathcal{D}$ by $\mathfrak{r}S^{-1}F(fs^{-1})=F(f)F(s)^{-1}$. One may see that $F = \mathfrak{r}S^{-1}F\circ q$, it remains to show that it is well-defined. Suppose $fs^{-1}=gt^{-1}$, that means there is a diagram in $\mathcal{C}$ with the blue arrows in $S$.
         \begin{center}
             \begin{tikzcd}
                 & W' \ar[blue]{ld}{s} \ar{rd}{f}  \\
@@ -1289,13 +1289,13 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 & W'' \ar[blue]{lu}{t} \ar{ru}{g}
             \end{tikzcd}
         \end{center}
-        Thus in $\mathcal{D}$ we have that $F(t)=F(sw')F(w'')^{-1}$ and $F(g)=F(fw')F(w'')^{-1}$, and this again gives us that 
+        Thus there is a relationship in $\mathcal{D}$ such that $F(t)=F(sw')F(w'')^{-1}$ and $F(g)=F(fw')F(w'')^{-1}$. This again shows that 
         \begin{multline*}
             \mathfrak{r}S^{-1}F(gt^{-1})=F(g)F(t)^{-1}\\
             =F(fw')F(w'')^{-1}(F(fw')F(w'')^{-1})^{-1}=F(fw')F(w'')^{-1}F(w'')F(sw')^{-1}\\
             =F(f)F(w')F(w')^{-1}F(s)^{-1}=F(f)F(s)^{-1}=\mathfrak{r}S^{-1}F(fs^{-1})
         \end{multline*}
-        Thus $\mathfrak{r}S^{-1}F$ is well-defined and is unique by construction.
+        It follows that $\mathfrak{r}S^{-1}F$ is well-defined and is unique by construction.
     \end{proof}
 
     \begin{corollary}
@@ -1311,7 +1311,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{proof}
 
     \begin{remark}
-        Since righthandedness of lefthandedness of the multiplicative system $S$ doesn't affect the localization we can simply call the localization of a (left/right) multiplicative system for $S^{-1}\mathcal{C}$.
+        Since righthandedness of lefthandedness of the multiplicative system $S$ doesn't affect the localization, one simply call the localization of a (left/right) multiplicative system for $S^{-1}\mathcal{C}$.
     \end{remark}
 
     \begin{remark}
@@ -1323,24 +1323,22 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{prop}
 
     \begin{proof}
-        Let $T:\mathcal{D}\rightarrow\mathcal{C}$ be a diagram over a finite category $\mathcal{D}$. Then for any object $A:S^{-1}\mathcal{C}$ we have the following equation.
+        Let $T:\mathcal{D}\rightarrow\mathcal{C}$ be a diagram over a finite category $\mathcal{D}$. Then for any object $A:S^{-1}\mathcal{C}$ one may find the following equation.
         \begin{multline*}
             S^{-1}\mathcal{C}(qA,q(\varprojlim T\_)\simeq \varinjlim\mathcal{C}(\delta\_,\varprojlim T\_))\\
             \simeq \varinjlim\varprojlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim\varinjlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim S^{-1}\mathcal{C}(qA,q(T\_))
         \end{multline*}
-        The first isomorphism is by the remark, the second is by the representative nature of limits and the third isomorphism is from the fact that filtered colimits commute with finite limits. The colimits are filtered by the remark that $S_A$ is cofiltered and that the functor $\mathcal{C}(_,A)$ is contravariant.
+        The first isomorphism is given by the remark, the second is given by the representative nature of finite limits and the third isomorphism is given by that filtered colimits commute with finite limits. The colimits are filtered by the remark that $S_A$ is cofiltered and that the functor $\mathcal{C}(_,A)$ is contravariant.
     \end{proof}
 
-    \begin{remark}
-        I am not quite sure yet how this argument proves the statement I want to prove, but that can be figure out later. I also don't know the proof for why filtered colimits commute with finite colimits, but it is in Riehls book.
-    \end{remark}
+    \todo[color=red]{I am not quite sure yet how this argument proves the statement I want to prove, but that can be figure out later. I also don't know the proof for why filtered colimits commute with finite colimits, but it is in Riehls book.}
 
     \begin{prop}
         Let $\mathcal{C}$ be a category with a zero. That is an object which is both initial and terminal. Suppose that $S$ is a right multiplicative system, then $q0$ is a zero object in $S^{-1}\mathcal{C}$.
     \end{prop}
 
     \begin{proof}
-        The claim that $q0$ is initial follows from that initial is a limit of a diagram over the empty category. To see that $q0$ is terminal we only need to prove that every right fraction is equivalent with $0id_A^{-1}$. The following diagram proves this:
+        The claim that $q0$ is initial follows from that initial is a limit of a diagram over the empty category. To see that $q0$ is terminal one have to prove that every right fraction of the form $0f^{-1}$ is equivalent to $0id_A^{-1}$, where $A$ is the codomain of $f$. This fact can be seen with the diagram below.
         \begin{center}
             \begin{tikzcd}
                 & X \ar{ld}[above]{f} \ar{d}{f} \ar{rd}{0}\\
@@ -1354,14 +1352,14 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{prop}
 
     \begin{proof}
-        From the previous propositions we know that $q0$ is the zero object and that $q(A\times B)\simeq qA\times qB$. By proving that there is an addition induced by $\mathcal{A}$ and that $q$ preserves this addition we get that the product is the biproduct induced by the maps in $\mathcal{A}$.
+        From the previous propositions it is known that $q0$ is the zero object and that $q(A\times B)\simeq qA\times qB$. By proving that there is an addition induced by $\mathcal{A}$ and that $q$ preserves this addition one obtains that the product is the biproduct induced by the maps in $\mathcal{A}$.
 
-        Suppose that we have the fractions $fs^{-1}, gt^{-1}:S^{-1}\mathcal{C}(A,B)$. We define their addition by using the Ore condition  to find new morphisms $f$, $g'$ and $u$ such that $fs^{-1} = f'u^{-1}$ and $gt^{-1} = g'u^{-1}$. Then the addition is defined as follows:
+        Suppose that there are fractions $fs^{-1}, gt^{-1}:S^{-1}\mathcal{C}(A,B)$. Define their addition by using the right Ore condition to find new morphisms $f'$, $g'$ and $u$ such that $fs^{-1} = f'u^{-1}$ and $gt^{-1} = g'u^{-1}$.
         \begin{equation*}
             fs^{-1}+gt^{-1} = (f'+g')u^{-1}
         \end{equation*}
-        To prove that this is an addition we should prove that it is well defined, associativity, inverses and commutativity will be inherited from $\mathcal{A}$.
-        Let $v$ be another extension. That is $\bar{f}v^{-1}=fs^{-1}=f'u^{-1}$ and $\bar{g}v^{-1}=gt^{-1}=g'u^{-1}$, so our goal is to prove that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=0$. By definition we have that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=\bar{f}v^{-1}-f'u^{-1}+\bar{g}v^{-1}-g'u^{-1}$. So to prove that the whole sum is $0$ is the same to prove as $\bar{f}v^{-1}+(-f')u^{-1}=(\bar{\bar{f}}-f'')w^{-1}=0$. This can be done by writing out the diagrams after repeatedly applying right Ore condition.
+        To prove that this is an addition one must prove that it is well defined; associativity, inverses and commutativity will be inherited from $\mathcal{A}$.
+        Let $\bar{f}$, $\bar{g}$ and $v$ be another choice provided by the right Ore condition. To summarize, the equations $\bar{f}v^{-1}=fs^{-1}=f'u^{-1}$ and $\bar{g}v^{-1}=gt^{-1}=g'u^{-1}$ have been established. In order to prove well-definedness, one must show that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=0$. By definition $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=\bar{f}v^{-1}-f'u^{-1}+\bar{g}v^{-1}-g'u^{-1}$. Proving that the whole sum is $0$, is the same as proving that $\bar{f}v^{-1}+(-f')u^{-1}=(\bar{\bar{f}}-f'')w^{-1}=0$. This can be done by writing out the diagrams after repeatedly applying the right Ore condition.
         \begin{center}
             \begin{tikzcd}
                 \cdot \ar[bend right, dashed, blue]{rddd}{p} \ar[bend left, dashed, blue]{rrrd}{p} \ar[dashed, blue]{rd} \\
@@ -1371,17 +1369,21 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 & B
             \end{tikzcd}
         \end{center}
-        The line to the bottom represents $\bar{\bar{f}}$ and the line to the right represents $f''$. By using left cancellation on the common morphism $s$ into $A$ one obtains the morphism $p$ which relates the two fractions and makes the sum go to zero.
+        The line to the bottom represents $\bar{\bar{f}}$ and the line to the right represents $f''$. Using left cancellation on the common morphism $s$ into $A$ one obtains the morphism $p$, which relates the two fractions and make the sum go to zero.
 
-        It remains to prove that $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ respects addition. Assume that $f,g:\mathcal{C}(X,Y)$
+        It remains to show that $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ respects addition. Assume that $f,g:\mathcal{C}(X,Y)$, then
         \begin{equation*}
-            q(f+g)=(f+g)id_X^{-1}=fid_X^{-1}+gid_X^{-1}=qf+qg
-        \end{equation*} 
+            q(f+g)=(f+g)id_X^{-1}=fid_X^{-1}+gid_X^{-1}=qf+qg.
+        \end{equation*}
     \end{proof}
 
     \begin{corollary}
         If $\mathcal{A}$ is abelian and $S$ is a multiplicative system, then $S^{-1}\mathcal{A}$ is abelian as well.
     \end{corollary}
+
+    \todo{Kan skrive noe her for å løsne overgangen fra lokalisering til lokalisering av triangulerte kategorier}
+
+    \todo[color = pink]{Jeg må fikse funktor notasjonen min. Den er vanskelig å lese...}
 
     \begin{definition}
         A triangulated functor $F: \mathcal{T} \rightarrow \mathcal{S}$ between two triangulated categories $(\mathcal{T}, T, \Delta_\mathcal{T}$ and $(\mathcal{S}, S, \Delta_\mathcal{S})$, is an additive functor along with a natural isomorphism $\phi_X : F(T(X)) \rightarrow S(F(X))$ such that $F(\Delta_{\mathcal{T}}) \subseteq \Delta_{\mathcal{S}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
@@ -1401,7 +1403,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
 
     \begin{definition}
-        A triangulated subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is a full additive subcategory closed under isomorphisms such that the inclusion functor is triangulated.
+        A triangulated subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is a full additive subcategory such that the inclusion functor is triangulated.
     \end{definition}
 
     \begin{definition}
@@ -1413,7 +1415,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        Let $X:KerF$, since $F$ is a triangulated functor $CX:KerF$ as $F(CX)=D(FX)=D0=0$. As $F$ is triangulated, we have that every triangle maps to a triangle. Let $X,Y:KerF$, then:
+        Let $X:KerF$, since $F$ is a triangulated functor $CX:KerF$ as $F(CX)=D(FX)=D0=0$. As $F$ is triangulated, one has that every triangle maps to a triangle. Let $X,Y:KerF$, then:
         \begin{center}
             \begin{tikzcd}[row sep=small]
                 X \ar{rd} \\
@@ -1439,7 +1441,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        Let $X\oplus Y:KerF$, since $F$ is additive we have that $0\simeq F(X\oplus Y)\simeq F(X)\oplus F(Y)$, but then there is a splitmono $F(X)\rightarrow 0 \implies F(X)\simeq 0 \simeq F(Y)$.
+        Let $X\oplus Y:KerF$, since $F$ is additive one may see that $0\simeq F(X\oplus Y)\simeq F(X)\oplus F(Y)$, but then there is a splitmono $F(X)\rightarrow 0 \implies F(X)\simeq 0 \simeq F(Y)$.
     \end{proof}
 
     \begin{lemma}
@@ -1456,10 +1458,10 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         \end{center}
     \end{proof}
 
-    The goal for the rest of this section is to prove that there is a localization at any triangulated subcategory $\mathcal{S}\subseteq\mathcal{C}$. This localization will yield a functor $q:\mathcal{C}\rightarrow \mathcal{C}/\mathcal{S}$ such that $\mathcal{S}\subseteq Kerq$. We will define a set of morphism $Mor_\mathcal{S}$ related to $\mathcal{S}$ such that this set is multiplicative.
+    The goal for the rest of this section is to prove that there is a localization at any triangulated subcategory $\mathcal{S}\subseteq\mathcal{C}$. This localization will yield a functor $q:\mathcal{C}\rightarrow \mathcal{C}/\mathcal{S}$ such that $\mathcal{S}\subseteq Kerq$. There is a set of morphism $Mor_\mathcal{S}$ related to $\mathcal{S}$ such that this set is multiplicative.
 
     \begin{definition}
-        Let $\mathcal{C}$ be a triangulated category and $\mathcal{S} \subseteq \mathcal{C}$ be a triangulated subcategory. Define a collection $Mor_{\mathcal{S}}$ to be a collection of morphisms in $\mathcal{C}$ such that for any $f : Mor_{\mathcal{S}}$ there is a triangle with $C : \mathcal{S}$.
+        Let $\mathcal{C}$ be a triangulated category and $\mathcal{S} \subseteq \mathcal{C}$ be a triangulated subcategory. Define the collection $Mor_{\mathcal{S}}$ to be a collection of morphisms in $\mathcal{C}$ such that for any $f : Mor_{\mathcal{S}}$ there is a triangle with $C : \mathcal{S}$.
         \begin{center}
             \begin{tikzcd}
                 A \ar{r}{f} & B \ar{r} & C \ar{r} & TA 
@@ -1468,7 +1470,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{definition}
 
     \begin{remark}
-        Every isomorphism is in $Mor_{\mathcal{S}}$. That is because isomorphisms are found in triangles $(A,B,0,f,0,0)$ and $0 : \mathcal{S}$ for any triangulated subcategory.
+        Every isomorphism is in $Mor_{\mathcal{S}}$. This is because isomorphisms are found in triangles $(A,B,0,f,0,0)$ and $0 : \mathcal{S}$ for any triangulated subcategory.
     \end{remark}
 
     \begin{lemma}
@@ -1503,11 +1505,17 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 Z' \ar[teal]{r} & X' \ar[teal]{r} & Y' \ar[teal]{r} & TZ'
             \end{tikzcd}
         \end{center}
-        Note that $f$ is in $Mor_\mathcal{S}$ if and only if $Z' : S$. WLOG assume that $f$ and $g$ is in $Mor_\mathcal{S}$, this can be done due to the rotation axiom. Thus we can find the triangle $(Z',X',Y'')$ in $\mathcal{S}$ proving that $Y'$ is in $\mathcal{S}$ by the following diagram:
+        Note that $f$ is in $Mor_\mathcal{S}$ if and only if $Z' : S$. WLOG assume that $f$ and $g$ is in $Mor_\mathcal{S}$, this can be done by the rotation axiom. Thus one may find the triangle in $\mathcal{S}$ by TR1 $(Z',X',Y'')$ proving that $Y'\simeq Y''$.
         \begin{center}
             \begin{tikzcd}
                 Z' \ar[teal]{r} \ar[equal]{d} & X' \ar[equal]{d} \ar[teal]{r} & Y' \ar[teal]{r} \ar{d}[rotate=90, below]{\simeq} & TZ' \ar[equal]{d} \\
                 Z' \ar{r} & X' \ar{r} & Y'' \ar{r} & TZ'
+            \end{tikzcd}
+        \end{center}
+        To see that $gf$ is in $Mor_\mathcal{S}$ one can construct the triangle below with the isomorphism given above.
+        \begin{center}
+            \begin{tikzcd}
+                A & C & Y'' & TA
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -1518,7 +1526,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
 
     \begin{proof}
         To prove that a system satisfies the Ore condition there has to be a proof for both right and left condition. Luckily, the arguments presented here can be dualized to give a proof for the other condition. Thus there will only be presented a proof for the right Ore condition.
-        Let $f:A\rightarrow C$ be in $Mor_\mathcal{S}$ and $g:B\rightarrow C$ in $\mathcal{C}$. Then we can form a homotopy pullback forming a homotopy cartesian square as follows:
+        Let $f:A\rightarrow C$ be in $Mor_\mathcal{S}$ and $g:B\rightarrow C$ in $\mathcal{C}$. Then one may form a homotopy pullback creating a homotopy cartesian square as below.
         \begin{center}
             \begin{tikzcd}
                 & A \ar{d}{f} \\
@@ -1530,7 +1538,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 B \ar{r}{g} & C
             \end{tikzcd}
         \end{center}
-        By Lemma 2.12 there are triangles along this homotopy square identifying the cones. Since the cone of $f$ is assumed to be in $\mathcal{S}$, the cone of $f'$ is also in $\mathcal{S}$. This proves that $f':Mor_\mathcal{S}$.
+        By Lemma 1.2.5 there are triangles along this homotopy cartesian square identifying the cones. Since the cone of $f$ is assumed to be in $\mathcal{S}$, the cone of $f'$ is also in $\mathcal{S}$. This proves that $f':Mor_\mathcal{S}$.
     \end{proof}
 
     \begin{prop}
@@ -1544,7 +1552,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
 
     \begin{proof}
         $(1.\iff 3.)$:
-        Suppose that there exists an $s:Y\rightarrow Z$ such that $s(f-g)=0$. By TR1 there is a triangle \begin{tikzcd}Y \ar{r}{s} & Z \ar{r}{Ts'} & TC \ar{r} & TY \end{tikzcd} and a long exact sequence of hoom(ology).
+        Suppose that there exists an $s:Y\rightarrow Z$ such that $s(f-g)=0$. By TR1 there is a triangle \begin{tikzcd}Y \ar{r}{s} & Z \ar{r}{Ts'} & TC \ar{r} & TY \end{tikzcd} and a long exact sequence.
         \begin{center}
             \begin{tikzcd}
                 \mathcal{C}(X,C) \ar{r}{s'_*} & \mathcal{C}(X,Y) \ar{r}{s_*} & \mathcal{T}(X,Z) \\
@@ -1556,10 +1564,10 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         This argument is dual.
     \end{proof}
 
-    This has shown that $Mor_\mathcal{S}$ is a multiplicative system, and Theorem 2.17 say that the localization exists given that $Mor_\mathcal{S}$ is locally small. The category $Mor_\mathcal{S}^{-1}$ will be called for $\mathcal{C}/\mathcal{S}$ and it is called the Verdier quotient. As $\mathcal{C}$ is additive, it is known that $\mathcal{C}/\mathcal{S}$ is additive as well by Proposition 2.20. The remaining part is to show that $\mathcal{C}/\mathcal{S}$ is triangulated and that localization functor $q:\mathcal{C}\rightarrow \mathcal{C}/\mathcal{S}$ is a triangulated functor.
+    This has shown that $Mor_\mathcal{S}$ is a multiplicative system, and Theorem 1.3.4 say that the localization exists given that $Mor_\mathcal{S}$ is locally small. The category $Mor_\mathcal{S}^{-1}$ will be denoted as $\mathcal{C}/\mathcal{S}$ and it is called the Verdier quotient. As $\mathcal{C}$ is additive, it is known that $\mathcal{C}/\mathcal{S}$ is additive as well by Proposition 2.20. The remaining part is to show that $\mathcal{C}/\mathcal{S}$ is triangulated and that localization functor $q:\mathcal{C}\rightarrow \mathcal{C}/\mathcal{S}$ is a triangulated functor.
 
     \begin{theorem}
-        Let $\mathcal{S}\subseteq\mathcal{C}$ be triangulated categories. Then the Verdier quotient $\mathcal{C}/\mathcal{S}$ and the functor $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the universal triangulated category where morphisms in $Mor_\mathcal{S}$ are isomorphisms.
+        Let $\mathcal{S}\subseteq\mathcal{C}$ be triangulated categories. Then the Verdier quotient $\mathcal{C}/\mathcal{S}$ together with the functor $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the universal triangulated category where morphisms in $Mor_\mathcal{S}$ are isomorphisms.
     \end{theorem}
 
     \begin{proof}
@@ -1578,13 +1586,13 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \end{tikzcd}
         \end{center}
         Then by definition $q$ is triangulated if the category $\mathcal{C}/\mathcal{S}$ is triangulated.
-        By definition, the triangles are closed under isomorphisms, $(X,X,0,id_X,0,0)$ is a triangle, and TR2 holds. Thus it remains to show TR1 and TR4 (TR3 is implied by the other axioms). To prove TR1, let $fs^{-1}:\mathcal{C}/\mathcal{S}(qW,qY)$. Then expand $f:\mathcal{C}(X,Y)$ to a triangle in $\mathcal{C}$ with TR1, it will induce a triangle in  $\mathcal{C}/\mathcal{S}$.
+        By definition, the triangles are closed under isomorphisms, $(X,X,0,id_X,0,0)$ is a triangle, and TR2 holds. Thus it remains to show TR1 and TR4 (TR3 is implied by the other axioms). To prove TR1, let $fs^{-1}:\mathcal{C}/\mathcal{S}(qW,qY)$. Expand $f:\mathcal{C}(X,Y)$ to a triangle in $\mathcal{C}$ with TR1, it will induce a triangle in  $\mathcal{C}/\mathcal{S}$.
         \begin{center}
             \begin{tikzcd}
                 qX \ar{r}{fid_X^{-1}} & qY \ar{r}{gid_Y^{-1}} & qZ \ar{r}{hid_Z^{-1}} & qTX
             \end{tikzcd}
         \end{center}
-        Then there is an isomorphism to the following candidate triangle from the induced triangle, proving TR1.
+        There is an isomorphism to the following candidate triangle from the induced triangle, proving TR1.
         \begin{center}
             \begin{tikzcd}
                 qX \ar{r}{fid_X^{-1}} \ar{d}{sid_X^{-1}}[above, rotate = 90]{\simeq} & qY \ar{r}{gid_Y^{-1}} \ar[equal]{d} & qZ \ar{r}{hid_Z^{-1}} \ar[equal]{d} & qTX \ar{d}{(Ts)id_{Tx}^{-1}}[above, rotate = 90]{\simeq} \\
@@ -1615,7 +1623,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{T}
             \end{tikzcd}
         \end{center}
-        By composing the fractions from $A$ to $B$ and $B$ to $C$ we can find an object $Z$ as in the diagram with the Ore condition. To illustrate with triangle (1), there is a correspondance of triangles in $\mathcal{C}/\mathcal{S}$ and $\mathcal{C}$. That is by the following isomorphism:
+        This is possible, as when composing the fractions from $A$ to $B$ and $B$ to $C$ one may find an object $Z$ as in the diagram by using the Ore condition. To illustrate with triangle (1), there is a correspondance of triangles in $\mathcal{C}/\mathcal{S}$ and $\mathcal{C}$ by the following isomorphism.
         \begin{center}
             \begin{tikzcd}
                 Z \ar{r}{at'} \ar{d}[above]{t}[below]{\simeq} & B \ar{r} \ar[equal]{d} & Z' \ar{r} \ar[dashed]{d}[below, rotate = 90]{\simeq} & TZ \ar[equal]{d} \\
@@ -1623,7 +1631,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 A & & & TA 
             \end{tikzcd}
         \end{center}
-        The result of the octahedron axiom follows as we can instead consider the triangles found by the composition of morphisms as below.
+        The result of the octahedron axiom follows as one instead consider the triangles found by the composition of morphisms as below.
         \begin{center}
             \begin{tikzcd}
                 Z \ar{d}{f'} \ar{rd}{bf'} \\
@@ -1640,7 +1648,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         If $0:X\rightarrow 0$ is invertible, then there exist a map $0:0\rightarrow Y$, such that $0:X\rightarrow Y$ is in $Mor_S$. By definition $X\oplus Y$ is in $\mathcal{S}$.
     \end{proof}
 
-    This proposition shows us that the kernel of $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the smallest thick subcategory of $\mathcal{C}$ such that $\mathcal{C}/Kerq$ is the universal category where every morphism in $Mor_\mathcal{S}$ is an isomorphism. For this reason $\widehat{\mathcal{S}}=Kerq$ is called the thick closure of $\mathcal{S}$.
+    This proposition shows that the kernel of $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the smallest thick subcategory of $\mathcal{C}$ such that $\mathcal{C}/Kerq$ is the universal category where every morphism in $Mor_\mathcal{S}$ is an isomorphism. For this reason $\widehat{\mathcal{S}}=Kerq$ is called the thick closure of $\mathcal{S}$.
 
 \section{Universal Homological Embedding}
     Do Yoneda embedding into functor categories.

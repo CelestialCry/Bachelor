@@ -4,12 +4,12 @@ I can maybe write some of the history of the development of the idea of exact ca
 
 \section{Definitions and First Properties}
 
-    In this section we will focus on defining what an exact category is and the first elementary properties. We will prove the axiom dubbed as "the obscure axiom" and motivate that it is not as obscure as its name suggest. Some "short" variants of some homological diagram lemmas will also be proved.
+    This section will focus on defining what an exact category is and its elementary properties. The axiom dubbed as "the obscure axiom" will be proved and hopefully be seen to not be as obscure as its name suggest. Some "short" variants of some homological diagram lemmata will also be proved.
 
-    To start with the exact categories we will first take a look towards the abelian ones first. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
+    To start with exact categories one should first take a look towards the abelian categories first. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
 
     \begin{definition}
-        A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. An isomorphisms is a triple in which each morphism is an isomorphism.
+        Let $\mathcal{A}$ be an additive category. A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. An isomorphism of a kernel-cokernel pair is a triple in which each morphism is an isomorphism.
         \begin{center}
             \begin{tikzcd}
                 A \ar[tail]{r}{p} \ar[two heads]{d}{f} & B \ar{r}{q} \ar{d}{g} & C \ar{d}{h} \\
@@ -30,7 +30,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     
     %Usikker på om dette beviset er riktig, jeg burde ha en måte å konstruere isomorfien på, ettersom at vi ønsker at analyse morfien skal være isomorfien, ikke at vi kan velge identiteten
     \begin{proof}
-        Since $(p,q)$ is a kernel-cokernel pair we have that the first square is bicartesian and the second square is a push-out.
+        Since $(p,q)$ is a kernel-cokernel pair one may see that the first simplex is bicartesian and the second simplex is a push-out.
         \begin{center}
             \begin{tikzcd}
             A \ar[tail]{r}{p} \ar{rd}{0} & B \ar[two heads]{d}{q} \\ & C
@@ -56,7 +56,7 @@ I can maybe write some of the history of the development of the idea of exact ca
         An exact structure for an additive category $\mathcal{A}$ is a class $\mathcal{E}$ of kernel-cokernel pairs which are closed under isomorphisms. A pair $(p,q):\mathcal{E}$ is called a conflation, here $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
         % Kan korte ned på antallet av aksiomer, jeg trenger ikke å ha op for alle, blir nok mer oversiktelig om jeg kobler noen sammen.
         \begin{itemize}
-            \item (QE0) $\forall A:\mathcal{A}$ $id_A$ is both an inflation and a deflation.
+            \item (QE0) $\forall A:\mathcal{A}$, $id_A$ is both an inflation and a deflation.
             \item (QE1) Both inflations and deflations are closed under composition.
             \item (QE2) The push-out of an inflation is an inflation.
             \item (QE2$^{op}$) The pull-back of a deflation is a deflation.
@@ -67,11 +67,11 @@ I can maybe write some of the history of the development of the idea of exact ca
 
 
     \begin{remark}
-        When writing diagrams we use decorated arrows to indicate that a morphism is either an inflation or a deflation. A tail with a circle means inflation: \begin{tikzcd}
+        Decorated arrows will be used when writing diagrams to indicate that a morphism is either an inflation or a deflation. A tail with a circle means inflation: \begin{tikzcd}
             A \ar[tail]{r}[marking]{\circ} & B
         \end{tikzcd}. Double heads with a circle means deflation: \begin{tikzcd}
             A \ar[two heads]{r}[marking]{\circ} & B
-        \end{tikzcd}. We can now rewrite the $(QE2^*)$ axioms as:
+        \end{tikzcd}. $(QE2^*)$ axioms can now be written as the diagrams below.
         \begin{center}
             \begin{tikzcd}
                 A \ar[tail]{r}[marking]{\circ} \ar{d} \ar[phantom]{dr}[very near end]{\lrcorner} & B \ar{d} \\
@@ -85,17 +85,18 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{remark}
 
     \begin{remark}
-        Inflations are also called admissable monomorphisms, deflations are also called admissable epimorphisms and conflations are also called short exact sequences.
+        In litterature, inflations are also referred to as admissable monomorphisms, and deflations are referred to as admissable epimorphisms while conflations are also called short exact sequences.
     \end{remark}
 
     \begin{remark}
-        The axioms for an exact category is made in such a way that $\mathcal{E}$ is an exact structure for $\mathcal{A}$ if and only if $\mathcal{E}^{op}$ is an exact structure for $\mathcal{A}^{op}$.
+        Observe that the axioms for an exact structure is self dual. This allows for reasoning with duality, as a category has an exact structure $(\mathcal{A},\mathcal{E})$ if and only if $(\mathcal{A}^{op},\mathcal{E}^{op})$ has an exact structure.
     \end{remark}
 
     \begin{remark}
-        There is a category of arrows and double arrows. For any category $\mathcal{C}$, there is a category $\mathcal{C}^{\rightarrow}=\mathcal{C}\downarrow\mathcal{C}$ and $\mathcal{C}^{\rightarrow\rightarrow}=\mathcal{C}\downarrow\mathcal{C}\downarrow\mathcal{C}$. If there is an additive category $\mathcal{A}$, then $\mathcal{A}^{\rightarrow}$ and $\mathcal{A}^{\rightarrow\rightarrow}$ are additive as well. It can be seen that $\mathcal{E}$ can be considered as an extension closed additive subcategory of $\mathcal{A}^{\rightarrow\rightarrow}$.
+        For any category $\mathcal{C}$, there is a category $\mathcal{C}^{\rightarrow}=\mathcal{C}\downarrow\mathcal{C}$ consisting of arrows and $\mathcal{C}^{\rightarrow\rightarrow}=\mathcal{C}\downarrow\mathcal{C}\downarrow\mathcal{C}$ consisting of pairs of composable arrows. If $\mathcal{A}$ is additive, then $\mathcal{A}^{\rightarrow}$ and $\mathcal{A}^{\rightarrow\rightarrow}$ are additive as well. It can be seen that $\mathcal{E}$ may be considered as an extension closed additive subcategory of $\mathcal{A}^{\rightarrow\rightarrow}$.
     \end{remark}
 
+    \todo[color = pink]{Har jeg lyst til å beholde disse eksemplene? Føler de faller litt flatt...}
     \begin{example}
         Any abelian category is exact with every short-exact sequence as the exact structure.
     \end{example}
@@ -115,7 +116,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{proof}
 
     \begin{remark}
-        It can be seen that isomorphisms are deflations. Let $f:A\rightarrow B$ be an isomorphism, then there are two kernel-cokernel pairs: $(0,id_A)$ and $(0,f)$. Between these there is an isomorphism which is the triple $(0,id_A,f^{-1})$. As the conflations are closed under isomorphism, $(0,f)$ is a conflation, making f into a deflation. By dualizing this argument f is also an inflation.
+        It can be seen that isomorphisms are deflations. Let $f:A\rightarrow B$ be an isomorphism, then there are two kernel-cokernel pairs: $(0,id_A)$ and $(0,f)$. Between these there is an isomorphism which is the triple $(0,id_A,f^{-1})$. As the conflations are closed under isomorphism, $(0,f)$ is a conflation, making f into a deflation. By dualizing this argument, $f$ is also an inflation.
         \begin{center}
             \begin{tikzcd}
                 0 \ar{r}{0} \ar{d}{0} & A \ar[tail, two heads]{r}{f} \ar{d}{id_A} & B \ar[tail, two heads]{d}{f^{-1}} \\
@@ -165,7 +166,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{corollary}
 
     \begin{proof}
-        We start with only considering the conflation $(i,p)$. $\forall{D}$ there is a conflation $(i\oplus id_D, p\oplus 0)$, drawn as the diagram.
+        Start by only considering the conflation $(i,p)$. For any $D:\mathcal{A}$ there is a conflation $(i\oplus id_D, p\oplus 0)$, drawn as the diagram.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 A\oplus D \ar[tail]{r}{\begin{pmatrix}i & 0 \\ 0 & 1\end{pmatrix}}[marking]{\circ} \& B\oplus D \ar[two heads]{r}{\begin{pmatrix}p & 0\end{pmatrix}}[marking]{\circ} \& C
@@ -177,7 +178,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 B\oplus D \ar[two heads]{r}{\begin{pmatrix}1 & 0\end{pmatrix}}[marking]{\circ} \& B \ar[two heads]{r}{p}[marking]{\circ} \& C
             \end{tikzcd}
         \end{center}
-        Thus it is seen that $(i\oplus id_D, p\oplus 0)$ is a conflation, and dually $(i\oplus 0, p\oplus id_D)$ is also a conflation. To finish off the proof it is seen that the morphism $i\oplus i'$ factors as $i\oplus id_{A'}\circ id_A\oplus i'$ asserting that it is an inflation by (QE1). By the dual argument we then get that the direct sum of conflations is a conflation.
+        Thus it is seen that $(i\oplus id_D, p\oplus 0)$ is a conflation, and dually $(i\oplus 0, p\oplus id_D)$ is also a conflation. To finish off the proof it is seen that the morphism $i\oplus i'$ factors as $i\oplus id_{A'}\circ id_A\oplus i'$, asserting that it is an inflation by (QE1). By dualizing the argument, one get that the direct sum of conflations is a conflation.
     \end{proof}
 
     \begin{definition}
@@ -218,7 +219,7 @@ I can maybe write some of the history of the development of the idea of exact ca
         \end{center}
     \end{prop}
 
-    Before the proof for this proposition will be presented a useful lemma will be proved first.
+    Before the proof for this proposition there will be presented a useful lemma, which will be proved first.
 
     \begin{lemma}
         Assume that there is a commutative square (1) and an associatied sequence (2). (1) is a push-out square if and only if $\begin{pmatrix}
@@ -240,7 +241,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{lemma}
 
     \begin{proof}
-        For any test object $T$ and two maps $t_1:B\rightarrow T$ and $t_2:C\rightarrow T$, we can construct the diagrams for the universal properties of both the cokernel and the push-out. It is seen that these diagrams are equivalent, proving the lemma.
+        For any test object $T$ and two maps $t_1:B\rightarrow T$ and $t_2:C\rightarrow T$, one may construct the diagrams for the universal properties of both the \todo[color=pink]{Hva prøver jeg å si her?}cokernel and the push-out. It is seen that these diagrams are equivalent, proving the lemma.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 A \ar{rd}{0} \ar{r}{\begin{pmatrix}i \\ -f\end{pmatrix}} \& B\oplus C \ar[two heads]{d}{\begin{pmatrix}g & j\end{pmatrix}} \ar[bend left]{rd}{\begin{pmatrix}t_1 & t_2\end{pmatrix}} \\
@@ -260,11 +261,11 @@ I can maybe write some of the history of the development of the idea of exact ca
             i \\ -j
         \end{pmatrix}$ is kernel of the morphism $\begin{pmatrix}
             p & q
-        \end{pmatrix}$. Thus we have that (1) is bicartesian (i.e. both a pull-back and a push-out) if and only if the morphisms make a kernel-cokernel pair.
+        \end{pmatrix}$. Thus it follows that (1) is bicartesian (i.e. both a pull-back and a push-out) if and only if the morphisms make a kernel-cokernel pair.
     \end{corollary}
 
     \begin{proof}
-        \textbf{of Proposition 3.3} 1. $\Rightarrow$ 2.: By the previous lemma we know that $\begin{pmatrix}
+        \textbf{of Proposition 3.3} 1. $\Rightarrow$ 2.: By the previous lemma it is known that $\begin{pmatrix}
             g & j
         \end{pmatrix}$ is the cokernel of $\begin{pmatrix}
             i \\ -j
@@ -289,13 +290,13 @@ I can maybe write some of the history of the development of the idea of exact ca
                 \end{pmatrix}}[marking]{\circ} \& B\oplus C
             \end{tikzcd}
         \end{center}
-        By corollary 3.2.1 the first map is an inflation, as the second map is an isomorphism it is also an inflation and the last map is the direct sum of two inflations. Thus the composite of all these maps surely is an inflation by (QE1), proving the first implication.
+        By corollary 3.2.1 the first map is an inflation, as the second map is an isomorphism it is also an inflation and the last map is the direct sum of two inflations. Thus the composite of all these maps is an inflation by (QE1), proving the first implication.
 
         2. $\Rightarrow$ 3.: This follows from corollary 3.4.1.
         
         3 $\Rightarrow$ 1.: This is by definition.
 
-        1. $\Rightarrow$ 4.: Let $p$ be the cokernel of $i$, then we can form the diagram below.
+        1. $\Rightarrow$ 4.: Let $p$ be the cokernel of $i$, then form the diagram below using the pushout property.
         \begin{center}
             \begin{tikzcd}
                 A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \ar[two heads, bend left]{rdd}{p}[marking]{\circ} \\
@@ -303,7 +304,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & & T
             \end{tikzcd}
         \end{center}
-        $p'$ is an epimorphism as $p=p'g$ is epi. To prove that $p'$ is the cokernel of $j$ we let $T'$ be another test object with a map $t':D\rightarrow T'$ such that $0 = t'j$. By doing some diagram chases we have that $0=t'jf=t'gi$, thus by the universal property of $p$ the morphism $t'g$ factors through $T$ such that $t'g=tp$ for some unique $t$. By rearranging we have that $t'g=tp'g=tp$, and $t'j=tp'j=0$, thus since $t'$ is the unique morphism satisfying this equation we demand that $t'=tp'$. $t$ is also unique, for if there exist another map $h$ such that $tp'=hp'$, then $t=h$ as $p'$ is epic. The unique existence proves the universal property, and $p'$ is the cokernel of $j$.
+        $p'$ is an epimorphism as $p=p'g$ is epi. To prove that $p'$ is the cokernel of $j$ let $T'$ be another test object with a map $t':D\rightarrow T'$ such that $0 = t'j$. By doing some diagram chases one may see that $0=t'jf=t'gi$, thus by the universal property of $p$ the morphism $t'g$ factors through $T$ such that $t'g=tp$ for some unique $t$. This shows that $t'g=tp'g=tp$, and $t'j=tp'j=0$. Since $t'$ is the unique morphism satisfying this equation we demand that $t'=tp'$. $t$ is also unique, for if there exist another map $h$ such that $tp'=hp'$, then $t=h$ as $p'$ is epic. The unique existence proves the universal property, and $p'$ is the cokernel of $j$.
         \begin{center}
             \begin{tikzcd}
                 A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \ar[two heads]{r}{p}[marking]{\circ} & T \ar[equal]{d} \\
@@ -311,8 +312,8 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & & T'
             \end{tikzcd}
         \end{center}
-
-        4. $\Rightarrow$ 2.: We start by taking the pullback of $p$ and $p'$ using $(QE2^{op})$, and determines the diagram with the dual statement of the last implication.
+ 
+        \todo{Hva skjer egentlig her?} 4. $\Rightarrow$ 2.: Start by taking the pullback of $p$ and $p'$ using $(QE2^{op})$. The diagrams below are determined by using the  dual statement of the last implication.
         \begin{center}
             \begin{tikzcd}
                 & A \ar[equal]{r} \ar[tail]{d}{i'}[marking]{\circ} & A \ar[tail]{d}{i}[marking]{\circ} \\
@@ -326,7 +327,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & D \ar[two heads]{r}{p'}[marking]{\circ} & T
             \end{tikzcd}
         \end{center}
-        From these diagrams we can deduce that $q'$ is a split-epimorphism. The composite $q'(id_E-kq')=q'-q'kq'=q'-q'=0$ as q' is split-epi, so $(id_E-kq')$ factors over $j'$ as in the following diagram.
+        From these diagrams one can see that $q'$ is a split-epimorphism. The composite $q'(id_E-kq')=q'-q'kq'=q'-q'=0$ as q' is split-epi, so $(id_E-kq')$ factors over $j'$ as in the following diagram.
         \begin{center}
             \begin{tikzcd}
                 E \ar[dashed]{rd}{l} \ar[bend left]{rrd}{id_E-kq'} \\
@@ -334,7 +335,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & & B
             \end{tikzcd}
         \end{center}
-        From these diagrams we can extract three different equations:
+        From these diagrams one may find three different equations:
         \begin{itemize}
             \item $0=k-k=k-kq'k=(id_E-kq')k=j'lk \implies lk=0$ as $j'$ is monic
             \item $j'lj'=(id_E-kq')j'=j'\implies lj'=id_C$ as $j'$ is monic
@@ -361,7 +362,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 id_B & 0 \\ 0 & id_C
             \end{pmatrix}$
         \end{itemize}
-        Thus we have an isomorphism of kernel-cokernel pairs $(id_A,,\begin{pmatrix}
+        Thus there is an isomorphism of kernel-cokernel pairs $(id_A,,\begin{pmatrix}
             q' \\ l
         \end{pmatrix}\begin{pmatrix}
             k & j'
@@ -387,7 +388,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 C \ar[tail]{r}{i}[marking]{\circ} & D \ar[two heads]{r}{p}[marking]{\circ} & C
             \end{tikzcd}
         \end{center}
-        $pe$ is a deflation by (QE1), and $i'$ is a mono as a limit of a mono is a mono. Our goal is to prove that $i'$ is the kernel of $pe$. Let T be a test object such that $pet=0$. Then we have that $te$ factorizes over $i$, such that we can apply the universal property of the pullback to factorize $te$ over $i'$. Uniqueness of $t'$ is achieved with $i'$ being monic. This proves that $(i',pe)$ is a conflation.
+        $pe$ is a deflation by (QE1), and $i'$ is a mono as a limit of a mono is a mono. The goal is to prove that $i'$ is the kernel of $pe$. Let T be a test object such that $pet=0$, then if follows that $te$ factorizes over $i$, such that we can apply the universal property of the pullback to factorize $te$ over $i'$. Uniqueness of $t'$ is achieved with $i'$ being monic. This proves that $(i',pe)$ is a conflation.
     \end{proof}
 
     \begin{theorem}
@@ -399,14 +400,14 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{proof}
 
     \begin{proof}
-        Let $p:B\rightarrow D$ be the cokernel of $i$. We start the proof with forming the push-out of $i$ and $ji$.
+        Let $p:B\rightarrow D$ be the cokernel of $i$. Start by forming the push-out of $i$ and $ji$.
         \begin{center}
             \begin{tikzcd}
                 A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{ji}[marking]{\circ} \ar{d}{i} & C \ar{d} \\
                 B \ar[tail]{r}[marking]{\circ} & E
             \end{tikzcd}
         \end{center}
-        By proposition 3.3 we get that $\begin{pmatrix}
+        By proposition 3.3 $\begin{pmatrix}
             i \\ ji
         \end{pmatrix}$ is an inflation. $\begin{pmatrix}
             i \\ 0
@@ -414,9 +415,9 @@ I can maybe write some of the history of the development of the idea of exact ca
             id_B & 0 \\ -j & id_C
         \end{pmatrix}\begin{pmatrix}
             i \\ ji
-        \end{pmatrix}$, this is an inflation by (QE1) as the 2x2 matrix is an isomorphism. Observer that the cokernel of this map is $\begin{pmatrix}
+        \end{pmatrix}$, this is an inflation by (QE1) as the 2x2 matrix is an isomorphism. Observe that the cokernel of this map is $\begin{pmatrix}
             k & 0 \\ 0 & id_C
-        \end{pmatrix}$. Our final trick will be to show that there is a pullback square, and then use (QE2) to say that k is a deflation.
+        \end{pmatrix}$. The final trick will be to show that there is a pullback square, and then use (QE2) to say that k is a deflation.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 T \ar[bend left]{rrd}{t_1} \ar[bend right]{ddr}[below]{\begin{pmatrix}t_2 \\ 0\end{pmatrix}} \ar[dashed]{rd}{t} \\
@@ -424,11 +425,11 @@ I can maybe write some of the history of the development of the idea of exact ca
                 \& B\oplus C \ar[two heads]{r}[below]{\begin{pmatrix}k & 0 \\ 0 & id_C\end{pmatrix}}[marking]{\circ} \& D\oplus C
             \end{tikzcd}
         \end{center}
-        Note that setting $t=t_2$ we get the universal property. This is well defined as $kt_2=t_1$ by assumption, thus $kt=t_1$. This is what we need to prove that the square is a pullback, proving the obscure axiom.
+        Note that setting $t=t_2$ one get the universal property. This is well defined as $kt_2=t_1$ by assumption, thus $kt=t_1$. This is what is needed to prove that the square is a pullback, proving the obscure axiom.
     \end{proof}
 
     \begin{remark}
-        Write a bit about the dual of the obscure axiom.
+        \todo{Skriv her om det obskure aksiomet} Write a bit about the dual of the obscure axiom.
     \end{remark}
 
     %Add the classical homological diagram lemmatas down here
@@ -441,7 +442,7 @@ I can maybe write some of the history of the development of the idea of exact ca
         A morphism of the conflations $(f,g,h):(p,q)\rightarrow (p',q')$ factors through the conflation 
         \begin{tikzcd}
             A \ar[tail]{r} & D \ar[two heads]{r} & C'
-        \end{tikzcd} such that we have the following diagram where $g = g_2g_1$.
+        \end{tikzcd} such that the following diagram exists, where $g = g_2g_1$.
         \begin{center}
             \begin{tikzcd}
                 A \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} & B \ar[two heads]{r}{q}[marking]{\circ} \ar{d}{g_1} & C \ar[equal]{d} \\
@@ -452,7 +453,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{lemma}
 
     \begin{proof}
-        Observe that the upper part of the diagram is made by taking a push-out of $p$ and $f$, where the right part is gained from proposition 3.3. Next we will combine the upper part with the lower part using the push-out property.
+        Observe that the upper part of the diagram is made by taking a push-out of $p$ and $f$, where the right part is gained from proposition 3.3. Combine the upper part with the lower part using the push-out property.
         \begin{center}
             \begin{tikzcd}
                 A \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} \ar[phantom]{rd}[very near end]{\lrcorner} & B \ar{d}{g_1} \ar[bend left]{rdd}{g} \\
@@ -465,7 +466,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
             \end{tikzcd}
         \end{center}
-        It remains to show that the lower right square is commutative, then we can apply the dual of proposition 3.3 to see that the square is bicartesian. Note that $q=cg_1$ by prop 3.3 thus $q'g_2g_1=q'g=hq=hcg_1$. By uniqueness of the push-out property we have that $hc=q'g_2$.
+        It remains to show that the lower right square is commutative, then use the dual of proposition 3.3 to see that the square is bicartesian. Note that $q=cg_1$ by prop 3.3 thus $q'g_2g_1=q'g=hq=hcg_1$. Uniqueness of the push-out property asserts that $hc=q'g_2$.
     \end{proof}
 
     \begin{corollary}
@@ -473,7 +474,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{corollary}
 
     \begin{proof}
-        Since $f$ is an isomorphism it is at least an inflation, thus $g_1$ is an inflation by (QE2). As colimits preserve epis, $g_1$ is also an epimorphism. by corollary 3.1.1 we know that $g_1$ is an iso, and dually that $g_2$ is an iso. Since isomorphisms are closed under composition we have that $g$ is an isomorphism. 
+        Since $f$ is an isomorphism it is at least an inflation, thus $g_1$ is an inflation by (QE2). As colimits preserve epis, $g_1$ is also an epimorphism. Corollary 3.1.1 states that $g_1$ is an iso, and dually that $g_2$ is an iso. Since isomorphisms are closed under composition it follows that $g$ is an isomorphism. 
         \begin{center}
             \begin{tikzcd}
                 A \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{r}{p}[marking]{\circ} \ar[tail]{d}{f}[rotate=90, above]{\simeq} & B \ar[two heads]{r}{q}[marking]{\circ} \ar[tail]{d}{g_1}[rotate=90, above]{\simeq}& C \ar[equal]{d} \\
@@ -495,13 +496,13 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{lemma}
 
     \begin{proof}
-        Assume that we only have the solid part of the diagram above. By the universal property of cokernels, the upper dashed map exists, and by the dual of proposition 3.3 the square is bicartesian. We can state that the upper dashed map is an inflation, and since the square is a push-out we get that the lower dashed map exists such that the final column is a conflation by proposition 3.3.
+        Assume that only the solid part of the diagram above exists. By the universal property of cokernels, the upper dashed map exists, and by the dual of proposition 3.3 the square is bicartesian. This infers that the upper dashed map is an inflation, and since the square is a push-out it follows that the lower dashed map exists such that the final column is a conflation by proposition 3.3.
     \end{proof}
 
 \section{The Stable Frobenis Category}
 
     \begin{definition}
-        Let $(\mathcal{A},\mathcal{E})$ and $(\mathcal{A}',\mathcal{E}')$ be two exact categories. A functor $F:(\mathcal{A},\mathcal{E})\rightarrow (\mathcal{A}',\mathcal{E}')$ is called exact if it is additive and $F(\mathcal{E})\subseteq \mathcal{E}'$. That is to say that conflations get mapped to conflations. One speaks of a reflective exact functor for whenever the pair $(Fp,Fq)$ is a conflation, then $(p,q)$ is a conflation.
+        Let $(\mathcal{A},\mathcal{E})$ and $(\mathcal{A}',\mathcal{E}')$ be two exact categories. A functor $F:(\mathcal{A},\mathcal{E})\rightarrow (\mathcal{A}',\mathcal{E}')$ is called exact if it is additive and $F(\mathcal{E})\subseteq \mathcal{E}'$. That is to say that conflations gets mapped to conflations. \todo[color = pink]{Fjern dette?} One speaks of a reflective exact functor for whenever the pair $(Fp,Fq)$ is a conflation, then $(p,q)$ is a conflation.
     \end{definition}
 
     \begin{definition}
@@ -513,11 +514,11 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{remark}
 
     \begin{remark}
-        The hom-functor is something that is called left-exact. That means that conflations gets mapped to sequences which is only exact in the two first terms.
+        The hom-functor is called left-exact. This means that conflations gets mapped to sequences which is only exact in the first two terms.
     \end{remark}
 
     \begin{prop}
-        Let $(\mathcal{A},\mathcal{E})$ be an exact ccategory. $P:\mathcal{A}$ is projective if and only if for every deflation $q:A\rightarrow B$ and morphism $f:P\rightarrow B$  there is a morphism $f':P\rightarrow A$ rendering the diagram below commutative.
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category. $P:\mathcal{A}$ is projective if and only if for every deflation $q:A\rightarrow B$ and morphism $f:P\rightarrow B$  there is a morphism $f':P\rightarrow A$ rendering the diagram below commutative.
         \begin{center}
             \begin{tikzcd}
                 & P \ar[dashed]{ld}[above]{f'} \ar{d}{f} \\
@@ -534,13 +535,13 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
         Pick $f:\mathcal{A}(P,C)$, since $q_*$ is a surjection there exists an $f':\mathcal{A}(P,B)$ such that $pf'=f$.
-        Now, suppose that $P$ has the diagram property and that $(p:A\rightarrow B,q:B\rightarrow C)$ is a conflation. Then there is an exact sequence in $\textbf{Ab}$ by $\mathcal{A}(P,\_)$.
+        Now, suppose that $P$ has the property described by the diagram in the proposition and that $(p:A\rightarrow B,q:B\rightarrow C)$ is a conflation, then there is an exact sequence in $\textbf{Ab}$ by $\mathcal{A}(P,\_)$.
         \begin{center}
             \begin{tikzcd}
                 0 \ar{r}{0} & \mathcal{A}(P,A) \ar[tail]{r}{p_*}& \mathcal{A}(P,B) \ar{r}{q_*} & \mathcal{A}(P,C)
             \end{tikzcd}
         \end{center}
-        To see that $q_*$ is a surjection and, let $f:P\rightarrow C$. As $q$ is a deflation there exists an $f':P\rightarrow B$ such that $q_*(f')=f$. Thus the sequence above is short exact and $P$ is projective. 
+        To see that $q_*$ is a surjection, let $f:P\rightarrow C$. As $q$ is a deflation there exists an $f':P\rightarrow B$ such that $q_*(f')=f$. Thus the sequence above is short exact and $P$ is projective. 
     \end{proof}
 
     \begin{corollary}
@@ -551,26 +552,36 @@ I can maybe write some of the history of the development of the idea of exact ca
         Two objects $P$ and $Q$ are projective if and only if $P\oplus Q$ is projective.
     \end{corollary}
 
+    \begin{corollary}
+        $I:\mathcal{A}$ is injective if and only if for every inflation $p:B\rightarrow A$ and morphism $g:B\rightarrow I$ there is a morphism $g':A\rightarrow I$ rendering the diagram below commutative.
+        \begin{center}
+            \begin{tikzcd}
+                & I \\
+                A \ar[dashed]{ru}{g'} & B \ar[tail]{l}{p}[marking]{\circ} \ar{u}{f}
+            \end{tikzcd}
+        \end{center}
+    \end{corollary}
+
     \begin{definition}
-        A category $(\mathcal{A}, \mathcal{E})$ has enough projective objects if for any object $A:\mathcal{A}$ there is a projective object $P$ along with a deflation $q:P\rightarrow A$.
+        A category $(\mathcal{A}, \mathcal{E})$ has enough projective objects if for any object $A:\mathcal{A}$ there is a projective object $P$ along with a deflation $q:P\rightarrow A$. Dually, it has enough injective objects if for any object $A:\mathcal{A}$ there is an injective object $I$ along with an inflation $p:A\rightarrow I$.
     \end{definition}
 
     \begin{definition}
         An exact category is called a Frobenius category if it has enough projective and injective objects and the class of projective objects coincide with the injective objects.
     \end{definition}
 
-    From the Frobenius categories, one can construct the stable Frobenius category where every morphism factoring through an injective will be identified. These stable categories will give rise to a class of categories called the algebraic triangulated categories. In order to construct the stable Frobenius category we will use the construction of the quotient category.
+    \todo[color = pink]{Kan jeg skrive dette avsnittet bedre?} From the Frobenius categories, one can construct the stable Frobenius category where every morphism factoring through an injective will be identified. These stable categories will give rise to a class of categories called the algebraic triangulated categories. In order to construct the stable Frobenius category we will use the construction of the quotient category.
 
     \begin{definition}
-        A congruence relation $\sim$ on a category $\mathcal{C}$ is a relation on the homsets, such that:
+        A congruence relation $\sim$ on a category $\mathcal{C}$ is a relation on the hom-sets, such that:
         \begin{enumerate}
             \item $\forall A,B:\mathcal{C}$ the relation $\sim_{A,B}$ is an equivalence relation.
-            \item Given that $f,f':A\rightarrow B$ is related ($f\sim f'$) and morphisms $g:A'\rightarrow A$ and $h:B\rightarrow B'$, then $hgf\sim hf'g$.
+            \item Given that $f,f':A\rightarrow B$ is related ($f\sim f'$) and morphisms $g:A'\rightarrow A$ and $h:B\rightarrow B'$, then $hfg\sim hf'g$.
         \end{enumerate}
     \end{definition}
 
     \begin{prop}
-        Let $\mathcal{C}$ be a category and $\sim$ be a congruence relation. Then there is a universal category $\mathcal{C}/\sim$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}/\sim$ such that morphisms $f,g:A\rightarrow B$ are identified if $f\sim g$. Universality means that if there is a functor $H:\mathcal{C}\rightarrow \mathcal{D}$ such that $Hf=Hg$ for any $f,g$ such that $f\sim g$, then H factors uniquely through $\mathcal{C}/\sim$.
+        Let $\mathcal{C}$ be a category and $\sim$ be a congruence relation. Then there is a universal category $\mathcal{C}/\sim$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}/\sim$ such that morphisms $f,g:A\rightarrow B$ are identified if $f\sim g$. Universality means that if there is a functor $H:\mathcal{C}\rightarrow \mathcal{D}$ such that $Hf=Hg$ for any $f,g$ if$f\sim g$, then H factors uniquely through $\mathcal{C}/\sim$.
     \end{prop}
 
     \begin{proof}
@@ -593,7 +604,7 @@ I can maybe write some of the history of the development of the idea of exact ca
             \item (subgroup) for every abelian group $\mathcal{A}(A,B)$ there is a subgroup $\mathcal{I}(A,B)\subseteq\mathcal{A}(A,B)$.
             \item (absorption) For every $g:A'\rightarrow A$, $h:B\rightarrow B'$ and $f:\mathcal{I}(A,B)$ we have that $hfg:\mathcal{I}(A',B')$
         \end{enumerate}
-        This is equivalent of saying that the equivalence relation gained from $\mathcal{I}(A,B)$ ($f\sim g \iff f-g:\mathcal{I}(A,B)$) is a congruence relation.
+        This is equivalent of saying that the equivalence relation gained from $\mathcal{I}(A,B)$ \todo[color = pink]{Denne ser rar ut i typesetting}($f\sim g \iff f-g:\mathcal{I}(A,B)$) is a congruence relation.
     \end{definition}
 
     \begin{corollary}
@@ -607,7 +618,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{prop}
 
     \begin{proof}
-        To prove this we have to show that $\mathcal{I}(A,B)$ is a subgroup for any $A,B:\mathcal{A}$, and that it is absorptive.
+        To prove this one must show that $\mathcal{I}(A,B)$ is a subgroup for any $A,B:\mathcal{A}$, and that it is absorptive.
         First observe that $0:\mathcal{I}(A,B)$. Let $f,g:\mathcal{I}(A,B)$. Since $\mathcal{A}$ has enough injectives there exists an injective object with an inflation from $A$.
         \begin{center}
             \begin{tikzcd}
@@ -623,7 +634,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     Objects in the stable Frobenius category is denoted as $\underline{X}$ and morphisms are denoted as $\underline{f}$. That is the functor $q:\mathcal{A}\rightarrow\underline{\mathcal{A}}$ is defined as $q(X)=\underline{X}$ and $q(f)=\underline{f}$. One important property is that in the stable Frobenius category, taking syzygies or cozysigies is a functor.
 
     \begin{definition}
-        A syzygy of an object $X$, if it exists, is denoted $\Omega X$. The syzygy is the defined to be the kernel object of a deflation $p:P\rightarrow X$, where $P$ is projective. A cosyzygy, denoted as \upside{$\Omega$}$X$ is defined to be the cokernel of an inflation $i:X\rightarrow I$, where $I$ is injective.
+        A syzygy of an object $X$, if it exists, is denoted $\Omega X$. The syzygy is defined to be the kernel object of a deflation $p:P\rightarrow X$, where $P$ is projective. A cosyzygy, denoted as \upside{$\Omega$}$X$ is defined to be the cokernel of an inflation $i:X\rightarrow I$, where $I$ is injective.
     \end{definition}
 
     \begin{remark}
@@ -641,14 +652,14 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{lemma}
 
     \begin{proof}
-        Observe that with the diagram we can find morphisms as $I$ and $J$ are injective.
+        Observe that there are morphisms in the diagram as $I$ and $J$ are injective.
         \begin{center}
             \begin{tikzcd}
                 X \ar{dr}{j} \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & I \ar[dashed]{d}{f} \\
                 X \ar[tail]{r}{j}[marking]{\circ} & J
             \end{tikzcd}
         \end{center}
-        By iterating this we get the following commutative diagram in $\mathcal{A}$.
+        The commutative diagram below is created by the cokernel property.
         \begin{center}
             \begin{tikzcd}
                 X \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & I \ar[two heads]{r}{i'}[marking]{\circ} \ar{d}{f} & X' \ar[dashed]{d}{g} \\
@@ -656,7 +667,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 X \ar[tail]{r}{i}[marking]{\circ} & I \ar[two heads]{r}{i'}[marking]{\circ} & X'
             \end{tikzcd}
         \end{center}
-        By chasing the diagram we get that $i-f'fi=(id_I-f'f)\circ i = 0$, this means that $(f'f-id_I)$ factors through $X'$, i.e. there exists $h:X'\rightarrow I$ and $f'f = hi'+id_I$. We also have that $g'gi' = i'f'f = i'(hi' +id_I) = i'hi' + i' = (i'h+id_{X'})i'$. As $i'$ is an epi we get that $g'g = i'h + id_{X'} \implies \underline{g'g}=id_{\underline{X}'}$ as $i'h$ factors through $I$. $\underline{gg'}=id_{\underline{X}''}$ is dual.
+    A diagram chase shows that $i-f'fi=(id_I-f'f)\circ i = 0$. This means that $(f'f-id_I)$ factors through $X'$, i.e. there exists $h:X'\rightarrow I$ and $f'f = hi'+id_I$. Diagram chasing also reveals that $g'gi' = i'f'f = i'(hi' +id_I) = i'hi' + i' = (i'h+id_{X'})i'$. As $i'$ is an epi one obtains that $g'g = i'h + id_{X'} \implies \underline{g'g}=id_{\underline{X}'}$ as $i'h$ factors through $I$. $\underline{gg'}=id_{\underline{X}''}$ is dual.
     \end{proof}
 
     \begin{corollary}
@@ -664,7 +675,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{corollary}
 
     \begin{proof}
-        Let $f:X\rightarrow Y$ be a morphism in $\mathcal{A}$. Then we have the following diagrams representing the different choices of syzygies.
+        Let $f:X\rightarrow Y$ be a morphism in $\mathcal{A}$. Then the following diagrams representing the different choices of syzygies.
         \begin{center}
             \begin{tikzcd}
                 X \ar{d}{f} \ar{r}{i} & I \ar{r}{p} \ar[dashed]{d} & \rotatebox[origin=c]{180}{$\Omega$}X \ar[dashed]{d}{\rotatebox[origin=c]{180}{$\Omega$}f} \\
@@ -675,7 +686,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 Y \ar{r}{j'} & J' \ar{r}{q'} & \rotatebox[origin=c]{180}{$\Omega$}'Y
             \end{tikzcd}
         \end{center}
-        By the previous proof we know there are maps between the diagrams making an almost commutative diagram where all the outer squares commute.
+        By the previous proof there are maps between the diagrams making an almost commutative diagram where all the outer squares commute.
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 X \ar{dddd}{f} \ar[equal]{rd}[above, pos=0.8]{\alpha (X)} \ar[tail]{rr}[marking]{\circ}[near start]{i} & & I \ar{rd}[above, pos=0.8]{\beta (X)} \ar[two heads]{rr}[marking]{\circ}[near start]{p} \ar[dashed]{dddd}{If} & &\rotatebox[origin=c]{180}{$\Omega$}X \ar{rd}[above, pos=0.8]{\gamma (X)} \ar[dashed]{dddd}{\rotatebox[origin=c]{180}{$\Omega$}f} \ar[dashed, squiggly]{lddddd}{\chi}\\
@@ -686,11 +697,11 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & Y \ar[tail]{rr}[marking]{\circ}[near start]{j'} && J' \ar[two heads]{rr}[marking]{\circ}[near start]{q'} && \rotatebox[origin=c]{180}{$\Omega$}'Y
             \end{tikzcd}
         \end{center}
-        To see that the definition of the cosyzygy is well defined is to show that the inner squares is commutative in the quotient category.
+        To see that the definition of the cosyzygy is well defined is to show that the inner squares is commutative in the quotient category, i.e. that the diagram commutes in the quotient.
         
-        Observe that the inner square commutes by definition, and that the central inner square commutes in the quotient as every morphism gets related to $0$. Thus it remains to show that \underline{$\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f$}$=$\underline{\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$}, which is the same as to say that $\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$ factors over an injective.
+        Observe that the left inner square commutes by definition, and that the central inner square commutes in the quotient as every morphism gets related to $0$. Thus it remains to show that \underline{$\gamma (Y)$}$\circ$\underline{\rotatebox[origin=c]{180}{$\Omega$}$f$}$=$\underline{\rotatebox[origin=c]{180}{$\Omega$}$'f$}$\circ$\underline{$\gamma (X)$}, which is the same as to say that $\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$ factors over an injective.
 
-        By doing a diagram chase in the left cube one may find the following equation $(I'f\circ \beta(X)-\beta (Y)\circ If)i=0$. This means that the map $I'f\circ \beta(X)-\beta (Y)\circ If$ factors through the cokernel of $i$ as $\chi p$. By chasing the right cube we get the following equation $q'\chi p = (\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X))p$, thus $q'\chi =$$\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$.
+        By doing a diagram chase in the left cube one may find the following equation $(I'f\circ \beta(X)-\beta (Y)\circ If)i=0$. This means that the map $I'f\circ \beta(X)-\beta (Y)\circ If$ factors through the cokernel of $i$ as $\chi p$. By chasing the right cube one may assert the equation $q'\chi p = (\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X))p$, thus $q'\chi =$$\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$.
     \end{proof}
 
     \begin{corollary}
@@ -698,22 +709,22 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{corollary}
 
     \begin{proof}
-        The goal is to show that there is a natural isomorphisms \underline{$\Omega$\upside{$\Omega$}}$\simeq Id_{\underline{\mathcal{A}}}$ and \underline{\upside{$\Omega$}$\Omega$}$\simeq Id_{\underline{\mathcal{A}}}$. Note that since these are inverse operations we have that taking syzygy then cosyzygy is the same as taking cosyzygy then syzygy in $\mathcal{A}^{op}$.
-        Let $X:\mathcal{A}$, then we want to show that the following diagram gives a natural isomorphism at the rightmost arrow in $\underline{\mathcal{A}}$.
+        The goal is to show that there is a natural isomorphisms $\Omega$\upside{$\Omega$}$\simeq Id_{\underline{\mathcal{A}}}$ and \upside{$\Omega$}$\Omega\simeq Id_{\underline{\mathcal{A}}}$. As these are inverse operations one have that taking syzygy then cosyzygy is the same as taking cosyzygy then syzygy in $\mathcal{A}^{op}$.
+        Let $X:\mathcal{A}$, the goal is to show that the following diagram gives a natural isomorphism at the rightmost arrow in $\underline{\mathcal{A}}$.
         \begin{center}
             \begin{tikzcd}
                 \Omega X \ar{r} \ar[equal]{d} & P \ar[dashed]{d} \ar{r} & X \ar[dashed]{d} \\
                 \Omega X \ar{r} & I \ar{r} & \upside{$\Omega$}\Omega X
             \end{tikzcd}
         \end{center}
-        Observe that this case is identical as the one proved previous. Thus there is a natural isomorphism from $X$ to \upside{$\Omega$}$\Omega$X.
+        Observe that this case is identical as the one previous proved. This shows that there is a natural isomorphism from $X$ to \upside{$\Omega$}$\Omega$X.
     \end{proof}
 
     \begin{remark}
-        A subtle, but important point is that the category $\mathcal{A}$ has enough projectives and injectives. This enables us to find the syzygies and cozysigies. It is also important that the projectives are the same as the injectives for this construction to give the isomorphisms as well.
+        A subtle, but important \todo[color = pink]{Bedre ord?} point is that the category $\mathcal{A}$ has enough projectives and injectives. This enables us to find the syzygies and cozysigies. It is also important that the projectives are the same as the injectives for this construction to give the isomorphisms as well.
     \end{remark}
 
-    The triangulation of $\underline{\mathcal{A}}$ will be defined as the set of icandidate triangles in $\underline{\mathcal{A}}$ called standard triangles. Let $\underline{x}:\underline{X}\rightarrow\underline{Y}$ be a morphism, then by (QE2) there is a pushout in $\mathcal{A}$. Moreover, by Proposition 3.3 $(y,z)$ is a conflation.
+    \todo{Dette kommer for brått} The triangulation of $\underline{\mathcal{A}}$ will be defined as the set of candidate triangles in $\underline{\mathcal{A}}$ called standard triangles. Let $\underline{x}:\underline{X}\rightarrow\underline{Y}$ be a morphism, then by (QE2) there is a pushout in $\mathcal{A}$. Moreover, by Proposition 2.1.3 $(y,z)$ is a conflation.
 
     \begin{minipage}[c]{0.6\textwidth}
         \begin{center}
@@ -733,7 +744,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{prop}
 
     \begin{proof}
-        I will give a sketch of how to prove this proposition. Most of the details will be omitted, and they can be found in \cite{Mat20} or \cite{May01}. In order to complete the proof we need to show the three defining axioms for a triangulated category, namely TR1, TR2 and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see the final part of TR1 is to observe that the following diagram is a pushout.
+        I will give a sketch of how to prove this proposition. Most of the details will be omitted, and they can be found in \cite{happel} or \cite{May01}. The proof is structured in 3 different parts, namely showing TR1, TR2 and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see this observe that the following diagram is a pushout.
         \begin{center}
             \begin{tikzcd}[row sep=large]
                 X \ar[equal]{r}{} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} & X \ar[tail]{d}{i}[marking]{\circ} \\
@@ -768,9 +779,9 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & I(Y) \ar{r}{p(Y)} & \rotatebox[origin=c]{180}{$\Omega$}Y
             \end{tikzcd}
         \end{center}
-        From (2) we are able to use the pushout to see that the lower right square commutes, that is the lower right square commute if $p(Y)fi(X)=$\rotatebox[origin=c]{180}{$\Omega$}$xzyz=0$. This is true as $p(Y)fi(X)=p(Y)gyx=p(Y)i(Y)x=0$ by (1). Note that since $z$ and $p(Y)$ is a deflation with equal kernels, Proposition 3.3 says that $(\begin{pmatrix}g \\ z\end{pmatrix},\begin{pmatrix}p(Y) & -\rotatebox[origin=c]{180}{$\Omega$}x\end{pmatrix})$ is a conflation. 
+        From (2) one are able to use the pushout to see that the lower right square commutes, that is $p(Y)fi(X)=$\rotatebox[origin=c]{180}{$\Omega$}$xzyz=0$. This is true as $p(Y)fi(X)=p(Y)gyx=p(Y)i(Y)x=0$ by (1). Note that since $z$ and $p(Y)$ are deflations with equal kernels, Proposition 3.3 says that $(\begin{pmatrix}g \\ z\end{pmatrix},\begin{pmatrix}p(Y) & -\rotatebox[origin=c]{180}{$\Omega$}x\end{pmatrix})$ is a conflation. 
 
-        We are able to find a commutative diagram and by Proposition 3.3 we are able to say that the upper left square is bicartesian.
+        One is now able to find a commutative diagram and by Proposition 3.3, say that the upper left square is bicartesian.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 Y \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{d}{i(Y)}[marking]{\circ} \ar[tail]{r}{y}[marking]{\circ} \& Z \ar[tail]{d}{\begin{pmatrix}g \\ z\end{pmatrix}}[marking]{\circ} \ar[two heads]{r}{z}[marking]{\circ} \& \rotatebox[origin=c]{180}{$\Omega$}X \ar[equal]{d} \\
@@ -799,7 +810,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 \upside{$\Omega$}X \ar[equal]{r} & \upside{$\Omega$}X
             \end{tikzcd}
         \end{center}
-        By Noethers isomorphism lemma there is a conflation passing through on the right column and the middle square is bicartesian. $z'$ exists by the injectivity of $I(Y)$ and that $i$ is an inflation. $z'$ is an inflation as $y$ is an inflation, thus $\bar{z'}$ exists.
+        \todo{Er dette riktig?} By Noethers isomorphism lemma there is a conflation passing through on the right column and the middle square is bicartesian. $z'$ exists by the injectivity of $I(Y)$ and that $i$ is an inflation. $z'$ is an inflation as $y$ is an inflation, thus $\bar{z'}$ exists.
         \begin{center}
             \begin{tikzcd}
                 Y \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & Z' \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{d}{z'}[marking]{\circ} \ar[two heads]{r}{i'}[marking]{\circ} & \upside{$\Omega$}X \ar[tail, dashed]{d}{s}[marking]{\circ} \\
@@ -807,7 +818,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & \upside{$\Omega$}Z' \ar[equal]{r} & \upside{$\Omega$}Z'
             \end{tikzcd}
         \end{center}
-        There is also a map $I_\upsilon:I(X)\rightarrow (Y)$ induced by the maps between $X$ and $I(Y)$. By using the following universal properties we can find the unique maps $f$ and $g$.
+        There is also a map $I_\upsilon:I(X)\rightarrow I(Y)$ induced by the maps between $X$ and $I(Y)$. By using the following universal properties one may find the unique maps $f$ and $g$.
         \begin{center}
             \begin{tikzcd}
                 X \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{\upsilon} \ar[bend left]{rr}{\omega} \ar{d}{x} & Y \ar{d}{i} \ar{r}{\nu} & Z \ar{dd}{k} \\
@@ -820,7 +831,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & I(Y) \ar[bend right]{r}{\bar{\nu}}& X'
             \end{tikzcd}
         \end{center}
-        These maps can be arranged in the following diagram. It can be seen that middle square is a pushout, by using the fact that the upper left square and the larger rectangles are pushouts.
+        These maps can be arranged in the diagram below. It can be seen that middle square is a pushout, by using the fact that the upper left square and the larger rectangles are pushouts.
         \begin{center}
             \begin{tikzcd}
                 X \ar{r}{\upsilon} \ar{d}{x} \ar[phantom]{rd}[very near end]{\lrcorner} & Y \ar{r}{\nu} \ar{d}{i} & Z \ar{d}{k} \\
@@ -834,14 +845,14 @@ I can maybe write some of the history of the development of the idea of exact ca
                 \upside{$\Omega$}Z' \ar[equal]{r} & \upside{$\Omega$}Z'
             \end{tikzcd}
         \end{center}
-        Thus $(\underline{Z'},\underline{Y'},\underline{X'},\underline{f},\underline{g},$\underline{\upside{$\Omega$}$i\circ j'$}$)$ is a triangle. 
+        Thus $(\underline{Z'},\underline{Y'},\underline{X'},\underline{f},\underline{g},$\underline{\upside{$\Omega$}$i$}$\circ$\underline{$ j'$}$)$ is a triangle. 
     \end{proof}
 
     \begin{remark}
         A more detailed and different proof may be found in \cite{Hol12} or \cite{Mat20}.
     \end{remark}
 
-    This construction of triangles givves a close relation to conflations. That is, if there is a conflation $(p:X\rightarrow Y,q:Y\rightarrow Z)$, then there is a triangle $(\underline{X},\underline{Y},\underline{Z},\underline{p},\underline{q},-\underline{r})$ constructed as follows. Let $P:\mathcal{A}$ be a projective object with a deflation $\bar{p}:P\rightarrow Y$. Then there exists a pullback (1), moreover the pullback square is bicartesian. By using TR2 one may find the triangle (2) as indicated in the diagram.
+    This construction of triangles admits a close relation to conflations. If there is a conflation $(p:X\rightarrow Y,q:Y\rightarrow Z)$, then there is a triangle $(\underline{X},\underline{Y},\underline{Z},\underline{p},\underline{q},-\underline{r})$ constructed as follows: Let $P:\mathcal{A}$ be a projective object with a deflation $\bar{p}:P\rightarrow Y$, then there exists a pullback (1), moreover the pullback square is bicartesian. By using TR2 one may find the triangle (2) as indicated in the diagram.
     \begin{center}
         (1)
         \begin{tikzcd}
@@ -888,10 +899,10 @@ I can maybe write some of the history of the development of the idea of exact ca
     Detailed proofs of these statements can be found in \cite{Rei95}.
 
     \begin{proof}
-        Suppose that $\Lambda$ is self-injective. By the lemmas above we know that $mod_{\Lambda}$ has enough projectives and enough injectives. It remains to show that the class of injectives coincide with the projectives. Since every indecomposable $\Lambda$ module is a summand of $\Lambda$ up to isomorphism, we have that they are injective. As they also are projective, we have that the class of injectives and projectives coincide.
+        Suppose that $\Lambda$ is self-injective. By the lemmas above it is known that $mod_{\Lambda}$ has enough projectives and enough injectives. It remains to show that the class of injectives coincide with the projectives. Since every indecomposable $\Lambda$ module is a summand of $\Lambda$ up to isomorphism, it follows that they are injective. As they also are projective, the class of injectives and projectives coincide.
     \end{proof}
 
-    This shows that $mod_{\Lambda}$ is a Frobenius category, thus \underline{$mod_{\Lambda}$} is triangulated. The triangles in \underline{$mod_{\Lambda}$} are the quotients of every short exact sequence in $mod_{\Lambda}$. Note that the map $c$ can be further described by the snake lemma.
+    This shows that $mod_{\Lambda}$ is a Frobenius category, thus \underline{$mod_{\Lambda}$} is triangulated. The triangles in \underline{$mod_{\Lambda}$} are the quotients of every short exact sequence in $mod_{\Lambda}$.
     \begin{center}
         \begin{tikzcd}
             0 \ar{r}{} & X \ar[tail]{r}{a} & Y \ar[two heads]{r}{b} & Z \ar{r}{} & 0 
@@ -902,9 +913,9 @@ I can maybe write some of the history of the development of the idea of exact ca
         \end{tikzcd}
     \end{center}
 
-    % \begin{prop}
-    %     Let $G$ be a group, then the group ring $R[G]$ for any artinian ring $R$ is self-injective.
-    % \end{prop}
+    \begin{prop}
+        Let $G$ be a group and $R$ any commutative artin ring, then the group ring $R[G]$ is self-injective.
+    \end{prop}
 
     % \begin{proof}
     %     Do I even want this?
@@ -922,7 +933,7 @@ I can maybe write some of the history of the development of the idea of exact ca
 
     Observe that every submodule of $K[x]/(x^n)$ is indecomposable, these make up the class of the indecomposable modules up to isomorphism. Further observe that the cosyzygy of any submodule is \upside{$\Omega$}$(x^k)/(x^n)\simeq (x^{n-k})/(x^n)$. The repetition of the triangles can be seen as the natural isomorphism \upside{$\Omega$}$^2(x^k)/(x^n)\simeq (x^{n-(n-k)})/(x^n) = (x^k)/(x^n)$.
 
-    To find the triangles we let $A,B:mod_{K[x]/(x^n)}$ and $T:A\rightarrow B$ be $K[x]/(x^n)$-linear. Then $T$ is in the same equivalence class as $\begin{pmatrix} T \\ -i \end{pmatrix}:A\rightarrow B\oplus I$ with $i$ as the injective envelope of $A$. Then there is a triangle as the diagram below:
+    To find the triangles, let $A,B:mod_{K[x]/(x^n)}$ and $T:A\rightarrow B$ be $K[x]/(x^n)$-linear. $T$ is in the same equivalence class as $\begin{pmatrix} T \\ -i \end{pmatrix}:A\rightarrow B\oplus I$ with $i$ as the injective envelope of $A$. Then there is a triangle as the diagram below.
 
     \begin{center}
         \begin{tikzcd}
@@ -937,7 +948,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{lemma}
 
     \begin{proof}
-        This follows immediately from the discussion above. Look at $mod_{K[x]/(x^2)}$, the indecomposable objects of this category are $K[x]/(x^2)$ and $K$ up to isomorphism. As $K[x]/(x^2)$ is injective we have that $K$ is the only indecomposable object of \underline{$mod_{K[x]/(x^2)}$}, thus every object is a direct summand $K$. Also observe that the cosyzygy is naturally isomorphic to the identity functor on the quotient. In order to be precise, one would need to show that there is an equivalence of categories $Vect(K)\simeq mod_{K[x]/(x^2)}$. The triangles in $Vect(K)$ can then be seen as this three term repeating triangle.
+        \todo{fremhev at dette er en sketch av et bevis} This follows immediately from the discussion above. Look at $mod_{K[x]/(x^2)}$, the indecomposable objects of this category are $K[x]/(x^2)$ and $K$ up to isomorphism. As $K[x]/(x^2)$ is injective we have that $K$ is the only indecomposable object of \underline{$mod_{K[x]/(x^2)}$}, thus every object is a direct summand $K$. Also observe that the cosyzygy is naturally isomorphic to the identity functor on the quotient. In order to be precise, one would need to show that there is an equivalence of categories $Vect(K)\simeq mod_{K[x]/(x^2)}$. The triangles in $Vect(K)$ can then be seen as this three term repeating triangle.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 V \ar{r}{T} \& W \ar{r}{\begin{pmatrix} \pi_T \\ 0 \end{pmatrix}} \& CokT\oplus KerT \ar{r}{\begin{pmatrix} 0 & \iota_T \end{pmatrix}} \& V
@@ -945,10 +956,10 @@ I can maybe write some of the history of the development of the idea of exact ca
         \end{center}
     \end{proof}
 
-    Suppose now that $\Lambda$ is not a self-injective artin $R$-algebra, then there is an extension to this ring which makes it self injective.
+    \todo[color = pink]{Fjern dette?} Suppose now that $\Lambda$ is not a self-injective artin $R$-algebra, then there is an extension to this ring which makes it self injective.
 
     \begin{definition}
-        Let $\Lambda$ be an artin $R$-algebra. There is an associated product called the semi-direct proudct with this ring and it's dual. That is we define $\Lambda \rtimes Hom_R(\Lambda,J)$ to have the elements $(\lambda, \phi)$, where $\lambda:\Lambda$ and $\phi:\Lambda\rightarrow J$. Let $(\lambda, \phi)$ and $(\mu, \psi)$ be two elements in this set. We define $(\lambda, \phi) + (\mu, \psi) = (\lambda + \mu, \phi + \psi)$ and $(\lambda, \phi)(\mu, \psi) = (\lambda\mu, \lambda\cdot\psi + \phi\cdot\mu)$, where $\lambda\phi (\chi)\mu = \phi(\lambda\chi\mu)$.
+        Let $\Lambda$ be an artin $R$-algebra. There is an associated product called the semi-direct proudct with this ring and it's dual. Define $\Lambda \rtimes Hom_R(\Lambda,J)$ to have the elements $(\lambda, \phi)$, where $\lambda:\Lambda$ and $\phi:\Lambda\rightarrow J$. Let $(\lambda, \phi)$ and $(\mu, \psi)$ be two elements in this set. Set $(\lambda, \phi) + (\mu, \psi) = (\lambda + \mu, \phi + \psi)$ and $(\lambda, \phi)(\mu, \psi) = (\lambda\mu, \lambda\cdot\psi + \phi\cdot\mu)$, where $\lambda\phi (\chi)\mu = \phi(\lambda\chi\mu)$.
     \end{definition}
 
     \begin{prop}
@@ -961,7 +972,7 @@ I can maybe write some of the history of the development of the idea of exact ca
 
 \section{The Homotopy Category}
     
-    The next example of a triangulated category is something which is referred to as \emph{the} triangulated category. The homotopy category is the category which may be regarded as the prototype for every triangulated category. It can be defined with the following category.
+    The next example of a triangulated category is something which is referred to as \todo[color = pink]{Gir denne dramatikken så mye mening?} \emph{the} triangulated category. The homotopy category is the category which may be regarded as the prototype for every triangulated category. It can be defined with the following category.
 
     \begin{definition}
         Let $\mathcal{A}$ be an additive category. Define $Ch(\mathcal{A})$ to be the category of diagrams in $\mathcal{A}$ on the form
@@ -970,7 +981,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 ... \ar{r}{d^{-2}_{\chain{A}}} & A^{-1} \ar{r}{d^{-1}_{\chain{A}}} & A^0 \ar{r}{d^0_{\chain{A}}} & A^1 \ar{r}{d^1_{\chain{A}}} & ...
             \end{tikzcd}
         \end{center}
-        such that $d^i_{\chain{A}}\circ d^{i-1}_{\chain{A}}=0$ for every $i:\{-\infty,...,\infty\}$. These objects are reffered to as (co)chain complexes and they are denoted as $\chain{A}$, and the maps in the objects are called differential/(co)boundaries. A morphism $\chain{\phi} : \chain{A}\rightarrow \chain{B}$ between (co)chain complexes (also called chain map) is a collection of morphisms from $\mathcal{A}$, such that the morphisms commute with the differentials in the following manner
+        such that $d^i_{\chain{A}}\circ d^{i-1}_{\chain{A}}=0$ for every $i:\{-\infty,...,\infty\}$. These objects are reffered to as (co)chain complexes and they are denoted as $\chain{A}$, and the maps in the objects are called differentials/(co)boundaries. A morphism $\chain{\phi} : \chain{A}\rightarrow \chain{B}$ between (co)chain complexes, also called chain map, is a collection of morphisms from $\mathcal{A}$, such that the morphisms commute with the differentials in the following manner:
         \begin{center}
             \begin{tikzcd}
                 ... \ar{r}{d^{-2}_{\chain{A}}} & A^{-1} \ar{d}{\phi^{-1}} \ar{r}{d^{-1}_{\chain{A}}} & A^0 \ar{r}{d^0_{\chain{A}}} \ar{d}{\phi^0} & A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{\phi^1} & ... \\
@@ -984,7 +995,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{remark}
 
     \begin{remark}
-        On the category of cochain complexes there is an additive autoequivalence called the translation functor. The functor is denoted as $(\_)[1]:Ch(\mathcal{A})\rightarrow Ch(\mathcal{A})$ and it takes a complex $A^{\bullet}$ and shifts it one step to the left into $A^{\bullet + 1}$. In fact there is a family of functors $A^{\bullet}[n]=A^{\bullet + n}$. Thus $(\_)[-1]$ is the quasi inverse of $(\_)[1]$.
+        On the category of cochain complexes there is an additive autoequivalence called the translation functor. The functor is denoted as $(\_)[1]:Ch(\mathcal{A})\rightarrow Ch(\mathcal{A})$ and it takes a complex $A^{\bullet}$ and shifts it one step to the left into $A^{\bullet + 1}$. In fact there is a family of functors $A^{\bullet}[n]=A^{\bullet + n}$. Thus $(\_)[-1]$ is the quasi-inverse of $(\_)[1]$.
     \end{remark}
 
     \begin{definition}
@@ -999,13 +1010,13 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{definition}
 
     \begin{prop}
-        There is an additive bifunctor $nullHom_{\mathcal{A}}(\_,\_):Ch(\mathcal{A})^{op}\times Ch(\mathcal{A})\rightarrow Ab$ mapping into the set of null-homotopic morphisms. The elements of $nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ are pairs made of null-homotopic maps with their homotopy $(\chain{f},\chain{\varepsilon})$. This is an abelian group with the product group structure, that is $(\chain{f},\chain{\varepsilon}) + (\chain{g},\chain{\gamma}) = (\chain{f}+\chain{g},\chain{\varepsilon}+\chain{\gamma})$. The functor acts on morphisms almost the same way as the hom-functor.
+        There is an additive bifunctor $nullHom_{\mathcal{A}}(\_,\_):Ch(\mathcal{A})^{op}\times Ch(\mathcal{A})\rightarrow Ab$ mapping into the set of null-homotopic morphisms. The elements of $nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ are pairs made of null-homotopic maps with their homotopy $(\chain{f},\chain{\varepsilon})$. This is an abelian group with the product group structure, that is $(\chain{f},\chain{\varepsilon}) + (\chain{g},\chain{\gamma}) = (\chain{f}+\chain{g},\chain{\varepsilon}+\chain{\gamma})$. \todo{Skriv ut hva dette betyr konkret} The functor acts on morphisms almost the same way as the hom-functor.
     \end{prop}
 
     \begin{proof}
-        In order to prove the proposition we must show that the assignment is in fact a functor and that it is additive as well. To show this we will show that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is an additive functor. It will follow by duality that the there is an additive bifunctor as proposed.
+        In order to prove the proposition, one must show that the assignment is in fact a functor and that it is additive as well. It suffices to show that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is an additive functor, as it will follow by duality that the there is an additive bifunctor as proposed.
         
-        Suppose that there is a chain map $\chain{f}:\chain{B}\rightarrow\chain{C}$, then $nullHom_{\mathcal{A}}(\chain{A},\_)(\chain{f})=\chain{f}_*$. Let $(\chain{g},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be a null-homotopic chain map. By definition $\chain{f}_*(\chain{g},\chain{\varepsilon})=(\chain{f}\chain{g},f^{\bullet-1}\chain{\varepsilon})$. We are able to see that $f^{\bullet-1}\chain{\varepsilon}$ is a homotopy by the following diagram. The commutativity of the lower left square gives us the homotopy. This it follows by functoriality from the Hom-functor that this is a functor.
+        Suppose that there is a chain map $\chain{f}:\chain{B}\rightarrow\chain{C}$, then $nullHom_{\mathcal{A}}(\chain{A},\_)(\chain{f})=\chain{f}_*$. Let $(\chain{g},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be a null-homotopic chain map. By definition $\chain{f}_*(\chain{g},\chain{\varepsilon})=(\chain{f}\chain{g},f^{\bullet-1}\chain{\varepsilon})$. One may now see that $f^{\bullet-1}\chain{\varepsilon}$ is a homotopy by the following diagram. The commutativity of the lower left square shows the homotopy. It follows by functoriality from the Hom-functor that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is a functor.
         \begin{center}
             \begin{tikzcd}
                 ... \ar{r}{d^{-2}_{\chain{A}}} & A^{-1} \ar{d}{g^{-1}} \ar{r}{d^{-1}_{\chain{A}}} & A^0 \ar{ld}[above]{\varepsilon^{0}} \ar{r}{d^0_{\chain{A}}} \ar{d}{g^0} & A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{g^1} \ar{ld}[above]{\varepsilon^1} & ... \\
@@ -1014,7 +1025,7 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
 
-        The last thing to show is that it is additive. This is the same as showing that the assignment $nullHom_{\mathcal{A}}(\chain{A},\_):Hom_{Ch(\mathcal{A})}(\chain{B},\chain{C})\rightarrow Hom_{Ab}(nullHom_{\mathcal{A}}(\chain{A},\chain{B}),nullHom_{\mathcal{A}}(\chain{A},\chain{C}))$ is a group homomorphism. Let $\chain{f},\chain{g}:\chain{B}\rightarrow\chain{C}$ be two chain maps, and $(\chain{h},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$. Then we have the following equation asserting the additivity:
+        The last thing to show is that it is additive. This is the same as showing that the assignment $nullHom_{\mathcal{A}}(\chain{A},\_):Hom_{Ch(\mathcal{A})}(\chain{B},\chain{C})\rightarrow Hom_{Ab}(nullHom_{\mathcal{A}}(\chain{A},\chain{B}),nullHom_{\mathcal{A}}(\chain{A},\chain{C}))$ is a group homomorphism. Let $\chain{f},\chain{g}:\chain{B}\rightarrow\chain{C}$ be two chain maps, and $(\chain{h},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$. Then the following equation asserts the additivity:
         \begin{align*}
             (\chain{f}+\chain{g})_*(\chain{h},\chain{\varepsilon})\\
             =((\chain{f}+\chain{g})\chain{h},((\chain{f}+\chain{g})[-1])\chain{\varepsilon})\\
@@ -1025,13 +1036,13 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{proof}
 
     \begin{corollary}
-        The equivalence relation $\sim$ stated above is an additive congruence relation. Thus we can define the category $Ch(\mathcal{A})/(\sim) = K(\mathcal{A})$. This category is called the homotopy category.
+        The equivalence relation $\sim$ stated above is an additive congruence relation. The homotopy category is defined to be the quotient $K(\mathcal{A}) = Ch(\mathcal{A})/\sim$.
     \end{corollary}
 
-    The goal for the rest of this section is to prove that the homotopy category is triangulated. This will be done by giving putting on an exact structure onto $Ch(\mathcal{A})$ which turns it into a Frobenius category, such that the stable Frobenius category and the Homotopy category will be equivalent. To do this we will need to find the representable nature of the $nullHom_{\mathcal{A}}(\_,\_)$ functor.
+    \todo{Skriv om dette avsnittet} The goal for the rest of this section is to prove that the homotopy category is triangulated. This will be done by putting an exact structure onto $Ch(\mathcal{A})$, which turns it into a Frobenius category, such that the stable Frobenius category and the Homotopy category will be equivalent. This will be seen by studying the representable nature of $nullHom_{\mathcal{A}}(\_,\_)$.
 
     \begin{definition}
-        Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map. We define the object $cone(\chain{f})$ to be the following complex.
+        Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map. Define the object $cone(\chain{f})$ to be the complex below.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 ... \ar{r} \& B^{-1}\oplus A^0 \ar{r}[below]{\begin{pmatrix} d^{-1}_{\chain{B}} & f^0 \\ 0 & -d^0_{\chain{A}} \end{pmatrix}} \& B^0\oplus A^1 \ar{r} \& ...
@@ -1053,15 +1064,15 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{definition}
 
     \begin{example}
-        Let $\chain{A}$ be a complex, then $cone(id_{\chain{A}})$ is contractible. That is \\$(\begin{pmatrix} \chain{id_{\chain{A}}} & 0 \\ 0 & \chain{id_{\chain{A}}}[1]\end{pmatrix},\begin{pmatrix} 0 & 0 \\ \chain{id_{\chain{A}}} & 0 \end{pmatrix}):nullHom_{\mathcal{A}}(cone(\chain{id_{\chain{A}}}), cone(\chain{id_{\chain{A}}}))$
+        \todo[color = green]{Dette ser ikke pent ut} Let $\chain{A}$ be a complex, then $cone(id_{\chain{A}})$ is contractible. That is \\$(\begin{pmatrix} \chain{id_{\chain{A}}} & 0 \\ 0 & \chain{id_{\chain{A}}}[1]\end{pmatrix},\begin{pmatrix} 0 & 0 \\ \chain{id_{\chain{A}}} & 0 \end{pmatrix}):nullHom_{\mathcal{A}}(cone(\chain{id_{\chain{A}}}), cone(\chain{id_{\chain{A}}}))$
     \end{example}
 
     \begin{prop}
-        For any complex $\chain{A}$ there is a natural isomorphism $nullHom_{\mathcal{A}}(\chain{A},\_)\simeq Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\_)$. This is the same as saying that $cone(\chain{id_{\chain{A}}})$ is the universal contractible complex where null-homotopic morphisms from $\chain{A}$ factors through.
+        For any complex $\chain{A}$ there is a natural isomorphism $nullHom_{\mathcal{A}}(\chain{A},\_)\simeq Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\_)$. This establish that $cone(\chain{id_{\chain{A}}})$ is the universal contractible complex where null-homotopic morphisms from $\chain{A}$ factors through.
     \end{prop}
 
     \begin{proof}
-        We will make two natural maps which we will se are inverses. This is sufficient to prove the universal property by Yoneda's lemma.
+        This proof will construct two natural maps which are inverses. This is sufficient to prove the universal property by Yonedas lemma.
 
         Let $construct_{(\chain{A},\_)(\chain{B})}:nullHom_{\mathcal{A}}(\chain{A},\chain{B})\rightarrow Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\chain{B})$ and \\$destruct_{(\chain{A},\_)(\chain{B})}:Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\chain{B})\rightarrow nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be two morphisms defined the following way.
         $construct_{(\chain{A},\_)(\chain{B})}(\chain{f},\chain{\varepsilon})=\begin{pmatrix}\chain{f} & \chain{\varepsilon}\end{pmatrix}$ and \\$destruct_{(\chain{A},\_)(\chain{B})}\begin{pmatrix}\chain{f} & \chain{\varepsilon}\end{pmatrix} = (\chain{f}, \chain{\varepsilon})$. These natural transformations are constructed such that they are inverses of each other. It remains to see that these maps are well defined. This will be done by showing that there is a chain map from the cone of the identity, if and only if there is a null-homotopic map from the object.
@@ -1073,23 +1084,23 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
 
-        For $\begin{pmatrix}\chain{f} & \chain{\varepsilon}[1]\end{pmatrix}$ to be a chain map, we need the following conditions to hold, i.e. that the square commute.
+        For $\begin{pmatrix}\chain{f} & \chain{\varepsilon}[1]\end{pmatrix}$ to be a chain map, the following conditions must hold, i.e. that the square commute.
         \begin{equation*}
             \begin{pmatrix}f^0 & \varepsilon^1 \end{pmatrix}\begin{pmatrix}d^{-1}_{\chain{A}} & id^0_{\chain{A}} \\ 0 & -d^0_{\chain{A}}\end{pmatrix}=d^{-1}_{\chain{B}}\begin{pmatrix} f^{-1} & \varepsilon^0 \end{pmatrix}
         \end{equation*}
 
-        By calculating the matrix, we see that this is the same as if the following conditions are met.
+        By calculating the matrix, it is a chain map if the following conditions are met.
 
         \begin{align*}
             f^0d^{-1}_{\chain{A}} = d^{-1}_{\chain{A}}f^{-1} \\
             f^0 = d^{-1}_{\chain{B}}\varepsilon^0 + \varepsilon^1d^0_{\chain{A}}
         \end{align*}
 
-        Thus we have that a morphism is a chain map from the identity cone if and only if it is a null-homotopic chain map, which proves that there is a natural isomorphism as stated.
+        Thus, a morphism is a chain map from the identity cone if and only if it is a null-homotopic chain map, which proves that there is a natural isomorphism as stated.
     \end{proof}
 
     \begin{remark}
-        The identity cone is universal with respect to homotopies. A null-homotopic chain map $\chain{f}:\chain{A}\rightarrow \chain{B}$ might admit several factorization through the identity cone. The factorizations are unique only when there is a homotopy witnessing the null-homotopy property.
+        The identity cone is universal with respect to homotopies. A null-homotopic chain map $\chain{f}:\chain{A}\rightarrow \chain{B}$ might admit several factorization through the identity cone. The factorizations are only unique when there is a homotopy witnessing the null-homotopy property.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 \chain{A} \ar{rd}[below, pos=0.3]{\begin{pmatrix}1 \\ 0\end{pmatrix}} \ar{rr}{(\chain{f},\chain{\varepsilon})} \& \& \chain{B} \\
@@ -1115,15 +1126,13 @@ I can maybe write some of the history of the development of the idea of exact ca
 
     \begin{proof}
         Suppose that $\chain{f}$ is null-homotopic, then by the universal property of null-homotopy, it factors through the identity cone.
-        Converesly, suppose that $\chain{f}:\chain{A}\rightarrow\chain{C}$ factors thorugh a contractible object $\chain{B}$ as $\chain{g}\chain{h}$. Then $\chain{f}=\chain{g}\chain{h}=\chain{g}\chain{id_{\chain{B}}}\chain{h}$. Since homotopy equivalence is a congruence relation, we get that $\chain{f}$ is null-homotopic.
+        Converesly, suppose that $\chain{f}:\chain{A}\rightarrow\chain{C}$ factors thorugh a contractible object $\chain{B}$ as $\chain{g}\chain{h}$. Then $\chain{f}=\chain{g}\chain{h}=\chain{g}\chain{id_{\chain{B}}}\chain{h}$. $\chain{id_{\chain{B}}}$ is null-homotopic and homotopy equivalence is a congruence relation shows that $\chain{f}$ is null-homotopic.
     \end{proof}
 
-    We are now going to equip an exact structure on $Ch(\mathcal{A})$ such that the contractible objects become projective and injective objects. In this manner we get the desired Frobenius category.
-
-    By the example in 3.1 for any additive category $\mathcal{A}$, there is an exact category $\mathcal{A},\mathcal{E}$, where $\mathcal{E}=\{$Split short-exact sequences$\}$. Then there is an exact category $(Ch(\mathcal{A}),Ch(\mathcal{E}))$, where $Ch(\mathcal{E})=\{$Levelwise split short-exact sequences$\}$. We are in fact able to further specify what this exact structure is.
+    By the example in 3.1, any additive category $\mathcal{A}$ admits an exact category $\mathcal{A},\mathcal{E}$, where $\mathcal{E}=\{$Split short-exact sequences$\}$. Then there is an exact category $(Ch(\mathcal{A}),Ch(\mathcal{E}))$, where $Ch(\mathcal{E})=\{$Levelwise split short-exact sequences$\}$. This exact structure has enough projectives and injectives which also coincide. Instead of using levelwise split short-exact sequences, there is a more specific description of this exact structure.
 
     \begin{prop}
-        The exact structure $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ are diagrams on the form as below, where $\chain{r}:\chain{A}\rightarrow\chain{B}$ is a chain map.
+        The exact structure $Ch(\mathcal{E})$ are diagrams on the form as below, where $\chain{r}:\chain{A}\rightarrow\chain{B}$ is a chain map.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 \chain{B} \ar[tail]{r}{\begin{pmatrix}1 \\ 0\end{pmatrix}}[marking]{\circ} \& cone(\chain{r}) \ar[two heads]{r}{\begin{pmatrix}0 & \chain{-1}\end{pmatrix}}[marking]{\circ} \& \chain{A}[1]
@@ -1132,7 +1141,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{prop}
 
     \begin{proof}
-        Suppose that there is a conflation $(\chain{i}:\chain{Q}\rightarrow\chain{R},\chain{p}:\chain{R}\rightarrow\chain{P})$ in $Ch(\mathcal{A})$. Our goal is to realize the object $\chain{R}$ as a cone of some map. Since the conflation is levelwise split we get that in the following diagram $R^i\simeq Q^i\oplus P^i$.
+        Suppose that there is a conflation $(\chain{i}:\chain{Q}\rightarrow\chain{R},\chain{p}:\chain{R}\rightarrow\chain{P})$ in $Ch(\mathcal{A})$. The goal is to realize the object $\chain{R}$ as a cone of some map. Since the conflation is levelwise split one get that in the following diagram $R^i\simeq Q^i\oplus P^i$.
         \begin{center}
             \begin{tikzcd}[column sep=small, ampersand replacement=\&]
                 \& Q^1 \ar{rr}{i^1} \& \& R^1 \ar{rr}{p^1} \& \& P^1 \\
@@ -1140,27 +1149,27 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
 
-        By the commutativity of the squares we have that
+        Commutativity of the squares may be rewritten as.
         \begin{align*}
             d^0_{\chain{R}}i^0=i^1d^0_{\chain{Q}} \iff \begin{pmatrix} a & b \\ c & d \end{pmatrix}\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} d^0_{\chain{Q}} \\ 0 \end{pmatrix} \\
             d^0_{\chain{P}}p^0=p^1d^0_{\chain{R}} \iff \begin{pmatrix} 0 & d^0_{\chain{P}} \end{pmatrix} = \begin{pmatrix} 0 & -1 \end{pmatrix}\begin{pmatrix} a & b \\ c & d \end{pmatrix}
         \end{align*}
 
-        Thus $a = d^0_{\chain{R}}$, $d = -d^0_{\chain{P}}$ and $c=0$. $b:P^0\rightarrow Q^1$. Thus we can create a map $\chain{b'}:\chain{P}[1]\rightarrow\chain{Q}$. This is a chain map by the following calculation
+        Thus $a = d^0_{\chain{R}}$, $d = -d^0_{\chain{P}}$ and $c=0$. The map $b:P^0\rightarrow Q^1$ induces a map $\chain{b'}:\chain{P}[1]\rightarrow\chain{Q}$. This is a chain map by the following calculation.
         \begin{equation*}
             \begin{pmatrix} d^1_{\chain{Q}} & b^1 \\ 0 & d^1_{\chain{P}} \end{pmatrix}\begin{pmatrix} d^0_{\chain{Q}} & b^0 \\ 0 & -d^0_{\chain{P}} \end{pmatrix} = \begin{pmatrix} 0 & d^1_{\chain{Q}}b^0 - b^1d^0_{\chain{P}} \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
         \end{equation*}
-        This proves that $\chain{b}$ is a chain map and thus $\chain{R}=cone(\chain{b})$.
+        $\chain{b}$ is a chain map and thus $\chain{R}=cone(\chain{b})$.
     \end{proof}
 
-    To show that this is a Frobenius category we will show that every projective object is contractible. The dual case of every injective object is contractible will follow from duality, as there is a covariant and contravariant representation of null-homotopies.
+    To show that $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ is a Frobenius category, one must show that every projective object is contractible. The case of every injective object is contractible will follow from duality, as there is a covariant and contravariant representation of null-homotopies.
 
     \begin{prop}
         An object $\chain{P}$ is projective if and only if it is contractible.
     \end{prop}
 
     \begin{proof}
-        Suppose that $\chain{P}$ is projective, then it can be found in a conflation over $\chain{id_{\chain{P}}}[-1]$. Thus by the contravariant universal property of null-homotopies, the identity map is null-homotopic as described by the diagram below.
+        Suppose that $\chain{P}$ is projective, then it can be found in a conflation over $cone(\chain{id_{\chain{P}}})[-1]$. By the contravariant universal property of null-homotopies, the identity map is null-homotopic as described by the diagram below.
         \begin{center}
             \begin{tikzcd}
                 \chain{P}[-1] \ar[tail]{r}[marking]{\circ} & cone(\chain{id_{\chain{P}}})[-1] \ar[two heads]{r}[marking]{\circ} & \chain{P} \ar[equal]{d} \\
@@ -1168,7 +1177,7 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
 
-        Converesly, suppose that $\chain{P}$ is contractible, then we can se that $\chain{P}$ is projective if and only if $cone(\chain{id_{\chain{P}}})$ is projective. This can be seen with the following diagram.
+        Converesly, suppose that $\chain{P}$ is contractible, then one may se that $\chain{P}$ is projective if and only if $cone(\chain{id_{\chain{P}}})$ is projective by the following diagram.
 
         \begin{center}
             \begin{tikzcd}
@@ -1177,17 +1186,22 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
         
-        Thus it is enough to show that every identity cone is projective, to show that every contractible is projective. In order to do this we want to show that the functor \\$Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\_):Ch(\mathcal{A})\rightarrow Ab$ is an exact functor. This is the same as saying that every conflation gets mapped to short-exact sequences.
-        Suppose further that there is a morphism $\chain{p}:cone(\chain{\beta})\rightarrow\chain{B}[1]$, where $\chain{\beta}:\chain{B}\rightarrow\chain{C}$. Thus to show exactness we must show that $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})$ is a surjection.
+        It is enough to show that every identity cone is projective, to show that every contractible is projective. This is shown if the functor \\$Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\_):Ch(\mathcal{A})\rightarrow Ab$ is an exact functor, which is the same as saying that every conflation gets mapped to short-exact sequences.
+        Suppose further that there is a morphism $\chain{p}:cone(\chain{\beta})\rightarrow\chain{B}[1]$, where $\chain{\beta}:\chain{B}\rightarrow\chain{C}$. To show exactness, one must show that $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})$ is a surjection.
 
-        First observe that there is an isomorphism $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})\simeq nullHom_{\mathcal{A}}(\chain{P},\chain{p})$. Suppose that $(\chain{f},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{P},\chain{B})$. Then there is a null-homotopic chain map $(\chain{f'},\chain{\varepsilon '})=(\begin{pmatrix} -\beta^{\bullet - 1}\chain{\varepsilon} \\ \chain{f} \end{pmatrix}, \begin{pmatrix} 0 \\ (-1)^{\bullet + 1}\chain{\varepsilon} \end{pmatrix}):nullHom_{\mathcal{A}}(\chain{P},cone(\chain{\beta})[-1])$ such that \\$\chain{p}_*(\chain{f'},\chain{\varepsilon '})=(\chain{f},\chain{\varepsilon})$. A diagram chase suffices to check that this is a chain map and the the proposed homotopy is in fact a homotopy.
+
+        \todo[color = green]{Dette avsnittet ser ikke pent ut}First observe that there is an isomorphism $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})\simeq nullHom_{\mathcal{A}}(\chain{P},\chain{p})$. Suppose that $(\chain{f},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{P},\chain{B})$. Then there is a null-homotopic chain map $(\chain{f'},\chain{\varepsilon '})=(\begin{pmatrix} -\beta^{\bullet - 1}\chain{\varepsilon} \\ \chain{f} \end{pmatrix}, \begin{pmatrix} 0 \\ (-1)^{\bullet + 1}\chain{\varepsilon} \end{pmatrix}):nullHom_{\mathcal{A}}(\chain{P},cone(\chain{\beta})[-1])$ such that \\$\chain{p}_*(\chain{f'},\chain{\varepsilon '})=(\chain{f},\chain{\varepsilon})$. A diagram chase suffices to check that this is a chain map and the the proposed homotopy is in fact a homotopy.
     \end{proof}
 
     \begin{corollary}
-        The class of contractible objects is precisly the class of projectives and the class of injectives. Thus $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ is a Frobenius category. The stable Frobenius category is the homotopy category, i.e. $\underline{Ch(\mathcal{A})}=K(\mathcal{A})$. 
+        The class of contractible objects is precisly the class of projectives and the class of injectives, making $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ a Frobenius category. The stable Frobenius category is equivalent with the homotopy category, i.e. $\underline{Ch(\mathcal{A})}=K(\mathcal{A})$. 
     \end{corollary}
 
-    Since the identity cones are injective, we can verify that the cosyzygy functor is the shift functor (\upside{$\Omega$}$\_=\_[1]$). Thus we get that the standard triangles in $K(\mathcal{A})$ are the candidate triangles on the form
+    \begin{corollary}
+        The homotopy category $K(\mathcal{A})$ is triangulated.
+    \end{corollary}
+
+    Since the identity cones are injective, one may verify that the cosyzygy functor is the shift functor (\upside{$\Omega$}$\_=\_[1]$). The standard triangles in $K(\mathcal{A})$ are therefore the candidate triangles on the form below.
     \begin{center}
         \begin{tikzcd}
             \chain{A} \ar{r}{\underline{\chain{f}}} & \chain{B} \ar{r}{} & cone(\chain{f}) \ar{r}{} & \chain{A}[1]
