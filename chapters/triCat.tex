@@ -1,18 +1,19 @@
 \chapter{Triangulated Categories}
 
-In this chapter the notion of a triangulated will be introduced. In litterature one are able to find two different types of triangulated categories, they are called algebraic and topological. How these categories differ is however quite subtle. Different properties of triangulated categories will be discussed. Localization categories will be explained as well as how triangulated subcategories gives rise to such localizations. Lastly an embedding of a triangulated category in an abelian will be shown to exist.
+In this chapter the notion of a triangulated will be introduced. In literature one are able to find two different types of triangulated categories, they are called algebraic and topological. How these categories differ is however quite subtle. Different properties of triangulated categories will be discussed. Localization categories will be explained as well as how triangulated subcategories gives rise to such localizations. Lastly an embedding of a triangulated category in an abelian will be shown to exist.
 
 \section{Definition and First Properties}
     \todo[noline]{Skriv om hva som skal være med i dette delkapittelet}
 
-    In this section $\mathcal{T}$ denotes an additive category and $T:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$, which is often called translation or suspension functor.
+    In this section $\mathcal{T}$ denotes an additive category and $\Sigma_{\mathcal{T}}:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$, which is often called translation or suspension functor.
     % Definition candidate triangle
+    
     \begin{definition}
-        A candidate triangle is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow TA$. These candidate triangles can be drawn as diagrams in the following way:
+        A candidate triangle is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow \Sigma_{\mathcal{T}}A$. These candidate triangles can be drawn as diagrams in the following way:
 
         \begin{center}
             \begin{tikzcd}
-                A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & \Sigma_{\mathcal{T}}A
             \end{tikzcd}
         \end{center}
 
@@ -20,8 +21,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
 
     \begin{center}
         \begin{tikzcd}
-            A \arrow{r}{a} \arrow{d}{\alpha} & B \arrow{r}{b} \arrow{d}{\beta} & C \arrow{r}{c} \arrow{d}{\gamma} & TA \arrow{d}{T\alpha} \\
-            A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
+            A \arrow{r}{a} \arrow{d}{\alpha} & B \arrow{r}{b} \arrow{d}{\beta} & C \arrow{r}{c} \arrow{d}{\gamma} & \Sigma_{\mathcal{T}}A \arrow{d}{\Sigma_{\mathcal{T}}\alpha} \\
+            A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & \Sigma_{\mathcal{T}}A'
         \end{tikzcd}
     \end{center}
 
@@ -29,29 +30,29 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
 
     \todo[noline]{Dette avsnittet trengs å skrives om, det gir ikke lenger mening :(}
 
-    The naming convention of the candidate triangles isn't standarized, some literatures calls the candidate triangles for triangles instead; \todo[color=red]{Fotnote?} see \cite{keller}. This name arises from an alternate description of the diagrams given above. To remove confusion about the domain or codomain of the arrows, one arrow of the triangle is decorated with \todo[color=green]{få fram tydeligere hvordan pilene ser ut} "$_T$|". This decorator means that the functor T has to be applied to the corresponding edge of the arrow. With this notation the c arrow points to TA, not A.
+    The naming convention of the candidate triangles isn't standardized, some literatures calls the candidate triangles for triangles instead; \todo[color=red]{Fotnote?} see \cite{keller}. This name arises from an alternate description of the diagrams given above. To remove confusion about the domain or codomain of the arrows, one arrow of the triangle is decorated with \todo[color=green]{få fram tydeligere hvordan pilene ser ut} "$_{\Sigma_{\mathcal{T}}}$|". This decorator means that the functor $\Sigma_{\mathcal{T}}$ has to be applied to the corresponding edge of the arrow. With this notation the c arrow points to $\Sigma_{\mathcal{T}}A$, not $A$.
 
     \begin{center}
         \begin{tikzcd}[row sep=tiny]
             A \arrow{rd}{a} & \\
             & B \arrow{dl}{b} & & \\
-            C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+            C \arrow{uu}[pos = 0.80, marking]{|}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
         \end{tikzcd}
         \begin{tikzcd}[row sep=tiny]
             A \arrow{rd}[description]{a} \arrow{rrr}{\phi_a} & & & A' \arrow[ld, "a'" description] \\
             & B \arrow{dl}[description]{b} \arrow{r}{\phi_b} & B' \arrow{rd}[description]{b'}\\
-            C \arrow{uu}[very near end, marking]{|}[near start, description]{c}[near end]{T} \arrow{rrr}{\phi_c} & & & C' \arrow{uu}[very near end, marking]{|}[near start, description]{c'}[near end]{T}
+            C \arrow{uu}[pos = 0.80, marking]{|}[near start, description]{c}[near end]{\Sigma_{\mathcal{T}}} \arrow{rrr}{\phi_c} & & & C' \arrow{uu}[pos = 0.80, marking]{|}[near start, description]{c'}[near end]{\Sigma_{\mathcal{T}}}
         \end{tikzcd}
     \end{center}
 
-    \todo[color=pink]{Kommer definisjonen av triangulerte kategorier for brått?} A triangulated category is an additive category together with a translation functor $T$ and a triangulation class $\Delta$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta$ it is usually called a triangle, an exact triangle or a distuingished triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta$ for exact triangles or distuingished triangles. In this thesis the elements of $\Delta$ will be called for triangles.
+    \todo[color=pink]{Kommer definisjonen av triangulerte kategorier for brått?} A triangulated category is an additive category together with a translation functor $\Sigma_{\mathcal{T}}$ and a triangulation class $\Delta_{\mathcal{T}}$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta_{\mathcal{T}}$ it is usually called a triangle, an exact triangle or a distinguished triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta_{\mathcal{T}}$ for exact triangles or distinguished triangles. In this thesis the elements of $\Delta_{\mathcal{T}}$ will be called for triangles.
 
     % Definition of Triangulation
     \begin{definition}
-        A triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying the following axioms: 
+        A triangulation of an additive category $\mathcal{T}$ with translation $\Sigma_{\mathcal{T}}$ is a collection $\Delta_{\mathcal{T}}$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying the following axioms: 
 
         \begin{enumerate}
-            \item (TR1) Bookeeping axiom
+            \item (TR1) Bookkeeping axiom
 
                 \begin{enumerate}
                     \item A candidate triangle isomorphic to a triangle is a triangle.
@@ -64,36 +65,34 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                     \item For every object A there is a triangle $(A,A,0,id_A,0,0)$.
                     \begin{center}
                         \begin{tikzcd}
-                            A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & TA
+                            A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & \Sigma_{\mathcal{T}}A
                         \end{tikzcd}
                     \end{center}
                 \end{enumerate}
             \item (TR2) Rotation axiom
 
-                For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,-Ta)$.
+                For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,-\Sigma_{\mathcal{T}}a)$.
                 \begin{center}
                     \begin{tikzcd}
-                        A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & TA
+                        A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & \Sigma_{\mathcal{T}}A
                     \end{tikzcd} $\implies$
                     \begin{tikzcd}
-                        B \arrow{r}{b} & C \arrow{r}{c} & TA \arrow{r}{-Ta} & TB
+                        B \arrow{r}{b} & C \arrow{r}{c} & TA \arrow{r}{-\Sigma_{\mathcal{T}}a} & \Sigma_{\mathcal{T}}B
                     \end{tikzcd}
                     
                 \end{center}
             \item (TR3) Morphism axiom
             
-                Given the two triangles $(A,B,C,a,b,c)$ (1) and $(A',B',C',a',b',c')$ (2)
+                Given the two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$,
                 \begin{center}
-                    (1)
                     \begin{tikzcd}[column sep=small]
-                        A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
+                        A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A & &
                     \end{tikzcd}
-                    (2) 
                     \begin{tikzcd}[column sep=small]
-                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
                     \end{tikzcd}
                 \end{center}
-                and morphisms $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that the square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
+                and morphisms $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
                 
                 \begin{center}
                     (1)
@@ -103,8 +102,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                     \end{tikzcd}
                     (2)
                     \begin{tikzcd}
-                        A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & TA \ar{d}{T\phi_A} \\
-                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                        A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
                     \end{tikzcd}
                 \end{center}
             \item (TR4) Octahedron axiom
@@ -113,47 +112,47 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \begin{center}
                     (1)
                     \begin{tikzcd}[column sep=small]
-                        A \ar{r}{a} & B \ar{r}{x} & C' \ar{r}{x'} & TA
+                        A \ar{r}{a} & B \ar{r}{x} & C' \ar{r}{x'} & \Sigma_{\mathcal{T}}A
                     \end{tikzcd}
 
                     (2)
                     \begin{tikzcd}[column sep=small]
-                        B \ar{r}{b} & C \ar{r}{y} & A' \ar{r}{y'} & TB
+                        B \ar{r}{b} & C \ar{r}{y} & A' \ar{r}{y'} & \Sigma_{\mathcal{T}}B
                     \end{tikzcd}
 
                     (3)
                     \begin{tikzcd}[column sep=small]
-                        A \ar{r}{b\circ a} & C \ar{r}{z} & B' \ar{r}{z'} & TA
+                        A \ar{r}{b\circ a} & C \ar{r}{z} & B' \ar{r}{z'} & \Sigma_{\mathcal{T}}A
                     \end{tikzcd}                         
                 \end{center}
                 then there exist morphisms $f : C' \rightarrow B'$ and $g : B' \rightarrow A'$, the following diagram commutes and the third row is a triangle.
 
                 \begin{center}
                     \begin{tikzcd}
-                        T^{-1}B' \ar{r}{T^{-1}z'} \ar{d}{T^{-1}g} & A \ar[equal]{r}{id_A} \ar{d}{a} & A \ar{d}{b\circ a} \\
-                        T^{-1}A' \ar{r}{T^{-1}y'} & B \ar{r}{b} \ar{d}{x} & C \ar{r}{y} \ar{d}{z} & A' \ar{r}{y'} \ar[equal]{d}{id_{A'}} & TB \ar{d}{Tx'} \\
-                        & C' \ar{r}{f} \ar{d}{x'} & B' \ar{r}{g} \ar{d}{z'} & A' \ar{r}{Ti \circ y'} & TC' \\
-                        & TA \ar[equal]{r}{id_{TA}} & TA
+                        \Sigma_{\mathcal{T}}^{-1}B' \ar{r}{\Sigma_{\mathcal{T}}^{-1}z'} \ar{d}{\Sigma_{\mathcal{T}}^{-1}g} & A \ar[equal]{r}{id_A} \ar{d}{a} & A \ar{d}{b\circ a} \\
+                        \Sigma_{\mathcal{T}}^{-1}A' \ar{r}{\Sigma_{\mathcal{T}}^{-1}y'} & B \ar{r}{b} \ar{d}{x} & C \ar{r}{y} \ar{d}{z} & A' \ar{r}{y'} \ar[equal]{d}{id_{A'}} & \Sigma_{\mathcal{T}}B \ar{d}{\Sigma_{\mathcal{T}}x'} \\
+                        & C' \ar{r}{f} \ar{d}{x'} & B' \ar{r}{g} \ar{d}{z'} & A' \ar{r}{\Sigma_{\mathcal{T}}i \circ y'} & \Sigma_{\mathcal{T}}C' \\
+                        & \Sigma_{\mathcal{T}}A \ar[equal]{r}{id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}A
                     \end{tikzcd}
                 \end{center}
         \end{enumerate}
     \end{definition}
 
-    A triangulated category is denoted as $(\mathcal{T}, T, \Delta)$, where $\mathcal{T}$ is the additive category, $T$ is the translation and $\Delta$ is the triangulation. When $\mathcal{T}$ is called a triangulated category, it should be understood as the triple given above.
+    A triangulated category is denoted as $(\mathcal{T}, \Sigma_{\mathcal{T}}, \Delta_{\mathcal{T}})$, where $\mathcal{T}$ is the additive category, $\Sigma_{\mathcal{T}}$ is the translation and $\Delta_{\mathcal{T}}$ is the triangulation. When $\mathcal{T}$ is called a triangulated category, it should be understood like a triple.
     
     \begin{remark}
         The third object in a triangle is usually called cone, fiber or cofiber. These names are in use due to historic reasons, rather than portraying their functionality. The names weak kernel or weak cokernel would be better in the sense that it tells what the function of this object is. In this thesis it will either be referred to as cone, weak kernel or weak cokernel.
     \end{remark}
     % Rotation axiom dual
     \begin{remark}
-        The rotation axiom has a dual, and it can be thought of as a shift in the opposite direction. The dual roation axiom goes as:
+        The rotation axiom has a dual, and it can be thought of as a shift in the opposite direction. The dual rotation axiom goes as:
         
         \begin{quote}
             Given a triangle \begin{tikzcd}[column sep=small]
-                A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & TA
+                A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A
             \end{tikzcd},\\
             there is a triangle \begin{tikzcd}[column sep=small]
-                T^{-1}C \ar{r}{-T^{-1}c} & A \ar{r}{a} & B \ar{r}{b} & C
+                \Sigma_{\mathcal{T}}^{-1}C \ar{r}{-\Sigma_{\mathcal{T}}^{-1}c} & A \ar{r}{a} & B \ar{r}{b} & C
             \end{tikzcd}
         \end{quote} %Hvordan fikser jeg linebreaks for at det blir pent??? Mener at denne skal kun brukes innad i en setning, idk man.
         
@@ -175,29 +174,29 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \begin{tikzcd}[row sep=tiny]
                     A \arrow[red]{rd}[black]{a} & \\
                     & B \arrow[red]{dl}[black]{x} & & \\
-                    C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{T}
+                    C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{\Sigma_{\mathcal{T}}}
                 \end{tikzcd}
                 (2)
                 \begin{tikzcd}[row sep=tiny]
                     B \arrow[orange]{rd}[black]{b} & \\
                     & C \arrow[orange]{dl}[black]{y} & & \\
-                    A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{T}
+                    A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{\Sigma_{\mathcal{T}}}
                 \end{tikzcd}\\                
                 (3)
                 \begin{tikzcd}[row sep=tiny]
                     A \arrow[violet]{rd}[black]{b\circ a} & \\
                     & C \arrow[violet]{dl}[black]{z} & & \\
-                    B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{T}
+                    B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{\Sigma_{\mathcal{T}}}
                 \end{tikzcd}
             \end{center}
             then there exists morphisms $f: C' \rightarrow B'$ and $g: B' \rightarrow A'$, the following diagram commutes and the squiggly teal back face is a triangle.
             \begin{center}
                 \begin{tikzcd}[row sep=tiny]
-                    \color{white}.\color{black} & & B' \ar[teal, dashed, squiggly]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{z'}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
+                    \color{white}.\color{black} & & B' \ar[teal, dashed, squiggly]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{z'}[pos=0.9, marking]{|}[pos=0.91]{\Sigma_{\mathcal{T}}} & & \\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
-                    C' \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{x'}[very near end, marking]{|}[near end]{T} & & & A' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{Tx\circ y'}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{y'}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
+                    C' \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{x'}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}} & & & A' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{\Sigma_{\mathcal{T}}x\circ y'}[pos=0.91, marking]{|}[very near end, above]{\Sigma_{\mathcal{T}}} \ar[orange, dashed]{dddddl}[black, description]{y'}[pos=0.9, marking]{|}[pos=0.89, above]{\Sigma_{\mathcal{T}}} \\
                     \color{white}.\color{black} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{b\circ a} & & & C \ar[orange, dashed]{ul}[black, description]{y} \ar[violet]{uuuuull}[black, description]{z}\\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
@@ -223,8 +222,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 A' \ar{r}{a'} & B'
             \end{tikzcd}
             \begin{tikzcd}
-                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} & TA \ar{d}{T\phi_A} \\
-                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
         The upper and lower simplex of the square may be completed to two sets of triangles satisfying the condition of TR4. Applying the Octahedron axiom twice yields the diagrams as below.
@@ -233,44 +232,44 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=tiny]
                 A \ar[red]{rd}[black]{a} \\
                 & B \ar[red]{ld}[black]{b} \\
-                C \ar[red, very near end, "|" marking]{uu}[black, near start]{c}[near end]{T}
+                C \ar[red, very near end, "|" marking]{uu}[black, near start]{c}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
             \begin{tikzcd}[row sep=tiny]
                 B \ar[orange]{rd}[black]{\phi_B} \\
                 & B' \ar[orange]{ld}[black]{\phi_B'} \\
-                B'' \ar[orange, very near end, "|" marking]{uu}[black, near start]{\phi_B''}[near end]{T}
+                B'' \ar[orange, very near end, "|" marking]{uu}[black, near start]{\phi_B''}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
             \begin{tikzcd}[row sep=tiny]
                 A \ar[violet]{rd}[black]{\eta} \\
                 & B' \ar[violet]{ld}[black]{\eta'} \\
-                E \ar[violet, very near end, "|" marking]{uu}[black, near start]{{\eta}''}[near end]{T}
+                E \ar[violet, very near end, "|" marking]{uu}[black, near start]{{\eta}''}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}\\
             (2)
             \begin{tikzcd}[row sep=tiny]
                 A \ar[red]{rd}[black]{\phi_A} \\
                 & A' \ar[red]{ld}[black]{\phi_A'} \\
-                A'' \ar[red, very near end, "|" marking]{uu}[black, near start]{\phi_A''}[near end]{T}
+                A'' \ar[red, very near end, "|" marking]{uu}[black, near start]{\phi_A''}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
             \begin{tikzcd}[row sep=tiny]
                 A' \ar[orange]{rd}[black]{a'} \\
                 & B' \ar[orange]{ld}[black]{b'} \\
-                C' \ar[orange, very near end, "|" marking]{uu}[black, near start]{c'}[near end]{T}
+                C' \ar[orange, very near end, "|" marking]{uu}[black, near start]{c'}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
             \begin{tikzcd}[row sep=tiny]
                 A \ar[violet]{rd}[black]{\eta} \\
                 & B' \ar[violet]{ld}[black]{\eta'} \\
-                E \ar[violet, very near end, "|" marking]{uu}[black, near start]{{\eta}''}[near end]{T}
+                E \ar[violet, very near end, "|" marking]{uu}[black, near start]{{\eta}''}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
         \end{center}
         \begin{minipage}[t]{0.47\textwidth}
             \begin{center}
                 (1) \\
                 \begin{tikzcd}[row sep=tiny]
-                    \textcolor{white}{.} & & E \ar[teal, dashed]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
+                    \textcolor{white}{.} & & E \ar[teal, dashed]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{\Sigma_{\mathcal{T}}} & & \\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
-                    C \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{c}[very near end, marking]{|}[near end]{T} & & & B'' \ar[teal, dashed]{lll}[pos=0.45, black, description]{Tc\circ \phi_B''}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{\phi_B''}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
+                    C \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{c}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}} & & & B'' \ar[teal, dashed]{lll}[pos=0.45, black, description]{\Sigma_{\mathcal{T}}c\circ \phi_B''}[pos=0.91, marking]{|}[very near end, above]{\Sigma_{\mathcal{T}}} \ar[orange, dashed]{dddddl}[black, description]{\phi_B''}[pos=0.9, marking]{|}[pos=0.89, above]{\Sigma_{\mathcal{T}}} \\
                     \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{\phi_B'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
@@ -283,11 +282,11 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{center}
                 (2) \\
                 \begin{tikzcd}[row sep=tiny]
-                    \textcolor{white}{.} & & E \ar[teal, dashed, squiggly]{ddddr}[black, description]{g'} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{T} & & \\
+                    \textcolor{white}{.} & & E \ar[teal, dashed, squiggly]{ddddr}[black, description]{g'} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{\Sigma_{\mathcal{T}}} & & \\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
-                    A'' \ar[teal]{uuuurr}[black, description]{f'} \ar[red]{dr}[black, description]{\phi_A''}[very near end, marking]{|}[near end]{T} & & & C' \ar[teal, dashed]{lll}[pos=0.45, black, description]{T\phi_A''\circ c'}[pos=0.91, marking]{|}[very near end, above]{T} \ar[orange, dashed]{dddddl}[black, description]{c'}[pos=0.9, marking]{|}[pos=0.89, above]{T} \\
+                    A'' \ar[teal]{uuuurr}[black, description]{f'} \ar[red]{dr}[black, description]{\phi_A''}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}} & & & C' \ar[teal, dashed]{lll}[pos=0.45, black, description]{\Sigma_{\mathcal{T}}\phi_A''\circ c'}[pos=0.91, marking]{|}[very near end, above]{\Sigma_{\mathcal{T}}} \ar[orange, dashed]{dddddl}[black, description]{c'}[pos=0.9, marking]{|}[pos=0.89, above]{\Sigma_{\mathcal{T}}} \\
                     \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{\phi_A} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{b'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
                     \textcolor{white}{.} \\
                     \textcolor{white}{.} \\
@@ -300,8 +299,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         \begin{center}
             \begin{tikzcd}
                 B \ar[red]{r}[black]{b} \ar[orange]{d}[black]{\phi_B'}& C \ar[red]{rd}[black]{c} \ar[teal]{d}[black]{f} \\
-                B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & TA \ar[red]{d}[black]{T\phi_A} \\
-                & C' \ar[orange]{r}[black]{c'} & TA'
+                B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & \Sigma_{\mathcal{T}}A \ar[red]{d}[black]{\Sigma_{\mathcal{T}}\phi_A} \\
+                & C' \ar[orange]{r}[black]{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -311,51 +310,63 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        By TR2 the triangle $(A,B,C,a,b,c)$ can be rotated to $(B,C,TA,b,c,-Ta)$.
+        By TR2 the triangle $(A,B,C,a,b,c)$ can be rotated to $(B,C,\Sigma_{\mathcal{T}}A,b,c,-\Sigma_{\mathcal{T}}a)$.
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{a} & \\
                 & B \arrow{dl}{b}\\
-                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd} $\implies$
             \begin{tikzcd}[row sep=tiny]
                 B \arrow{rd}{b} \\
                 & C \arrow{dl}{c} \\
-                TA \arrow{uu}[near start]{-Ta}[very near end, marking]{|}[near end]{T}
+                \Sigma_{\mathcal{T}}A \arrow{uu}[near start]{-\Sigma_{\mathcal{T}}a}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
         \end{center}
-        The triangle $(C,C,0,id_C,0,0)$ exists by TR1 and TR3 states that there exists a morphism from TA to 0 making the diagram below commute.
+        The triangle $(C,C,0,id_C,0,0)$ exists by TR1 and TR3 states that there exists a morphism from $\Sigma_{\mathcal{T}}A$ to 0 making the diagram below commute.
         \begin{center}
             \begin{tikzcd}
-                B \ar{r}{b} \ar{d}{b} & C \ar{r}{c} \ar{d}{id_C} & TA \ar{r}{-Ta} \ar[dashed]{d}{0} & TB \ar{d}{Tb} \\
-                C \ar{r}{id_C} & C \ar{r}{0} & 0 \ar{r}{0} & TC
+                B \ar{r}{b} \ar{d}{b} & C \ar{r}{c} \ar{d}{id_C} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} \ar[dashed]{d}{0} & \Sigma_{\mathcal{T}}B \ar{d}{\Sigma_{\mathcal{T}}b} \\
+                C \ar{r}{id_C} & C \ar{r}{0} & 0 \ar{r}{0} & \Sigma_{\mathcal{T}}C
             \end{tikzcd}
         \end{center}
-        Thus $0 = Tb\circ -Ta = T(-ba) \implies b\circ a = 0$ as T is a translation.
+        Thus $0 = \Sigma_{\mathcal{T}}b\circ -\Sigma_{\mathcal{T}}a = \Sigma_{\mathcal{T}}(-ba) \implies b\circ a = 0$ as $\Sigma_{\mathcal{T}}$ is a translation.
     \end{proof}
-    % Triangulatd functor
+    % Triangulated functor
     \todo{Burde jeg introdusere triangulerte funktorer, eller går det greit å bare definere de brått?}
+    
     \begin{definition}
-        An additive functor between triangulated categories $F: (\mathcal{T}, T, \Delta) \rightarrow (\mathcal{R}, R, \Gamma)$ is called triangulated if there exist a natural isomorphisms $\alpha : FT \rightarrow RF$ such that $F(\Delta) \subseteq \Gamma$.
-
-        A functor $F : \mathcal{T} \rightarrow \mathcal{R}$ is called a triangle-equivalence if it is triangulated and an equivalence of categories. In this case $\mathcal{T}$ and $\mathcal{R}$ are called triangle-equivalent.
+        A triangulated functor $F: \mathcal{S} \rightarrow \mathcal{T}$ between two triangulated categories $(\mathcal{S}, \Sigma_{\mathcal{S}}, \Delta_\mathcal{S})$ and $(\mathcal{T}, \Sigma_{\mathcal{T}}, \Delta_\mathcal{T})$, is an additive functor $F$ along with a natural isomorphism $\phi_X : F(\Sigma_{\mathcal{S}}(X)) \rightarrow \Sigma_{\mathcal{T}}(F(X))$ such that $F(\Delta_{\mathcal{S}}) \subseteq \Delta_{\mathcal{T}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{a} & \\
+                & B \arrow{dl}{b} \\
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{S}}}
+            \end{tikzcd}
+            $\implies$
+            \begin{tikzcd}[row sep=tiny]
+                F(A) \arrow{rd}{F(a)} & \\
+                & F(B) \ar{dl}{F(b)} \\
+                F(C) \arrow[very near end, "|" marking]{uu}[near start]{F(c)}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+        \end{center}
     \end{definition}
 
     \begin{remark}
-        Some literatures refer to triangulated functors as exact functor. \todo[color = red]{Trenger kilder her}
+        Some literatures refer to triangulated functors as exact functors. \todo[color = red]{Trenger kilder her}
     \end{remark}
     % Homological functor
     \begin{definition}
-        Let $\mathcal{T}$ be a triangulated category and $\mathcal{A}$ be an abelian category. A covariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called homological if $\forall (A,B,C,a,b,c):\Delta$ there is a long exact sequence in $\mathcal{A}$.
+        Let $\mathcal{T}$ be a triangulated category and $\mathcal{A}$ be an abelian category. A covariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called homological if $\forall (A,B,C,a,b,c):\Delta_{\mathcal{T}}$ there is a long exact sequence in $\mathcal{A}$.
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{a} & \\
                 & B \arrow{dl}{b}\\
-                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd} $\implies$
             \begin{tikzcd}[column sep=small]
-                ... \ar{r} & H(T^{i}A) \arrow{r}{H(T^ia)} & H(T^iB)\arrow{r}{H(T^ib)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(T^iC) \arrow[dll, "H(T^ic)" description, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
-                & H(T^{i+1}A) \arrow{r}{H(T^{i+1}a)} & H(T^{i+1}B) \arrow{r}{H(T^{i+1}b)} & H(T^{i+1}C) \ar{r} & ...
+                ... \ar{r} & H(\Sigma_{\mathcal{T}}^{i}A) \arrow{r}{H(\Sigma_{\mathcal{T}}^ia)} & H(\Sigma_{\mathcal{T}}^iB)\arrow{r}{H(\Sigma_{\mathcal{T}}^ib)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(\Sigma_{\mathcal{T}}^iC) \arrow[dll, "H(\Sigma_{\mathcal{T}}^ic)" description, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
+                & H(\Sigma_{\mathcal{T}}^{i+1}A) \arrow{r}{H(\Sigma_{\mathcal{T}}^{i+1}a)} & H(\Sigma_{\mathcal{T}}^{i+1}B) \arrow{r}{H(\Sigma_{\mathcal{T}}^{i+1}b)} & H(\Sigma_{\mathcal{T}}^{i+1}C) \ar{r} & ...
             \end{tikzcd}
         \end{center}
 
@@ -364,11 +375,11 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{a} & \\
                 & B \arrow{dl}{b}\\
-                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd} $\implies$
             \begin{tikzcd}[column sep=small]
-                ... & H(T^{i-1}A) \arrow{l} & H(T^{i-1}B) \arrow{l}{H(T^{i-1}a)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(T^{i-1}C) \ar{l}{H(T^{i-1}b)} \\
-                & H(T^{i}A) \arrow[urr, "H(T^ic)" description, rounded corners,to path={ --([xshift=-2ex]\tikztostart.west)|- (Z)[near end]\tikztonodes-| ([xshift=2ex]\tikztotarget.east)-- (\tikztotarget)}] & H(T^{i}B) \ar{l}{H(T^ia)} & H(T^{i}C) \ar{l}{H(T^ib)} & ... \ar{l}
+                ... & H(\Sigma_{\mathcal{T}}^{i-1}A) \arrow{l} & H(\Sigma_{\mathcal{T}}^{i-1}B) \arrow{l}{H(\Sigma_{\mathcal{T}}^{i-1}a)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(\Sigma_{\mathcal{T}}^{i-1}C) \ar{l}{H(\Sigma_{\mathcal{T}}^{i-1}b)} \\
+                & H(\Sigma_{\mathcal{T}}^{i}A) \arrow[urr, "H(\Sigma_{\mathcal{T}}^ic)" description, rounded corners,to path={ --([xshift=-2ex]\tikztostart.west)|- (Z)[near end]\tikztonodes-| ([xshift=2ex]\tikztotarget.east)-- (\tikztotarget)}] & H(\Sigma_{\mathcal{T}}^{i}B) \ar{l}{H(\Sigma_{\mathcal{T}}^ia)} & H(\Sigma_{\mathcal{T}}^{i}C) \ar{l}{H(\Sigma_{\mathcal{T}}^ib)} & ... \ar{l}
             \end{tikzcd}
         \end{center}
     \end{definition}
@@ -384,21 +395,21 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=tiny]
                 A \ar{dr}{a} \\
                 & B \ar{dl}{b} \\
-                C \ar{uu}{c}[near end]{T}[very near end, marking]{|}
+                C \ar{uu}{c}[near end]{\Sigma_{\mathcal{T}}}[very near end, marking]{|}
             \end{tikzcd} $\implies$
             \begin{tikzcd}
-                \mathcal{T}(M,T^iA) \ar{r}{T^ia_*} & \mathcal{T}(M,T^iB) \ar{r}{T^ib_*} & \mathcal{T}(M,T^iC)
+                \mathcal{\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iA) \ar{r}{\Sigma_{\mathcal{T}}^ia_*} & \mathcal{\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iB) \ar{r}{\Sigma_{\mathcal{T}}^ib_*} & \mathcal{\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iC)
             \end{tikzcd}
         \end{center}
 
-        It is enough to prove that these types of diagrams are exact at $B$, as the other diagrams are obtained by the rotation axiom. Thus it remains to prove that $Im(T^ia_*)=Ker(T^ib_*)$. Since $ba=0$ it follows that $Im(T^ia_*) \subseteq Ker(T^ib_*)$. Assume that $f:Ker(T^ib_*)$, that is $f:M\rightarrow T^iB$ such that $b_*(f)=0$. Showing that $f$ factors through $T^iA$ proves exactness, as this means that $Ker(T^ib_*)\subseteq Im(T^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; $\mathcal{T}(M,T^iB) \simeq\mathcal{T}(T^{-i}M,B)$ and by this assertion it suffices to assume that $f:T^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(T^{-i}M,0,T^{-i+1}M,0,0,-T^{-i+1}id)$ and $(B,C,TA,b,c,-Ta)$. 
+        It is enough to prove that these types of diagrams are exact at $B$, as the other diagrams are obtained by the rotation axiom. Thus it remains to prove that $Im(\Sigma_{\mathcal{T}}^ia_*)=Ker(\Sigma_{\mathcal{T}}^ib_*)$. Since $ba=0$ it follows that $Im(\Sigma_{\mathcal{T}}^ia_*) \subseteq Ker(\Sigma_{\mathcal{T}}^ib_*)$. Assume that $f:Ker(\Sigma_{\mathcal{T}}^ib_*)$, that is $f:M\rightarrow \Sigma_{\mathcal{T}}^iB$ such that $b_*(f)=0$. Showing that $f$ factors through $\Sigma_{\mathcal{T}}^iA$ proves exactness, as this means that $Ker(\Sigma_{\mathcal{T}}^ib_*)\subseteq Im(\Sigma_{\mathcal{T}}^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; $\mathcal{T}(M,\Sigma_{\mathcal{T}}^iB) \simeq\mathcal{T}(\Sigma_{\mathcal{T}}^{-i}M,B)$ and by this assertion it suffices to assume that $f:\Sigma_{\mathcal{T}}^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(\Sigma_{\mathcal{T}}^{-i}M,0,\Sigma_{\mathcal{T}}^{-i+1}M,0,0,-\Sigma_{\mathcal{T}}^{-i+1}id)$ and $(B,C,\Sigma_{\mathcal{T}}A,b,c,-\Sigma_{\mathcal{T}}a)$. 
         \begin{center}
             \begin{tikzcd}
-                T^{-i}M \ar{r}{0} \ar{d}{f} & 0 \ar{r}{0} \ar{d}{0} & T^{-i+1}M \ar{r}{-T^{-i+1}id} \ar[dashed]{d}{g} & T^{-i+1}M \ar{d}{Tf} \\
-                B \ar{r}{b} & C \ar{r}{c} & TA \ar{r}{-Ta} & TB
+                \Sigma_{\mathcal{T}}^{-i}M \ar{r}{0} \ar{d}{f} & 0 \ar{r}{0} \ar{d}{0} & \Sigma_{\mathcal{T}}^{-i+1}M \ar{r}{-\Sigma_{\mathcal{T}}^{-i+1}id} \ar[dashed]{d}{g} & \Sigma_{\mathcal{T}}^{-i+1}M \ar{d}{\Sigma_{\mathcal{T}}f} \\
+                B \ar{r}{b} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} & \Sigma_{\mathcal{T}}B
             \end{tikzcd}
         \end{center}
-        The left square commutes by the assumption, thus the morphism g exist by TR3 such that $-Ta\circ h = -Tf\circ T^{-i+1}id = -Tf \implies Ta\circ h = Tf$. This shows that $f = a\circ T^{-1}h$, asserting that $f$ factors through A.
+        The left square commutes by the assumption, thus the morphism g exist by TR3 such that $-\Sigma_{\mathcal{T}}a\circ h = -\Sigma_{\mathcal{T}}f\circ \Sigma_{\mathcal{T}}^{-i+1}id = -\Sigma_{\mathcal{T}}f \implies \Sigma_{\mathcal{T}}a\circ h = \Sigma_{\mathcal{T}}f$. This shows that $f = a\circ T^{-1}h$, asserting that $f$ factors through A.
     \end{proof}
     % 2 out of 3 property
     \todo{Her kan det også være veldig naturlig å skrive noe. Sammenligne med 5-lemma er vel det jeg tenker på.}
@@ -406,8 +417,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Let $(\phi_A, \phi_B, \phi_C):(A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of triangles. If 2 of the maps are isomorphisms, then the last one is an isomorphism as well.
         \begin{center}
             \begin{tikzcd}
-                A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} & B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} & C \ar{r}{c} \ar[dashed]{d}{\phi_C}[rotate=90, above]{\simeq} & TA \ar{d}{T\phi_A}[rotate=90, above]{\simeq} \\
-                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} & B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} & C \ar{r}{c} \ar[dashed]{d}{\phi_C}[rotate=90, above]{\simeq} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A}[rotate=90, above]{\simeq} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
     \end{lemma}
@@ -416,24 +427,24 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Without loss of generality, assume that $\phi_A$ and $\phi_B$ are the isomorphisms. This can be done as the rotation axiom reduce the other cases to this case. Then the diagram depicted below exists.
         \begin{center}
             \begin{tikzcd}
-                A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} & B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} & C \ar{r}{c} \ar{d}{\phi_C} & TA \ar{d}{T\phi_A}[rotate=90, above]{\simeq} \\
-                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} & B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} & C \ar{r}{c} \ar{d}{\phi_C} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A}[rotate=90, above]{\simeq} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
         Applying the functor $\mathcal{T}(C',\_)$ to the diagram yields the following diagram in Ab:
         \begin{center}
             \begin{tikzcd}
-                \mathcal{T}(C',A) \ar{r}{a_*} \ar{d}{(\phi_A)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',B) \ar{r}{b_*} \ar{d}{(phi_B)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',C) \ar{r}{c_*} \ar{d}{(\phi_C)_*} & \mathcal{T}(C',TA) \ar{r}{Ta_*} \ar{d}{(\phi_TA)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',TB) \ar{d}{(T\phi_B)_*}[rotate=90, above]{\simeq} \\
-                \mathcal{T}(C',A') \ar{r}{a'_*} & \mathcal{T}(C',B') \ar{r}{b'_*} & \mathcal{T}(C',C') \ar{r}{c'_*} & \mathcal{T}(C',TA') \ar{r}{Ta_*} & \mathcal{T}(C',TB)
+                \mathcal{T}(C',A) \ar{r}{a_*} \ar{d}{(\phi_A)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',B) \ar{r}{b_*} \ar{d}{(\phi_B)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',C) \ar{r}{c_*} \ar{d}{(\phi_C)_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}A) \ar{r}{\Sigma_{\mathcal{T}}a_*} \ar{d}{(\Sigma_{\mathcal{T}}\phi_A)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',TB) \ar{d}{(\Sigma_{\mathcal{T}}\phi_B)_*}[rotate=90, above]{\simeq} \\
+                \mathcal{T}(C',A') \ar{r}{a'_*} & \mathcal{T}(C',B') \ar{r}{b'_*} & \mathcal{T}(C',C') \ar{r}{c'_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}A') \ar{r}{\Sigma_{\mathcal{T}}a_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}B)
             \end{tikzcd}
         \end{center}
-        By the 5-lemma, we get that $(\phi_C)_*$ is an isomorphisms, i.e. $(\phi_C)_*$ is both mono and epi. Thus for some unique $s$ in $\mathcal{T}(C',C)$, ${\phi_C}_*(s)=id_{C'}$. 
+        By the 5-lemma, $(\phi_C)_*$ is an isomorphisms, i.e. $(\phi_C)_*$ is both mono and epi. Thus for some unique $s$ in $\mathcal{T}(C',C)$, ${\phi_C}_*(s)=id_{C'}$. 
 
-        By applying the functor $\mathcal{T}(\_,C)$ we get the diagram:
+        By applying the functor $\mathcal{T}(\_,C)$ yields the diagram:
         \begin{center}
             \begin{tikzcd}
-                \mathcal{T}(A,C) & \mathcal{T}(B,C) \ar{l}{a^*} & \mathcal{T}(C,C) \ar{l}{b^*} & \mathcal{T}(TA,C) \ar{l}{c^*} & \mathcal{T}(TB,C) \ar{l}{Ta^*} \\
-                \mathcal{T}(A',C) \ar{u}{(\phi_A)^*}[rotate=90, below]{\simeq} & \mathcal{T}(B,C) \ar{l}{a'^*} \ar{u}{(\phi_B)^*}[rotate=90, below]{\simeq} & \mathcal{T}(C',C) \ar{l}{b'^*} \ar{u}{(\phi_C)^*} & \mathcal{T}(TA',C) \ar{l}{c'^*} \ar{u}{(\phi_TA)^*}[rotate=90, below]{\simeq} & \mathcal{T}(TB',C) \ar{l}{Ta'^*} \ar{u}{(\phi_TB)^*}[rotate=90, below]{\simeq}
+                \mathcal{T}(A,C) & \mathcal{T}(B,C) \ar{l}{a^*} & \mathcal{T}(C,C) \ar{l}{b^*} & \mathcal{T}(\Sigma_{\mathcal{T}}A,C) \ar{l}{c^*} & \mathcal{T}(\Sigma_{\mathcal{T}}B,C) \ar{l}{\Sigma_{\mathcal{T}}a^*} \\
+                \mathcal{T}(A',C) \ar{u}{(\phi_A)^*}[rotate=90, below]{\simeq} & \mathcal{T}(B,C) \ar{l}{a'^*} \ar{u}{(\phi_B)^*}[rotate=90, below]{\simeq} & \mathcal{T}(C',C) \ar{l}{b'^*} \ar{u}{(\phi_C)^*} & \mathcal{T}(\Sigma_{\mathcal{T}}A',C) \ar{l}{c'^*} \ar{u}{(\Sigma_{\mathcal{T}}\phi_A)^*}[rotate=90, below]{\simeq} & \mathcal{T}(\Sigma_{\mathcal{T}}B',C) \ar{l}{\Sigma_{\mathcal{T}}a'^*} \ar{u}{(\Sigma_{\mathcal{T}}\phi_B)^*}[rotate=90, below]{\simeq}
             \end{tikzcd}
         \end{center}
         Again, the 5-lemma asserts that $(\phi_C)^*$ is an isomorphisms, and by the same argument $id_{C} = s'\circ\phi_C$ for some unique $s'$. $\phi_C$ is both split mono and split epi, which means it is an isomorphism.
@@ -447,11 +458,11 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Assume that a is an isomorphism. Then it is seen that $(a,id_B,0)$ is an isomorphism of triangles.
         \begin{center}
             \begin{tikzcd}
-                A \ar{r}{a} \ar{d}{a}[rotate=90, above]{\simeq} & B \ar{r}{0} \ar{d}{id_B}[rotate=90, above]{\simeq} & 0 \ar{r}{0} \ar{d}{0}[rotate=90, above]{\simeq} & TA \ar{d}{Ta}[rotate=90, above]{\simeq} \\
-                B \ar{r}{id_B} & B \ar{r}{0} & 0 \ar{r}{0} & TB
+                A \ar{r}{a} \ar{d}{a}[rotate=90, above]{\simeq} & B \ar{r}{0} \ar{d}{id_B}[rotate=90, above]{\simeq} & 0 \ar{r}{0} \ar{d}{0}[rotate=90, above]{\simeq} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}a}[rotate=90, above]{\simeq} \\
+                B \ar{r}{id_B} & B \ar{r}{0} & 0 \ar{r}{0} & \Sigma_{\mathcal{T}}B
             \end{tikzcd}
         \end{center}
-        Converesly, assume that $(A,B,0,a,0,0)$ is a triangle. Then the same diagram as above can be constructed, and by the 2 out of 3 property, a has to be an isomorphism.
+        Conversely, assume that $(A,B,0,a,0,0)$ is a triangle. Then the same diagram as above can be constructed, and by the 2 out of 3 property, a has to be an isomorphism.
     \end{proof}
 
     \begin{lemma}
@@ -462,7 +473,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \begin{tikzcd}[row sep=tiny]
                     A \arrow{rd}{a} & \\
                     & B \arrow{dl}{b} & & \\
-                    C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
+                    C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
                 \end{tikzcd}
             \end{minipage}
             \begin{minipage}[c]{0.3\textwidth}
@@ -481,10 +492,10 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Assume that $a$ is split mono, then there exist an $a^{-1}$ such that $id_A = a^{-1}a$. Let $M:\mathcal{T}$ be any object, then there is a long exact sequence.
         \begin{center}
             \begin{tikzcd}
-                \mathcal{T}(M,T^{-1}C) \ar{r}{T^{-1}c_*} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{c_*} & \mathcal{T}(M,TA)
+                \mathcal{T}(M,\Sigma_{\mathcal{T}}^{-1}C) \ar{r}{\Sigma_{\mathcal{T}}^{-1}c_*} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{c_*} & \mathcal{T}(M,\Sigma_{\mathcal{T}}A)
             \end{tikzcd}
         \end{center}
-        By assumption $a_*$ is split mono, thus $T^{-1}c_* = 0$ and in particular $c = 0$. This implies that $b_*$ is epi, making a split short exact sequence.
+        By assumption $a_*$ is split mono, thus $\Sigma_{\mathcal{T}}^{-1}c_* = 0$ and in particular $c = 0$. This implies that $b_*$ is epi, making a split short exact sequence.
         \begin{center}
             \begin{tikzcd}
                 0 \ar{r}{0} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar[bend left]{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{0} \ar[dashed, bend left]{l}{b^{-1}_*} & 0
@@ -498,12 +509,12 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{a} \\
                 & B \arrow{dl}{b} \\
-                C \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{T}
+                C \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd} $\implies$
             \begin{tikzcd}[row sep=tiny]
                 C \arrow{rd}{0} \\
-                & TA \arrow{dl}{-Ta} \\
-                TB \arrow[very near end, "|" marking]{uu}[near start]{-Tb}[near end]{T}
+                & \Sigma_{\mathcal{T}}A \arrow{dl}{-\Sigma_{\mathcal{T}}a} \\
+                \Sigma_{\mathcal{T}}B \arrow[very near end, "|" marking]{uu}[near start]{-\Sigma_{\mathcal{T}}b}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
         \end{center}
         \begin{center}
@@ -511,22 +522,22 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=tiny]
                 A \arrow{rd}{id_A} \\
                 & A \arrow{dl}{0} \\
-                0 \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{T}
+                0 \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd} $\implies$
             \begin{tikzcd}[row sep=tiny]
                 0 \arrow{rd}{0} & \\
-                & TA \arrow{dl}{-id_{TA}}\\
-                TA \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{T}
+                & \Sigma_{\mathcal{T}}A \arrow{dl}{-id_{\Sigma_{\mathcal{T}}A}}\\
+                \Sigma_{\mathcal{T}}A \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
         \end{center}
         \todo{Dette kan jeg nok utdype mer, slik at det ikke er så forvirrende} (1) is constructed by applying TR2 twice, while (2) is constructed with TR1 and TR2 twice. Observe that there is a commutative square between the triangles, allowing for TR3 to make a morphism of triangles.
         \begin{center}
             \begin{tikzcd}
-                C \ar{r}{0} \ar{d}{0} & TA \ar{r}{-Ta} \ar[equal]{d}{id_{TA}} & TB \ar{r}{-Tb} \ar[dashed]{d}{Ta^{-1}} & TC \ar{d}{0} \\
-                0 \ar{r}{0} & TA \ar[equal]{r}{-id_{TA}} & TA \ar{r}{0} & 0
+                C \ar{r}{0} \ar{d}{0} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} \ar[equal]{d}{id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}B \ar{r}{-\Sigma_{\mathcal{T}}b} \ar[dashed]{d}{\Sigma_{\mathcal{T}}a^{-1}} & \Sigma_{\mathcal{T}}C \ar{d}{0} \\
+                0 \ar{r}{0} & \Sigma_{\mathcal{T}}A \ar[equal]{r}{-id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}A \ar{r}{0} & 0
             \end{tikzcd}
         \end{center}
-        Thus $T(a^{-1}a)=id_{TA}=T(id_A) \implies id_A = a^{-1}a$, making a split mono.
+        Thus $T(a^{-1}a)=id_{\Sigma_{\mathcal{T}}A}=\Sigma_{\mathcal{T}}(id_A) \implies id_A = a^{-1}a$, making a split mono.
     \end{proof}
 
     \begin{lemma}
@@ -534,8 +545,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         \begin{center}
             \begin{minipage}[c]{0.4\textwidth}
                 \begin{tikzcd}
-                    A \ar{r}{a} \ar{d}{f} & B \ar{r}{b} \ar{d}{g} & C \ar{r}{c} \ar{d}{h} & TA \ar{d}{Tf} \\
-                    A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                    A \ar{r}{a} \ar{d}{f} & B \ar{r}{b} \ar{d}{g} & C \ar{r}{c} \ar{d}{h} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}f} \\
+                    A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
                 \end{tikzcd}
             \end{minipage}
             \begin{minipage}[c]{0.5\textwidth}
@@ -545,7 +556,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 \end{enumerate}
             \end{minipage}
         \end{center}
-        Moreover, if $\mathcal{T}(A,T^{-1}C')\simeq 0$, then f and h are unique.
+        Moreover, if $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq 0$, then f and h are unique.
     \end{lemma}
 
     \begin{proof}
@@ -554,15 +565,15 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         $2. \implies 1.$ The existence of $f$ and $h$ are \todo[color = pink]{er det virkelig så evident?} evident from the long exact sequence of the bottom triangle at the covariant functor represented by $A$. 
         \begin{center}
             \begin{tikzcd}
-                \mathcal{T}(A,T^{-1}C') \ar{r}{T^{-1}c'_*} & \mathcal{T}(A,A') \ar{r}{a'_*} & \mathcal{T}(A,B') \ar{r}{b'_*} & \mathcal{T}(A,C')
+                \mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C') \ar{r}{\Sigma_{\mathcal{T}}^{-1}c'_*} & \mathcal{T}(A,A') \ar{r}{a'_*} & \mathcal{T}(A,B') \ar{r}{b'_*} & \mathcal{T}(A,C')
             \end{tikzcd}
         \end{center}
         \todo{Hva som foregår her burde komme fram tydeligere} The morphism $ga:\mathcal{T}(A,B')$ such that $b'ga=b'_*(ga)=0$, thus $ga:Ker(b'_*)$. By exactness $\exists f:\mathcal{T}(A,A')$ such that $a'f = ga$, and by TR3 $\exists h: C \rightarrow C'$ such that $(f,g,h)$ is a morphism of triangles.
-        Now assume that $\mathcal{T}(A,T^{-1}C')\simeq 0$. Exactness determines that $a'_*$ is a monomorphism, and $f$ is then unique. Since $T$ is a translation, we have that $\mathcal{T}(A,T^{-1}C')\simeq\mathcal{T}(TA,C')$. By using the functor $\mathcal{T}(\_,C')$ at the top triangle, we get that $b^*$ is a monomorphism, and thus $h$ is chosen uniquely.
+        Now assume that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq 0$. Exactness determines that $a'_*$ is a monomorphism, and $f$ is then unique. Since $\Sigma_{\mathcal{T}}$ is a translation, we have that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq\mathcal{T}(\Sigma_{\mathcal{T}}A,C')$. By using the functor $\mathcal{T}(\_,C')$ at the top triangle, we get that $b^*$ is a monomorphism, and thus $h$ is chosen uniquely.
     \end{proof}
 
     \begin{lemma} \textbf{Opposite Rotation Axiom; $TR2^{op}$.}
-        If $(A,B,C,a,b,c)$ is a triangle, then $(T^{-1}C,A,B,-T^{-1}c,a,b)$ is a triangle.
+        If $(A,B,C,a,b,c)$ is a triangle, then $(\Sigma_{\mathcal{T}}^{-1}C,A,B,-\Sigma_{\mathcal{T}}^{-1}c,a,b)$ is a triangle.
     \end{lemma}
 
     \begin{proof}
@@ -571,23 +582,23 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=tiny]
                 A \ar{rd}{a} \\
                 & B \ar{ld}{b} \\
-                C \ar{uu}[near start]{c}[very near end, marking]{|}[near end]{T}
+                C \ar{uu}[near start]{c}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
             $\implies$
             \begin{tikzcd}[row sep=tiny]
                 C \ar{rd}{c} \\
-                & TA \ar{ld}{-Ta} \\
-                TB \ar{uu}[near start]{-Tb}[very near end, marking]{|}[near end]{T}
+                & \Sigma_{\mathcal{T}}A \ar{ld}{-\Sigma_{\mathcal{T}}a} \\
+                \Sigma_{\mathcal{T}}B \ar{uu}[near start]{-\Sigma_{\mathcal{T}}b}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
         \end{center}
-        The morphism $T^{-1}c$ has a triangle $(T^{-1}C,A,B',T^{-1}c,a',b')$ by TR1. Use TR3 to find a morphism between these associated candidate triangles.
+        The morphism $\Sigma_{\mathcal{T}}^{-1}c$ has a triangle $(\Sigma_{\mathcal{T}}^{-1}C,A,B',\Sigma_{\mathcal{T}}^{-1}c,a',b')$ by TR1. Use TR3 to find a morphism between these associated candidate triangles.
         \begin{center}
             \begin{tikzcd}
-                C \ar{r}{c} \ar[equal]{d}{id_C} & TA \ar{r}{Ta'} \ar[equal]{d}{id_{TA}} & TB' \ar{r}{Tb'} \ar[dashed]{d}{h} & TC \ar[equal]{d}{id_{TC}} \\
-                C \ar{r}{c} & TA \ar{r}{-Ta} & TB \ar{r}{-Tb} & TC
+                C \ar{r}{c} \ar[equal]{d}{id_C} & \Sigma_{\mathcal{T}}A \ar{r}{\Sigma_{\mathcal{T}}a'} \ar[equal]{d}{id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}B' \ar{r}{\Sigma_{\mathcal{T}}b'} \ar[dashed]{d}{h} & \Sigma_{\mathcal{T}}C \ar[equal]{d}{id_{\Sigma_{\mathcal{T}}C}} \\
+                C \ar{r}{c} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} & \Sigma_{\mathcal{T}}B \ar{r}{-\Sigma_{\mathcal{T}}b} & \Sigma_{\mathcal{T}}C
             \end{tikzcd}
         \end{center}
-        By the 2 out of 3 property it is seen that h is an isomorphism, so the triple $(id_{T^{-1}C}, id_A, T^{-1}h)$ is an isomorphism of candidate triangles, and by TR1, is an isomorphism of triangles, asserting that $(T^{-1}C,A,B,-T^{-1}c,a,b)$ is in fact a triangle.
+        By the 2 out of 3 property it is seen that h is an isomorphism, so the triple $(id_{\Sigma_{\mathcal{T}}^{-1}C}, id_A, \Sigma_{\mathcal{T}}^{-1}h)$ is an isomorphism of candidate triangles, and by TR1, is an isomorphism of triangles, asserting that $(\Sigma_{\mathcal{T}}^{-1}C,A,B,-\Sigma_{\mathcal{T}}^{-1}c,a,b)$ is in fact a triangle.
     \end{proof}
 
     \begin{lemma}
@@ -603,30 +614,30 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             $\Downarrow$ \\
             \begin{tikzcd}[column sep=small]
                 ... \ar{r} & \mathcal{T}(K,A)\oplus\mathcal{T}(K,A') \ar{r} & \mathcal{T}(K,B)\oplus\mathcal{T}(K,B') \ar[dll, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
-                \mathcal{T}(K,C)\oplus\mathcal{T}(K,C') \ar{r} & \mathcal{T}(K,TA)\oplus\mathcal{T}(K,TA') \ar{r} & ...    
+                \mathcal{T}(K,C)\oplus\mathcal{T}(K,C') \ar{r} & \mathcal{T}(K,\Sigma_{\mathcal{T}}A)\oplus\mathcal{T}(K,\Sigma_{\mathcal{T}}A') \ar{r} & ...    
             \end{tikzcd}
         \end{center}
         Thus the 2 out of 3 property holds for the direct sum. By TR1 there is a triangle 
         \begin{center}
             \begin{tikzcd}
-                A\oplus A' \ar{r} & B\oplus B' \ar{r} & D \ar{r} & TA\oplus TA'
+                A\oplus A' \ar{r} & B\oplus B' \ar{r} & D \ar{r} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
         By TR3 there are morphisms from this triangle to to the direct summands. Adding these maps together there is a map from this triangle to direct sum, and by using the 2 out of 3 property this is an isomorphism of candidate triangles. Thus the direct sum is a triangle.
         \begin{center}
             \begin{tikzcd}
-                A\oplus A' \ar{r} \ar{d} & B\oplus B' \ar{r} \ar{d} & D \ar{r} \ar[dashed]{d} & TA\oplus TA' \ar{d} \\
-                A \ar{r} & B \ar{r} & C \ar{r} & TA
+                A\oplus A' \ar{r} \ar{d} & B\oplus B' \ar{r} \ar{d} & D \ar{r} \ar[dashed]{d} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A' \ar{d} \\
+                A \ar{r} & B \ar{r} & C \ar{r} & \Sigma_{\mathcal{T}}A
             \end{tikzcd} \\
             \& \\
             \begin{tikzcd}
-                A\oplus A' \ar{r} \ar{d} & B\oplus B' \ar{r} \ar{d} & D \ar{r} \ar[dashed]{d} & TA\oplus TA' \ar{d} \\
-                A' \ar{r} & B' \ar{r} & C' \ar{r} & TA'
+                A\oplus A' \ar{r} \ar{d} & B\oplus B' \ar{r} \ar{d} & D \ar{r} \ar[dashed]{d} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A' \ar{d} \\
+                A' \ar{r} & B' \ar{r} & C' \ar{r} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd} \\
             $\Downarrow$ \\
             \begin{tikzcd}
-                A\oplus A' \ar{r} \ar[equal]{d} & B\oplus B' \ar{r} \ar[equal]{d}& D \ar{r} \ar[dashed]{d}[below, rotate=90]{\simeq} & TA\oplus TA' \ar[equal]{d} \\
-                A\oplus A' \ar{r} & B\oplus B' \ar{r} & A''\oplus B'' \ar{r} & TA\oplus TA'
+                A\oplus A' \ar{r} \ar[equal]{d} & B\oplus B' \ar{r} \ar[equal]{d}& D \ar{r} \ar[dashed]{d}[below, rotate=90]{\simeq} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A' \ar[equal]{d} \\
+                A\oplus A' \ar{r} & B\oplus B' \ar{r} & A''\oplus B'' \ar{r} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -645,9 +656,9 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     The observant reader might have seen that the Octahedron axiom have not yet been used once, other than for proving TR3. A lot of the theory proven for triangulated categories works without this axiom, and this motivates the definition of a pre-triangulated category.
 
     \begin{definition}
-        A pre-triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta '$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying TR1, TR2 and TR3.
+        A pre-triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta_{\mathcal{T}}'$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying TR1, TR2 and TR3.
 
-        The category $\mathcal{T}$ with the pre-triangulation $\Delta '$ is called a pre-triangulated category, and the candidate triangles in $\Delta '$ are called  triangles. This notion of triangles will only be used in this subsection.
+        The category $\mathcal{T}$ with the pre-triangulation $\Delta_{\mathcal{T}}'$ is called a pre-triangulated category, and the candidate triangles in $\Delta_{\mathcal{T}}'$ are called  triangles. This notion of triangles will only be used in this subsection.
     \end{definition}
 
     \todo{Kanskje få denne biten tidligere?} The main goal of this subsection is to see how we can find  triangles, and when these are triangles. We will also look at triangulated functors and triangulated subcategories. For the rest of this subsection it is assumed that we work in a pre-triangulated category $\mathcal{T}$.
@@ -656,33 +667,33 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Let $\phi : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of candidate triangles.
         \begin{center}
             \begin{tikzcd}
-                A \arrow{r}{a} \arrow{d}{\phi_A} & B \arrow{r}{b} \arrow{d}{\phi_B} & C \arrow{r}{c} \arrow{d}{\phi_C} & TA \arrow{d}{T\phi_A} \\
-                A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
+                A \arrow{r}{a} \arrow{d}{\phi_A} & B \arrow{r}{b} \arrow{d}{\phi_B} & C \arrow{r}{c} \arrow{d}{\phi_C} & \Sigma_{\mathcal{T}}A \arrow{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
         The mapping cone of $\phi$ is defined to be the candidate triangle below.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 A' \oplus B \ar{r}{\begin{pmatrix}
-                    -b & \phi_B \\ 0 & a'
+                    b & \phi_B \\ 0 & -a'
                 \end{pmatrix}} \& B'\oplus C \ar{r}{\begin{pmatrix}
-                    -c & \phi_C \\ 0 & b'
-            \end{pmatrix}} \& C'\oplus TA \ar{r}{\begin{pmatrix}
-                -Ta & T\phi_A \\ 0 & c'
-            \end{pmatrix}} \& TA'\oplus TB
+                    c & \phi_C \\ 0 & -b'
+            \end{pmatrix}} \& C'\oplus \Sigma_{\mathcal{T}}A \ar{r}{\begin{pmatrix}
+                \Sigma_{\mathcal{T}}a & \Sigma_{\mathcal{T}}\phi_A \\ 0 & -c'
+            \end{pmatrix}} \& \Sigma_{\mathcal{T}}A'\oplus \Sigma_{\mathcal{T}}B
             \end{tikzcd}
         \end{center}
     \end{definition}
 
     \begin{definition}
-        A morphism $\alpha : A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ between candidate triangles is called null-homotopic if it factors through a homotopy. A homotopy is defined to be a triple of maps $\Theta, \Phi, \Psi$ in the following sense.
+        A morphism $\alpha : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ between candidate triangles is called null-homotopic if it factors through a homotopy. A homotopy is defined to be a triple of maps $\Theta, \Phi, \Psi$ in the following sense.
         \begin{center}
             \begin{tikzcd}
-                A \arrow{r}{a} \arrow{d}{\alpha_A} & B \arrow{r}{b} \arrow{ld}{\Theta} \ar{d}{\alpha_B} & C \arrow{r}{c} \arrow{ld}{\Phi} \ar{d}{\alpha_C} & TA \arrow{ld}{\Psi} \ar{d}{T\alpha_A} \\
-                A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & TA'
+                A \arrow{r}{a} \arrow{d}{\alpha_A} & B \arrow{r}{b} \arrow{ld}{\Theta} \ar{d}{\alpha_B} & C \arrow{r}{c} \arrow{ld}{\Phi} \ar{d}{\alpha_C} & \Sigma_{\mathcal{T}}A \arrow{ld}{\Psi} \ar{d}{\Sigma_{\mathcal{T}}\alpha_A} \\
+                A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
-        It is required that $\alpha_A  = \Theta a + T^{-1}(c'\Psi)$, $\alpha_B = \Phi b + a'\Theta$ and $\alpha_C = \Psi c + b'\Phi$ for the triple to be a homotopy.
+        It is required that $\alpha_A  = \Theta a + \Sigma_{\mathcal{T}}^{-1}(c'\Psi)$, $\alpha_B = \Phi b + a'\Theta$ and $\alpha_C = \Psi c + b'\Phi$ for the triple to be a homotopy.
         Two maps are called homotopic if their difference is null-homotopic
     \end{definition}
 
@@ -694,27 +705,27 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Suppose that $(f,g,h)$ and $(f',g',h')$ are two homotopic morphisms of triangles:
         \begin{center}
             \begin{tikzcd}
-                A \ar{r}{a} \ar{d} & B \ar{r}{b} \ar{d} & C \ar{r}{c} \ar{d} & TA \ar{d} \\
-                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                A \ar{r}{a} \ar{d} & B \ar{r}{b} \ar{d} & C \ar{r}{c} \ar{d} & \Sigma_{\mathcal{T}}A \ar{d} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
         Let $(\Theta,\Phi,\Psi)$ be the homotopy between the triangle morphisms. Then there is an isomorphism of triangles.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 A' \oplus B \ar{r}{\begin{pmatrix}
-                    -b & g \\ 0 & a'
+                    b & g \\ 0 & -a'
                 \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & \Theta \\ 0 & 1 \end{pmatrix}} \& B'\oplus C \ar{r}{\begin{pmatrix}
-                    -c & h \\ 0 & b'
-            \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & \Phi \\ 0 & 1\end{pmatrix}} \& C'\oplus TA \ar{r}{\begin{pmatrix}
-                -Ta & Tf \\ 0 & c'
-            \end{pmatrix}} \ar{d}{\begin{pmatrix}1 & \Psi \\ 0 & 1\end{pmatrix}} \& TA'\oplus TB \ar{d}{\begin{pmatrix}1 & T\Theta \\ 0 & 1 \end{pmatrix}}\\
+                    c & h \\ 0 & -b'
+            \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & \Phi \\ 0 & 1\end{pmatrix}} \& C'\oplus \Sigma_{\mathcal{T}}A \ar{r}{\begin{pmatrix}
+                \Sigma_{\mathcal{T}}a & \Sigma_{\mathcal{T}}f \\ 0 & -c'
+            \end{pmatrix}} \ar{d}{\begin{pmatrix}1 & \Psi \\ 0 & 1\end{pmatrix}} \& \Sigma_{\mathcal{T}}A'\oplus \Sigma_{\mathcal{T}}B \ar{d}{\begin{pmatrix}1 & \Sigma_{\mathcal{T}}\Theta \\ 0 & 1 \end{pmatrix}}\\
             A' \oplus B \ar{r}[below]{\begin{pmatrix}
-                -b & g' \\ 0 & a'
+                b & g' \\ 0 & -a'
             \end{pmatrix}} \& B'\oplus C \ar{r}[below]{\begin{pmatrix}
-                -c & h' \\ 0 & b'
-        \end{pmatrix}} \& C'\oplus TA \ar{r}[below]{\begin{pmatrix}
-            -Ta & Tf' \\ 0 & c'
-        \end{pmatrix}} \& TA'\oplus TB
+                c & h' \\ 0 & -b'
+        \end{pmatrix}} \& C'\oplus \Sigma_{\mathcal{T}}A \ar{r}[below]{\begin{pmatrix}
+            \Sigma_{\mathcal{T}}a & \Sigma_{\mathcal{T}}f' \\ 0 & -c'
+        \end{pmatrix}} \& \Sigma_{\mathcal{T}}A'\oplus \Sigma_{\mathcal{T}}B
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -724,7 +735,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        To prove this statement it is enough to prove that $\alpha\gamma$ is homotopic to $\beta\gamma$ du to the symmetry of the statement. The goal is then to show that $(\Theta\gamma ',\Phi\gamma '',\Psi T\gamma)$ is the homotopy between these maps. This can be seen as
+        To prove this statement it is enough to prove that $\alpha\gamma$ is homotopic to $\beta\gamma$ du to the symmetry of the statement. The goal is then to show that $(\Theta\gamma ',\Phi\gamma '',\Psi \Sigma_{\mathcal{T}}\gamma)$ is the homotopy between these maps. This can be seen as
         \begin{multline*}
             {\alpha}'{\gamma}'-{\beta}'{\gamma}' = ({\alpha}'-{\beta}'){\gamma}' = (b\Theta +\Phi a'){\gamma}' = b\Theta {\gamma}' + \Phi a'{\gamma}' = b({\Theta}{\gamma}') + ({\Phi}{\gamma}'')\widetilde{a}'
         \end{multline*}.
@@ -738,7 +749,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         If $A$ is a contractible triangle and $F:\mathcal{T}\rightarrow \mathcal{A}$ is an additive functor to an abelian category, then the identity of the cochain is null-homotopic as well.
         \begin{center}
             \begin{tikzcd}
-                ... \ar{r} & F(A) \ar{r} & F(A') \ar{r} & F(A'') \ar{r} & F(TA) \ar{r} & ...
+                ... \ar{r} & F(A) \ar{r} & F(A') \ar{r} & F(A'') \ar{r} & F(\Sigma_{\mathcal{T}}A) \ar{r} & ...
             \end{tikzcd}
         \end{center}
         The homology of this sequence is therefore $0$ everywhere, asserting that it is an exact sequence.
@@ -761,21 +772,21 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Let $A$ be the contractible triangle $(A,A',A'')$. Writing everything out, there is a homotopy between candidate triangles.
         \begin{center}
             \begin{tikzcd}
-                A \ar{r}{a} \ar{d}{id_A} & A' \ar{r}{a'} \ar{d}{id_{A'}} \ar{ld}{\Theta} & A'' \ar{r}{a''} \ar{d}{id_{A''}} \ar{ld}{\Phi} & TA \ar{d}{id_{TA}} \ar{ld}{\Psi} \\
-                A \ar{r}{a} & A' \ar{r}{a'} & A'' \ar{r}{a''} & TA
+                A \ar{r}{a} \ar{d}{id_A} & A' \ar{r}{a'} \ar{d}{id_{A'}} \ar{ld}{\Theta} & A'' \ar{r}{a''} \ar{d}{id_{A''}} \ar{ld}{\Phi} & \Sigma_{\mathcal{T}}A \ar{d}{id_{\Sigma_{\mathcal{T}}A}} \ar{ld}{\Psi} \\
+                A \ar{r}{a} & A' \ar{r}{a'} & A'' \ar{r}{a''} & \Sigma_{\mathcal{T}}A
             \end{tikzcd}
         \end{center}
         By using TR1 there is a triangle, and consequently, a long exact sequence.
         \begin{center}
             \begin{tikzcd}
-                A \ar{r}{a} & A' \ar{r}{e} & E \ar{r}{e'} & TA
+                A \ar{r}{a} & A' \ar{r}{e} & E \ar{r}{e'} & \Sigma_{\mathcal{T}}A
             \end{tikzcd} \\
             $\Downarrow$ \\
             \begin{tikzcd}
-                ... \ar{r} & \mathcal{T}(TA,A) \ar{r} & \mathcal{T}(TA,A') \ar{r} & \mathcal{T}(TA,E) \ar{r}{e'_*} & \mathcal{T}(TA,TA) \ar{r}{Ta_*} & ...    
+                ... \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,A) \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,A') \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,E) \ar{r}{e'_*} & \mathcal{T}(\Sigma_{\mathcal{T}}A,\Sigma_{\mathcal{T}}A) \ar{r}{\Sigma_{\mathcal{T}}a_*} & ...    
             \end{tikzcd}
         \end{center}
-        Since the map $Ta\circ a''\Psi = 0$ and by exactness at $\mathcal{T}(TA,TA)$, the kernel $KerTa_*=Ime'_*\neq 0$. This shows that there is a map ${\Psi}':\mathcal{T}(TA,E)$ such that $e'{\Psi}'=a''\Psi$, and the map $(id_A,id_{A'},e\Theta+{\Psi}'a'')$ is a well defined map of candidate triangles. By the remark, we can use the 2 out of 3 properties to assert that the map found is an isomorphism, giving an isomorphism of triangles, showing that the contractible triangle is a triangle by Bookeeping. 
+        Since the map $\Sigma_{\mathcal{T}}a\circ a''\Psi = 0$ and by exactness at $\mathcal{T}(\Sigma_{\mathcal{T}}A,\Sigma_{\mathcal{T}}A)$, the kernel $Ker\Sigma_{\mathcal{T}}a_*=Ime'_*\neq 0$. This shows that there is a map ${\Psi}':\mathcal{T}(\Sigma_{\mathcal{T}}A,E)$ such that $e'{\Psi}'=a''\Psi$, and the map $(id_A,id_{A'},e\Theta+{\Psi}'a'')$ is a well defined map of candidate triangles. By the remark, we can use the 2 out of 3 properties to assert that the map found is an isomorphism, giving an isomorphism of triangles, showing that the contractible triangle is a triangle by Bookkeeping. 
     \end{proof}
 
     \begin{corollary}
@@ -810,8 +821,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \end{tikzcd}
             (2)
             \begin{tikzcd}
-                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & TA \ar{d}{T\phi_A} \\
-                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & TA'
+                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
     \end{theorem}
@@ -835,7 +846,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=small]
                 D \ar{rd} \\
                 & A\oplus B \ar{ld} \\ 
-                C \ar[very near end, "|" marking]{uu}[near end]{T} 
+                C \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}} 
             \end{tikzcd}
         \end{center}
     \end{definition}
@@ -853,7 +864,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \end{tikzcd} \\
             $\implies$
             \begin{tikzcd}[ampersand replacement=\&]
-                A\oplus B \ar{r}{\begin{pmatrix}a & b\end{pmatrix}} \& C \ar{r} \& TD \ar{r} \& TA\oplus TB
+                A\oplus B \ar{r}{\begin{pmatrix}a & b\end{pmatrix}} \& C \ar{r} \& \Sigma_{\mathcal{T}}D \ar{r} \& \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}B
             \end{tikzcd}
             $\implies$
             \begin{tikzcd}
@@ -879,8 +890,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \end{tikzcd}
             (2)
             \begin{tikzcd}
-                D \ar{r} \ar{d}{f'} & A \ar{d}{f} \ar{r} & E \ar{r} \ar[equal]{d} & TD \ar{d}{Tf'} \\
-                B \ar{r} & C \ar{r} & E \ar{r} & TB
+                D \ar{r} \ar{d}{f'} & A \ar{d}{f} \ar{r} & E \ar{r} \ar[equal]{d} & \Sigma_{\mathcal{T}}D \ar{d}{\Sigma_{\mathcal{T}}f'} \\
+                B \ar{r} & C \ar{r} & E \ar{r} & \Sigma_{\mathcal{T}}B
             \end{tikzcd}
         \end{center}
     \end{lemma}
@@ -897,22 +908,22 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=small, ampersand replacement=\&]
                 D \ar[red]{rd}{\begin{pmatrix}g' \\ f'\end{pmatrix}} \\
                 \& A\oplus B \ar[red]{ld}{\begin{pmatrix}f & g\end{pmatrix}} \\
-                C \ar[red, very near end, "|" marking]{uu}[near end]{T}[pos=0.5]{0}
+                C \ar[red, very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}}[pos=0.5]{0}
             \end{tikzcd}
             \begin{tikzcd}[row sep=small, ampersand replacement=\&]
                 A\oplus B \ar[orange]{rd}{\begin{pmatrix} 1 & 0\end{pmatrix}} \\
                 \& A \ar[orange]{ld}{0} \\
-                TB \ar[orange, very near end, "|" marking]{uu}[near end]{T}[near start]{\begin{pmatrix}0 \\ 1\end{pmatrix}}
+                \Sigma_{\mathcal{T}}B \ar[orange, very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}}[near start]{\begin{pmatrix}0 \\ 1\end{pmatrix}}
             \end{tikzcd}
             \begin{tikzcd}[row sep=small]
                 D \ar[violet]{rd}{f'} \\
                 & A \ar[violet]{ld}{} \\
-                E \ar[violet, very near end, "|" marking]{uu}[near end]{T}
+                E \ar[violet, very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd} \\
             (3)
             \begin{tikzcd}
                 \textcolor{white}{.} \\
-                C \ar[teal]{r} & E \ar[teal]{r}{} & TB \ar[teal]{r}{} & TC \\
+                C \ar[teal]{r} & E \ar[teal]{r}{} & \Sigma_{\mathcal{T}}B \ar[teal]{r}{} & \Sigma_{\mathcal{T}}C \\
                 \textcolor{white}{.}
             \end{tikzcd}
         \end{center}
@@ -926,8 +937,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Since $\begin{pmatrix}1 & 0\end{pmatrix}$ is a splitmono, there is a morphism of triangles proving the statement.
         \begin{center}
             \begin{tikzcd}
-                D \ar{r}{} \ar{d}{} & A \ar{r}{} \ar{d}{} & E \ar{r}{} \ar[equal]{d}{} & TD \ar{d}{} \\
-                B \ar{r}{} & C \ar{r}{} & E \ar{r}{} & TB
+                D \ar{r}{} \ar{d}{} & A \ar{r}{} \ar{d}{} & E \ar{r}{} \ar[equal]{d}{} & \Sigma_{\mathcal{T}}D \ar{d}{} \\
+                B \ar{r}{} & C \ar{r}{} & E \ar{r}{} & \Sigma_{\mathcal{T}}B
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -952,7 +963,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Even though it is known that $\mathcal{C}$ is locally small, it is not clear a priori that the category $\mathcal{C}[S^{-1}]$ is again locally small.
     \end{remark}
 
-    \todo[color = pink]{Burde jeg endre på noe her. Kan det være greit å forklare hvorfor de er vanskelig å beskrive?} These categories are in generel pretty hard to describe. When the set of morphisms is a multiplicative system, there is a calculus of fractions description of these localization in the same style as for localizations of rings.
+    \todo[color = pink]{Burde jeg endre på noe her. Kan det være greit å forklare hvorfor de er vanskelig å beskrive?} These categories are in general pretty hard to describe. When the set of morphisms is a multiplicative system, there is a calculus of fractions description of these localization in the same style as for localizations of rings.
 
     \begin{definition}
         A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
@@ -966,7 +977,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                     Z \ar{r}{g} & Y
                 \end{tikzcd}
             \end{center}
-            \item (Left cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+            \item (Left cancellation) Suppose $f,g:X\rightarrow Y$ are parallel morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
             \begin{enumerate}
                 \item $sf = sg$ for som $s:S$ starting at $Y$
                 \item $ft = gt$ for som $t:S$ ending at $X$
@@ -985,7 +996,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                     Z \ar[dashed]{r}{g} & W
                 \end{tikzcd}
             \end{center}
-            \item (Right cancellation) Suppose $f,g:X\rightarrow Y$ are parallell morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+            \item (Right cancellation) Suppose $f,g:X\rightarrow Y$ are parallel morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
             \begin{enumerate}
                 \item $ft = gt$ for som $t:S$ ending at $X$
                 \item $sf = sg$ for som $s:S$ starting at $Y$
@@ -1192,7 +1203,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 C & Z \ar{l}{u} \ar{r}{h} & D
             \end{tikzcd}
         \end{center}
-        There are two different ways of calculating the compostion. Every morphism in $S$ will be marked blue.
+        There are two different ways of calculating the composition. Every morphism in $S$ will be marked blue.
         \begin{center}
             \begin{minipage}[c]{0.4\textwidth}
                 \underline{$hu^{-1}\circ (gt^{-1}\circ fs^{-1})$}\\
@@ -1247,13 +1258,13 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{remark}
 
     \begin{remark}
-        \todo{Det virker som at det som foregår her er galt. Jeg må først skaffe oversikt over hva som skjer} Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ starting at $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its codomain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondance between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\delta(b, B)\rightarrow B'$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
+        \todo{Det virker som at det som foregår her er galt. Jeg må først skaffe oversikt over hva som skjer} Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ starting at $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its codomain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondence between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\delta(b, B)\rightarrow B'$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
     \end{remark}
 
     To ensure us that these categories $\mathfrak{r}S^{-1}\mathcal{C}$ does indeed exist there are many different criteria which we can place upon our assumptions. A natural restriction is to ensure that the colimits above exists as sets
 
     \begin{definition}
-        \todo{Dette må også fikses etter at det over er fikset!!!} A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ in $S$ there is a morphism $f' : X'\rightarrow X$ in $S_X$ factoring thorugh $f$.
+        \todo{Dette må også fikses etter at det over er fikset!!!} A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ in $S$ there is a morphism $f' : X'\rightarrow X$ in $S_X$ factoring thorough $f$.
 
         The dual of this definition will be called a locally small multiplicative system on the left. If it is both locally small on the left and the right, we will simply call it locally small. 
     \end{definition}
@@ -1272,7 +1283,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{theorem}
 
     \begin{proof}
-        To prove the theorem one must show that $q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $q(gf)=(gf)id_X^{-1}$ and $q(g)q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. Choose the compostion to be defined by the diagram below.
+        To prove the theorem one must show that $q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $q(gf)=(gf)id_X^{-1}$ and $q(g)q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. Choose the composition to be defined by the diagram below.
         \begin{center}
             \begin{tikzcd}
                 X \ar{r}{f} \ar[equal,blue]{d} & Y \ar{r}{g} \ar[equal,blue]{d} & Z\\
@@ -1320,7 +1331,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{remark}
 
     \begin{prop}
-        Let $\mathcal{C}$ be a category, and $S$ a right multiplicative set of morphisms. The cannonical functor $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ commutes with finite limits.
+        Let $\mathcal{C}$ be a category, and $S$ a right multiplicative set of morphisms. The canonical functor $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ commutes with finite limits.
     \end{prop}
 
     \begin{proof}
@@ -1360,7 +1371,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             fs^{-1}+gt^{-1} = (f'+g')u^{-1}
         \end{equation*}
         To prove that this is an addition one must prove that it is well defined; associativity, inverses and commutativity will be inherited from $\mathcal{A}$.
-        Let $\bar{f}$, $\bar{g}$ and $v$ be another choice provided by the right Ore condition. To summarize, the equations $\bar{f}v^{-1}=fs^{-1}=f'u^{-1}$ and $\bar{g}v^{-1}=gt^{-1}=g'u^{-1}$ have been established. In order to prove well-definedness, one must show that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=0$. By definition $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=\bar{f}v^{-1}-f'u^{-1}+\bar{g}v^{-1}-g'u^{-1}$. Proving that the whole sum is $0$, is the same as proving that $\bar{f}v^{-1}+(-f')u^{-1}=(\bar{\bar{f}}-f'')w^{-1}=0$. This can be done by writing out the diagrams after repeatedly applying the right Ore condition.
+        Let $\bar{f}$, $\bar{g}$ and $v$ be another choice provided by the right Ore condition. To summarize, the equations $\bar{f}v^{-1}=fs^{-1}=f'u^{-1}$ and $\bar{g}v^{-1}=gt^{-1}=g'u^{-1}$ have been established. In order to prove well-definedness one must show that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=0$. By definition $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=\bar{f}v^{-1}-f'u^{-1}+\bar{g}v^{-1}-g'u^{-1}$. Proving that the whole sum is $0$, is the same as proving that $\bar{f}v^{-1}+(-f')u^{-1}=(\bar{\bar{f}}-f'')w^{-1}=0$. This can be done by writing out the diagrams after repeatedly applying the right Ore condition.
         \begin{center}
             \begin{tikzcd}
                 \cdot \ar[bend right, dashed, blue]{rddd}{p} \ar[bend left, dashed, blue]{rrrd}{p} \ar[dashed, blue]{rd} \\
@@ -1384,23 +1395,10 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
 
     \todo{Kan skrive noe her for å løsne overgangen fra lokalisering til lokalisering av triangulerte kategorier}
 
-    \todo[color = pink]{Jeg må fikse funktor notasjonen min. Den er vanskelig å lese...}
+    Recall the following definition or smth
 
     \begin{definition}
-        A triangulated functor $F: \mathcal{T} \rightarrow \mathcal{S}$ between two triangulated categories $(\mathcal{T}, T, \Delta_\mathcal{T}$ and $(\mathcal{S}, S, \Delta_\mathcal{S})$, is an additive functor along with a natural isomorphism $\phi_X : F(T(X)) \rightarrow S(F(X))$ such that $F(\Delta_{\mathcal{T}}) \subseteq \Delta_{\mathcal{S}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
-        \begin{center}
-            \begin{tikzcd}[row sep=tiny]
-                A \arrow{rd}{a} & \\
-                & B \arrow{dl}{b} & & \\
-                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{T}
-            \end{tikzcd}
-            $\implies$
-            \begin{tikzcd}[row sep=tiny]
-                F(A) \arrow{rd}{F(a)} & \\
-                & F(B) \ar{dl}{F(b)} & & \\
-                F(C) \arrow[very near end, "|" marking]{uu}[near start]{F(c)}[near end]{T}
-            \end{tikzcd}
-        \end{center}
+        Denne er flyttet til en tidligere del
     \end{definition}
 
     \begin{definition}
@@ -1416,18 +1414,18 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{lemma}
 
     \begin{proof}
-        Let $X:KerF$, since $F$ is a triangulated functor $CX:KerF$ as $F(CX)=D(FX)=D0=0$. As $F$ is triangulated, one has that every triangle maps to a triangle. Let $X,Y:KerF$, then:
+        Let $X:KerF$, since $F$ is a triangulated functor $\Sigma_{\mathcal{C}}X:KerF$ as $F(\Sigma_{\mathcal{C}}X)=\Sigma_{\mathcal{D}}(FX)=\Sigma_{\mathcal{D}}0=0$. As $F$ is triangulated, one has that every triangle maps to a triangle. Let $X,Y:KerF$, then:
         \begin{center}
             \begin{tikzcd}[row sep=small]
                 X \ar{rd} \\
                 & Y \ar{ld} \\
-                Z \ar[very near end, "|" marking]{uu}[near end]{T}
+                Z \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{C}}}
             \end{tikzcd}
             $\implies$
             \begin{tikzcd}[row sep=small]
                 0 \ar{rd} \\
                 & 0 \ar{ld}\\
-                F(Z) \ar[very near end, "|" marking]{uu}[near end]{T}
+                F(Z) \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{D}}}
             \end{tikzcd}
         \end{center}
         By TR3 and the 2 out of 3 property $F(Z)\simeq 0 \implies Z:KerF$. Thus $KerF$ is a triangulated subcategory of $\mathcal{C}$.
@@ -1453,8 +1451,8 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         There is an isomorphism of triangles in $\mathcal{D}$, showing that the cone of $f$ is in $KerF$.
         \begin{center}
             \begin{tikzcd}
-                FX \ar{r}{Ff} \ar[equal]{d} & FY \ar{r} \ar[equal]{d} & F(cone(f)) \ar{r} \ar[dashed]{d}[rotate=90, below]{\simeq} & FTX \ar[equal]{d} \\
-                FX \ar{r}{Ff} & FY \ar{r} & 0 \ar{r} & FTX
+                FX \ar{r}{Ff} \ar[equal]{d} & FY \ar{r} \ar[equal]{d} & F(cone(f)) \ar{r} \ar[dashed]{d}[rotate=90, below]{\simeq} & F\Sigma_{\mathcal{C}}X \ar[equal]{d} \\
+                FX \ar{r}{Ff} & FY \ar{r} & 0 \ar{r} & F\Sigma_{\mathcal{C}}X
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -1465,7 +1463,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
         Let $\mathcal{C}$ be a triangulated category and $\mathcal{S} \subseteq \mathcal{C}$ be a triangulated subcategory. Define the collection $Mor_{\mathcal{S}}$ to be a collection of morphisms in $\mathcal{C}$ such that for any $f : Mor_{\mathcal{S}}$ there is a triangle with $C : \mathcal{S}$.
         \begin{center}
             \begin{tikzcd}
-                A \ar{r}{f} & B \ar{r} & C \ar{r} & TA 
+                A \ar{r}{f} & B \ar{r} & C \ar{r} & \Sigma_{\mathcal{C}}A 
             \end{tikzcd}
         \end{center}
     \end{definition}
@@ -1485,38 +1483,38 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
             \begin{tikzcd}[row sep=tiny]
                 X \arrow[red]{rd}[black]{f} & \\
                 & Y \arrow[red]{dl} & & \\
-                Z' \arrow[red, very near end, "|" marking]{uu}[black, near end]{T}
+                Z' \arrow[red, very near end, "|" marking]{uu}[black, near end]{\Sigma_{\mathcal{C}}}
             \end{tikzcd}
             (2)
             \begin{tikzcd}[row sep=tiny]
                 Y \arrow[orange]{rd}[black]{g} & \\
                 & Z \arrow[orange]{dl} & & \\
-                X' \arrow[orange, very near end, "|" marking]{uu}[black, near end]{T}
+                X' \arrow[orange, very near end, "|" marking]{uu}[black, near end]{\Sigma_{\mathcal{C}}}
             \end{tikzcd}
             (3)
             \begin{tikzcd}[row sep=tiny]
                 A \arrow[violet]{rd}[black]{g\circ f} & \\
                 & C \arrow[violet]{dl} & & \\
-                Y' \arrow[violet, very near end, "|" marking]{uu}[black, near end]{T}
+                Y' \arrow[violet, very near end, "|" marking]{uu}[black, near end]{\Sigma_{\mathcal{C}}}
             \end{tikzcd}
         \end{center}
         By the Octahedron axiom there exist another triangle in $\mathcal{C}$:
         \begin{center}
             \begin{tikzcd}
-                Z' \ar[teal]{r} & X' \ar[teal]{r} & Y' \ar[teal]{r} & TZ'
+                Z' \ar[teal]{r} & X' \ar[teal]{r} & Y' \ar[teal]{r} & \Sigma_{\mathcal{C}}Z'
             \end{tikzcd}
         \end{center}
         Note that $f$ is in $Mor_\mathcal{S}$ if and only if $Z' : S$. WLOG assume that $f$ and $g$ is in $Mor_\mathcal{S}$, this can be done by the rotation axiom. Thus one may find the triangle in $\mathcal{S}$ by TR1 $(Z',X',Y'')$ proving that $Y'\simeq Y''$.
         \begin{center}
             \begin{tikzcd}
-                Z' \ar[teal]{r} \ar[equal]{d} & X' \ar[equal]{d} \ar[teal]{r} & Y' \ar[teal]{r} \ar{d}[rotate=90, below]{\simeq} & TZ' \ar[equal]{d} \\
-                Z' \ar{r} & X' \ar{r} & Y'' \ar{r} & TZ'
+                Z' \ar[teal]{r} \ar[equal]{d} & X' \ar[equal]{d} \ar[teal]{r} & Y' \ar[teal]{r} \ar{d}[rotate=90, below]{\simeq} & \Sigma_{\mathcal{C}}Z' \ar[equal]{d} \\
+                Z' \ar{r} & X' \ar{r} & Y'' \ar{r} & \Sigma_{\mathcal{C}}Z'
             \end{tikzcd}
         \end{center}
         To see that $gf$ is in $Mor_\mathcal{S}$ one can construct the triangle below with the isomorphism given above.
         \begin{center}
             \begin{tikzcd}
-                A & C & Y'' & TA
+                A \ar{r}{g\circ f} & C \ar{r} & Y'' \ar{r}{} & \Sigma_{\mathcal{C}}A
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -1543,7 +1541,7 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{proof}
 
     \begin{prop}
-        For any parallell morphism $f,g:X\rightarrow Y$ in $\mathcal{C}$ the following are equivalent:
+        For any parallel morphism $f,g:X\rightarrow Y$ in $\mathcal{C}$ the following are equivalent:
         \begin{enumerate}
             \item $sf=sg$ for some $s:Mor_\mathcal{S}$ starting at $Y$.
             \item $ft=gt$ for some $t:Mor_\mathcal{S}$ ending at $X$.
@@ -1553,14 +1551,14 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
 
     \begin{proof}
         $(1.\iff 3.)$:
-        Suppose that there exists an $s:Y\rightarrow Z$ such that $s(f-g)=0$. By TR1 there is a triangle \begin{tikzcd}Y \ar{r}{s} & Z \ar{r}{Ts'} & TC \ar{r} & TY \end{tikzcd} and a long exact sequence.
+        Suppose that there exists an $s:Y\rightarrow Z$ such that $s(f-g)=0$. By TR1 there is a triangle \begin{tikzcd}Y \ar{r}{s} & Z \ar{r}{\Sigma_{\mathcal{C}}s'} & \Sigma_{\mathcal{C}}C \ar{r} & \Sigma_{\mathcal{C}}Y \end{tikzcd} and a long exact sequence.
         \begin{center}
             \begin{tikzcd}
                 \mathcal{C}(X,C) \ar{r}{s'_*} & \mathcal{C}(X,Y) \ar{r}{s_*} & \mathcal{T}(X,Z) \\
                 p \ar[pos=0, "|" marking]{r}[pos=0.5]{s'_*}& f-g \ar[pos=0, "|" marking]{r}[pos=0.5]{s_*} & 0
             \end{tikzcd}
         \end{center}
-        Since $s(f-g)=0$ there exists a $p:\mathcal{C}(X,C)$ such that $f-g = s'_*p$. By definition, $s:Mor_\mathcal{S}\iff C:\mathcal{S}$, but $s:Mor_\mathcal{S}\implies f-g$ factors through $C$, and vice versa.
+        Since $s(f-g)=0$ there exists a $p:\mathcal{C}(X,C)$ such that $f-g = s'_*p$. By definition, $s:Mor_\mathcal{S}\iff C:\mathcal{S}$, but $s:Mor_\mathcal{S}\implies f-g$ factors through $\Sigma_{\mathcal{C}}$, and vice versa.
         $(2.\iff 3.)$:
         This argument is dual.
     \end{proof}
@@ -1572,32 +1570,32 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
     \end{theorem}
 
     \begin{proof}
-        The triangulation on $\mathcal{C}/\mathcal{S}$ is defined as the following. Let $C/S:\mathcal{C}/\mathcal{S}\rightarrow\mathcal{C}/\mathcal{S}$ be the additive autoequivalence defined by $C/S(A)=C(A)$. Since $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ maps every object to itself it follows that $q(C(A)) \simeq C/S(A) = C/S(q(A))$, and define $\Delta_{\mathcal{C}/\mathcal{S}}\supseteq q(\Delta_\mathcal{C})$ such that $\Delta_{\mathcal{C}/\mathcal{S}}$ has every isomorphism class of $q(\Delta_\mathcal{C})$. 
+        The triangulation on $\mathcal{C}/\mathcal{S}$ is defined as the following. Let $\Sigma_{\mathcal{C/S}}:\mathcal{C}/\mathcal{S}\rightarrow\mathcal{C}/\mathcal{S}$ be the additive autoequivalence defined by \todo{Jeg sier ikke hva funktoren gjør med maps, det kan nok være lurt å gjøre} $\Sigma_{\mathcal{C/S}}(A)=\Sigma_{\mathcal{C}}(A)$. Since $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ maps every object to itself it follows that $q(\Sigma_{\mathcal{C}}(A)) \simeq \Sigma_{\mathcal{C/S}}(A) = \Sigma_{\mathcal{C/S}}(q(A))$, and define $\Delta_{\mathcal{C}/\mathcal{S}}\supseteq q(\Delta_\mathcal{C})$ such that $\Delta_{\mathcal{C}/\mathcal{S}}$ has every isomorphism class of $q(\Delta_\mathcal{C})$. 
         \begin{center}
             \begin{tikzcd}[row sep=small]
                 qX \ar{rd} \\
                 & qY \ar{ld} \\
-                qZ \ar[very near end, "|" marking]{uu}[near end]{T}
+                qZ \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{C/S}}}
             \end{tikzcd}
             $\impliedby$
             \begin{tikzcd}[row sep=small]
                 X \ar{rd} \\
                 & Y \ar{ld} \\
-                Z \ar[very near end, "|" marking]{uu}[near end]{T}
+                Z \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{C}}}
             \end{tikzcd}
         \end{center}
         Then by definition $q$ is triangulated if the category $\mathcal{C}/\mathcal{S}$ is triangulated.
         By definition, the triangles are closed under isomorphisms, $(X,X,0,id_X,0,0)$ is a triangle, and TR2 holds. Thus it remains to show TR1 and TR4 (TR3 is implied by the other axioms). To prove TR1, let $fs^{-1}:\mathcal{C}/\mathcal{S}(qW,qY)$. Expand $f:\mathcal{C}(X,Y)$ to a triangle in $\mathcal{C}$ with TR1, it will induce a triangle in  $\mathcal{C}/\mathcal{S}$.
         \begin{center}
             \begin{tikzcd}
-                qX \ar{r}{fid_X^{-1}} & qY \ar{r}{gid_Y^{-1}} & qZ \ar{r}{hid_Z^{-1}} & qTX
+                qX \ar{r}{fid_X^{-1}} & qY \ar{r}{gid_Y^{-1}} & qZ \ar{r}{hid_Z^{-1}} & q\Sigma_{\mathcal{C}}X
             \end{tikzcd}
         \end{center}
         There is an isomorphism to the following candidate triangle from the induced triangle, proving TR1.
         \begin{center}
             \begin{tikzcd}
-                qX \ar{r}{fid_X^{-1}} \ar{d}{sid_X^{-1}}[above, rotate = 90]{\simeq} & qY \ar{r}{gid_Y^{-1}} \ar[equal]{d} & qZ \ar{r}{hid_Z^{-1}} \ar[equal]{d} & qTX \ar{d}{(Ts)id_{Tx}^{-1}}[above, rotate = 90]{\simeq} \\
-                qW \ar{r}{fs^{-1}} & qY \ar{r}{gid_Y^{-1}} & qZ \ar{r}{(Ts)hid_Z^{-1}} & qTW
+                qX \ar{r}{fid_X^{-1}} \ar{d}{sid_X^{-1}}[above, rotate = 90]{\simeq} & qY \ar{r}{gid_Y^{-1}} \ar[equal]{d} & qZ \ar{r}{hid_Z^{-1}} \ar[equal]{d} & q\Sigma_{\mathcal{C}}X \ar{d}{(\Sigma_{\mathcal{C}}s)id_{\Sigma_{\mathcal{C}}x}^{-1}}[above, rotate = 90]{\simeq} \\
+                qW \ar{r}{fs^{-1}} & qY \ar{r}{gid_Y^{-1}} & qZ \ar{r}{(\Sigma_{\mathcal{C}}s)hid_Z^{-1}} & q\Sigma_{\mathcal{C}}W
             \end{tikzcd}
         \end{center}
         To show the Octahedron axiom, suppose that there are three triangles in $\mathcal{C}/\mathcal{S}$. By construction, these triangles can be chosen such that only the first map is a fraction up to isomorphism of triangles.
@@ -1607,29 +1605,29 @@ In this chapter the notion of a triangulated will be introduced. In litterature 
                 Z \ar{r}{t'}& X \ar{ld}[above]{s} \ar{dd}{a} \\
                 A \arrow[red]{rd}[black]{as^{-1}} \\
                 & B \arrow[red]{dl}[black]{x}\\
-                C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{T}
+                C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{\Sigma_{\mathcal{C/S}}}
             \end{tikzcd}
             (2)
             \begin{tikzcd}[row sep=tiny]
                 & Y \ar{ld}[above]{t} \ar{dd}{b} \\ 
                 B \arrow[orange]{rd}[black]{bt^{-1}} &  \\
                 & C \arrow[orange]{dl}[black]{y}\\
-                A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{T}
+                A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{\Sigma_{\mathcal{C/S}}}
             \end{tikzcd}
             (3)
             \begin{tikzcd}[row sep=tiny]
                 & Z \ar{ld}[above]{st'} \ar{dd}{ba'} \\
                 A \arrow[violet]{rd}[black]{b\circ a} \\
                 & C \arrow[violet]{dl}[black]{z} \\
-                B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{T}
+                B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{\Sigma_{\mathcal{C/S}}}
             \end{tikzcd}
         \end{center}
-        This is possible, as when composing the fractions from $A$ to $B$ and $B$ to $C$ one may find an object $Z$ as in the diagram by using the Ore condition. To illustrate with triangle (1), there is a correspondance of triangles in $\mathcal{C}/\mathcal{S}$ and $\mathcal{C}$ by the following isomorphism.
+        This is possible, as when composing the fractions from $A$ to $B$ and $B$ to $C$ one may find an object $Z$ as in the diagram by using the Ore condition. To illustrate with triangle (1), there is a correspondence of triangles in $\mathcal{C}/\mathcal{S}$ and $\mathcal{C}$ by the following isomorphism.
         \begin{center}
             \begin{tikzcd}
-                Z \ar{r}{at'} \ar{d}[above]{t}[below]{\simeq} & B \ar{r} \ar[equal]{d} & Z' \ar{r} \ar[dashed]{d}[below, rotate = 90]{\simeq} & TZ \ar[equal]{d} \\
-                X \ar{r}{a} \ar{d}{s} & B \ar{r} & C' \ar{r} & TX \ar{d}{Ts} \\
-                A & & & TA 
+                Z \ar{r}{at'} \ar{d}[below, rotate = 90]{\simeq}[near start]{t} & B \ar{r} \ar[equal]{d} & Z' \ar{r} \ar[dashed]{d}[below, rotate = 90]{\simeq} & \Sigma_{\mathcal{C}}Z \ar{d}[below, rotate = 90]{\simeq}[near start]{\Sigma_{\mathcal{C}}t} \\
+                X \ar{r}{a} \ar{d}{s} & B \ar{r} & C' \ar{r} & \Sigma_{\mathcal{C}}X \ar{d}{\Sigma_{\mathcal{C}}s} \\
+                A & & & \Sigma_{\mathcal{C}}A 
             \end{tikzcd}
         \end{center}
         The result of the octahedron axiom follows as one instead consider the triangles found by the composition of morphisms as below.
