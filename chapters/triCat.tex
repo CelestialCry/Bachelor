@@ -543,7 +543,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \begin{lemma}
         Given two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$ the following are equivalent:
         \begin{center}
-            \begin{minipage}[c]{0.4\textwidth}
+            \begin{minipage}[c]{0.7\textwidth}
                 \begin{tikzcd}
                     A \ar{r}{a} \ar{d}{f} & B \ar{r}{b} \ar{d}{g} & C \ar{r}{c} \ar{d}{h} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}f} \\
                     A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
@@ -969,11 +969,11 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
         \begin{itemize}
             \item $S$ is closed under composition, i.e. if $f,g : S$ are composable then $gf : S$. Every identity morphism in $\mathcal{C}$ is in $S$.
-            \item (Right Ore condition) If $t : X \rightarrow Y$ is a morphism in $S$, then $\forall g:Z\rightarrow Y$ there is a commutative square (1) such that $f:W\rightarrow X$ and $s:W\rightarrow Z$ exists and $s:S$ as well.
+            \item (Right Ore condition) If $t : X \rightarrow Y$ is a morphism in $S$, then $\forall g:Z\rightarrow Y$ there is a commutative square (1) such that $f:W\rightarrow X$ and $s:W\rightarrow Z$ exists, where $s:S$.
             \begin{center}
                 (1)
                 \begin{tikzcd}
-                    W \ar[dashed]{r}{f} \ar[dashed]{d}{s} & X \ar{d}{t} \\
+                    W \ar[dashed]{r}{f} \ar[blue, dashed]{d}{s} & X \ar[blue]{d}{t} \\
                     Z \ar{r}{g} & Y
                 \end{tikzcd}
             \end{center}
@@ -992,7 +992,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
             \item (Left Ore condition) If $s : Y \rightarrow Z$ is a morphism in $S$, then $\forall f:Y\rightarrow X$ there is a commutative square (1) such that $g:Z\rightarrow W$ and $t:X\rightarrow W$ exists and $t:S$ as well.
             \begin{center}
                 (1)\begin{tikzcd}
-                    Y \ar{r}{f} \ar{d}{s} & X \ar[dashed]{d}{t} \\
+                    Y \ar{r}{f} \ar[blue]{d}{s} & X \ar[blue, dashed]{d}{t} \\
                     Z \ar[dashed]{r}{g} & W
                 \end{tikzcd}
             \end{center}
@@ -1024,16 +1024,16 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         Let $S$ be a right multiplicative system of morphisms in a category $\mathcal{C}$. Given a morphism $s : Y\rightarrow X$ in $S$ and a morphism $t:Y\rightarrow Z$, define the right fraction of $s$ and $t$ to be the span of the morphisms. That is $s$ and $t$ fit in the diagram below.
         \begin{center}
             \begin{tikzcd}
-                X & Y \ar{l}{s} \ar{r}{t} & Z
+                X & Y \ar[blue]{l}{s} \ar{r}{t} & Z
             \end{tikzcd}
         \end{center}
         Right fractions are denoted as $ts^{-1}$.
         Let $\sim$ be the equivalence relation of right fractions given by the diagram (1) such that $ts^{-1}\sim t's'^{-1}$ if and only if $\exists w,w':\mathcal{C}$ making the diagram commute and that the middle row is a right fraction.
         \begin{center}
             \begin{tikzcd}
-                & Y \ar{ld}[above]{s} \ar{rd}{t} \\
-                X & W \ar{r} \ar{l} \ar{u}{w} \ar{d}{w'} & Z \\
-                & Y' \ar{lu}{s'} \ar{ru}[below]{t'}
+                & Y \ar[blue]{ld}[above]{s} \ar{rd}{t} \\
+                X & W \ar[dashed]{r} \ar[blue, dashed]{l} \ar[blue]{u}{w} \ar[blue]{d}{w'} & Z \\
+                & Y' \ar[blue]{lu}{s'} \ar{ru}[below]{t'}
             \end{tikzcd}
         \end{center}
     \end{definition}
@@ -1041,16 +1041,16 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     Dually, define left fractions as diagrams over cospans such that if $t:S$, then there is a left fraction $t^{-1}s$ as the diagram below.
     \begin{center}
         \begin{tikzcd}
-            X \ar{r}{s} & Y & Z \ar{l}{t}
+            X \ar{r}{s} & Y & Z \ar[blue]{l}{t}
         \end{tikzcd}
     \end{center}
 
     The equivalence relation $\sim$ is given by the diagram in the same manner as above.
     \begin{center}
         \begin{tikzcd}
-            & Y \ar{d}{w} \\
-            X \ar{ru}{s} \ar{r} \ar{rd}{s'} & W & Z \ar{lu}{t} \ar{l} \ar{ld}{t'} \\
-            & Y' \ar{u}{w'}
+            & Y \ar[blue]{d}{w} \\
+            X \ar{ru}{s} \ar[dashed]{r} \ar{rd}{s'} & W & Z \ar[blue]{lu}{t} \ar[blue, dashed]{l} \ar[blue]{ld}{t'} \\
+            & Y' \ar[blue]{u}{w'}
         \end{tikzcd}
     \end{center}
 
@@ -1064,52 +1064,52 @@ In this chapter the notion of a triangulated will be introduced. In literature o
             \item (Reflexive) Let $fs^{-1}$ be a right fraction. Then diagram (1) shows that $fs^{-1}\sim fs^{-1}$.
             \begin{center} (1)
                 \begin{tikzcd}
-                    & W \ar{ld}{s} \ar{rd}{f} \ar[equal]{d} \\
-                    X & W \ar{r}{f} \ar{l}{s} & Y \\
-                    & W \ar{lu}{s} \ar[equal]{u} \ar{ru}{f}
+                    & W \ar[blue]{ld}{s} \ar{rd}{f} \ar[blue, equal]{d} \\
+                    X & W \ar[dashed]{r}{f} \ar[blue, dashed]{l}{s} & Y \\
+                    & W \ar[blue]{lu}{s} \ar[blue, equal]{u} \ar{ru}{f}
                 \end{tikzcd}
             \end{center}
             \item (Symmetric) Let $fs^{-1}$ and $gt^{-1}$ be two right fractions such that $fs^{-1}\sim gt^{-1}$, that is diagram (2) commute. Due to inherent symmetric nature of the diagram it follows that $gt^{-1}\sim fs^{-1}$.
             \begin{center} (2)
                 \begin{tikzcd}
-                    & W \ar{ld}{s} \ar{rd}{f} \\
-                    X & \widetilde{W} \ar{r} \ar{l} \ar{u}{w} \ar{d}{w'} & Y \\
-                    & W' \ar{lu}{t} \ar{ru}{g}
+                    & W \ar[blue]{ld}{s} \ar{rd}{f} \\
+                    X & \widetilde{W} \ar[dashed]{r} \ar[blue, dashed]{l} \ar{u}{w} \ar{d}{w'} & Y \\
+                    & W' \ar[blue]{lu}{t} \ar{ru}{g}
                 \end{tikzcd}
                 $\implies$
                 \begin{tikzcd}
-                    & W' \ar{ld}{t} \ar{rd}{g} \\
-                    X & \widetilde{W} \ar{l} \ar{r} \ar{u}{w'} \ar{d}{w} & Y \\
-                    & W \ar{lu}{s} \ar{ru}{f}
+                    & W' \ar[blue]{ld}{t} \ar{rd}{g} \\
+                    X & \widetilde{W} \ar[dashed, blue]{l} \ar[dashed]{r} \ar[blue]{u}{w'} \ar[blue]{d}{w} & Y \\
+                    & W \ar[blue]{lu}{s} \ar{ru}{f}
                 \end{tikzcd}
             \end{center}
             \item (Transitive) Suppose that there are three right fractions $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ such that $fs^{-1}\sim gt^{-1}$ and $gt^{-1}\sim hu^{-1}$. This may be written as diagram (3) and (4).
             \begin{center} (3)
                 \begin{tikzcd}
-                    & W' \ar{ld}{s} \ar{rd}{f} \\
-                    X & \widetilde{W} \ar{r} \ar{l} \ar{u}{w'} \ar{d}{\widetilde{w'}} & Y \\
-                    & W \ar{lu}{t} \ar{ru}{g}
+                    & W' \ar[blue]{ld}{s} \ar{rd}{f} \\
+                    X & \widetilde{W} \ar[dashed]{r} \ar[blue, dashed]{l} \ar{u}{w'} \ar{d}{\widetilde{w'}} & Y \\
+                    & W \ar[blue, dashed]{lu}{t} \ar{ru}{g}
                 \end{tikzcd} 
                 (4)
                 \begin{tikzcd}
-                    & W \ar{ld}{t} \ar{rd}{g} \\
-                    X & \widetilde{\widetilde{W}} \ar{r} \ar{l} \ar{u}{\widetilde{w''}} \ar{d}{w''} & Y \\
-                    & W'' \ar{lu}{u} \ar{ru}{h}
+                    & W \ar[blue]{ld}{t} \ar{rd}{g} \\
+                    X & \widetilde{\widetilde{W}} \ar[dashed]{r} \ar[blue, dashed]{l} \ar[blue]{u}{\widetilde{w''}} \ar[blue]{d}{w''} & Y \\
+                    & W'' \ar[blue]{lu}{u} \ar{ru}{h}
                 \end{tikzcd}
             \end{center}
             Diagram (5) may be created by using the Ore condition on the maps $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, it follows that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$ as well. Diagram (6) then shows that $fs^{-1}\sim hu^{-1}$.
             \begin{center} (5)
                 \begin{tikzcd}
-                    \widetilde{\widetilde{\widetilde{W}}} \ar{d}{\widetilde{\widetilde{w'}}} \ar{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar{d}{\widetilde{w''}} \\
-                    \widetilde{W} \ar{r}{\widetilde{w'}} & W
+                    \widetilde{\widetilde{\widetilde{W}}} \ar[blue]{d}{\widetilde{\widetilde{w'}}} \ar[blue]{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar[blue]{d}{\widetilde{w''}} \\
+                    \widetilde{W} \ar[blue]{r}{\widetilde{w'}} & W
                 \end{tikzcd}
                 (6)
                 \begin{tikzcd}
-                    & W' \ar{ldd}{s} \ar{rdd}{f} \\
-                    & \widetilde{W} \ar{ld} \ar{rd} \ar{u}{\widetilde{w'}} \\
-                    X & \widetilde{\widetilde{\widetilde{W}}} \ar{l} \ar{r} \ar{u}{\widetilde{\widetilde{w'}}} \ar{d}{\widetilde{\widetilde{w''}}}& Y \\
-                    & \widetilde{\widetilde{W}} \ar{lu} \ar{ru} \ar{d}{\widetilde{w''}} \\
-                    & W'' \ar{luu}{u} \ar{ruu}{h}
+                    & W' \ar[blue]{ldd}{s} \ar{rdd}{f} \\
+                    & \widetilde{W} \ar[blue]{ld} \ar{rd} \ar[blue]{u}{\widetilde{w'}} \\
+                    X & \widetilde{\widetilde{\widetilde{W}}} \ar[blue, dashed]{l} \ar[dashed]{r} \ar[blue]{u}{\widetilde{\widetilde{w'}}} \ar[blue]{d}{\widetilde{\widetilde{w''}}}& Y \\
+                    & \widetilde{\widetilde{W}} \ar[blue]{lu} \ar{ru} \ar[blue]{d}{\widetilde{w''}} \\
+                    & W'' \ar[blue]{luu}{u} \ar{ruu}{h}
                 \end{tikzcd}
             \end{center}
         \end{itemize}
@@ -1119,18 +1119,18 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         Let $S$ be a multiplicate system in a category $\mathcal{C}$. Given two right fractions $fs^{-1}$ and $gt^{-1}$
         \begin{center}
             \begin{tikzcd}
-                X & W \ar{l}{s} \ar{r}{f} & Y
+                X & W \ar[blue]{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
             \&
             \begin{tikzcd}
-                Y & W' \ar{l}{t} \ar{r}{g} & Z
+                Y & W' \ar[blue]{l}{t} \ar{r}{g} & Z
             \end{tikzcd}
         \end{center}
         the composition of the fractions are defined to be $gt^{-1}\circ fs^{-1}$. The Ore condition describes how this composition should be defined,
         \begin{center}
             \begin{tikzcd}
-                & \widetilde{W} \ar{d}{u} \ar{r}{h} & W' \ar{d}{t} \ar{r}{g} & Z \\
-                X & W \ar{l}{s} \ar{r}{f} & Y
+                & \widetilde{W} \ar[blue, dashed]{d}{u} \ar[dashed]{r}{h} & W' \ar[blue]{d}{t} \ar{r}{g} & Z \\
+                X & W \ar[blue]{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
         \end{center}
         the composite is the right fraction $gt^{-1}\circ fs^{-1} = gh(su)^{-1}$.
@@ -1147,39 +1147,39 @@ In this chapter the notion of a triangulated will be introduced. In literature o
 
         \begin{center}
             \begin{tikzcd}
-                X & W_1 \ar{l}{s} \ar{r}{f} & Y
+                X & W_1 \ar[blue]{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
             \&
             \begin{tikzcd}
-                Y & W_2 \ar{l}{t} \ar{r}{g} & Z
+                Y & W_2 \ar[blue]{l}{t} \ar{r}{g} & Z
             \end{tikzcd}
         \end{center}
         Further suppose that there are at least two different choices for the morphisms provided by the right Ore condition, for example \todo[color = pink]{Dette er et incosist format}$(\widetilde{W},\widetilde{s},\widetilde{f})$ and $(\widehat{W},\widehat{s}, \widehat{g})$. The two compositions may be drawn as the diagrams below.
         \begin{center}
             \begin{tikzcd}
-                & \widetilde{W} \ar{r}{\widetilde{g}} \ar{d}{\widetilde{s}} & W_2 \ar{r}{g} \ar{d}{t} & Z \\
-                X & W_1 \ar{r}{f} \ar{l}{s} & Y
+                & \widetilde{W} \ar{r}{\widetilde{g}} \ar[blue]{d}{\widetilde{s}} & W_2 \ar{r}{g} \ar[blue]{d}{t} & Z \\
+                X & W_1 \ar{r}{f} \ar[blue]{l}{s} & Y
             \end{tikzcd}
             \begin{tikzcd}
-                & \widehat{W} \ar{r}{\widehat{f}} \ar{d}{\widehat{s}} & W_2 \ar{r}{g} \ar{d}{t} & Z \\
-                X & W_1 \ar{l}{s} \ar{r}{f} & Y
+                & \widehat{W} \ar{r}{\widehat{f}} \ar[blue]{d}{\widehat{s}} & W_2 \ar{r}{g} \ar[blue]{d}{t} & Z \\
+                X & W_1 \ar[blue]{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
         \end{center}
         Combining the diagrams at $W_1$ by using the right Ore condition, the objects and maps \todo[color = magenta]{Er dette inkonsekvent?} $(W, \widetilde{w}, \widehat{w})$ exists as in the diagram below. 
         \begin{center}
             \begin{tikzcd}
-                \bar{W} \ar[dashed]{rd}{\xi} \\
-                & W \ar{r}{\widehat{w}} \ar{d}{\widetilde{w}} & \widehat{W} \ar{d}[near start, below]{\widehat{s}} \ar{r}{\widehat{f}} & W_2 \ar{d}{t} \ar{r}{g} & Z \\
-                & \widetilde{W} \ar{r}{\widetilde{s}} \ar{rru}[near start]{\widetilde{g}} & W_1 \ar{r}{f} \ar{d}{s} & Y \\
+                \bar{W} \ar[blue, dashed]{rd}{\xi} \\
+                & W \ar[blue]{r}{\widehat{w}} \ar[blue]{d}{\widetilde{w}} & \widehat{W} \ar[blue]{d}[near start]{\widehat{s}} \ar{r}{\widehat{f}} & W_2 \ar[blue]{d}{t} \ar{r}{g} & Z \\
+                & \widetilde{W} \ar[blue]{r}{\widetilde{s}} \ar{rru}[near start]{\widetilde{g}} & W_1 \ar{r}{f} \ar[blue]{d}{s} & Y \\
                 & & X
             \end{tikzcd}
         \end{center}
         Observe that the three squares commute, as by the definition of right Ore condition. Thus it follows that $s\widetilde{s}\widetilde{w} = s\widehat{s}\widehat{w}$, and that $t\widehat{f}\widehat{w}=t\widetilde{g}\widetilde{w}$. As $t:S$ one may use right cancellation to find a $\xi:\bar{W}\rightarrow W$ such that $\widehat{f}\widehat{w}\xi = \widetilde{g}\widetilde{w}\xi \implies g\widehat{f}\widehat{w}\xi = g\widetilde{g}\widetilde{w}\xi$. Thus the equivalence relation diagram commutes.
         \begin{center}
             \begin{tikzcd}
-                & \widehat{W} \ar{ld}[above]{s\widehat{s}} \ar{rd}{g\widehat{f}} \\
-                X & \bar{W} \ar{u}{\widehat{w}\xi} \ar{d}{\widetilde{w}\xi} \ar{l} \ar{r} & Z \\
-                & \widetilde{W} \ar{lu}{s\widetilde{s}} \ar{ru}[below]{g\widetilde{g}}
+                & \widehat{W} \ar[blue]{ld}[above]{s\widehat{s}} \ar{rd}{g\widehat{f}} \\
+                X & \bar{W} \ar[blue]{u}{\widehat{w}\xi} \ar[blue]{d}{\widetilde{w}\xi} \ar[blue, dashed]{l} \ar[dashed]{r} & Z \\
+                & \widetilde{W} \ar[blue]{lu}{s\widetilde{s}} \ar{ru}[below]{g\widetilde{g}}
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -1192,15 +1192,15 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         \todo[color = pink]{Kommer det fram at dette er en proof sketch?} Let $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ be right fractions as in the diagrams below.
         \begin{center}
             \begin{tikzcd}
-                A & X \ar{l}{s} \ar{r}{f} & B
+                A & X \ar[blue]{l}{s} \ar{r}{f} & B
             \end{tikzcd}
             ,
             \begin{tikzcd}
-                B & Y \ar{l}{t} \ar{r}{g} & C
+                B & Y \ar[blue]{l}{t} \ar{r}{g} & C
             \end{tikzcd}
             \&
             \begin{tikzcd}
-                C & Z \ar{l}{u} \ar{r}{h} & D
+                C & Z \ar[blue]{l}{u} \ar{r}{h} & D
             \end{tikzcd}
         \end{center}
         There are two different ways of calculating the composition. Every morphism in $S$ will be marked blue.
@@ -1248,7 +1248,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         This is well-defined by the previous results and the identity morphisms are the right fractions of the form:
         \begin{center}
             \begin{tikzcd}
-                X & X \ar[equal]{l} \ar[equal]{r} & X
+                X & X \ar[equal, blue]{l} \ar[equal]{r} & X
             \end{tikzcd}
         \end{center}
     \end{definition}
@@ -1256,6 +1256,8 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \begin{remark}
         Dually there is a category $\mathfrak{l}S^{-1}\mathcal{C}$ for a left multiplicative system $S$ in a category $\mathcal{C}$. It is defined in the same manner as $\mathfrak{r}S^{-1}\mathcal{C}$, but with left fractions instead.
     \end{remark}
+
+
 
     \begin{remark}
         \todo{Det virker som at det som foregår her er galt. Jeg må først skaffe oversikt over hva som skjer} Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ starting at $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its codomain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondence between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\delta(b, B)\rightarrow B'$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
@@ -1353,8 +1355,8 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         The claim that $q0$ is initial follows from that initial is a limit of a diagram over the empty category. To see that $q0$ is terminal one have to prove that every right fraction of the form $0f^{-1}$ is equivalent to $0id_A^{-1}$, where $A$ is the codomain of $f$. This fact can be seen with the diagram below.
         \begin{center}
             \begin{tikzcd}
-                & X \ar{ld}[above]{f} \ar{d}{f} \ar{rd}{0}\\
-                A & \ar[equal]{l} A \ar{r}{0} & 0
+                & X \ar[blue]{ld}[above]{f} \ar[blue]{d}{f} \ar{rd}{0}\\
+                A & \ar[blue][equal]{l} A \ar{r}{0} & 0
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -1625,7 +1627,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         This is possible, as when composing the fractions from $A$ to $B$ and $B$ to $C$ one may find an object $Z$ as in the diagram by using the Ore condition. To illustrate with triangle (1), there is a correspondence of triangles in $\mathcal{C}/\mathcal{S}$ and $\mathcal{C}$ by the following isomorphism.
         \begin{center}
             \begin{tikzcd}
-                Z \ar{r}{at'} \ar{d}[below, rotate = 90]{\simeq}[near start]{t} & B \ar{r} \ar[equal]{d} & Z' \ar{r} \ar[dashed]{d}[below, rotate = 90]{\simeq} & \Sigma_{\mathcal{C}}Z \ar{d}[below, rotate = 90]{\simeq}[near start]{\Sigma_{\mathcal{C}}t} \\
+                Z \ar{r}{at'} \ar{d}[below, rotate = 90]{\simeq}[very near start]{t} & B \ar{r} \ar[equal]{d} & Z' \ar{r} \ar[dashed]{d}[below, rotate = 90]{\simeq} & \Sigma_{\mathcal{C}}Z \ar{d}[below, rotate = 90]{\simeq}[very near start]{\Sigma_{\mathcal{C}}t} \\
                 X \ar{r}{a} \ar{d}{s} & B \ar{r} & C' \ar{r} & \Sigma_{\mathcal{C}}X \ar{d}{\Sigma_{\mathcal{C}}s} \\
                 A & & & \Sigma_{\mathcal{C}}A 
             \end{tikzcd}
