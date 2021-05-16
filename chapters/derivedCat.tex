@@ -1,14 +1,16 @@
-\chapter{The Derived Category}
+\chapter{Derived Categories}
+
+Write something about that this chapter is meant to give an exposition of derived categories. 
 
 \section{Idempotent Completeness and Krull-Schmidt Categories}
 
-    This section is based of the ideas from \cite{buhler}, \cite{Kra12} and \cite{Rei95}. \todo{Omformuler} At first the ideas of idempotent complete categories will be introduced, the we will look at a weakening and a strengthening of this condition, known as weak idempotent complete and Krull-Schmidt.
+    This section will introduce the concepts of idempotent complete categories, weakly idempotent complete categories and Krull-Schmidt categories. These are extra conditions which may be put onto an exact category. The conditions to be introduced are three different levels of strengthening, where weakly idempotent completeness is the weakest and Krull-Schmidt is the strongest condition. The concepts introduced in this section is based of the ideas from \cite{buhler}, \cite{Kra12} and \cite{Rei95}
 
     \begin{definition}
         An idempotent complete category is an additive category where every idempotent split. That is, if there is an idempotent $p:A\rightarrow A$ $(p^2=p)$, and there is an isomorphism $A\simeq I\oplus K$ such that $p\simeq \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$. 
     \end{definition}
 
-    Every idempotent in an idempotent complete category admits an \todo{Hva er en analyse, jeg bruker dette tidligere} anlysis. That is the idempotent $p:A\rightarrow A$ has a kernel, cokernel, image and coimage. In fact, the kernel is isomorphic to the cokerenl, and the image is cannonically isomorphic to the coimage. As $p$ is isomorphic to the matrix $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ one may observe that the inclusion $\iota_1:I\rightarrow A$ is the kernel of $p$, while the projection $\pi_1:A\rightarrow I$ is the cokernel. Similarly the maps $\iota_2:K\rightarrow A$ and $\pi_2:A\rightarrow K$ are the kernel and cokernel of the map $1-p$ respectively. Using the fact that $p$ splits we are able to construct the following analysis.
+    Every idempotent in an idempotent complete category admits an analysis. That is the idempotent $p:A\rightarrow A$ has a kernel, cokernel, image and coimage. In fact, the kernel is isomorphic to the cokernel, and the image is canonically isomorphic to the coimage. As $p$ is isomorphic to the matrix $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ one may observe that the inclusion $\iota_1:I\rightarrow A$ is the kernel of $p$, while the projection $\pi_1:A\rightarrow I$ is the cokernel. Similarly the maps $\iota_2:K\rightarrow A$ and $\pi_2:A\rightarrow K$ are the kernel and cokernel of the map $1-p$ respectively. Using the fact that $p$ splits we are able to construct the following analysis.
 
     \begin{center}
         \begin{tikzcd}
@@ -53,7 +55,7 @@
 
         Looking at the map $id_B-fg$, one may see that $g(id_B-fg)=g-gfg=g-g=0$, thus $id_B-fg$ factors over the kernel of h as indicated by the dashed arrow.
 
-        h is split-mono as $hih = (id_B-fg)h=h-fgh=h$. As h is mono from being a kernel, it follows that $ih=id_C$. \todo[color = pink]{Finnes det en bedre formulering her?} $B\simeq A\oplus C$ as $id_B -fg = hi \iff id_B = fg + hi$. This in turn implies that $i$ is the cokernel of $f$.
+        h is split-mono as $hih = (id_B-fg)h=h-fgh=h$. As h is mono from being a kernel, it follows that $ih=id_C$. $B$ is the biproduct $B\simeq A\oplus C$ as $id_B -fg = hi \iff id_B = fg + hi$. This in turn implies that $i$ is the cokernel of $f$.
     \end{proof}
 
     This lemma is at the core of weakly idempotent complete categories.
@@ -109,7 +111,7 @@
         For the other direction, suppose (2.) instead and let $gf=id_A$,  $gf$ is a deflation and $g$ is split-epi. By the assumption, $g$ is a deflation, so it has a kernel.
     \end{proof}
 
-    \todo{Omformulering} For the final part, if $\mathcal{A}$ is an idempotent complete category and there are idempotents over an object $A$, then these idempotents admits a description of A as a direct sum of kernels and cokernels. There is, however, no guarantee that these decompositions are unique. To fix this, define the following category. These results will not be proved, and the reader is instead reffered to Henning Krause (\cite{Kra12}) and Auslander, Reiten and Smalø (\cite{Rei95}).
+    Lastly, suppose that $\mathcal{A}$ is an idempotent complete category and that there are some idempotents over an object $A$. These idempotents admits a description of A as a direct sum of kernels and cokernels. There is, however, no guarantee that these decompositions are unique. To fix this, define the following category.
 
     \begin{definition}
         Let $\mathcal{A}$ be an additive category. An object $A$ is called indecomposable if the endomorphism ring of $A$ is local.
@@ -159,7 +161,7 @@
 
     %    Let $p:A\rightarrow A$ be an idempotent. Then $End(A)$ is not local, as the ideals $(p)$ and $(1-p)$ are comaximal. Thus $A\simeq A_1\oplus A_2$ and $p\simeq \begin{pmatrix} 0 & \\ 0 & 1 \end{pmatrix}$. Thus every idempotent split.
 
-    %    If $A$ is indecomposable, then by assumption $End(A)$ is local. Converesly, assume that $A$ is decomposable, then $A$ admits a finite decomposition $\bigoplus_{i=1}^{n}A_i$. 
+    %    If $A$ is indecomposable, then by assumption $End(A)$ is local. Conversely, assume that $A$ is decomposable, then $A$ admits a finite decomposition $\bigoplus_{i=1}^{n}A_i$. 
     %\end{proof}
 
     \begin{example}
@@ -168,7 +170,7 @@
 
     More details and examples of Krull-Schmidt categories may be found in Henning Krause notes (\cite{Kra12}).
 
-\section{Admissable Morphisms, Homology and Long Exact Sequences}
+\section{Normal Morphisms and Long Exact Sequences}
     
     \begin{definition}
         Let $(\mathcal{A},\mathcal{E})$ be an exact category. A morphism $f:A\rightarrow B$ is called normal if it has a deflation-inflation factorization. They will be drawn as in the following diagram.
@@ -193,14 +195,14 @@
     \end{lemma}
 
     \begin{proof}
-        Suppose that a normal morphism admits two differnt factorization. That means there exists a commutative diagram as follows.
+        Suppose that a normal morphism admits two different factorization. That means there exists a commutative diagram as follows.
         \begin{center}
             \begin{tikzcd}
                 A \ar[two heads]{r}{p}[marking]{\circ} \ar[two heads]{d}{q}[marking]{\circ} & I \ar[dashed, shift left]{ld}{\phi} \ar[tail]{d}{i}[marking]{\circ} \\
                 I' \ar[dashed, shift left]{ru}{\phi '} \ar[tail]{r}{j}[marking]{\circ} & B
             \end{tikzcd}
         \end{center}
-        By assumption $ip=jq$, thus $jq\circ Ker(p)=0$. $q\circ Ker(p)=0$ as $j$ is mono, thus there exists a morphism $\phi:I\rightarrow I'$ uniquely such that $q=\phi p$. Now $ip=jq=j\phi p$, and as $p$ is epi it follows that $i=j\phi$. \todo[color = pink]{Er dette ordet stavet riktig?} Reiterating the argument, but with $Ker(q)$ instead, there exists a $\phi '$ uniquely such that $p = \phi 'q$ and $j=i\phi '$. Thus $i=j\phi = i\phi '\phi$, and since $i$ is mono it follows that $id_I=\phi '\phi$; dually $Id_{I'}=\phi\phi '$.
+        By assumption $ip=jq$, thus $jq\circ Ker(p)=0$. $q\circ Ker(p)=0$ as $j$ is mono, thus there exists a morphism $\phi:I\rightarrow I'$ uniquely such that $q=\phi p$. Now $ip=jq=j\phi p$, and as $p$ is epi it follows that $i=j\phi$. Reiterating the argument, but with $Ker(q)$ instead, there exists a $\phi '$ uniquely such that $p = \phi 'q$ and $j=i\phi '$. Thus $i=j\phi = i\phi '\phi$, and since $i$ is mono it follows that $id_I=\phi '\phi$; dually $Id_{I'}=\phi\phi '$.
     \end{proof}
 
     \begin{remark}
@@ -213,7 +215,7 @@
             \end{tikzcd}
         \end{center}
 
-        Observe that the object $I$ coincide with the image and coimage of $f$. This object will then be reffered to the image of $f$. As a consequence of this unique factorization, a normal morphism is iso if and only if it is mono and epi.
+        Observe that the object $I$ coincide with the image and coimage of $f$. This object will then be referred to the image of $f$. As a consequence of this unique factorization, a normal morphism is iso if and only if it is mono and epi.
     \end{remark}
 
     \begin{definition}
@@ -249,7 +251,7 @@
         Observe how conflations are exactly the class of short exact sequences.
     \end{remark}
 
-    This definition admits properties which mimics properties from homologicial algebra.
+    This definition admits properties which mimics properties from homological algebra.
 
     \begin{lemma}
         \textbf{5 Lemma}. Given two 5 term exact sequences and a morphism between them as in the diagram. Then $\phi$ is an isomorphism as well.
@@ -303,11 +305,9 @@
         \end{center}
     \end{corollary}
 
-    % \begin{proof}
-    %     Nooooooooooo
-    % \end{proof}
+\section{Homology and Derived Categories}
 
-    \todo[color = pink]{Merkelig formulert} The action which defines homological algebra is to find the homology of cochain complexes. For abelian groups, homology is defined to be the quotient of the kernel of a map by the image of the preceeding map. We would like to find a similar definition for exact categories. For this discussion, let $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ be an exact category. In order for a complex to have kernels and images, it is required for the complex to consist only of normal morphisms. This will allow for the existence of analyses of every differential. Let $\chain{A}$ be such a complex, then when does the homology exists?
+    This section aims to provide a construction for derived categories and discuss the underlying assumptions. In the case where $\mathcal{A}$ is abelian, the derived category is constructed by localizing at quasi-isomorphisms. However, in the context of exact categories, how much of the theory transfers? For abelian groups, homology is defined to be the quotient of the kernel of a map by the image of the preceding map. For exact categories the discussion is a bit more complex. Consider the usual construction of homology, when does the homology exists?.
 
     \begin{center}
         \begin{tikzcd}
@@ -316,34 +316,31 @@
         \end{tikzcd}
     \end{center}
 
-    By looking at the 0-th homology one can find a condition for when the homology exists. Using the fact that $d^0_{\chain{A}}\iota = 0$, there is an unique morphism $h$, such that $\iota = \kappa h$ by the universal property. The 0-th homology exists whenever the morphism $h$ has a cokernel, and then $h$ satisfies the assumption of the Obscure axiom, making $h$ and inflation. One way to circumvent this assumption is to assume that $\mathcal{A}$ is weakly idempotent complete. Then by Hellers cancellation axiom it is known that $h$ is an inflation, which then proves the existence of the cokernel. 
-
+    The complex must admit an analysis at each differential, so assume that the complex only contains normal morphisms. By looking at the 0-th homology one can find a condition for when the homology exists. Using the fact that $d^0_{\chain{A}}\iota = 0$, there is an unique morphism $h$, such that $\iota = \kappa h$ by the universal property. The 0-th homology exists whenever the morphism $h$ has a cokernel, and then $h$ satisfies the assumption of the Obscure axiom, making $h$ an inflation. One way to not break this condition is to assume that $\mathcal{A}$ is weakly idempotent complete. By Hellers cancellation axiom it is known that $h$ is an inflation, which then proves the existence of the cokernel. However, this only allows the construction of quasi-isomorphisms at weakly idempotent complete categories.
     
-\section{The Derived Category/Derived Functors}  
-    
-    \todo{Rar temasetning} In homological algebra, we want to localize the homotopy category over quasi-isomorphisms. A quasi-isomorphism is a chain map $\chain{f}:\chain{A}\rightarrow\chain{B}$ such that $H^*(\chain{f}):H^*(\chain{A})\rightarrow H^*(\chain{B})$ is an isomorphism in homology. One may observe by the long exact sequence in homology of short exact sequence that a chain map like $\chain{f}$ is a quasi-isomorphism if and only if $cone(\chain{f})\simeq 0$. Moreover, the cone is isomorphic to $0$ in homology if it is an exact sequence. This motivates the definition of the subcategory of acyclic complexes.
+    Recall that a quasi-isomorphism is a chain map $\chain{f}:\chain{A}\rightarrow\chain{B}$ such that $H^*(\chain{f}):H^*(\chain{A})\rightarrow H^*(\chain{B})$ is an isomorphism in homology. In the abelian case, suppose that $\chain{f}:\chain{A}\rightarrow\chain{B}$ is a quasi-isomorphism. Consider the standard triangle \\ \begin{tikzcd}\chain{A} \ar{r}{\chain{f}} & \chain{B} \ar{r}{} & cone(\chain{f}) \ar{r}{} & \chain{A}[1]\end{tikzcd} in the homotopy category $K(\mathcal{A})$, then $\chain{f}$ becomes an isomorphism in the derived category $D(\mathcal{A})$. This shows that there is a quasi-isomorphism between $\chain{0}$ and $cone(\chain{f})$ by corollary 1.1.4.1. It follows that $cone(\chain{f})$ is an exact sequence, and this motivate to the following definition.
 
     \begin{definition}
-        Let $(\mathcal{A},\mathcal{E})$ be an exact category. We define the category $Ac(\mathcal{A})\subset K(\mathcal{A})$ to be the full category whose objects are exact sequences.
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category. Define the category $Ac(\mathcal{A})\subset K(\mathcal{A})$ to be the full category whose objects are exact sequences.
     \end{definition}
 
-    The exact complexes are also referred to as acyclic complexes. Note that this subcategory is not in general closed under isomorphisms. To be able to show that it is a triangulated subcategory, it suffices to show that the mapping cone of two acyclic complexes is again acyclic.
+    The exact complexes are also referred to as acyclic complexes. Note that this subcategory is not in general either thick or closed under isomorphisms. To be able to show that it is a triangulated subcategory, it suffices to show that the mapping cone of two acyclic complexes is again acyclic.
 
     \begin{lemma}
-        Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map between acyclic chain complexes. Then the mapping cone $cone(\chain{f})$ is acyclic as well.
+        Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map between acyclic chain complexes, then $cone(\chain{f})$ is acyclic as well.
     \end{lemma}
 
-    \begin{proof}
-        Write diagrams here
-    \end{proof}
-
-    Since $Ac(\mathcal{A})$ is triangulated, it makes sense to talk about the class of morphisms $Mor_{Ac(\mathcal{A})}$. Observe that in the case of the category $\mathcal{A}$ being abelian, one may observe that this is the class of quasi-isomorphic chain maps. Therefore the class of morphisms $Mor_{Ac(\mathcal{A})}$ may be regarded as quasi-isomorphisms.
+    Since $Ac(\mathcal{A})$ is triangulated, it makes sense to talk about the class of morphisms $Mor_{Ac(\mathcal{A})}$. By definition, a morphism $\chain{f}$ is in $Mor_{Ac(\mathcal{A})}$ if and only if $cone(\chain{f})$ is in $Ac(\mathcal{A})$. Therefore it makes sense to say that the class of morphisms $Mor_{Ac(\mathcal{A})}$ may be regarded as quasi-isomorphisms. 
 
     \begin{definition}
-        The derived category is the Verdier quotient $D(\mathcal{A})=K(\mathcal{A})/Ac(\mathcal{A})$ whenever it exists. 
+        The derived category is the Verdier quotient $D(\mathcal{A})=K(\mathcal{A})/Ac(\mathcal{A})$ whenever it exists.
     \end{definition}
 
-    \todo{Merkelig avsnitt} Given some conditions on the category $(\mathcal{A},\mathcal{E})$ one is able to get a nice description of the derived category. That is we want the category of acyclic chain complexes to be closed under isomorphisms. The following proposition tells us whener this is true.
+    \begin{remark}
+        The derived category exists whenever $Mor_{Ac(\mathcal{A})}$ is a locally small multiplicative system.
+    \end{remark}
+
+    As stated, it is not true a priori that $Ac(\mathcal{A})$ is either thick or closed under isomorphisms. When this is not true, it might happen that $\chain{C}\simeq\chain{A}\oplus\chain{B}$ where $\chain{C}$ is acyclic, but neither $\chain{A}$ or $\chain{B}$ need not be acyclic. However, the kernel of localization $\widehat{Ac(\mathcal{A})}$ contain all of these objects. In this way $\chain{A}$ and $\chain{B}$ will be related in the derived category, even though they are not quasi-isomorphic. The following lemma and corollary says whenever this is not a problem.
 
     \begin{lemma}
         The following are equivalent:
@@ -354,15 +351,11 @@
         \end{enumerate}
     \end{lemma}
 
-    \begin{proof}
-        
-    \end{proof}
-
     \begin{corollary}
         The subcategory $Ac(\mathcal{A})$ is thick if and only if $\mathcal{A}$ is idempotent complete.
     \end{corollary}
 
-    \todo{Merkelig avsnitt} We may also set boundedness conditions on the chain complex to get weaker assumptions to get nice acyclic chain complexes. We say that a chain complex is called left bounded if there is some $m$ such that for any $n$ $n\leq m<0$ we have that $A^n = 0$. Likewise, right bounded complexes are the defined for $n\geq m>0$ we have that $A^n=0$. A chain complex is called bounded if it is both left bounded and right bounded. 
+    In order to weaken the conditions above, one can set boundedness conditions on the chain complexes. A chain complex is called left bounded if there is some $m:\mathbb{N}$ such that for any $n:\mathbb{N}$ and $n\leq m<0$ it is true that $A^n = 0$. Likewise, right bounded complexes are the defined for $n\geq m>0$ such that $A^n=0$. A chain complex is called bounded if it is both left bounded and right bounded.
 
     \begin{definition}
         The category $K(\mathcal{A})^+$,$K(\mathcal{A})^-$ and $K(\mathcal{A})^{\flat}$ are the homotopy categories of left bounded, right bounded and bounded respectively. $Ac(\mathcal{A})^* \subset K(\mathcal{A})^*$ for $*:\{+,-,\flat\}$ will be the subcategory of acyclic chain complexes satisfying the correct boundedness condition.
@@ -372,12 +365,16 @@
         The following are equivalent:
         \begin{enumerate}
             \item The subcategories $Ac(\mathcal{A})^* \subset K(\mathcal{A})^*$ for $*:\{+,-\}$ are thick
-            \item The subcategory $Ac(\mathcal{A})^{\flat}$
+            \item The subcategory $Ac(\mathcal{A})^{\flat}$ is thick
             \item The category $\mathcal{A}$ is weakly idempotent complete
         \end{enumerate}
     \end{lemma}
 
-\section{Auslander-Reiten triangles}
+\section{The Way Forward}
+
+    \subsection{Derived Functors}
+
+    \subsection{Auslander-Reiten Triangles}
 
     For the rest of this thesis it will be assumed that $\mathcal{A}$ is an additive $\mathbb{K}$-linear category, which is also Krull-Schmidt. With these assumptions, one may be able to define a special set of triangles whenever $\mathcal{A}$ has a triangulation. As $\mathcal{A}$ is Krull-Schmidt, the notion of indecomposable objects exists, which motivates the definition of triangles which acts as indecomposable triangles.
 
@@ -388,7 +385,7 @@
     \end{definition}
 
     \begin{prop}
-        Selfduality of AR-triangles
+        Self duality of AR-triangles
     \end{prop}
 
     \begin{definition}
@@ -399,9 +396,9 @@
         irreducible morphisms have the following properties:
     \end{prop}
     
-\section{Description of Derived Categories}
+% \section{Description of Derived Categories}
 
-    Add something to the introduction about derived categories. The goal is to describe the derived category of a fairly simple algebra.
+    % Add something to the introduction about derived categories. The goal is to describe the derived category of a fairly simple algebra.
 
 \clearpage
 

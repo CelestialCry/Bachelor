@@ -1,11 +1,18 @@
 \chapter{Triangulated Categories}
 
-In this chapter the notion of a triangulated will be introduced. In literature one are able to find two different types of triangulated categories, they are called algebraic and topological. How these categories differ is however quite subtle. Different properties of triangulated categories will be discussed. Localization categories will be explained as well as how triangulated subcategories gives rise to such localizations. Lastly an embedding of a triangulated category in an abelian will be shown to exist.
+% Flytt denne til introduksjonen!!!
+    % In literature one are able to find two different types of triangulated categories, they are called algebraic and topological. How these categories differ is however quite subtle.
+
+% What am I going to talk about in this chapter?
+    % What a triangulated category is
+    % Homotopies on triangles
+    % Localization of categories, then fitting triangulated categories into this framework
+    % An embedding theorem?
+
+    \todo[color = pink]{Revider innledning til kapittelet} This chapter aims to explain the concept of a triangulated category. The themes to be discussed in this chapter are among the axioms of triangulated categories, their elementary properties, how these categories may be localized and an embedding into an abelian category.
 
 \section{Definition and First Properties}
-    \todo[noline]{Skriv om hva som skal være med i dette delkapittelet}
-
-    In this section $\mathcal{T}$ denotes an additive category and $\Sigma_{\mathcal{T}}:\mathcal{T}\rightarrow\mathcal{T}$ is an additive autoequivalence of $\mathcal{T}$, which is often called translation or suspension functor.
+    This section will present what a triangulated category is and show some properties of some functors from this category. The covariant functors which are of main interest are the ones which are called homological, while the contravariant are called cohomological. This family of functors will derive the elementary properties of the triangulation. In this section let $\mathcal{T}$ denote an additive category and $\Sigma_{\mathcal{T}}:\mathcal{T}\rightarrow\mathcal{T}$ be an additive autoequivalence of $\mathcal{T}$, which is either called the translation or suspension functor.
     % Definition candidate triangle
     
     \begin{definition}
@@ -28,9 +35,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
 
     \end{definition}
 
-    \todo[noline]{Dette avsnittet trengs å skrives om, det gir ikke lenger mening :(}
-
-    The naming convention of the candidate triangles isn't standardized, some literatures calls the candidate triangles for triangles instead; \todo[color=red]{Fotnote?} see \cite{keller}. This name arises from an alternate description of the diagrams given above. To remove confusion about the domain or codomain of the arrows, one arrow of the triangle is decorated with \todo[color=green]{få fram tydeligere hvordan pilene ser ut} "$_{\Sigma_{\mathcal{T}}}$|". This decorator means that the functor $\Sigma_{\mathcal{T}}$ has to be applied to the corresponding edge of the arrow. With this notation the c arrow points to $\Sigma_{\mathcal{T}}A$, not $A$.
+    Why these objects are called triangles become apparent when an alternate description of the diagrams above are given. In order to remove confusion about the domain or codomain of the arrows to be presented, one arrow of the triangle will be decorated with "$_{\Sigma_{\mathcal{T}}}$|". This decorator means that the functor $\Sigma_{\mathcal{T}}$ has to be applied to the corresponding edge of the arrow. With this notation the c arrow points to $\Sigma_{\mathcal{T}}A$, not $A$.
 
     \begin{center}
         \begin{tikzcd}[row sep=tiny]
@@ -45,7 +50,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         \end{tikzcd}
     \end{center}
 
-    \todo[color=pink]{Kommer definisjonen av triangulerte kategorier for brått?} A triangulated category is an additive category together with a translation functor $\Sigma_{\mathcal{T}}$ and a triangulation class $\Delta_{\mathcal{T}}$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta_{\mathcal{T}}$ it is usually called a triangle, an exact triangle or a distinguished triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta_{\mathcal{T}}$ for exact triangles or distinguished triangles. In this thesis the elements of $\Delta_{\mathcal{T}}$ will be called for triangles.
+    These triangles will make up a triangulation on the category $\mathcal{T}$. Thus, a triangulated category is an additive category together with a translation functor $\Sigma_{\mathcal{T}}$ and a triangulation class $\Delta_{\mathcal{T}}$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta_{\mathcal{T}}$ it is usually called a triangle, an exact triangle or a distinguished triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta_{\mathcal{T}}$ for exact triangles or distinguished triangles. In this thesis the elements of $\Delta_{\mathcal{T}}$ will be called for triangles.
 
     % Definition of Triangulation
     \begin{definition}
@@ -298,7 +303,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         The teal squiggly lines at the back faces of each octahedra forms a morphism $g'f:C\rightarrow C'$. It remains to see that the morphism is a triangle morphism. Diagram chasing reveals that the following diagram is commutative, which is exactly the requirement for the collection $(\phi_A,\phi_B,g'f)$ to be a morphism of triangles.
         \begin{center}
             \begin{tikzcd}
-                B \ar[red]{r}[black]{b} \ar[orange]{d}[black]{\phi_B'}& C \ar[red]{rd}[black]{c} \ar[teal]{d}[black]{f} \\
+                B \ar[red]{r}[black]{b} \ar[orange]{d}[black]{\phi_B}& C \ar[red]{rd}[black]{c} \ar[teal]{d}[black]{f} \\
                 B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & \Sigma_{\mathcal{T}}A \ar[red]{d}[black]{\Sigma_{\mathcal{T}}\phi_A} \\
                 & C' \ar[orange]{r}[black]{c'} & \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
@@ -333,7 +338,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         Thus $0 = \Sigma_{\mathcal{T}}b\circ -\Sigma_{\mathcal{T}}a = \Sigma_{\mathcal{T}}(-ba) \implies b\circ a = 0$ as $\Sigma_{\mathcal{T}}$ is a translation.
     \end{proof}
     % Triangulated functor
-    \todo{Burde jeg introdusere triangulerte funktorer, eller går det greit å bare definere de brått?}
+    One fundamental object to study when looking at categories are functors. In the case of triangulated categories there are two import type of functors, triangulated functors and homological functors. These are central to this discussion as one are able to relate triangulations to each other and derive information about triangulations through abelian categories. The result 5-lemma has an appearance in triangulated categories through the 2-out-of-3 property.
     
     \begin{definition}
         A triangulated functor $F: \mathcal{S} \rightarrow \mathcal{T}$ between two triangulated categories $(\mathcal{S}, \Sigma_{\mathcal{S}}, \Delta_\mathcal{S})$ and $(\mathcal{T}, \Sigma_{\mathcal{T}}, \Delta_\mathcal{T})$, is an additive functor $F$ along with a natural isomorphism $\phi_X : F(\Sigma_{\mathcal{S}}(X)) \rightarrow \Sigma_{\mathcal{T}}(F(X))$ such that $F(\Delta_{\mathcal{S}}) \subseteq \Delta_{\mathcal{T}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
@@ -398,7 +403,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                 C \ar{uu}{c}[near end]{\Sigma_{\mathcal{T}}}[very near end, marking]{|}
             \end{tikzcd} $\implies$
             \begin{tikzcd}
-                \mathcal{\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iA) \ar{r}{\Sigma_{\mathcal{T}}^ia_*} & \mathcal{\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iB) \ar{r}{\Sigma_{\mathcal{T}}^ib_*} & \mathcal{\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iC)
+                {\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iA) \ar{r}{\Sigma_{\mathcal{T}}^ia_*} & {\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iB) \ar{r}{\Sigma_{\mathcal{T}}^ib_*} & {\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iC)
             \end{tikzcd}
         \end{center}
 
@@ -412,8 +417,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         The left square commutes by the assumption, thus the morphism g exist by TR3 such that $-\Sigma_{\mathcal{T}}a\circ h = -\Sigma_{\mathcal{T}}f\circ \Sigma_{\mathcal{T}}^{-i+1}id = -\Sigma_{\mathcal{T}}f \implies \Sigma_{\mathcal{T}}a\circ h = \Sigma_{\mathcal{T}}f$. This shows that $f = a\circ T^{-1}h$, asserting that $f$ factors through A.
     \end{proof}
     % 2 out of 3 property
-    \todo{Her kan det også være veldig naturlig å skrive noe. Sammenligne med 5-lemma er vel det jeg tenker på.}
-    \begin{lemma}
+    \begin{lemma}\textbf{2-out-of-3 property.}
         Let $(\phi_A, \phi_B, \phi_C):(A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of triangles. If 2 of the maps are isomorphisms, then the last one is an isomorphism as well.
         \begin{center}
             \begin{tikzcd}
@@ -501,7 +505,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                 0 \ar{r}{0} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar[bend left]{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{0} \ar[dashed, bend left]{l}{b^{-1}_*} & 0
             \end{tikzcd}
         \end{center}
-        This shows that b is split epi, completing the first part of the proof.
+        This split short exact sequence shows that b is split epi, completing the first part of the proof.
 
         For the final part, assume that $c = 0$; construct the following triangles.
         \begin{center}
@@ -530,7 +534,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                 \Sigma_{\mathcal{T}}A \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd}
         \end{center}
-        \todo{Dette kan jeg nok utdype mer, slik at det ikke er så forvirrende} (1) is constructed by applying TR2 twice, while (2) is constructed with TR1 and TR2 twice. Observe that there is a commutative square between the triangles, allowing for TR3 to make a morphism of triangles.
+        (1) is constructed by applying TR2 twice, while (2) is constructed with TR1 and the applying TR2 twice. Observe that there is a commutative square between the triangles, allowing for TR3 to make a morphism of triangles.
         \begin{center}
             \begin{tikzcd}
                 C \ar{r}{0} \ar{d}{0} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} \ar[equal]{d}{id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}B \ar{r}{-\Sigma_{\mathcal{T}}b} \ar[dashed]{d}{\Sigma_{\mathcal{T}}a^{-1}} & \Sigma_{\mathcal{T}}C \ar{d}{0} \\
@@ -549,7 +553,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                     A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
                 \end{tikzcd}
             \end{minipage}
-            \begin{minipage}[c]{0.5\textwidth}
+            \begin{minipage}[c]{0.3\textwidth}
                 \begin{enumerate}
                     \item $(f,g,h)$ is a morphism of triangles
                     \item $\exists g:B\rightarrow B'$ such that $b'ga = 0$
@@ -562,19 +566,23 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \begin{proof}
         $1. \implies 2.$ The composition $b'ga = ba = 0$ shows the claim. 
         
-        $2. \implies 1.$ The existence of $f$ and $h$ are \todo[color = pink]{er det virkelig så evident?} evident from the long exact sequence of the bottom triangle at the covariant functor represented by $A$. 
+        $2. \implies 1.$ The existence of $f$ and $h$ are will be seen to be a consequence of the long exact sequence of the bottom triangle at the covariant functor represented by $A$. 
         \begin{center}
             \begin{tikzcd}
                 \mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C') \ar{r}{\Sigma_{\mathcal{T}}^{-1}c'_*} & \mathcal{T}(A,A') \ar{r}{a'_*} & \mathcal{T}(A,B') \ar{r}{b'_*} & \mathcal{T}(A,C')
             \end{tikzcd}
         \end{center}
-        \todo{Hva som foregår her burde komme fram tydeligere} The morphism $ga:\mathcal{T}(A,B')$ such that $b'ga=b'_*(ga)=0$, thus $ga:Ker(b'_*)$. By exactness $\exists f:\mathcal{T}(A,A')$ such that $a'f = ga$, and by TR3 $\exists h: C \rightarrow C'$ such that $(f,g,h)$ is a morphism of triangles.
-        Now assume that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq 0$. Exactness determines that $a'_*$ is a monomorphism, and $f$ is then unique. Since $\Sigma_{\mathcal{T}}$ is a translation, we have that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq\mathcal{T}(\Sigma_{\mathcal{T}}A,C')$. By using the functor $\mathcal{T}(\_,C')$ at the top triangle, we get that $b^*$ is a monomorphism, and thus $h$ is chosen uniquely.
+        The morphism $ga:\mathcal{T}(A,B')$ has the property that $b'ga=b'_*(ga)=0$, thus $ga:Ker(b'_*)$. By exactness, $\exists f:\mathcal{T}(A,A')$ such that $a'f = ga$, and by TR3 $\exists h: C \rightarrow C'$ such that $(f,g,h)$ is a morphism of triangles. This have shown that $f$ and $g$ exists, it remains to check uniqueness if the assumption is true.
+        Now assume that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq 0$. Exactness determines that $a'_*$ is a monomorphism, and $f$ is therefore unique. Since $\Sigma_{\mathcal{T}}$ is a translation, one gets that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq\mathcal{T}(\Sigma_{\mathcal{T}}A,C')$. By using the functor $\mathcal{T}(\_,C')$ at the top triangle, it is seen that $b^*$ is a monomorphism, thus $h$ is also unique.
     \end{proof}
 
     \begin{lemma} \textbf{Opposite Rotation Axiom; $TR2^{op}$.}
         If $(A,B,C,a,b,c)$ is a triangle, then $(\Sigma_{\mathcal{T}}^{-1}C,A,B,-\Sigma_{\mathcal{T}}^{-1}c,a,b)$ is a triangle.
     \end{lemma}
+
+    \begin{remark}
+        It is known a priori that the direct sum of triangles is a candidate triangle, thus it remains to check if it is isomorphic to a triangle.
+    \end{remark}
 
     \begin{proof}
         Apply TR2 twice to construct the triangle below.
@@ -606,7 +614,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \end{lemma}
 
     \begin{proof}
-        \todo{Hva er det jeg prøvde å si her???} Observe that for any functor $\mathcal{T}(K,\_)$ there is still a long exact sequence of Hom(ology)since $\mathcal{T}(K,A\oplus A')\simeq\mathcal{T}(K,A)\oplus\mathcal{T}(K,A')$. Thus for the direct sum of the triangles we have the following.
+        Observe that direct sums of triangles admits long exact sequences of hom-functor, as $\mathcal{T}(K,A\oplus A')\simeq\mathcal{T}(K,A)\oplus\mathcal{T}(K,A')$. Thus the direct sum of the triangles has the following exact sequence.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 A\oplus A' \ar{r}{\begin{pmatrix}a & 0 \\ 0 & a'\end{pmatrix}} \& B\oplus B' \ar{r}{\begin{pmatrix}b & 0 \\ 0 & b'\end{pmatrix}} \& C\oplus C' \ar{r}{\begin{pmatrix}c & 0 \\ 0 & c'\end{pmatrix}} \& TA\oplus TC
@@ -617,13 +625,13 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                 \mathcal{T}(K,C)\oplus\mathcal{T}(K,C') \ar{r} & \mathcal{T}(K,\Sigma_{\mathcal{T}}A)\oplus\mathcal{T}(K,\Sigma_{\mathcal{T}}A') \ar{r} & ...    
             \end{tikzcd}
         \end{center}
-        Thus the 2 out of 3 property holds for the direct sum. By TR1 there is a triangle 
+        The 2-out-of-3 property holds for the direct sum, via 5-lemma. By TR1 there is a triangle 
         \begin{center}
             \begin{tikzcd}
                 A\oplus A' \ar{r} & B\oplus B' \ar{r} & D \ar{r} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A'
             \end{tikzcd}
         \end{center}
-        By TR3 there are morphisms from this triangle to to the direct summands. Adding these maps together there is a map from this triangle to direct sum, and by using the 2 out of 3 property this is an isomorphism of candidate triangles. Thus the direct sum is a triangle.
+        By TR3 there are morphisms from this triangle to to each of the direct summands. Adding these maps together, there is a map from this triangle to direct sum. Using the 2-out-of-3 property this is an isomorphism of between a candidate triangle and a triangle, showing that the direct sum is a triangle.
         \begin{center}
             \begin{tikzcd}
                 A\oplus A' \ar{r} \ar{d} & B\oplus B' \ar{r} \ar{d} & D \ar{r} \ar[dashed]{d} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A' \ar{d} \\
@@ -653,15 +661,19 @@ In this chapter the notion of a triangulated will be introduced. In literature o
 
 \section{Mapping Cones, Homotopies and Contractibility}
 
-    The observant reader might have seen that the Octahedron axiom have not yet been used once, other than for proving TR3. A lot of the theory proven for triangulated categories works without this axiom, and this motivates the definition of a pre-triangulated category.
+    Up until now the Octahedron axiom have not yet been used once, other than for proving TR3. Only by assuming TR1, TR2 and TR3 all of the results from the previous section follows. This is what will motivate the next definition.
 
     \begin{definition}
-        A pre-triangulation of an additive category $\mathcal{T}$ with translation $T$ is a collection $\Delta_{\mathcal{T}}'$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying TR1, TR2 and TR3.
+        A pre-triangulation of an additive category $\mathcal{T}$ with translation $\Sigma_{\mathcal{T}}$ is a collection $\Delta_{\mathcal{T}}'$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying TR1, TR2 and TR3.
 
-        The category $\mathcal{T}$ with the pre-triangulation $\Delta_{\mathcal{T}}'$ is called a pre-triangulated category, and the candidate triangles in $\Delta_{\mathcal{T}}'$ are called  triangles. This notion of triangles will only be used in this subsection.
+        The category $\mathcal{T}$ with the pre-triangulation $\Delta_{\mathcal{T}}'$ is called a pre-triangulated category, and the candidate triangles in $\Delta_{\mathcal{T}}'$ are called  triangles.
     \end{definition}
 
-    \todo{Kanskje få denne biten tidligere?} The main goal of this subsection is to see how we can find  triangles, and when these are triangles. We will also look at triangulated functors and triangulated subcategories. For the rest of this subsection it is assumed that we work in a pre-triangulated category $\mathcal{T}$.
+    \begin{remark}
+        This notion of triangles will only be used in this section.
+    \end{remark}
+
+    This section aims see how candidate triangles are constructed and formed. More importantly it will be discussed when these objects are triangles. These results are essential to motivate the definition of good morphisms between triangles. Lastly, other equivalent versions of TR4 will be presented, and the construction of weak kernels and cokernels will be shown. For this section it is assumed that $\mathcal{T}$ pre-triangulated.
 
     \begin{definition}
         Let $\phi : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of candidate triangles.
@@ -786,7 +798,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                 ... \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,A) \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,A') \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,E) \ar{r}{e'_*} & \mathcal{T}(\Sigma_{\mathcal{T}}A,\Sigma_{\mathcal{T}}A) \ar{r}{\Sigma_{\mathcal{T}}a_*} & ...    
             \end{tikzcd}
         \end{center}
-        Since the map $\Sigma_{\mathcal{T}}a\circ a''\Psi = 0$ and by exactness at $\mathcal{T}(\Sigma_{\mathcal{T}}A,\Sigma_{\mathcal{T}}A)$, the kernel $Ker\Sigma_{\mathcal{T}}a_*=Ime'_*\neq 0$. This shows that there is a map ${\Psi}':\mathcal{T}(\Sigma_{\mathcal{T}}A,E)$ such that $e'{\Psi}'=a''\Psi$, and the map $(id_A,id_{A'},e\Theta+{\Psi}'a'')$ is a well defined map of candidate triangles. By the remark, we can use the 2 out of 3 properties to assert that the map found is an isomorphism, giving an isomorphism of triangles, showing that the contractible triangle is a triangle by Bookkeeping. 
+        Since the map $\Sigma_{\mathcal{T}}a\circ a''\Psi = 0$ and by exactness at $\mathcal{T}(\Sigma_{\mathcal{T}}A,\Sigma_{\mathcal{T}}A)$, the kernel $Ker\Sigma_{\mathcal{T}}a_*=Ime'_*\neq 0$. This shows that there is a map ${\Psi}':\mathcal{T}(\Sigma_{\mathcal{T}}A,E)$ such that $e'{\Psi}'=a''\Psi$, and the map $(id_A,id_{A'},e\Theta+{\Psi}'a'')$ is a well defined map of candidate triangles. By the remark, one may use the 2 out of 3 properties to assert that the map found is an isomorphism, giving an isomorphism of triangles, showing that the contractible triangle is a triangle by the Bookkeeping axiom. 
     \end{proof}
 
     \begin{corollary}
@@ -801,14 +813,10 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         The mapping cone of a null-homotopic map between triangles is a triangle.
     \end{corollary}
 
-    \begin{remark}
-        Suppose we have a morphism of triangles where one of the triangles are contractible, then the mapping cone is a triangle as well.
-    \end{remark}
-
-    \todo{Skriv noe om hvordan dette har bygget opp til en annen variant av TR4.}
+    A natural question to ask is when does the map between triangles admit a mapping cone which is a triangle. It has been shown that this is true whenever the map is null-homotopic. Then it can be seen that if either of the triangles the map is between is contractible, the mapping cone is a triangle. This sections main result shows the connection between triangulations and the realization of mapping cones as triangles.
 
     \begin{definition}
-        A morphism of triangles will be called good if the mapping cone of the morphism is a triangle.
+        A map between triangles will be called good if the mapping cone is a triangle.
     \end{definition}
 
     \begin{theorem}
@@ -827,14 +835,12 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         \end{center}
     \end{theorem}
 
-    \begin{remark}
-        \todo{Utdyp hva som står her} This condition is equivalent to the Octahedron axiom. \todo[color = red]{Legg til kilder}
-    \end{remark}
+    This result was shown by \cite{neeman}, however it also holds in the opposite direction. That is, if $\mathcal{T}$ is a triangulated category, then every pair of morphisms as in (1) may be completed to a good map between triangles. This highlights an interesting connection between mapping cones and the Octahedron axiom. 
 
     \todo[color = pink]{Skal jeg skrive også om Verdier sitt aksiom her? Jeg synes det kan være en gøy med en exposition av alt kaoset man kan finne :)}
 
     \begin{definition}
-        \todo[color = pink]{Denne definisjonen er rar og er ikke presis, men jeg synes den er litt søt} A commutative square (1) is called homotopy cartesian if it arises from a triangle. That is, (2) is a triangle.
+         A commutative square (1) is called homotopy cartesian if and only if (2) is a triangle. One would say that homotopy cartesian squares arises from triangles.
         \begin{center}
             (1)
             \begin{tikzcd}
@@ -852,28 +858,28 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \end{definition}
         
     \begin{remark}
-        A way to construct homotopy cartesian squares is with homotopy pullbacks. This is done by using TR1 on the following map to get a triangle.
+        One method to construct homotopy cartesian squares is with homotopy pullbacks. A homotopy pullback is created with the application of TR1 and TR2, the procedure is drawn out below.
         \begin{center}
             \begin{tikzcd}
                 & A \ar{d}{a} \\
                 B \ar{r}{b} & C
             \end{tikzcd}
-            $\implies$
+            $\stackrel{Collapse}{\implies}$
             \begin{tikzcd}[ampersand replacement=\&]
                 A\oplus B \ar{r}{\begin{pmatrix}a & b\end{pmatrix}} \& C
             \end{tikzcd} \\
-            $\implies$
+            $\stackrel{TR1}{\implies}$
             \begin{tikzcd}[ampersand replacement=\&]
                 A\oplus B \ar{r}{\begin{pmatrix}a & b\end{pmatrix}} \& C \ar{r} \& \Sigma_{\mathcal{T}}D \ar{r} \& \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}B
             \end{tikzcd}
-            $\implies$
+            $\stackrel{TR2}{\implies}$
             \begin{tikzcd}
                 D \ar{r} \ar{d} \ar[phantom]{rd}{HO}[very near start]{\ulcorner}[very near end]{\lrcorner}& A \ar{d} \\
                 B \ar{r} & C
             \end{tikzcd}
         \end{center}
 
-        Dually, one may use homotopy push-outs to get homotopy cartesian squares.
+        Dually, one may use homotopy push-outs to construct homotopy cartesian squares.
     \end{remark}
 
     \begin{remark}
@@ -881,7 +887,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \end{remark}
 
     \begin{lemma}
-        Suppose that there is a homotopy cartesian square (1). Then there are triangles and a triangle isomorphism as in (2).
+        Suppose that there is a homotopy cartesian square (1). Then there are triangles and a morphism of triangles as in (2).
         \begin{center}
             (1)
             \begin{tikzcd}
@@ -906,35 +912,42 @@ In this chapter the notion of a triangulated will be introduced. In literature o
             \end{tikzcd} \\
             (2)
             \begin{tikzcd}[row sep=small, ampersand replacement=\&]
-                D \ar[red]{rd}{\begin{pmatrix}g' \\ f'\end{pmatrix}} \\
-                \& A\oplus B \ar[red]{ld}{\begin{pmatrix}f & g\end{pmatrix}} \\
-                C \ar[red, very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}}[pos=0.5]{0}
+                D \ar[red]{rd}[black]{\begin{pmatrix}g' \\ f'\end{pmatrix}} \\
+                \& A\oplus B \ar[red]{ld}[black]{\begin{pmatrix}f & g\end{pmatrix}} \\
+                C \ar[red]{uu}[black, very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}[pos=0.5]{0}
             \end{tikzcd}
             \begin{tikzcd}[row sep=small, ampersand replacement=\&]
-                A\oplus B \ar[orange]{rd}{\begin{pmatrix} 1 & 0\end{pmatrix}} \\
-                \& A \ar[orange]{ld}{0} \\
-                \Sigma_{\mathcal{T}}B \ar[orange, very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}}[near start]{\begin{pmatrix}0 \\ 1\end{pmatrix}}
+                A\oplus B \ar[orange]{rd}[black]{\begin{pmatrix} 1 & 0\end{pmatrix}} \\
+                \& A \ar[orange]{ld}[black]{0} \\
+                \Sigma_{\mathcal{T}}B \ar[orange]{uu}[black, very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}[near start]{\begin{pmatrix}0 \\ 1\end{pmatrix}}
             \end{tikzcd}
             \begin{tikzcd}[row sep=small]
-                D \ar[violet]{rd}{f'} \\
+                D \ar[violet]{rd}[black]{f'} \\
                 & A \ar[violet]{ld}{} \\
-                E \ar[violet, very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}}
+                E \ar[violet]{uu}[black, very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
             \end{tikzcd} \\
             (3)
             \begin{tikzcd}
                 \textcolor{white}{.} \\
-                C \ar[teal]{r} & E \ar[teal]{r}{} & \Sigma_{\mathcal{T}}B \ar[teal]{r}{} & \Sigma_{\mathcal{T}}C \\
+                C \ar[teal]{r} & E \ar[teal]{r}{} & \Sigma_{\mathcal{T}}B \ar[teal]{r}{\Sigma_{\mathcal{T}}g} & \Sigma_{\mathcal{T}}C \\
                 \textcolor{white}{.}
             \end{tikzcd}
         \end{center}
-        This setup shows that there is a triangle with a commutative square as below.
+        By TR4 (3) is a triangle, and two commutative squares as below. Every arrow should be understood to be the arrow from its corresponding triangle.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
-                A\oplus B \ar{r}{\begin{pmatrix}1 & 0\end{pmatrix}} \ar{d}{\begin{pmatrix}f & g\end{pmatrix}} \& A \ar{d}{} \\
-                C \ar{r}{} \& E
+                A\oplus B \ar[orange]{r} \ar[red]{d} \& A \ar[dotted]{ld}{f} \ar[violet]{d}{} \\
+                C \ar[teal]{r}{} \& E
             \end{tikzcd}
-        \end{center}.
-        Since $\begin{pmatrix}1 & 0\end{pmatrix}$ is a splitmono, there is a morphism of triangles proving the statement.
+            \begin{tikzcd}
+                E \ar[teal]{d}{} \ar[violet]{r}{} & \Sigma_{\mathcal{T}}D \ar[red]{d}{} \ar[dotted]{ld}[above]{\Sigma_{\mathcal{T}}g} \\
+                \Sigma_{\mathcal{T}}B \ar[orange]{r}{} & \Sigma_{\mathcal{T}}A \oplus \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+        Since the composition \begin{tikzcd}
+            B \ar[teal]{r}{g} & C \ar[teal]{r}{} & E
+        \end{tikzcd} is 0, it is seen that the lower simplex in the first diagram commute. Dually, the upper simplex in the second triangle also commutes. This is exactly the condition that the triple of morphisms is a morphism of triangles, as illustrated below.
+        % Since $\begin{pmatrix}1 & 0\end{pmatrix}$ is split mono, there is a morphism of triangles proving the statement.
         \begin{center}
             \begin{tikzcd}
                 D \ar{r}{} \ar{d}{} & A \ar{r}{} \ar{d}{} & E \ar{r}{} \ar[equal]{d}{} & \Sigma_{\mathcal{T}}D \ar{d}{} \\
@@ -944,7 +957,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \end{proof}
 
 \section{Calculus of Fractions and the Verdier Quotient}
-    \todo[noline]{Dette avsnittet er skrevet litt rart. Flyten kan bli mye bedre.} Localization is a method for adding formal inverses to a category. It is most notably known in commutative algebra where we can invert elements with respect to some ideal of the ring. The rational numbers can be shown to be a localization of the integers at every number except 0. The category gained from localizing at some set $S$ of morphisms is the universal category where these morphisms are isomorphisms.
+    One important construction of triangulated categories is the Verdier Quotient. This construction is a localization of a triangulated category at some set related to a triangulated subcategory, this gives the construction some resemblance of classical quotients. This section aims to introduce the concept localization of categories, as well as show how triangulated categories fit within this theory. Localization is most notably known in commutative algebra where elements are given formal inverses. The idea for categories is to attach formal inverses of morphisms onto the category.
     \begin{definition}
         Let $S$ be a collection of morphisms in the category $\mathcal{C}$. The Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
         \begin{itemize}
@@ -960,10 +973,14 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \end{definition}
 
     \begin{remark}
-        Even though it is known that $\mathcal{C}$ is locally small, it is not clear a priori that the category $\mathcal{C}[S^{-1}]$ is again locally small.
+        Even though it is known that $\mathcal{C}$ is locally small, it is not clear a priori that the category $\mathcal{C}[S^{-1}]$ is again locally small. Thus it is not evident that these localizations exists.
     \end{remark}
 
-    \todo[color = pink]{Burde jeg endre på noe her. Kan det være greit å forklare hvorfor de er vanskelig å beskrive?} These categories are in general pretty hard to describe. When the set of morphisms is a multiplicative system, there is a calculus of fractions description of these localization in the same style as for localizations of rings.
+    \begin{remark}
+        Suppose $X:\mathcal{C}$, then one may always assume that $id_{X}:S$. To see this, let $T = \{id_{X} |\forall X:\mathcal{C} \}$, then it is evident that $Id_{\mathcal{C}}$ is the universal functor in which morphisms in $T$ are inverted. Thus adding identities to a set, does not alter its localization. Thus it will be assumed that the sets used in localization have identity morphisms.
+    \end{remark}
+
+    In general, it is difficult to describe a method to construct the localization of a category at a set. This discussion will however be much easier if one are to put assumptions on the set $S$ of morphisms. In order to mimic the construction of localization of rings, one wants to assume that $S$ is a multiplicative system.
 
     \begin{definition}
         A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
@@ -1005,9 +1022,11 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         If $S$ is both right multiplicative and left multiplicative then it is called multiplicative.
     \end{remark}
 
-    \begin{prototype}
-        \todo[color = pink]{Fjerne dette?} Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
-    \end{prototype}
+    % \begin{prototype}
+    %     \todo[color = pink]{Fjerne dette?} Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
+    % \end{prototype}
+
+    Whenever one localizes a category over a multiplicative set, the morphisms in the localized category will be defined with fractions. This is to say that 
 
     As with the definition of localization of rings, localization of a category $\mathcal{C}$ at a multiplicative system will be defined with fractions. That is the morphisms will be "fractions" of morphisms. These morphisms will be described as diagrams over spans for right multiplicative systems (or dually cospans for left multiplicative systems), together with an equivalence relation.
 
@@ -1154,7 +1173,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                 Y & W_2 \ar[blue]{l}{t} \ar{r}{g} & Z
             \end{tikzcd}
         \end{center}
-        Further suppose that there are at least two different choices for the morphisms provided by the right Ore condition, for example \todo[color = pink]{Dette er et incosist format}$(\widetilde{W},\widetilde{s},\widetilde{f})$ and $(\widehat{W},\widehat{s}, \widehat{g})$. The two compositions may be drawn as the diagrams below.
+        Further suppose that there are at least two different choices for the morphisms provided by the right Ore condition, for example $\widetilde{W}$ and $\widehat{W}$. The two compositions may be drawn as the diagrams below.
         \begin{center}
             \begin{tikzcd}
                 & \widetilde{W} \ar{r}{\widetilde{g}} \ar[blue]{d}{\widetilde{s}} & W_2 \ar{r}{g} \ar[blue]{d}{t} & Z \\
@@ -1165,7 +1184,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
                 X & W_1 \ar[blue]{l}{s} \ar{r}{f} & Y
             \end{tikzcd}
         \end{center}
-        Combining the diagrams at $W_1$ by using the right Ore condition, the objects and maps \todo[color = magenta]{Er dette inkonsekvent?} $(W, \widetilde{w}, \widehat{w})$ exists as in the diagram below. 
+        Combining the diagrams at $W_1$ by using the right Ore condition, the object $W$ exists as in the diagram below together with its corresponding maps. 
         \begin{center}
             \begin{tikzcd}
                 \bar{W} \ar[blue, dashed]{rd}{\xi} \\
@@ -1188,8 +1207,8 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         The composition of right fractions is associative.
     \end{prop}
 
-    \begin{proof}
-        \todo[color = pink]{Kommer det fram at dette er en proof sketch?} Let $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ be right fractions as in the diagrams below.
+    \begin{proof}\emph{Sketch.}
+        Let $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ be right fractions as in the diagrams below.
         \begin{center}
             \begin{tikzcd}
                 A & X \ar[blue]{l}{s} \ar{r}{f} & B
@@ -1257,28 +1276,52 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         Dually there is a category $\mathfrak{l}S^{-1}\mathcal{C}$ for a left multiplicative system $S$ in a category $\mathcal{C}$. It is defined in the same manner as $\mathfrak{r}S^{-1}\mathcal{C}$, but with left fractions instead.
     \end{remark}
 
-
-
-    \begin{remark}
-        \todo{Det virker som at det som foregår her er galt. Jeg må først skaffe oversikt over hva som skjer} Given that $S$ is right multiplicative, A right fraction from the object $A$ to the object $B$ can be described with a special kind of diagram. Let $A\downarrow S$ be the comma category of arrows from $S$ starting at $A$ and let $\delta : A\downarrow S\rightarrow\mathcal{C}$ be the forgetful functor, sending each arrow to its codomain. A morphism in $A\downarrow S$ from the objects $(b,B')$ to $(c,C')$ is a morphism $t : B'\rightarrow C'$ such that $b=ct$. We see that there is a correspondence between right fractions and elements in components of diagrams over $A\downarrow S$ such as $\mathcal{C}(\delta b, B)=\mathcal{C}(B',B)$ and right fractions. That is, let $f:\delta(b, B)\rightarrow B'$, then $f$ can be regarded as $fb^{-1}$. A morphism from $\mathcal{C}(\delta c, B)$ to $\mathcal{C}(\delta b, B)$ is a morphism induced by a morphism from $(b,B')$ to $(c,C')$ in $A\downarrow S$. By the equivalence relation above we want to fractions $fb^{-1}$ and $gc^{-1}$ to be identified if there exists morphisms from $\mathcal{C}(\delta d, B)$ with maps $b' : (d,D')\rightarrow (b,B')$ and $c' : (d,D')\rightarrow (c,C')$ in $A\downarrow S$ such that $b'*f = c'*g$. This would be the same as saying that the right fractions are the coequalizer of the diagram $\mathcal{C}(\delta b, B)\coprod \mathcal{C}(\delta c, B)\rightrightarrows \mathcal{C}(\delta d, B)$. This observation motivates that the right fractions from $A$ to $B$ is described as the colimit of the functor $\mathcal{C}(\delta\_, B):A\downarrow S\rightarrow SET$. Dually, if $S$ is left multiplicative we get that the left fractions from $A$ to $B$ can be described as the colimit of the functor $\mathcal{C}(A, \rho\_):S\downarrow B\rightarrow SET$. More details can be found in \cite{zisman} and \cite{weibel}.
-    \end{remark}
-
-    To ensure us that these categories $\mathfrak{r}S^{-1}\mathcal{C}$ does indeed exist there are many different criteria which we can place upon our assumptions. A natural restriction is to ensure that the colimits above exists as sets
+    A priori it does still not make sense to ask for these kind of categories to always exist. The class of morphisms $S^{-1}\mathcal{C}(A,B)$ consists of a large collection of morphism from $\mathcal{C}$. This collection has been described as a disjoint union of sets on the form $(f,g):\mathcal{C}(A,X)\times \mathcal{C}(X,B)$ modulo an equivalence relation. This disjoint union spans over the whole category $\mathcal{C}$ with the $X$ index. Since $\mathcal{C}$ is not assumed to be small, there is no reason for this set to be small as well. To see how this problem might be untangled, this collection will be further studied.
 
     \begin{definition}
-        \todo{Dette må også fikses etter at det over er fikset!!!} A multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $S_X$ of morphisms from $S$ such that for every morphism $f : X_1 \rightarrow X$ in $S$ there is a morphism $f' : X'\rightarrow X$ in $S_X$ factoring thorough $f$.
-
-        The dual of this definition will be called a locally small multiplicative system on the left. If it is both locally small on the left and the right, we will simply call it locally small. 
+        Let $\mathcal{C}$ be a category and $S$ a collection of morphisms from $\mathcal{C}$, such that every identity morphism is in $S$ and that it is closed under composition. Define the subcategory $\mathcal{C}|_{S} \subseteq \mathcal{C}$ to have $\mathfrak{Ob}\mathcal{C}|_{S} = \mathfrak{Ob}\mathcal{C}$ and $\mathfrak{Ar}\mathcal{C} = S$.
     \end{definition}
 
-    \begin{remark}
-        If $S$ is a left multiplicative system, then $S\downarrow A$ is a filtered category for every object $A$. Dually, if $S$ is right multiplicative then $A\downarrow S$ is cofiltered.
-    \end{remark}
+    This definition is seen to be well-defined, as it is closed under composition of morphisms and every identity morphism is in $\mathcal{C}|_{S}$ by assumption. Suppose now that $S$ is a right multiplicative system, then the category $\mathcal{C}|_{S}$ is defined. For any $A:\mathcal{C}$, look at the category $\mathcal{C}|_{S}\downarrow A$ which have objects $\mathfrak{Ob}\mathcal{C}|_{S}\downarrow A = \{s : X \rightarrow A$ $|$ $s : S\}$ and morphisms as indicated by the squiggly arrow in the commutative diagram below.
+    
+    \begin{center}
+        \begin{tikzcd}[row sep=small]
+            & X \ar[blue]{ld}{s} \ar[blue, squiggly]{dd}{\sigma} \\
+            A \\
+            & Y \ar[blue]{lu}{t}
+        \end{tikzcd}
+        $\stackrel{\delta_{A}}{\implies}$
+        \begin{tikzcd}[row sep=small]
+            X \ar[blue, squiggly]{dd}{\sigma} \\
+            \textcolor{white}{.}\\
+            Y
+        \end{tikzcd}
+    \end{center}
 
-    \begin{remark}
-        Equipped with this notion we are now able to prove that the localizations exists as locally small categories. Locally small right multiplicative systems allows us to prove that the classes $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are sets. This can be seen as we can regard $S_X$ as a small category. By using the right Ore condition and left cancellation we can extend $S_X$ such that it is again cofiltered and admits the same colimit, i.e.\\
-         $\varinjlim\mathcal{C}(\delta\_,B):A\downarrow S\rightarrow Set\simeq\varinjlim\mathcal{C}(\delta\_,B):S_A\rightarrow Set$. 
-    \end{remark}
+    This category has a forgetful functor which associate each morphism to its domain $\delta_{A} : \mathcal{C}|_{S}\downarrow A \rightarrow \mathcal{C}$, and forgets the commutativity of the arrows. Choose a morphism $s : X \rightarrow A$ from $\mathcal{C}|_{S}\downarrow A$, then a morphism $g:\mathcal{C}(\delta_{A}(s),B)$ may be regarded as a right fraction $gs^{-1}$. In order to describe every possible right fraction from $A$ to $B$, consider the following colimit $\varinjlim\mathcal{C}(\delta_{A}(\_),B)$ over the category $\mathcal{C}|_{S}\downarrow A$. Since $S$ is a right multiplicative system it follows that $\mathcal{C}|_{S}$ is a cofiltered category, and the colimit is therefore filtered. As the colimit is filtered, it is created from the coproduct modulo an equivalence relation $\sim$. 
+    
+    The relation $\sim$ can be described with maps from $S$. Suppose that there are two morphisms $f : \mathcal{C}(\delta_A(s),B)$ and $g : \mathcal{C}(\delta_A(t),B)$, and that there exists some morphism $\sigma : \mathcal{C}|_{S}(s,t)$. The induced morphism $\sigma^* : \mathcal{C}(\delta_A(t),B) \rightarrow \mathcal{C}(\delta_A(s),B)$ defines the relation, where $f \sim t$ if $f = g\sigma$. Observe that this relation is not an equivalence relation, so $\sim$ has to be the smallest equivalence relation generated by such relations. The smallest such equivalence relation may be seen to consist of zig-zags between morphisms in $S$, connecting two morphisms. Luckily, the right Ore condition simplifies this picture, reducing to at most 1 zig-zag. To illustrate with 2 zig-zags, consider two maps $f : \mathcal{C}(\delta_A(s),B)$ and $g : \mathcal{C}(\delta_A(t),B)$, where there are zig-zag morphisms $\sigma : s \rightarrow v$, $\tau : u \rightarrow v$ and $\upsilon : u \rightarrow t$ such that the diagram below commute, relating $f$ and $g$, i.e. $fs^{-1}=gt^{-1}$. It is evident that this equivalence relation is exactly the same as stated earlier in this section.
+
+    \begin{center}
+        \begin{tikzcd}
+            & \delta_A(s) \ar[blue]{ld}{s} \ar[blue]{d}{\sigma} \ar{rd}{f} \\
+            A \ar[equal]{d} & \delta_A(u) \ar[blue, dotted]{l}{u} \ar[dotted]{r}{} & B \ar[equal]{d}{} \\
+            A & \delta_A(v) \ar[blue]{d}{\upsilon} \ar[blue]{u}{\tau} \ar[blue, dotted]{l}{v} \ar[dotted]{r}{} & B \\
+            & \delta_A(t) \ar[blue]{lu}{t} \ar{ru}{g}
+        \end{tikzcd}
+    \end{center}
+
+    If $S$ is instead a left multiplicative system one would have to consider the colimit $\varinjlim \mathcal{C}(A,\gamma_B(\_))$ over the category $B\downarrow \mathcal{C}|_{S}$. Here $\gamma_B$ is the codomain functor, and $B\downarrow \mathcal{C}|_{S}$ may be seen to be filtered as $S$ is left multiplicative. The discussion would be dual to the right multiplicative case.
+ 
+    \todo[color = red]{Finn ut hva jeg skal gjøre med disse kildene} More details can be found in \cite{zisman} and \cite{weibel}.
+
+    The localization of a category exists whenever each hom-set is in fact a set. That is to say that $\mathfrak{r}S^{-1}\mathcal{C}(A,B)\simeq\varinjlim\mathcal{C}(\delta_A(\_),B)$ is a Set, which is to ask for the colimit to exist for every $A$ and $B$. One assumption which does this is to assume that the colimit is equivalent to a smaller colimit.
+
+    \begin{definition}
+        A right multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $\widehat{X}$, with a small category $\mathcal{C}|_{\widehat{X}}\downarrow X$ and a forgetful functor $\widehat{\delta_X} : \mathcal{C}|_{\widehat{X}}\downarrow X \rightarrow \mathcal{C}$, such that the colimit functor $\varinjlim\mathcal{C}(\widehat{\delta_X}(\_),\_) : \mathcal{C} \rightarrow Set$ actually evaluates in $Set$. Moreover there is an isomorphism, natural in both arguments $X$ and $Y$, $\varinjlim\mathcal{C}(\widehat{\delta_X}(\_),Y)\simeq\varinjlim\mathcal{C}(\delta_X(\_),Y)$.
+
+        Dually, a locally left multiplicative system would require the contravariant colimit functor to evaluate in $Set$.
+    \end{definition}
 
     \begin{theorem}
         \textbf{Gabriel-Zisman}. Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and it is the localization of $\mathcal{C}$ on $S$. This mean that there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $fid_X^{-1}$.
@@ -1356,7 +1399,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         \begin{center}
             \begin{tikzcd}
                 & X \ar[blue]{ld}[above]{f} \ar[blue]{d}{f} \ar{rd}{0}\\
-                A & \ar[blue][equal]{l} A \ar{r}{0} & 0
+                A & \ar[blue, equal]{l} A \ar{r}{0} & 0
             \end{tikzcd}
         \end{center}
     \end{proof}
@@ -1395,13 +1438,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
         If $\mathcal{A}$ is abelian and $S$ is a multiplicative system, then $S^{-1}\mathcal{A}$ is abelian as well.
     \end{corollary}
 
-    \todo{Kan skrive noe her for å løsne overgangen fra lokalisering til lokalisering av triangulerte kategorier}
-
-    Recall the following definition or smth
-
-    \begin{definition}
-        Denne er flyttet til en tidligere del
-    \end{definition}
+    General descriptions on how to localize categories have been discussed. The next natural step is to look at localization of triangulated categories. The goal is to define the Verdier quotient for triangulated categories. The idea of this localization is to mimic quotient modules from algebra in a categorical setting. Thus triangulated subcategories will be in the center of this discussion. This method has been described by \cite{neeman} in a broader term than what was originally proposed by Verdier.
 
     \begin{definition}
         A triangulated subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is a full additive subcategory such that the inclusion functor is triangulated.
@@ -1572,7 +1609,7 @@ In this chapter the notion of a triangulated will be introduced. In literature o
     \end{theorem}
 
     \begin{proof}
-        The triangulation on $\mathcal{C}/\mathcal{S}$ is defined as the following. Let $\Sigma_{\mathcal{C/S}}:\mathcal{C}/\mathcal{S}\rightarrow\mathcal{C}/\mathcal{S}$ be the additive autoequivalence defined by \todo{Jeg sier ikke hva funktoren gjør med maps, det kan nok være lurt å gjøre} $\Sigma_{\mathcal{C/S}}(A)=\Sigma_{\mathcal{C}}(A)$. Since $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ maps every object to itself it follows that $q(\Sigma_{\mathcal{C}}(A)) \simeq \Sigma_{\mathcal{C/S}}(A) = \Sigma_{\mathcal{C/S}}(q(A))$, and define $\Delta_{\mathcal{C}/\mathcal{S}}\supseteq q(\Delta_\mathcal{C})$ such that $\Delta_{\mathcal{C}/\mathcal{S}}$ has every isomorphism class of $q(\Delta_\mathcal{C})$. 
+        The triangulation on $\mathcal{C}/\mathcal{S}$ is defined as the following. Let $\Sigma_{\mathcal{C/S}}:\mathcal{C}/\mathcal{S}\rightarrow\mathcal{C}/\mathcal{S}$ be the additive autoequivalence defined by its action on objects $\Sigma_{\mathcal{C/S}}(A)=\Sigma_{\mathcal{C}}(A)$ and maps $\Sigma_{\mathcal{C/S}}(f) = f\circ id_{\_}^{-1}$. Since $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ maps every object to itself it follows that $q(\Sigma_{\mathcal{C}}(A)) \simeq \Sigma_{\mathcal{C/S}}(A) = \Sigma_{\mathcal{C/S}}(q(A))$, and define $\Delta_{\mathcal{C}/\mathcal{S}}\supseteq q(\Delta_\mathcal{C})$ such that $\Delta_{\mathcal{C}/\mathcal{S}}$ has every isomorphism class of $q(\Delta_\mathcal{C})$. 
         \begin{center}
             \begin{tikzcd}[row sep=small]
                 qX \ar{rd} \\
