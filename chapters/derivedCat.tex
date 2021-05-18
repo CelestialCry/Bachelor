@@ -312,7 +312,7 @@ Write something about that this chapter is meant to give an exposition of derive
     \begin{center}
         \begin{tikzcd}
             \dots \ar{r}{d_{\chain{A}}^{-2}}[marking]{\circ} & A_{-1} \ar[two heads]{d}{p}[marking]{\circ} \ar{r}{d_{\chain{A}}^{-1}}[marking]{\circ} & A_0 \ar{r}{d_{\chain{A}}^0}[marking]{\circ} & A_1 \ar{r}{d_{\chain{A}}^1}[marking]{\circ} & \dots \\
-            & Im(d_{\chain{A}}^{-1}) \ar[tail]{ru}{\iota}[marking]{\circ} \ar[dashed]{r}{h} & Ker(d_{\chain{A}}^0) \ar{u}{\kappa}[marking]{\circ} \ar[dotted]{r}{?} & H^0(\chain{A})
+            & Im(d_{\chain{A}}^{-1}) \ar[tail]{ru}{\iota}[marking]{\circ} \ar[dashed]{r}{h} & Ker(d_{\chain{A}}^0) \ar[tail]{u}{\kappa}[marking]{\circ} \ar[dotted]{r}{?} & H^0(\chain{A})
         \end{tikzcd}
     \end{center}
 
@@ -330,11 +330,67 @@ Write something about that this chapter is meant to give an exposition of derive
         Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map between acyclic chain complexes, then $cone(\chain{f})$ is acyclic as well.
     \end{lemma}
 
+    \begin{proof}
+        Suppose that $\chain{A}$ and $\chain{B}$ are acyclic chain complexes and that $\chain{f}:\chain{A}\rightarrow\chain{B}$ is a chain map. The chain map factorizes through the images/kernels, as in the diagram below.
+        \begin{center}
+            \begin{tikzcd}[column sep = small]
+                A^{-1} \ar{rr}{d_{\chain{A}}^{-1}} \ar[two heads]{rd}[marking]{\circ} \ar{ddd}{f^-1} & & A^0 \ar{rr}{d_{\chain{A}}^0} \ar[two heads]{rd}[marking]{\circ} \ar{ddd}{f^0}& & A^1 \ar{ddd}{f^1} \\
+                & Im(d_{\chain{A}}^{-1}) \ar[tail]{ru}[marking]{\circ} \ar[dashed]{d}{f^{-1}{'}} & & Im(d_{\chain{A}}^{0}) \ar[tail]{ru}[marking]{\circ} \ar[dashed]{d}{f^0{'}} \\
+                & Im(d_{\chain{B}}^{-1}) \ar[tail]{rd}[marking]{\circ} & & Im(d_{\chain{B}}^{0}) \ar[tail]{rd}[marking]{\circ} \\
+                B^{-1} \ar{rr}{d_{\chain{B}}^{-1}} \ar[two heads]{ru}[marking]{\circ} & & B^0 \ar{rr}{d_{\chain{B}}^0} \ar[two heads]{ru}[marking]{\circ}& & B^1
+            \end{tikzcd}
+        \end{center}
+
+        This shows that the chain map may be promoted to a morphism of conflations $(f^{-1}{'},f^0,f^0{'})$. By lemma 2.1.6 this morphism factors through another conflation in the following manner.
+        \begin{center}
+            \begin{tikzcd}
+                Im(d_{\chain{A}}^{-1}) \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{r}[marking]{\circ} \ar{d}{} & A^0 \ar{d} \ar[two heads]{r}[marking]{\circ} & Im(d_{\chain{A}}^{0}) \ar[equal]{d} \\
+                Im(d_{\chain{B}}^{-1}) \ar[tail]{r}[marking]{\circ} \ar[equal]{d} & C^0 \ar{d} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}[marking]{\circ} & Im(d_{\chain{A}}^{0}) \ar{d}{}\\
+                Im(d_{\chain{B}}^{-1}) \ar[tail]{r}[marking]{\circ} & B^0 \ar[two heads]{r}[marking]{\circ} & Im(d_{\chain{B}}^{0}) \\
+            \end{tikzcd}
+        \end{center}
+
+        These factorizations exists at every index over the chain complexes. In this way one may find the diagram below. Note that two bicartesian squares may be connected to make a bicartesian rectangle.
+
+        \begin{center}
+            \begin{tikzcd}
+                A^{-1} \ar{rr}{d_{\chain{A}}^{-1}} \ar[two heads]{rd}[marking]{\circ} \ar{dd}{} & & A^0 \ar{rr}{d_{\chain{A}}^0} \ar[two heads]{rd}[marking]{\circ} \ar{dd} & & A^1 \ar{dd}{} \\
+                & Im(d_{\chain{A}}^{-1}) \ar[tail]{ru}[marking]{\circ} \ar[dashed]{dd}{f^{-1}{'}} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} & & Im(d_{\chain{A}}^{0}) \ar[tail]{ru}[marking]{\circ} \ar[dashed]{dd}{f^0{'}} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \\
+                C^{-1} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{ru}[marking]{\circ} \ar{dd}{} & & C^0 \ar[two heads]{ru}[marking]{\circ} \ar{dd}{} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} & & C^1 \ar{dd}{} \\
+                & Im(d_{\chain{B}}^{-1}) \ar[tail]{rd}[marking]{\circ} \ar[tail]{ru}[marking]{\circ} & & Im(d_{\chain{B}}^{0}) \ar[tail]{rd}[marking]{\circ} \ar[tail]{ru}[marking]{\circ} \\
+                B^{-1} \ar{rr}{d_{\chain{B}}^{-1}} \ar[two heads]{ru}[marking]{\circ} & & B^0 \ar{rr}{d_{\chain{B}}^0} \ar[two heads]{ru}[marking]{\circ}& & B^1
+            \end{tikzcd}
+        \end{center}
+
+        By proposition 2.1.3 there are conflations, along the cone of $\chain{f}$.
+        \begin{center}
+            \begin{tikzcd}
+                C^0 \ar{d}{} \ar[two heads]{r}[marking]{\circ} \ar[phantom]{rd}[very  near start]{\ulcorner}[very near end]{\lrcorner} & Im(d_{\chain{A}}^{0}) \ar[tail]{r}[marking]{\circ} \ar[dotted]{d}{f^0{'}} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} & A^1 \ar{d}{} \\
+                B^0 \ar[two heads]{r}[marking]{\circ} & Im(d_{\chain{B}}^0) \ar[tail]{r}[marking]{\circ} & C^1
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}
+                C^0 \ar[tail]{r}{} & A^1 \oplus B^0 \ar[two heads]{r}{} & C^1
+            \end{tikzcd}
+        \end{center}
+
+        By Hellers cancellation axiom, combining these sequences creates a long exact sequence. This shows that $cone(\chain{f})$ is acyclic.
+        \begin{center}
+            \begin{tikzcd}[column sep = small]
+                ... \ar{r}{d_{cone(\chain{f})}^{-2}} & A^{0}\oplus B^{-1} \ar{rr}{d_{cone(\chain{f})}^{-1}} \ar[two heads]{rd}[marking]{\circ} & & A^{1}\oplus B^0 \ar{rr}{d_{cone(\chain{f})}^{0}} \ar[two heads]{rd}[marking]{\circ} & & A^2\oplus B^1 \ar{r}{d_{cone(\chain{f})}^{1}} & ... \\
+                & & C^{-1} \ar[tail]{ru}[marking]{\circ} & & C^0 \ar[tail]{ru}[marking]{\circ}
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{corollary}
+        $Ac(\mathcal{A})$ is a triangulated subcategory of $K(\mathcal{A})$.
+    \end{corollary}
+
     Since $Ac(\mathcal{A})$ is triangulated, it makes sense to talk about the class of morphisms $Mor_{Ac(\mathcal{A})}$. By definition, a morphism $\chain{f}$ is in $Mor_{Ac(\mathcal{A})}$ if and only if $cone(\chain{f})$ is in $Ac(\mathcal{A})$. Therefore it makes sense to say that the class of morphisms $Mor_{Ac(\mathcal{A})}$ may be regarded as quasi-isomorphisms. 
 
-    \begin{definition}
-        The derived category is the Verdier quotient $D(\mathcal{A})=K(\mathcal{A})/Ac(\mathcal{A})$ whenever it exists.
-    \end{definition}
+    \begin{corollary}
+        The derived category is defined by the Verdier quotient $D(\mathcal{A})=K(\mathcal{A})/Ac(\mathcal{A})$ whenever it exists, and it is triangulated.
+    \end{corollary}
 
     \begin{remark}
         The derived category exists whenever $Mor_{Ac(\mathcal{A})}$ is a locally small multiplicative system.
@@ -359,8 +415,10 @@ Write something about that this chapter is meant to give an exposition of derive
 
     \begin{definition}
         The category $K(\mathcal{A})^+$,$K(\mathcal{A})^-$ and $K(\mathcal{A})^{\flat}$ are the homotopy categories of left bounded, right bounded and bounded respectively. $Ac(\mathcal{A})^* \subset K(\mathcal{A})^*$ for $*:\{+,-,\flat\}$ will be the subcategory of acyclic chain complexes satisfying the correct boundedness condition.
+        
+        Similarly one defines the (left/right) bounded derived category as $D^*(\mathcal{A}) = K^*(\mathcal{A})/Ac(\mathcal{A})^*$.
     \end{definition}
-
+        
     \begin{lemma}
         The following are equivalent:
         \begin{enumerate}
@@ -372,38 +430,126 @@ Write something about that this chapter is meant to give an exposition of derive
 
 \section{The Way Forward}
 
+    At the end of this thesis, some topics involving derived categories will be looked. This is a sneak peak into the theory of derived functors and Auslander-Reiten triangles. This section is based on \cite{happel} and \cite{Kel96}. 
+
     \subsection{Derived Functors}
+
+        % Motivate through abelian categories
+        Suppose that $\mathcal{A}$ and $\mathcal{B}$ are abelian categories, and that there is an additive functor $F:\mathcal{A}\rightarrow\mathcal{B}$ between the categories. This functor can be lifted to an additive functor between the chain complex categories and a triangulated functor between the homotopy categories by applying the functor level-wise. Unfortunately, when localizing down to the derived categories there are no simple lift. As there is no way of assuring that a quasi-isomorphism gets mapped to another quasi-isomorphism, the lift will not be well-defined. This is however true whenever $F(Ac(\mathcal{A}))\subseteq Ac(\mathcal{B})$, which is the same as $F$ being an exact functor. As known in the classical sense of derived functors, is that they admit a left and right construction using projective and injective resolutions respectively.
+
+        \begin{center}
+            \begin{tikzcd}
+                K(\mathcal{A}) \ar{r}{F} \ar{d}{q_{\mathcal{A}}} & K(\mathcal{B}) \ar{d}{q_{\mathcal{B}}} \\
+                D(\mathcal{A}) \ar[dotted]{r}{?} & D(\mathcal{B})
+            \end{tikzcd}
+        \end{center}
+
+        % Give the construction of derived functors for any Verdier Quotient
+        For a more general discussion, suppose that $\mathcal{T}$ and $\mathcal{S}$ are triangulated categories and that there are triangulated subcategories $\mathcal{M}\subseteq\mathcal{T}$ and $\mathcal{N}\subseteq\mathcal{S}$. When does a triangulated functor $F:\mathcal{T}\rightarrow\mathcal{S}$ induce a functor $?F : \mathcal{T}/\mathcal{M}\rightarrow \mathcal{S}/\mathcal{N}$? As in the same case as above, F admits a lift if $F(\mathcal{M})\subseteq\mathcal{N}$ by the universal property of $\mathcal{T}/\mathcal{M}$.
+
+        \begin{center}
+            \begin{tikzcd}
+                \mathcal{T} \ar{r}{F} \ar{d}{q_{\mathcal{M}}} & \mathcal{S} \ar{d}{q_{\mathcal{N}}} \\
+                \mathcal{T}/\mathcal{M} \ar[dotted]{r}{?F} & \mathcal{S}/\mathcal{N}
+            \end{tikzcd}
+            \begin{tikzcd}[column sep=small]
+                \mathcal{T} \ar{rd}{q} \ar{rr}{qF} & & \mathcal{S}/\mathcal{N} \\
+                & \mathcal{T}/\mathcal{M} \ar[dashed]{ru}{F}
+            \end{tikzcd}
+        \end{center}
+
+        There is a construction of derived functors, this thesis will follow Delignes approach on constructive right derived functors. Suppose there is an object $A:\mathcal{T}/\mathcal{M}$ and a functor $F:\mathcal{T}\rightarrow\mathcal{S}$, then let $\bf{r} F(\_,A):\mathcal{S}/\mathcal{N}^{op}\rightarrow Ab$ be a contravariant functor sending objects $B:\mathcal{S}/\mathcal{N}$ to groups of semi left fractions $(f:\mathcal{S}/\mathcal{N}(B,FC)|g:\mathcal{T}(A,C))$ such that $g:Mor_{\mathcal{M}}$. The equivalence relation on this set is given by the diagram below.
+
+        \begin{center}
+            \begin{tikzcd}
+                B \ar{r}{f} & FC & \\
+                C & \ar[blue]{l}{g} A
+            \end{tikzcd}
+            \begin{tikzcd}
+                & FC' \ar{d}{Fu} & C' \ar[blue]{d}{u} \\
+                B \ar{ru}{f'} \ar{r}{f'''} \ar{rd}{f''} & FC''' & C''' & \ar[blue]{lu}{g'} \ar[blue]{l}{g'''} \ar[blue]{ld}{g''} A \\
+                & FC'' \ar{u}{Fv} & C'' \ar[blue]{u}{v}
+            \end{tikzcd}
+        \end{center}
+        
+        The aim is to construct a functor $\mathbb{R}F:\mathcal{U}\rightarrow \mathcal{S}/\mathcal{N}$ on a subcategory $\mathcal{U}$ of $\mathcal{T}/\mathcal{M}$. Define $\mathbb{R}F$ to be defined at $A$ if the functor $\bf{r} F(\_,A)$ is represented, i.e. $\mathcal{S}/\mathcal{N}(\_,\mathbb{R}FA)\simeq\bf{r} F(\_,A)$. This isomorphism defines a canonical morphism $can_r:qF\implies \mathbb{R}F\circ q$ given by the identity semi left fraction on every object $A:\mathcal{T}$.
+        
+        \begin{center}
+            \begin{tikzcd}
+                FA \ar[equal]{r} & FA & A & A \ar[equal]{l}
+            \end{tikzcd} $\iff$
+            \begin{tikzcd}
+                FA \ar{r}{canon} & \mathbb{R}FA
+            \end{tikzcd}
+        \end{center}
+
+        One may also show that $\bf{r}F(\_,A)$ is also functorial in $A$. That is, suppose there is a left fraction $s^{-1}t:A\rightarrow A'$ in $\mathcal{T}/\mathcal{M}$, then for $(f|g)$ as described above one may define $\bf{r}F(s^{-1}t)(f|g)=(Fs'\circ f|g't)$. $g'$ and $s'$ are defined with the right Ore condition on $Mor_{\mathcal{M}}$, this may be seen with the diagram below.
+
+        \begin{center}
+            \begin{tikzcd}
+                FC'' & & C''\\
+                FC' \ar{u}{Fs'} & C' \ar{ru}{s'} & & A'' \ar{lu}{g'} \\
+                B \ar{u}{f} & & A \ar{lu}{g} \ar{ru}{s} & & A' \ar{lu}{t}
+            \end{tikzcd}
+        \end{center}
+
+        Functoriality of $\bf{r}F(\_,\_)$ shows that there is a functor $\mathbb{R}F$, where the action on maps are defined with the representative isomorphism. If $\mathcal{U}$ is the full subcategory of objects which are defined for $\mathbb{R}F$, then there is a triangulated functor $\mathbb{R}F:\mathcal{U}\rightarrow \mathcal{S}/\mathcal{N}$. $\mathcal{U}$ is in fact triangulated as $F$ is triangulated, so it commutes with the autoequivalence $\Sigma_{\mathcal{T}}$. Moreover, if $I:q^{-1}\mathcal{U}\rightarrow \mathcal{S}$ is the inclusion from the preimage of $\mathcal{U}$ into $\mathcal{S}$, the canonical morphism induces a morphism of triangulated functors $can:qFI\implies\mathbb{R}FI$.
+
+        Dually, one may define left derived functors using semi right fractions. As the set $Mor_{\mathcal{M}}$ is multiplicative, this doesn't make any problems. If the functor $F$ is in fact exact in the sense that $F(\mathcal{M})\subseteq \mathcal{N}$, then $\mathbb{R}F \simeq \mathbb{L}F$. If one would define derived functors between abelian categories $\mathcal{A}$ and $\mathcal{B}$, then the classical sense may be retrieved by taking homology, i.e. $\mathbb{R}^nF = H^n(\mathbb{R}F)$ and $\mathbb{L}_nF = H^{-n}(\mathbb{L}F)$.
+        
+        % Go back to the abelian case
+        Suppose that the categories $\mathcal{A}$ and $\mathcal{B}$ have exact structures and that there is an additive functor $F:\mathcal{A}\rightarrow \mathcal{B}$, then there is a connection to the classical derived functors. Let $\mathcal{A}^I$ be the full subcategory of injective objects, since every conflation in $\mathcal{A}^I$ splits, $F|_{\mathcal{A}^{I}}:\mathcal{A}^I\rightarrow \mathcal{B}$ is an exact functor. Thus $F$ induced on $K(\mathcal{A})$ preserves quasi-isomorphisms of left bounded injective complexes. In this manner there is a functor $\mathbb{R}F:D^+(\mathcal{A}^I)\rightarrow D^+(\mathcal{B})$, and moreover this functor extends to the subcategory $\mathcal{U}\subseteq D^+(\mathcal{A})$ where every object in $\mathcal{U}$ admits an injective resolution.
 
     \subsection{Auslander-Reiten Triangles}
 
-    For the rest of this thesis it will be assumed that $\mathcal{A}$ is an additive $\mathbb{K}$-linear category, which is also Krull-Schmidt. With these assumptions, one may be able to define a special set of triangles whenever $\mathcal{A}$ has a triangulation. As $\mathcal{A}$ is Krull-Schmidt, the notion of indecomposable objects exists, which motivates the definition of triangles which acts as indecomposable triangles.
+        For the rest of this thesis it will be assumed that $\mathcal{A}$ is an additive $\mathbb{K}$-linear category, that is it is enriched over $Mod \mathbb{K}$, and it is also Krull-Schmidt. With these assumptions, one may be able to define a special set of triangles whenever $\mathcal{A}$ has a triangulation. As $\mathcal{A}$ is Krull-Schmidt, the notion of indecomposable objects exists, which motivates the definition of triangles which acts as indecomposable triangles.
 
-    \todo[color = cyan]{What is a $\mathbb{K}$-linear category?}
+        \begin{definition}[Auslander-Reiten triangles]
+            A triangle $(X,Y,Z,u,v,w)$ is called an Auslander-Reiten triangle if it satisfies the following conditions:
+            \begin{enumerate}
+                \item (AR1) $X$ and $Z$ are indecomposable
+                \item (AR2) $w\neq 0$
+                \item (AR3) If a morphism $f:X\rightarrow W$ is not split mono, then there is a morphism $f':Y\rightarrow W$, such that $f=f'u$
+            \end{enumerate}
+            Auslander-Reiten triangles will be abbreviated to AR-triangles
+        \end{definition}
 
-    \begin{definition}
-        Define an Auslander-Reiten triangle
-    \end{definition}
+        A category $\mathcal{A}$ has enough AR-triangles if for every indecomposable object, it is a part of a triangle satisfying the conditions above. One may show that the axioms for AR-triangles are self dual, that is $(X,Y,Z,u,v,w)$ is an AR-triangle if and only if $(X^{op},Y^{op},Z^{op},u^{op},v^{op},w^{op})$ is a triangle. Note that (AR2) forces the morphisms $u$ and $v$ to not be split. In order to see that these triangles represent irreducibility, the following definition is needed.
 
-    \begin{prop}
-        Self duality of AR-triangles
-    \end{prop}
+        \begin{definition}[Irreducible morphisms]
+            A morphism $f:X\rightarrow Y$ is called irreducible if f is neither split mono nor split epi, and for any factorization $f=f_2f_1$ either $f_1$ is split mono or $f_2$ is split epi.
+        \end{definition}
 
-    \begin{definition}
-        Define irreducible morphisms
-    \end{definition}
+        \begin{prop}
+            Let $(X,Y,Z,u,v,w)$ be an AR-triangle, then the following hold:
+            \begin{enumerate}
+                \item Z is unique up to isomorphism of triangles
+                \item $u$ and $v$ are irreducible morphisms
+                \item If $f:X\rightarrow X_1$ is irreducible, then there is a split epi $f':Y\rightarrow X_1$ such that $f=f'u$.
+            \end{enumerate}
+        \end{prop}
 
-    \begin{prop}
-        irreducible morphisms have the following properties:
-    \end{prop}
+        The motivation for studying AR-triangles comes from their similarity with Auslander-Reiten sequences. An Auslander-Reiten sequence is a short exact sequence over a finite-dimensional $\mathbb{K}$-algebra, which is not split, and satisfying (AR1) and (AR3). Thus one may observe that the definition of AR-triangles are exactly the stable Auslander-Reiten sequences. If $A$ is a finite-dimensional $\mathbb{K}$-algebra, then one have the following results.
+
+        \begin{theorem}
+            If $A$ is a finite-dimensional $\mathbb{K}$-algebra of finite global dimension, then the derived category $D^{\flat}(A)$ has enough AR-triangles.
+        \end{theorem}
+
+        \begin{prop}
+            The following are equivalent:
+            \begin{enumerate}
+                \item $(X,Y,Z,u,v,w)$ is an AR-triangle in $D^{\flat}(A)$
+                \item $inj.dim(X)\leq 1$ and $proj.dim Z \leq 1$
+                \item $Hom_A(I,X)=0$ for any injective $I$ and $Hom_A(Z,P)=0$ for any projective $P$
+            \end{enumerate}
+        \end{prop}
     
 % \section{Description of Derived Categories}
 
     % Add something to the introduction about derived categories. The goal is to describe the derived category of a fairly simple algebra.
 
-\clearpage
+%\clearpage
 
 % \nocite{*}
 % \bibliographystyle{unsrt}
 % \bibliography{bib}
-
-\clearpage

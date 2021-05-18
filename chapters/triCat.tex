@@ -826,8 +826,6 @@
 
     This result was shown by \cite{neeman}, however it also holds in the opposite direction. That is, if $\mathcal{T}$ is a triangulated category, then every pair of morphisms as in (1) may be completed to a good map between triangles. This highlights an interesting connection between mapping cones and the Octahedron axiom. 
 
-    \todo[color = pink]{Skal jeg skrive også om Verdier sitt aksiom her? Jeg synes det kan være en gøy med en exposition av alt kaoset man kan finne :)}
-
     \begin{definition}
          A commutative square (1) is called homotopy cartesian if and only if (2) is a triangle. One would say that homotopy cartesian squares arises from triangles.
         \begin{center}
@@ -1265,7 +1263,7 @@
         Dually there is a category $\mathfrak{l}S^{-1}\mathcal{C}$ for a left multiplicative system $S$ in a category $\mathcal{C}$. It is defined in the same manner as $\mathfrak{r}S^{-1}\mathcal{C}$, but with left fractions instead.
     \end{remark}
 
-    A priori it does still not make sense to ask for these kind of categories to always exist. The class of morphisms $S^{-1}\mathcal{C}(A,B)$ consists of a large collection of morphism from $\mathcal{C}$. This collection has been described as a disjoint union of sets on the form $(f,g):\mathcal{C}(A,X)\times \mathcal{C}(X,B)$ modulo an equivalence relation. This disjoint union spans over the whole category $\mathcal{C}$ with the $X$ index. Since $\mathcal{C}$ is not assumed to be small, there is no reason for this set to be small as well. To see how this problem might be untangled, this collection will be further studied.
+    A priori it does still not make sense to ask for these kind of categories to always exist. The class of morphisms $S^{-1}\mathcal{C}(A,B)$ consists of a large collection of morphism from $\mathcal{C}$. This collection has been described as a disjoint union of sets on the form $(f,g):\mathcal{C}(A,X)\times \mathcal{C}(X,B)$ modulo an equivalence relation. This disjoint union spans over the whole category $\mathcal{C}$ with the $X$ index. Since $\mathcal{C}$ is not assumed to be small, there is no reason for this set to be small as well. To see how this problem might be untangled, this collection will be further studied. This discussion is based on the results and definitions from \cite{zisman} and \cite{weibel}.
 
     \begin{definition}
         Let $\mathcal{C}$ be a category and $S$ a collection of morphisms from $\mathcal{C}$, such that every identity morphism is in $S$ and that it is closed under composition. Define the subcategory $\mathcal{C}|_{S} \subseteq \mathcal{C}$ to have $\mathfrak{Ob}\mathcal{C}|_{S} = \mathfrak{Ob}\mathcal{C}$ and $\mathfrak{Ar}\mathcal{C} = S$.
@@ -1302,8 +1300,6 @@
 
     If $S$ is instead a left multiplicative system one would have to consider the colimit $\varinjlim \mathcal{C}(A,\gamma_B(\_))$ over the category $B\downarrow \mathcal{C}|_{S}$. Here $\gamma_B$ is the codomain functor, and $B\downarrow \mathcal{C}|_{S}$ may be seen to be filtered as $S$ is left multiplicative. The discussion would be dual to the right multiplicative case.
  
-    \todo[color = red]{Finn ut hva jeg skal gjøre med disse kildene} More details can be found in \cite{zisman} and \cite{weibel}.
-
     The localization of a category exists whenever each hom-set is in fact a set. That is to say that $\mathfrak{r}S^{-1}\mathcal{C}(A,B)\simeq\varinjlim\mathcal{C}(\delta_A(\_),B)$ is a Set, which is to ask for the colimit to exist for every $A$ and $B$. One assumption which does this is to assume that the colimit is equivalent to a smaller colimit.
 
     \begin{definition}
@@ -1371,13 +1367,15 @@
     \begin{proof}
         Let $T:\mathcal{D}\rightarrow\mathcal{C}$ be a diagram over a finite category $\mathcal{D}$. Then for any object $A:S^{-1}\mathcal{C}$ one may find the following equation.
         \begin{multline*}
-            S^{-1}\mathcal{C}(qA,q(\varprojlim T\_)\simeq \varinjlim\mathcal{C}(\delta\_,\varprojlim T\_))\\
+            S^{-1}\mathcal{C}(qA,q(\varprojlim T\_))\simeq \varinjlim\mathcal{C}(\delta\_,\varprojlim T\_))\\
             \simeq \varinjlim\varprojlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim\varinjlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim S^{-1}\mathcal{C}(qA,q(T\_))
         \end{multline*}
-        The first isomorphism is given by the remark, the second is given by the representative nature of finite limits and the third isomorphism is given by that filtered colimits commute with finite limits. The colimits are filtered by the remark that $S_A$ is cofiltered and that the functor $\mathcal{C}(_,A)$ is contravariant.
+        The first isomorphism is given by the remark and the second is given by the representative nature of finite limits. The third isomorphism is given by that filtered colimits commute with finite limits in the category $Set$, this is shown as theorem 3.8.9 in \cite{riehl}. The colimits have been shown to be filtered by the discussion of $\mathcal{C}|_{S}\downarrow A$, as the category is cofiltered, but considered as a contravariant diagram.
     \end{proof}
 
-    \todo[color=red]{I am not quite sure yet how this argument proves the statement I want to prove, but that can be figure out later. I also don't know the proof for why filtered colimits commute with finite colimits, but it is in Riehls book.}
+    \begin{remark}
+        For the purpose of this thesis, it is also needed that the proposition above also holds for categories enriched over abelian groups. Luckily, there are other arguments which allow for the interchange of the filtered colimit and the finite limit.
+    \end{remark}
 
     \begin{prop}
         Let $\mathcal{C}$ be a category with a zero. That is an object which is both initial and terminal. Suppose that $S$ is a right multiplicative system, then $q0$ is a zero object in $S^{-1}\mathcal{C}$.
