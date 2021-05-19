@@ -2,13 +2,13 @@
 
 \section{Idempotent Completeness and Krull-Schmidt Categories}
 
-    This section will introduce the concepts of idempotent complete categories, weakly idempotent complete categories and Krull-Schmidt categories. These are extra conditions which may be put onto an exact category. The conditions to be introduced are three different levels of strengthening, where weakly idempotent completeness is the weakest and Krull-Schmidt is the strongest condition. The concepts introduced in this section is based of the ideas from \cite{buhler}, \cite{Kra12} and \cite{Rei95}
+    This section will introduce the concepts of idempotent complete categories, weakly idempotent complete categories, and Krull-Schmidt categories. These are extra conditions that may be put onto an exact category. The conditions to be introduced are three different levels of strengthening, where weakly idempotent completeness is the weakest and Krull-Schmidt is the strongest condition. The concepts introduced in this section is based on the ideas from \cite{buhler}, \cite{Kra12} and \cite{Rei95}
 
     \begin{definition}
         An idempotent complete category is an additive category where every idempotent split. That is, if there is an idempotent $p:A\rightarrow A$ $(p^2=p)$, and there is an isomorphism $A\simeq I\oplus K$ such that $p\simeq \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$. 
     \end{definition}
 
-    Every idempotent in an idempotent complete category admits an analysis. That is the idempotent $p:A\rightarrow A$ has a kernel, cokernel, image and coimage. In fact, the kernel is isomorphic to the cokernel, and the image is canonically isomorphic to the coimage. As $p$ is isomorphic to the matrix $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ one may observe that the inclusion $\iota_1:I\rightarrow A$ is the kernel of $p$, while the projection $\pi_1:A\rightarrow I$ is the cokernel. Similarly the maps $\iota_2:K\rightarrow A$ and $\pi_2:A\rightarrow K$ are the kernel and cokernel of the map $1-p$ respectively. Using the fact that $p$ splits we are able to construct the following analysis.
+    Every idempotent in an idempotent complete category admits an analysis. That is the idempotent $p:A\rightarrow A$ has a kernel, cokernel, image, and coimage. In fact, the kernel is isomorphic to the cokernel, and the image is canonically isomorphic to the coimage. As $p$ is isomorphic to the matrix $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ one may observe that the inclusion $\iota_1:I\rightarrow A$ is the kernel of $p$, while the projection $\pi_1:A\rightarrow I$ is the cokernel. Similarly the maps $\iota_2:K\rightarrow A$ and $\pi_2:A\rightarrow K$ are the kernel and cokernel of the map $1-p$ respectively. Using the fact that $p$ splits one can construct the following analysis.
 
     \begin{center}
         \begin{tikzcd}
@@ -71,9 +71,9 @@
         \end{enumerate}
     \end{corollary}
 
-    With the notion of a weakly idempotent complete category, the Obscure axiom can be strengthened into Hellers cancellation axiom.
+    With the notion of a weakly idempotent complete category, the Obscure axiom can be strengthened into Heller's cancellation axiom.
 
-    \begin{prop} \textbf{Hellers cancellation axiom}
+    \begin{prop} \textbf{Heller's cancellation axiom}
         For an exact category $(\mathcal{A},\mathcal{E})$ the following are equivalent:
         \begin{enumerate}
             \item $\mathcal{A}$ is weakly idempotent complete
@@ -92,7 +92,7 @@
             \end{tikzcd}
         \end{center}
 
-        By using the universal property,one may see that $g'$ is split-mono, hence it admits an inflation $h':A'\rightarrow B'$. The claim is that $hh':A'\rightarrow B$ is the kernel of $g$. If the claim is true, the Obscure axiom yields that $g$ is a deflation.
+        By using the universal property, one may see that $g'$ is split-mono, hence it admits an inflation $h':A'\rightarrow B'$. The claim is that $hh':A'\rightarrow B$ is the kernel of $g$. If the claim is true, the Obscure axiom yields that $g$ is a deflation.
 
         To show that $hh'$ is the kernel one must show the universal property. Let $t:T\rightarrow B$ be a test object, such that $gt=0$.
 
@@ -109,7 +109,7 @@
         For the other direction, suppose (2.) instead and let $gf=id_A$,  $gf$ is a deflation and $g$ is split-epi. By the assumption, $g$ is a deflation, so it has a kernel.
     \end{proof}
 
-    Lastly, suppose that $\mathcal{A}$ is an idempotent complete category and that there are some idempotents over an object $A$. These idempotents admits a description of A as a direct sum of kernels and cokernels. There is, however, no guarantee that these decompositions are unique. To fix this, define the following category.
+    Lastly, suppose that $\mathcal{A}$ is an idempotent complete category and that there are some idempotents over an object $A$. These idempotents admit a description of A as a direct sum of kernels and cokernels. There is, however, no guarantee that these decompositions are unique. To fix this, define the following category.
 
     \begin{definition}
         Let $\mathcal{A}$ be an additive category. An object $A$ is called indecomposable if the endomorphism ring of $A$ is local.
@@ -127,7 +127,7 @@
         Every decomposition in a Krull-Schmidt category is unique up to isomorphism
     \end{prop}
 
-    As being Krull-Schmidt admits decomposition whenever an endomorphism ring is not local implies a connection to idempotent completeness. That is whenever there is an idempotent over an object, this idempotent give rise to two comaximal ideals for the endomorphism ring. This gives us the decomposition which is required for the idempotent to split. Moreover, there is a deeper connection with being Krull-Schmidt and idempotent complete.
+    As being Krull-Schmidt admits decomposition whenever an endomorphism ring is not local implies a connection to idempotent completeness. That is whenever there is an idempotent over an object, this idempotent gives rise to two comaximal ideals for the endomorphism ring. This gives us the decomposition which is required for the idempotent to split. Moreover, there is a deeper connection between being Krull-Schmidt and idempotent complete.
 
     \begin{definition}
         Let R be a ring. We say that R is semiperfect if $R$ as a module over itself admits a decomposition $_RR\simeq P_1\oplus P_2\oplus ... \oplus P_n$ such that each $P_i$ has a local endomorphism ring.
@@ -144,13 +144,13 @@
         Thus any of these conditions can be taken to be the definition of semiperfect.
     \end{remark}
 
-    With this definition we are able to state the following proposition, which says whenever an idempotent complete category is Krull-Schmidt.
+    With this definition, one can state the following proposition, which says whenever an idempotent complete category is Krull-Schmidt.
 
     \begin{prop}
         Let $\mathcal{A}$ be an additive category, then the following are equivalent:
         \begin{enumerate}
             \item $\mathcal{A}$ is Krull-Schmidt
-            \item $\mathcal{A}$ is idempotent complete and every endomorphism ring are semiperfect.
+            \item $\mathcal{A}$ is idempotent complete and every endomorphism ring is semiperfect.
         \end{enumerate}
     \end{prop}
 
@@ -166,7 +166,7 @@
         Let $\Lambda$ be any artin R-algebra, then $mod_{\Lambda}$ is a Krull-Schmidt category. As an example, the category of finitely generated real vector spaces is Krull-Schmidt. Every vector space is a finite direct summand of the only indecomposable vector space $\mathbb{R}$.
     \end{example}
 
-    More details and examples of Krull-Schmidt categories may be found in Henning Krause notes (\cite{Kra12}).
+    More details and examples of Krull-Schmidt categories may be found in Henning Krause's notes (\cite{Kra12}).
 
 \section{Normal Morphisms and Long Exact Sequences}
     
@@ -185,15 +185,15 @@
     \end{remark}
 
     \begin{remark}
-        In general the composition $gf$ of two normal morphisms $f$ and $g$ are not normal. However, if g is a deflation, the composition can be seen to normal, as deflations are closed under composition. One may also observe that an exact category is abelian if and only if normal morphisms are closed under composition.
+        In general, the composition $gf$ of two normal morphisms $f$ and $g$ are not normal. However, if g is a deflation, the composition can be seen to normal, as deflations are closed under composition. One may also observe that an exact category is abelian if and only if normal morphisms are closed under composition.
     \end{remark}
 
     \begin{lemma}
-        \textbf{Hellers factorization lemma}. The factorization of normal morphisms are unique up to unique isomorphisms.
+        \textbf{Hellers factorization lemma}. The factorization of normal morphisms is unique up to unique isomorphisms.
     \end{lemma}
 
     \begin{proof}
-        Suppose that a normal morphism admits two different factorization. That means there exists a commutative diagram as follows.
+        Suppose that a normal morphism admits two different factorizations. That means there exists a commutative diagram as follows.
         \begin{center}
             \begin{tikzcd}
                 A \ar[two heads]{r}{p}[marking]{\circ} \ar[two heads]{d}{q}[marking]{\circ} & I \ar[dashed, shift left]{ld}{\phi} \ar[tail]{d}{i}[marking]{\circ} \\
@@ -204,7 +204,7 @@
     \end{proof}
 
     \begin{remark}
-        Du to Hellers factorization axiom one may see that normal morphisms admits analysis.
+        Due to Heller's factorization axiom, one may see that normal morphisms admit an analysis.
 
         \begin{center}
             \begin{tikzcd}
@@ -213,7 +213,7 @@
             \end{tikzcd}
         \end{center}
 
-        Observe that the object $I$ coincide with the image and coimage of $f$. This object will then be referred to the image of $f$. As a consequence of this unique factorization, a normal morphism is iso if and only if it is mono and epi.
+        Observe that the object $I$ coincides with the image and coimage of $f$. This object will then be referred to as the image of $f$. As a consequence of this unique factorization, a normal morphism is iso if and only if it is mono and epi.
     \end{remark}
 
     \begin{definition}
@@ -249,7 +249,7 @@
         Observe how conflations are exactly the class of short exact sequences.
     \end{remark}
 
-    This definition admits properties which mimics properties from homological algebra.
+    This definition admits properties that mimic properties from homological algebra.
 
     \begin{lemma}
         \textbf{5 Lemma}. Given two 5 term exact sequences and a morphism between them as in the diagram. Then $\phi$ is an isomorphism as well.
@@ -267,7 +267,7 @@
 
     \begin{lemma}
         \textbf{Kernel-Cokernel sequence}.
-        Let $(\mathcal{A},\mathcal{E})$ be an exact category which is weakly idempotent complete. Suppose that there are composable normal morphism $f$ and $g$ such that $gf$ is normal as well. Then there exists an exact sequence.
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category which is weakly idempotent complete. Suppose that there are composable normal morphisms $f$ and $g$ such that $gf$ is normal as well. Then there exists an exact sequence.
         \begin{center}
             \begin{tikzcd}
                 Ker(f) \ar{r}[marking]{\circ} & Ker(gf) \ar{r}[marking]{\circ} & Ker(h) \ar{r}[marking]{\circ} & Cok(f) \ar{r}[marking]{\circ} & Cok(gf) \ar{r}[marking]{\circ} & Cok(g)
@@ -305,7 +305,7 @@
 
 \section{Homology and Derived Categories}
 
-    This section aims to provide a construction for derived categories and discuss the underlying assumptions. In the case where $\mathcal{A}$ is abelian, the derived category is constructed by localizing at quasi-isomorphisms. However, in the context of exact categories, how much of the theory transfers? For abelian groups, homology is defined to be the quotient of the kernel of a map by the image of the preceding map. For exact categories the discussion is a bit more complex. Consider the usual construction of homology, when does the homology exists?.
+    This section aims to provide a construction for derived categories and discuss the underlying assumptions. In the case where $\mathcal{A}$ is abelian, the derived category is constructed by localizing at quasi-isomorphisms. However, in the context of exact categories, how much of the theory transfers? For abelian groups, homology is defined to be the quotient of the kernel of a map by the image of the preceding map. For exact categories, the discussion is a bit more complex. Consider the usual construction of homology, when does the homology exist?.
 
     \begin{center}
         \begin{tikzcd}
@@ -314,7 +314,7 @@
         \end{tikzcd}
     \end{center}
 
-    The complex must admit an analysis at each differential, so assume that the complex only contains normal morphisms. By looking at the 0-th homology one can find a condition for when the homology exists. Using the fact that $d^0_{\chain{A}}\iota = 0$, there is an unique morphism $h$, such that $\iota = \kappa h$ by the universal property. The 0-th homology exists whenever the morphism $h$ has a cokernel, and then $h$ satisfies the assumption of the Obscure axiom, making $h$ an inflation. One way to not break this condition is to assume that $\mathcal{A}$ is weakly idempotent complete. By Hellers cancellation axiom it is known that $h$ is an inflation, which then proves the existence of the cokernel. However, this only allows the construction of quasi-isomorphisms at weakly idempotent complete categories. \\
+    The complex must admit an analysis at each differential, so assume that the complex only contains normal morphisms. By looking at the 0-th homology one can find a condition for when the homology exists. Using the fact that $d^0_{\chain{A}}\iota = 0$, there is an unique morphism $h$, such that $\iota = \kappa h$ by the universal property. The 0-th homology exists whenever the morphism $h$ has a cokernel, and then $h$ satisfies the assumption of the Obscure axiom, making $h$ an inflation. One way to not break this condition is to assume that $\mathcal{A}$ is weakly idempotent complete. By Heller's cancellation axiom it is known that $h$ is an inflation, which then proves the existence of the cokernel. However, this only allows the construction of quasi-isomorphisms at weakly idempotent complete categories. \\
     
     Recall that a quasi-isomorphism is a chain map $\chain{f}:\chain{A}\rightarrow\chain{B}$ such that $H^*(\chain{f}):H^*(\chain{A})\rightarrow H^*(\chain{B})$ is an isomorphism in homology. In the abelian case, suppose that $\chain{f}:\chain{A}\rightarrow\chain{B}$ is a quasi-isomorphism. Consider the standard triangle \\ \begin{tikzcd}\chain{A} \ar{r}{\chain{f}} & \chain{B} \ar{r}{} & cone(\chain{f}) \ar{r}{} & \chain{A}[1]\end{tikzcd} in the homotopy category $K(\mathcal{A})$, then $\chain{f}$ becomes an isomorphism in the derived category $D(\mathcal{A})$. This shows that there is a quasi-isomorphism between $\chain{0}$ and $cone(\chain{f})$ by corollary 1.1.4.1. It follows that $cone(\chain{f})$ is an exact sequence, and this motivate to the following definition.
 
@@ -348,7 +348,7 @@
             \end{tikzcd}
         \end{center}
 
-        These factorizations exists at every index over the chain complexes. In this way one may find the diagram below. Note that two bicartesian squares may be connected to make a bicartesian rectangle.
+        These factorizations exist at every index over the chain complexes. In this way, one may find the diagram below. Note that two bicartesian squares may be connected to make a bicartesian rectangle.
 
         \begin{center}
             \begin{tikzcd}
@@ -371,7 +371,7 @@
             \end{tikzcd}
         \end{center}
 
-        By Hellers cancellation axiom, combining these sequences creates a long exact sequence. This shows that $cone(\chain{f})$ is acyclic.
+        By Heller's cancellation axiom, combining these sequences creates a long exact sequence. This shows that $cone(\chain{f})$ is acyclic.
         \begin{center}
             \begin{tikzcd}[column sep = small]
                 ... \ar{r}{d_{cone(\chain{f})}^{-2}} & A^{0}\oplus B^{-1} \ar{rr}{d_{cone(\chain{f})}^{-1}} \ar[two heads]{rd}[marking]{\circ} & & A^{1}\oplus B^0 \ar{rr}{d_{cone(\chain{f})}^{0}} \ar[two heads]{rd}[marking]{\circ} & & A^2\oplus B^1 \ar{r}{d_{cone(\chain{f})}^{1}} & ... \\
@@ -394,7 +394,7 @@
         The derived category exists whenever $Mor_{Ac(\mathcal{A})}$ is a locally small multiplicative system.
     \end{remark}
 
-    As stated, it is not true a priori that $Ac(\mathcal{A})$ is either thick or closed under isomorphisms. When this is not true, it might happen that $\chain{C}\simeq\chain{A}\oplus\chain{B}$ where $\chain{C}$ is acyclic, but neither $\chain{A}$ or $\chain{B}$ need not be acyclic. However, the kernel of localization $\widehat{Ac(\mathcal{A})}$ contain all of these objects. In this way $\chain{A}$ and $\chain{B}$ will be related in the derived category, even though they are not quasi-isomorphic. The following lemma and corollary says whenever this is not a problem.
+    As stated, it is not true a priori that $Ac(\mathcal{A})$ is either thick or closed under isomorphisms. When this is not true, it might happen that $\chain{C}\simeq\chain{A}\oplus\chain{B}$ where $\chain{C}$ is acyclic, but neither $\chain{A}$ or $\chain{B}$ need not be acyclic. However, the kernel of localization $\widehat{Ac(\mathcal{A})}$ contains all of these objects. In this way $\chain{A}$ and $\chain{B}$ will be related in the derived category, even though they are not quasi-isomorphic. The following lemma and corollary say whenever this is not a problem.
 
     \begin{lemma}
         The following are equivalent:
@@ -409,7 +409,7 @@
         The subcategory $Ac(\mathcal{A})$ is thick if and only if $\mathcal{A}$ is idempotent complete.
     \end{corollary}
 
-    In order to weaken the conditions above, one can set boundedness conditions on the chain complexes. A chain complex is called left bounded if there is some $m:\mathbb{N}$ such that for any $n:\mathbb{N}$ and $n\leq m<0$ it is true that $A^n = 0$. Likewise, right bounded complexes are the defined for $n\geq m>0$ such that $A^n=0$. A chain complex is called bounded if it is both left bounded and right bounded.
+    To weaken the conditions above, one can set boundedness conditions on the chain complexes. A chain complex is called left bounded if there is some $m:\mathbb{N}$ such that for any $n:\mathbb{N}$ and $n\leq m<0$ it is true that $A^n = 0$. Likewise, right bounded complexes are the defined for $n\geq m>0$ such that $A^n=0$. A chain complex is called bounded if it is both left bounded and right bounded.
 
     \begin{definition}
         The category $K(\mathcal{A})^+$,$K(\mathcal{A})^-$ and $K(\mathcal{A})^{\flat}$ are the homotopy categories of left bounded, right bounded and bounded respectively. $Ac(\mathcal{A})^* \subset K(\mathcal{A})^*$ for $*:\{+,-,\flat\}$ will be the subcategory of acyclic chain complexes satisfying the correct boundedness condition.
@@ -428,12 +428,12 @@
 
 \section{The Way Forward}
 
-    At the end of this thesis, some topics involving derived categories will be looked. This is a sneak peak into the theory of derived functors and Auslander-Reiten triangles. This section is based on \cite{happel} and \cite{Kel96}. 
+    At the end of this thesis, some topics involving derived categories will be looked. This is a sneak peek into the theory of derived functors and Auslander-Reiten triangles. This section is based on \cite{happel} and \cite{Kel96}. 
 
     \subsection{Derived Functors}
 
         % Motivate through abelian categories
-        Suppose that $\mathcal{A}$ and $\mathcal{B}$ are abelian categories, and that there is an additive functor $F:\mathcal{A}\rightarrow\mathcal{B}$ between the categories. This functor can be lifted to an additive functor between the chain complex categories and a triangulated functor between the homotopy categories by applying the functor level-wise. Unfortunately, when localizing down to the derived categories there are no simple lift. As there is no way of assuring that a quasi-isomorphism gets mapped to another quasi-isomorphism, the lift will not be well-defined. This is however true whenever $F(Ac(\mathcal{A}))\subseteq Ac(\mathcal{B})$, which is the same as $F$ being an exact functor. As known in the classical sense of derived functors, is that they admit a left and right construction using projective and injective resolutions respectively.
+        Suppose that $\mathcal{A}$ and $\mathcal{B}$ are abelian categories, and that there is an additive functor $F:\mathcal{A}\rightarrow\mathcal{B}$ between the categories. This functor can be lifted to an additive functor between the chain complex categories and a triangulated functor between the homotopy categories by applying the functor level-wise. Unfortunately, when localizing down to the derived categories there is no simple lift. As there is no way of assuring that a quasi-isomorphism gets mapped to another quasi-isomorphism, the lift will not be well-defined. This is however true whenever $F(Ac(\mathcal{A}))\subseteq Ac(\mathcal{B})$, which is the same as $F$ being an exact functor. As known in the classical sense of derived functors, is that they admit a left and right construction using projective and injective resolutions respectively.
 
         \begin{center}
             \begin{tikzcd}
@@ -452,7 +452,7 @@
             \end{tikzcd}
         \end{center}
 
-        In order to answer the question about derived functors, this thesis will follow Delignes approach on how to construct right derived functors. Suppose there is an object $A:\mathcal{T}/\mathcal{M}$ and a functor $F:\mathcal{T}\rightarrow\mathcal{S}$, then let $\textbf{r}$$F(\_,A):\mathcal{S}^{op}\rightarrow Ab$ be a contravariant functor sending objects $B:\mathcal{S}$ to groups of semi left fractions $(f:\mathcal{S}(B,FC)|g:\mathcal{T}(A,C))$ such that $g:Mor_{\mathcal{M}}$. The caveat is that the functor sends objects of $\mathcal{T}/\mathcal{M}$ and $\mathcal{S}$ to arrows in $\mathcal{T}$ and $\mathcal{S}$. This is well-defined since $q(A)=A$ by definition and no choice of arrows need to be specified by the functor. Thus the localization is hidden from the functor at the element level. To illustrate how these elements look like the semi left fraction is to the left, and the equivalence relation on this set is given by the diagram on the right. In the same manner as before, blue arrows denote arrows located in $Mor_{S}$.
+        To answer the question about derived functors, this thesis will follow Deligne's approach on how to construct right derived functors. Suppose there is an object $A:\mathcal{T}/\mathcal{M}$ and a functor $F:\mathcal{T}\rightarrow\mathcal{S}$, then let $\textbf{r}$$F(\_,A):\mathcal{S}^{op}\rightarrow Ab$ be a contravariant functor sending objects $B:\mathcal{S}$ to groups of semi left fractions $(f:\mathcal{S}(B,FC)|g:\mathcal{T}(A,C))$ such that $g:Mor_{\mathcal{M}}$. The caveat is that the functor sends objects of $\mathcal{T}/\mathcal{M}$ and $\mathcal{S}$ to arrows in $\mathcal{T}$ and $\mathcal{S}$. This is well-defined since $q(A)=A$ by definition and no choice of arrows need to be specified by the functor. Thus the localization is hidden from the functor at the element level. To illustrate how these elements look like the semi left fraction is to the left, and the equivalence relation on this set is given by the diagram on the right. In the same manner, as before, blue arrows denote arrows located in $Mor_{S}$.
 
         \begin{center}
             \begin{tikzcd}
@@ -487,7 +487,7 @@
             \end{tikzcd}
         \end{center}
 
-        Functoriality of $\textbf{r}$$F(\_,\_)$ shows that there is a functor $\mathbb{R}F$, where the action on maps are defined with the representative isomorphism.
+        Functoriality of $\textbf{r}$$F(\_,\_)$ shows that there is a functor $\mathbb{R}F$, where the action on maps is defined with the representative isomorphism.
         
         \begin{center}
             \begin{tikzcd}
@@ -517,7 +517,7 @@
             Auslander-Reiten triangles will be abbreviated to AR-triangles
         \end{definition}
 
-        A category $\mathcal{A}$ has enough AR-triangles if for every indecomposable object, it is a part of a triangle satisfying the conditions above. One may show that the axioms for AR-triangles are self dual, that is $(X,Y,Z,u,v,w)$ is an AR-triangle if and only if $(X^{op},Y^{op},Z^{op},u^{op},v^{op},w^{op})$ is a triangle. Note that (AR2) forces the morphisms $u$ and $v$ to not be split. In order to see that these triangles represent irreducibility, the following definition is needed.
+        A category $\mathcal{A}$ has enough AR-triangles if, for every indecomposable object, it is a part of a triangle satisfying the conditions above. One may show that the axioms for AR-triangles are self dual, that is $(X,Y,Z,u,v,w)$ is an AR-triangle if and only if $(X^{op},Y^{op},Z^{op},u^{op},v^{op},w^{op})$ is a triangle. Note that (AR2) forces the morphisms $u$ and $v$ to not be split. To see that these triangles represent irreducibility, the following definition is needed.
 
         \begin{definition}[Irreducible morphisms]
             A morphism $f:X\rightarrow Y$ is called irreducible if f is neither split mono nor split epi, and for any factorization $f=f_2f_1$ either $f_1$ is split mono or $f_2$ is split epi.
@@ -532,7 +532,7 @@
             \end{enumerate}
         \end{prop}
 
-        The motivation for studying AR-triangles comes from their similarity with Auslander-Reiten sequences. An Auslander-Reiten sequence is a short exact sequence over a finite-dimensional $\mathbb{K}$-algebra, which is not split, and satisfying (AR1) and (AR3). Thus one may observe that the definition of AR-triangles are exactly the stable Auslander-Reiten sequences. If $A$ is a finite-dimensional $\mathbb{K}$-algebra, then one have the following results.
+        The motivation for studying AR-triangles comes from their similarity with Auslander-Reiten sequences. An Auslander-Reiten sequence is a short exact sequence over a finite-dimensional $\mathbb{K}$-algebra, which is not split and satisfying (AR1) and (AR3). Thus one may observe that the definition of AR-triangles is exactly the stable Auslander-Reiten sequences. If $A$ is a finite-dimensional $\mathbb{K}$-algebra, then one has the following results.
 
         \begin{theorem}
             If $A$ is a finite-dimensional $\mathbb{K}$-algebra of finite global dimension, then the derived category $D^{\flat}(A)$ has enough AR-triangles.

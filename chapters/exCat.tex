@@ -4,7 +4,7 @@
 
     This section will focus on defining what an exact category is and its elementary properties. The main result from this section is proposition 2.1.3. This proposition is similar to the characterization theorem of push-outs and pullbacks in abelian categories. Another important result is the obscure axiom, this will be proved and hopefully seen to be not as obscure as its name suggests. Lastly, variants of some homological diagram lemmata, like 5-lemma, will also be proved for exact categories. \\
 
-    To start with exact categories one should first take a look towards the abelian categories first. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
+    To start with exact categories one should first take a look towards the abelian categories. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
 
     \begin{definition}
         Let $\mathcal{A}$ be an additive category. A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. An isomorphism of a kernel-cokernel pair is a triple in which each morphism is an isomorphism.
@@ -85,21 +85,21 @@
     \end{remark}
 
     \begin{remark}
-        Observe that the axioms for an exact structure is self dual. This allows for reasoning with duality, as a category has an exact structure $(\mathcal{A},\mathcal{E})$ if and only if $(\mathcal{A}^{op},\mathcal{E}^{op})$ is an exact structure.
+        Observe that the axioms for an exact structure are self-dual. This allows for reasoning with duality, as a category has an exact structure $(\mathcal{A},\mathcal{E})$ if and only if $(\mathcal{A}^{op},\mathcal{E}^{op})$ is an exact structure.
     \end{remark}
 
     \begin{remark}
         For any category $\mathcal{C}$, there is a category $\mathcal{C}^{\rightarrow}=\mathcal{C}\downarrow\mathcal{C}$ consisting of arrows and $\mathcal{C}^{\rightarrow\rightarrow}=\mathcal{C}\downarrow\mathcal{C}\downarrow\mathcal{C}$ consisting of pairs of composable arrows. If $\mathcal{A}$ is additive, then $\mathcal{A}^{\rightarrow}$ and $\mathcal{A}^{\rightarrow\rightarrow}$ are additive as well. It can be seen that $\mathcal{E}$ may be considered as an extension closed additive subcategory of $\mathcal{A}^{\rightarrow\rightarrow}$.
     \end{remark}
 
-    The aim of exact categories is to characterize the fundamental properties of abelian categories. In nature, exact categories are quite common and one additive category usually admits more than one exact structure. Thus there may exist a chain of exact structures in the sense of subsets $\mathcal{E}_{min} \subseteq \mathcal{E}_1 \subseteq ... \subseteq \mathcal{E}_{max}$. 
+    Exact categories aim to characterize the fundamental properties of abelian categories. In nature, exact categories are quite common and one additive category usually admits more than one exact structure. Thus there may exist a chain of exact structures in the sense of subsets $\mathcal{E}_{min} \subseteq \mathcal{E}_1 \subseteq ... \subseteq \mathcal{E}_{max}$. 
 
     \begin{example}
         Any abelian category is exact with every short exact sequence as the exact structure. This exact structure us $\mathcal{E}_{max}$.
     \end{example}
 
     \begin{example}
-        Any additive category is exact with every split short exact sequence as the exact structure. This structure will always be $\mathcal{E}_{min}$, and moreover, it is always contained inside another exact structure.
+        Any additive category is exact with every split short exact sequence as the exact structure. This structure will always be $\mathcal{E}_{min}$, and it is always contained inside another exact structure.
     \end{example}
 
     \begin{lemma}
@@ -134,7 +134,7 @@
     \end{corollary}
 
     \begin{proof}
-        In a category with an initial object the coproduct can be thought of as the push-out with the initial in the upper right corner. This can be assembled into push-out (1).
+        In a category with an initial object, the coproduct can be thought of as the push-out with the initial in the upper right corner. This can be assembled into push-out (1).
         By the lemma the zero morphisms are inflations, asserting that $i$ and $i'$ are inflations by (QE2). Thus there are conflations $(i,p)$ and $(i',p')$.
 
         \begin{center}
@@ -175,7 +175,7 @@
                 B\oplus D \ar[two heads]{r}{\begin{pmatrix}1 & 0\end{pmatrix}}[marking]{\circ} \& B \ar[two heads]{r}{p}[marking]{\circ} \& C
             \end{tikzcd}
         \end{center}
-        Thus it is seen that $(i\oplus id_D, p\oplus 0)$ is a conflation, and dually $(i\oplus 0, p\oplus id_D)$ is also a conflation. To finish off the proof it is seen that the morphism $i\oplus i'$ factors as $i\oplus id_{A'}\circ id_A\oplus i'$, asserting that it is an inflation by (QE1). By dualizing the argument, one get that the direct sum of conflations is a conflation.
+        Thus it is seen that $(i\oplus id_D, p\oplus 0)$ is a conflation, and dually $(i\oplus 0, p\oplus id_D)$ is also a conflation. To finish off the proof it is seen that the morphism $i\oplus i'$ factors as $i\oplus id_{A'}\circ id_A\oplus i'$, asserting that it is an inflation by (QE1). By dualizing the argument, one gets that the direct sum of conflations is a conflation.
     \end{proof}
 
     \begin{definition}
@@ -216,7 +216,7 @@
         \end{center}
     \end{prop}
 
-    Before the proof for this proposition there will be presented a useful lemma, which will be proved first.
+    Before the proof for this proposition, there will be presented a useful lemma, which will be proved first.
 
     \begin{lemma}
         Assume that there is a commutative square (1) and an associated sequence (2). (1) is a push-out square if and only if $\begin{pmatrix}
@@ -256,7 +256,7 @@
     \begin{corollary}
         For the same diagrams (1) and (2) as above the dual statement is also true. (1) is a pull-back square if and only if $\begin{pmatrix}
             i \\ -j
-        \end{pmatrix}$ is kernel of the morphism $\begin{pmatrix}
+        \end{pmatrix}$ is a kernel of the morphism $\begin{pmatrix}
             p & q
         \end{pmatrix}$. Thus it follows that (1) is bicartesian (i.e. both a pull-back and a push-out) if and only if the morphisms make a kernel-cokernel pair.
     \end{corollary}
@@ -289,7 +289,7 @@
         \end{center}
         By corollary 3.2.1 the first map is an inflation, as the second map is an isomorphism it is also an inflation and the last map is the direct sum of two inflations. Thus the composite of all these maps is an inflation by (QE1), proving the first implication. \\
 
-        2. $\Rightarrow$ 3.: This follows from corollary 3.4.1. \\
+        2. $\Rightarrow$ 3.: This follows from Corollary 2.1.4.1.
         
         3 $\Rightarrow$ 1.: This is by definition. \\
 
@@ -385,7 +385,7 @@
                 C \ar[tail]{r}{i}[marking]{\circ} & D \ar[two heads]{r}{p}[marking]{\circ} & C
             \end{tikzcd}
         \end{center}
-        $pe$ is a deflation by (QE1), and $i'$ is a mono as a limit of a mono is a mono. The goal is to prove that $i'$ is the kernel of $pe$. Let T be a test object such that $pet=0$, then if follows that $te$ factorizes over $i$, such that we can apply the universal property of the pullback to factorize $te$ over $i'$. Uniqueness of $t'$ is achieved with $i'$ being monic. This proves that $(i',pe)$ is a conflation.
+        $pe$ is a deflation by (QE1), and $i'$ is a mono as a limit of a mono is a mono. The goal is to prove that $i'$ is the kernel of $pe$. Let T be a test object such that $pet=0$, then if follows that $te$ factorizes over $i$, such that we can apply the universal property of the pullback to factorize $te$ over $i'$. The uniqueness of $t'$ is achieved with $i'$ being monic. This proves that $(i',pe)$ is a conflation.
     \end{proof}
 
     \begin{theorem}
@@ -421,14 +421,14 @@
         Note that setting $t=t_2$ one get the universal property. This is well defined as $kt_2=t_1$ by assumption, thus $kt=t_1$. This is what is needed to prove that the square is a pullback, proving the obscure axiom.
     \end{proof}
 
-    Contrary to its name, The Obscure Axiom is a very natural result. To motivate this, let $\mathcal{A}$ be an abelian category. Here every map has a cokernel, and moreover if $i : A \rightarrow B$ is a map and the composition $ji : A \rightarrow C$ is a monomorphism, this result follow. Since $ji$ is mono, it follows that $i$ has to be mono, thus the kernel of $i$ is $0$. This gives a short exact sequence with the same implications as the obscure axiom.
+    Contrary to its name, The Obscure Axiom is a very natural result. To motivate this, let $\mathcal{A}$ be an abelian category. Here every map has a cokernel, and if $i : A \rightarrow B$ is a map and the composition $ji : A \rightarrow C$ is a monomorphism, this result follows. Since $ji$ is mono, it follows that $i$ has to be mono, thus the kernel of $i$ is $0$. This gives a short exact sequence with the same implications as the obscure axiom.
     \begin{center}
         \begin{tikzcd}
             0 \ar{r}{} & A \ar[tail]{r}{i} & B \ar[two heads]{r}{\pi_{i}} & Cok(i) \ar{r}{} & 0
         \end{tikzcd}
     \end{center}
 
-    The classical diagram lemmata which will be proven are the 5-lemma and the 3x3-lemma. In this context they wil be dubbed the short five lemma and Noethers isomorphism lemma respectively. In order to prove the short 5 lemma, a lemma is needed.
+    The classical diagram lemmata which will be proven are the 5-lemma and the 3x3-lemma. In this context, they will be dubbed the short five lemma and Noether's isomorphism lemma respectively. To prove the short 5 lemma, a lemma is needed.
 
     %Add the classical homological diagram lemmata down here
     \begin{lemma}
@@ -464,7 +464,7 @@
                 A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
             \end{tikzcd}
         \end{center}
-        It remains to show that the lower right square is commutative, then use the dual of proposition 2.1.3 to see that the square is bicartesian. Note that $q=cg_1$ by prop 2.1.3 thus $q'g_2g_1=q'g=hq=hcg_1$. Uniqueness of the push-out property asserts that $hc=q'g_2$.
+        It remains to show that the lower right square is commutative, then to use the dual of proposition 2.1.3 to see that the square is bicartesian. Note that $q=cg_1$ by prop 2.1.3 thus $q'g_2g_1=q'g=hq=hcg_1$. Uniqueness of the push-out property asserts that $hc=q'g_2$.
     \end{proof}
 
     \begin{corollary}
@@ -499,7 +499,7 @@
 
 \section{The Stable Frobenius Category}
 
-    This section aims to introduce Frobenius categories and show that their stabilization are triangulated. Categories which can be realized as stable Frobenius categories are called the algebraic triangulated categories. In order to define this construction, one must define projective and injective objects in an exact category. It will then be shown that the stable Frobenius category is a quotient category by the injective objects. One of the important ideas from this section is that conflations from the Frobenius category will be the class generating the triangles in the stable Frobenius category.
+    This section aims to introduce Frobenius categories and show that their stabilization is triangulated. Categories that can be realized as stable Frobenius categories are called algebraic triangulated categories. To define this construction, one must define projective and injective objects in an exact category. It will then be shown that the stable Frobenius category is a quotient category by injective objects. One of the important ideas from this section is that conflations from the Frobenius category will be the class generating the triangles in the stable Frobenius category.
 
     \begin{definition}
         Let $(\mathcal{A},\mathcal{E})$ and $(\mathcal{A}',\mathcal{E}')$ be two exact categories. A functor $F:(\mathcal{A},\mathcal{E})\rightarrow (\mathcal{A}',\mathcal{E}')$ is called exact if it is additive and $F(\mathcal{E})\subseteq \mathcal{E}'$. That is to say that conflations gets mapped to conflations. % \todo[color = pink]{Fjern dette?} One speaks of a reflective exact functor for whenever the pair $(Fp,Fq)$ is a conflation, then $(p,q)$ is a conflation.
@@ -514,7 +514,7 @@
     \end{remark}
 
     \begin{remark}
-        The hom-functor is called left-exact. This means that conflations gets mapped to sequences which is only exact in the first two terms.
+        The hom-functor is called left-exact. This means that conflations get mapped to sequences which is only exact in the first two terms.
     \end{remark}
 
     \begin{prop}
@@ -567,7 +567,7 @@
     \end{definition}
 
     \begin{definition}
-        An exact category is called a Frobenius category if it has enough projective and injective objects and the class of projective objects coincide with the injective objects.
+        An exact category is called a Frobenius category if it has enough projective and injective objects and the class of projective objects coincides with the injective objects.
     \end{definition}
 
     The stable Frobenius category will be defined as the quotient of every morphism factoring through an injective object. This will be made precise, following the construction of the quotient category provided by \cite{Mac71}.
@@ -596,7 +596,7 @@
         For any relation $\sim$ the universal category $\mathcal{C}/\sim$ exists. As in the case for the Verdier quotient, $\mathcal{C}/\sim$ is the same as the quotient category of the smallest congruence relation having the same relations as $\sim$.
     \end{remark}
 
-    If $\mathcal{A}$ is an additive category, the quotient categories which respects the additive structures are of interest. That is to say that the functor $q:\mathcal{A}\rightarrow \mathcal{C}/\sim$ is additive and the equivalence relation $\sim$ should respect the additive structure. Then a quotient category is additive if $f\sim f'$ and $g\sim g'$, then $f+g\sim f'+g'$. This leads to the following definition. 
+    If $\mathcal{A}$ is an additive category, the quotient categories which respect the additive structures are of interest. That is to say that the functor $q:\mathcal{A}\rightarrow \mathcal{C}/\sim$ is additive and the equivalence relation $\sim$ should respect the additive structure. Then a quotient category is additive if $f\sim f'$ and $g\sim g'$, then $f+g\sim f'+g'$. This leads to the following definition. 
 
     \begin{definition}
         Let $\mathcal{A}$ be an additive category. $\mathcal{I}$ is an ideal of $\mathcal{A}$ if:
@@ -686,7 +686,7 @@
                 Y \ar{r}{j'} & J' \ar{r}{q'} & \rotatebox[origin=c]{180}{$\Omega$}'Y
             \end{tikzcd}
         \end{center}
-        By the previous proof there are maps between the diagrams making an almost commutative diagram where all the 8 outer squares commute.
+        By the previous proof, there are maps between the diagrams making an almost commutative diagram where all the 8 outer squares commute.
         \begin{center}
             \begin{tikzcd}[row sep=tiny]
                 X \ar{dddd}{f} \ar[equal]{rd}[above, pos=0.8]{\alpha (X)} \ar[tail]{rr}[marking]{\circ}[near start]{i} & & I \ar{rd}[above, pos=0.8]{\beta (X)} \ar[two heads]{rr}[marking]{\circ}[near start]{p} \ar[dashed]{dddd}{If} & &\rotatebox[origin=c]{180}{$\Omega$}X \ar{rd}[above, pos=0.8]{\gamma (X)} \ar[dashed]{dddd}{\rotatebox[origin=c]{180}{$\Omega$}f} \ar[dashed, squiggly]{lddddd}{\chi}\\
@@ -697,7 +697,7 @@
                 & Y \ar[tail]{rr}[marking]{\circ}[near start]{j'} && J' \ar[two heads]{rr}[marking]{\circ}[near start]{q'} && \rotatebox[origin=c]{180}{$\Omega$}'Y
             \end{tikzcd}
         \end{center}
-        To see that the definition of the cosyzygy is well defined is to show that the 3 inner squares is commutative in the quotient category, i.e. that the diagram commutes in the quotient. \\
+        To see that the definition of the cosyzygy is well defined is to show that the 3 inner squares are commutative in the quotient category, i.e. that the diagram commutes in the quotient. \\
         
         Observe that the left inner square commutes by definition, and that the central inner square commutes in the quotient as every morphism gets related to $0$. Thus it remains to show that \underline{$\gamma (Y)$}$\circ$\underline{\rotatebox[origin=c]{180}{$\Omega$}$f$}$=$\underline{\rotatebox[origin=c]{180}{$\Omega$}$'f$}$\circ$\underline{$\gamma (X)$}, which is the same as to say that $\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$ factors over an injective. \\
  
@@ -709,7 +709,7 @@
     \end{corollary}
 
     \begin{proof}
-        The goal is to show that there is a natural isomorphisms $\Omega$\upside{$\Omega$}$\simeq Id_{\underline{\mathcal{A}}}$ and \upside{$\Omega$}$\Omega\simeq Id_{\underline{\mathcal{A}}}$. As these are inverse operations one have that taking syzygy then cosyzygy is the same as taking cosyzygy then syzygy in $\mathcal{A}^{op}$.
+        The goal is to show that there is a natural isomorphisms $\Omega$\upside{$\Omega$}$\simeq Id_{\underline{\mathcal{A}}}$ and \upside{$\Omega$}$\Omega\simeq Id_{\underline{\mathcal{A}}}$. As these are inverse operations one has that taking syzygy then cosyzygy is the same as taking cosyzygy then syzygy in $\mathcal{A}^{op}$.
         Let $X:\mathcal{A}$, the goal is to show that the following diagram gives a natural isomorphism at the rightmost arrow in $\underline{\mathcal{A}}$.
         \begin{center}
             \begin{tikzcd}
@@ -717,7 +717,7 @@
                 \Omega X \ar{r} & I \ar{r} & \upside{$\Omega$}\Omega X
             \end{tikzcd}
         \end{center}
-        Observe that this case is identical as the one previous proved. This shows that there is a natural isomorphism from $X$ to \upside{$\Omega$}$\Omega$X.
+        Observe that this case is identical to the one previous proved. This shows that there is a natural isomorphism from $X$ to \upside{$\Omega$}$\Omega$X.
     \end{proof}
 
     \begin{remark}
@@ -744,7 +744,7 @@
     \end{prop}
 
     \begin{proof}\emph{Sketch.}
-        Most of the details of this proof will be omitted, and they can be found in \cite{happel} or \cite{May01}. The proof is structured into 3 different parts, namely showing TR1, TR2 and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see this observe that the following diagram is a push-out.
+        Most of the details of this proof will be omitted, and they can be found in \cite{happel} or \cite{May01}. The proof is structured into 3 different parts, namely showing TR1, TR2, and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see this observe that the following diagram is a push-out.
         \begin{center}
             \begin{tikzcd}[row sep=large]
                 X \ar[equal]{r}{} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} & X \ar[tail]{d}{i}[marking]{\circ} \\
@@ -810,7 +810,7 @@
                 \upside{$\Omega$}X \ar[equal]{r} & \upside{$\Omega$}X
             \end{tikzcd}
         \end{center}
-        By Noethers isomorphism lemma there is a conflation passing through on the right column and the middle square is bicartesian. $z'$ exists by the injectivity of $I(Y)$ and that $i$ is an inflation. $z'$ is an inflation as $y$ is an inflation, thus $\bar{z'}$ exists.
+        By Noether's isomorphism lemma there is a conflation passing through on the right column and the middle square is bicartesian. $z'$ exists by the injectivity of $I(Y)$ and that $i$ is an inflation. $z'$ is an inflation as $y$ is an inflation, thus $\bar{z'}$ exists.
         \begin{center}
             \begin{tikzcd}
                 Y \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & Z' \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{d}{z'}[marking]{\circ} \ar[two heads]{r}{i'}[marking]{\circ} & \upside{$\Omega$}X \ar[tail, dashed]{d}{s}[marking]{\circ} \\
@@ -831,7 +831,7 @@
                 & I(Y) \ar[bend right]{r}{\bar{\nu}}& X'
             \end{tikzcd}
         \end{center}
-        These maps can be arranged in the diagram below. It can be seen that middle square is a push-out, by using the fact that the upper left square and the larger rectangles are push-outs.
+        These maps can be arranged in the diagram below. It can be seen that the middle square is a push-out, by using the fact that the upper left square and the larger rectangles are push-outs.
         \begin{center}
             \begin{tikzcd}
                 X \ar{r}{\upsilon} \ar{d}{x} \ar[phantom]{rd}[very near end]{\lrcorner} & Y \ar{r}{\nu} \ar{d}{i} & Z \ar{d}{k} \\
@@ -872,10 +872,10 @@
 
 \section{Self-injective Algebras}
 
-    The first example of a triangulated category is going to be derived from finite dimensional artin algebras. More specifically, let $\Lambda$ be a self-injective finite dimensional artin $R$-algebra; that is $_{\Lambda}\Lambda$ is injective as left $\Lambda$-module, then the finitely generated projective objects coincide with the finitely generated injective objects.
+    The first example of a triangulated category is going to be derived from finite-dimensional artin algebras. More specifically, let $\Lambda$ be a self-injective finite-dimensional artin $R$-algebra; that is $_{\Lambda}\Lambda$ is injective as left $\Lambda$-module, then the finitely generated projective objects coincide with the finitely generated injective objects.
 
     \begin{prop}
-        If $\Lambda$ is a self-injective finite dimensional artin $R$-algebra, then $mod_{\Lambda}$ is a Frobenius category.
+        If $\Lambda$ is a self-injective finite-dimensional artin $R$-algebra, then $mod_{\Lambda}$ is a Frobenius category.
     \end{prop}
 
     To prove this statement we will need the following propositions.
@@ -899,7 +899,7 @@
     Detailed proofs of these statements can be found in \cite{Rei95}.
 
     \begin{proof}
-        Suppose that $\Lambda$ is self-injective. By the lemmas above it is known that $mod_{\Lambda}$ has enough projectives and enough injectives. It remains to show that the class of injectives coincide with the projectives. Since every indecomposable $\Lambda$ module is a summand of $\Lambda$ up to isomorphism, it follows that they are injective. As they also are projective, the class of injectives and projectives coincide.
+        Suppose that $\Lambda$ is self-injective. By the lemmas above it is known that $mod_{\Lambda}$ has enough projectives and enough injectives. It remains to show that the class of injectives coincides with the projectives. Since every indecomposable $\Lambda$ module is a summand of $\Lambda$ up to isomorphism, it follows that they are injective. As they also are projective, the class of injectives and projectives coincide.
     \end{proof}
 
     This shows that $mod_{\Lambda}$ is a Frobenius category, thus \underline{$mod_{\Lambda}$} is triangulated. The triangles in \underline{$mod_{\Lambda}$} are the quotients of every short exact sequence in $mod_{\Lambda}$.
@@ -929,7 +929,7 @@
         As $K[x]/(x^n)$ modules, there is only one indecomposable projective module up to isomorphism, that is $K[x]/(x^n)$. Since $K[x]/(x^n)$ is commutative, the duality functor is an automorphism of $mod_{K[x]/(x^n)}$, thus $Hom_K(K[x]/(x^n),K)$ is the indecomposable injective $K[x]/(x^n)$ module. As the duality functor preserves length the modules have equal length. By finding a monomorphism $i:K[x]/(x^n)\rightarrow Hom_K(K[x]/(x^n),K)$ we have that it is an isomorphism as the cokernel has length $0$. The socle $soc(K[x]/x^n)$ is the simple module $K$, this means that the injective envelope of $K[x]/(x^n)$ is indecomposable, thus it is in the same isomorphism class as $Hom_K(K[x]/(x^n),K)$, proving that there is a monomorphism as stated.
     \end{proof}
 
-    In this particular case the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations! This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these. \\
+    In this particular case, the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations! This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these. \\
 
     Observe that every submodule of $K[x]/(x^n)$ is indecomposable, these make up the class of the indecomposable modules up to isomorphism. Further observe that the cosyzygy of any submodule is \upside{$\Omega$}$(x^k)/(x^n)\simeq (x^{n-k})/(x^n)$. The repetition of the triangles can be seen as the natural isomorphism \upside{$\Omega$}$^2(x^k)/(x^n)\simeq (x^{n-(n-k)})/(x^n) = (x^k)/(x^n)$. \\
 
@@ -947,7 +947,7 @@
         The category $Vect(K)$ is triangulated.
     \end{lemma}
 
-    \begin{proof}\emph{Sketch.} This follows immediately from the discussion above. Look at $mod_{K[x]/(x^2)}$, the indecomposable objects of this category are $K[x]/(x^2)$ and $K$ up to isomorphism. As $K[x]/(x^2)$ is injective we have that $K$ is the only indecomposable object of \underline{$mod_{K[x]/(x^2)}$}, thus every object is a direct summand $K$. Also observe that the cosyzygy is naturally isomorphic to the identity functor on the quotient. In order to be precise, one would need to show that there is an equivalence of categories $Vect(K)\simeq mod_{K[x]/(x^2)}$. The triangles in $Vect(K)$ can then be seen as this three term repeating triangle.
+    \begin{proof}\emph{Sketch.} This follows immediately from the discussion above. Look at $mod_{K[x]/(x^2)}$, the indecomposable objects of this category are $K[x]/(x^2)$ and $K$ up to isomorphism. As $K[x]/(x^2)$ is injective we have that $K$ is the only indecomposable object of \underline{$mod_{K[x]/(x^2)}$}, thus every object is a direct summand $K$. Also, observe that the cosyzygy is naturally isomorphic to the identity functor on the quotient. To be precise, one would need to show that there is an equivalence of categories $Vect(K)\simeq mod_{K[x]/(x^2)}$. The triangles in $Vect(K)$ can then be seen as this three-term repeating triangle.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 V \ar{r}{T} \& W \ar{r}{\begin{pmatrix} \pi_T \\ 0 \end{pmatrix}} \& CokT\oplus KerT \ar{r}{\begin{pmatrix} 0 & \iota_T \end{pmatrix}} \& V
@@ -971,7 +971,7 @@
 
 \section{The Homotopy Category}
     
-    The next example of a triangulated category is the homotopy category. This category may be regarded as the prototype for triangulated categories. In order to define it, the category of chain complexes and homotopies must be defined first.
+    The next example of a triangulated category is the homotopy category. This category may be regarded as the prototype for triangulated categories. To define it, the category of chain complexes and homotopies must be defined first.
 
     \begin{definition}
         Let $\mathcal{A}$ be an additive category. Define $Ch(\mathcal{A})$ to be the category of diagrams in $\mathcal{A}$ on the form
@@ -1013,7 +1013,7 @@
     \end{prop}
 
     \begin{proof}
-        In order to prove the proposition, one must show that the assignment is in fact a functor and that it is additive as well. It suffices to show that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is an additive functor, as it will follow by duality that the there is an additive bifunctor as proposed. \\
+        To prove the proposition, one must show that the assignment is in fact a functor and that it is additive as well. It suffices to show that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is an additive functor, as it will follow by duality that there is an additive bifunctor as proposed. \\
         
         Suppose that there is a chain map $\chain{f}:\chain{B}\rightarrow\chain{C}$, then $nullHom_{\mathcal{A}}(\chain{A},\_)(\chain{f})=\chain{f}_*$. Let $(\chain{g},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be a null-homotopic chain map. By definition $\chain{f}_*(\chain{g},\chain{\varepsilon})=(\chain{f}\chain{g},f^{\bullet-1}\chain{\varepsilon})$. One may now see that $f^{\bullet-1}\chain{\varepsilon}$ is a homotopy by the following diagram. The commutativity of the lower left square shows the homotopy. It follows by functoriality from the Hom-functor that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is a functor.
         \begin{center}
@@ -1071,7 +1071,7 @@
     \end{prop}
 
     \begin{proof}
-        This proof will construct two natural maps which are inverses. This is sufficient to prove the universal property by Yonedas lemma.
+        This proof will construct two natural maps which are inverses. This is sufficient to prove the universal property by Yoneda's lemma.
 
         Let $construct_{(\chain{A},\_)(\chain{B})}:nullHom_{\mathcal{A}}(\chain{A},\chain{B})\rightarrow Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\chain{B})$ and \\$destruct_{(\chain{A},\_)(\chain{B})}:Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\chain{B})\rightarrow nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be two morphisms defined the following way.
         $construct_{(\chain{A},\_)(\chain{B})}(\chain{f},\chain{\varepsilon})=\begin{pmatrix}\chain{f} & \chain{\varepsilon}\end{pmatrix}$ and \\$destruct_{(\chain{A},\_)(\chain{B})}\begin{pmatrix}\chain{f} & \chain{\varepsilon}\end{pmatrix} = (\chain{f}, \chain{\varepsilon})$. These natural transformations are constructed such that they are inverses of each other. It remains to see that these maps are well defined. This will be done by showing that there is a chain map from the cone of the identity, if and only if there is a null-homotopic map from the object.
@@ -1099,7 +1099,7 @@
     \end{proof}
 
     \begin{remark}
-        The identity cone is universal with respect to homotopies. A null-homotopic chain map $\chain{f}:\chain{A}\rightarrow \chain{B}$ might admit several factorization through the identity cone. The factorizations are only unique when there is a homotopy witnessing the null-homotopy property.
+        The identity cone is universal with respect to homotopies. A null-homotopic chain map $\chain{f}:\chain{A}\rightarrow \chain{B}$ might admit several factorization through the identity cone. The factorizations are unique when there is a homotopy witnessing the null-homotopy property.
         \begin{center}
             \begin{tikzcd}[ampersand replacement=\&]
                 \chain{A} \ar{rd}[below, pos=0.3]{\begin{pmatrix}1 \\ 0\end{pmatrix}} \ar{rr}{(\chain{f},\chain{\varepsilon})} \& \& \chain{B} \\
@@ -1176,7 +1176,7 @@
             \end{tikzcd}
         \end{center}
 
-        Conversely, suppose that $\chain{P}$ is contractible, then one may se that $\chain{P}$ is projective if and only if $cone(\chain{id_{\chain{P}}})$ is projective by the following diagram.
+        Conversely, suppose that $\chain{P}$ is contractible, then one may see that $\chain{P}$ is projective if and only if $cone(\chain{id_{\chain{P}}})$ is projective by the following diagram.
 
         \begin{center}
             \begin{tikzcd}
