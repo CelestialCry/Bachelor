@@ -1,7 +1,5 @@
 \chapter{Derived Categories}
 
-Write something about that this chapter is meant to give an exposition of derived categories. 
-
 \section{Idempotent Completeness and Krull-Schmidt Categories}
 
     This section will introduce the concepts of idempotent complete categories, weakly idempotent complete categories and Krull-Schmidt categories. These are extra conditions which may be put onto an exact category. The conditions to be introduced are three different levels of strengthening, where weakly idempotent completeness is the weakest and Krull-Schmidt is the strongest condition. The concepts introduced in this section is based of the ideas from \cite{buhler}, \cite{Kra12} and \cite{Rei95}
@@ -316,7 +314,7 @@ Write something about that this chapter is meant to give an exposition of derive
         \end{tikzcd}
     \end{center}
 
-    The complex must admit an analysis at each differential, so assume that the complex only contains normal morphisms. By looking at the 0-th homology one can find a condition for when the homology exists. Using the fact that $d^0_{\chain{A}}\iota = 0$, there is an unique morphism $h$, such that $\iota = \kappa h$ by the universal property. The 0-th homology exists whenever the morphism $h$ has a cokernel, and then $h$ satisfies the assumption of the Obscure axiom, making $h$ an inflation. One way to not break this condition is to assume that $\mathcal{A}$ is weakly idempotent complete. By Hellers cancellation axiom it is known that $h$ is an inflation, which then proves the existence of the cokernel. However, this only allows the construction of quasi-isomorphisms at weakly idempotent complete categories.
+    The complex must admit an analysis at each differential, so assume that the complex only contains normal morphisms. By looking at the 0-th homology one can find a condition for when the homology exists. Using the fact that $d^0_{\chain{A}}\iota = 0$, there is an unique morphism $h$, such that $\iota = \kappa h$ by the universal property. The 0-th homology exists whenever the morphism $h$ has a cokernel, and then $h$ satisfies the assumption of the Obscure axiom, making $h$ an inflation. One way to not break this condition is to assume that $\mathcal{A}$ is weakly idempotent complete. By Hellers cancellation axiom it is known that $h$ is an inflation, which then proves the existence of the cokernel. However, this only allows the construction of quasi-isomorphisms at weakly idempotent complete categories. \\
     
     Recall that a quasi-isomorphism is a chain map $\chain{f}:\chain{A}\rightarrow\chain{B}$ such that $H^*(\chain{f}):H^*(\chain{A})\rightarrow H^*(\chain{B})$ is an isomorphism in homology. In the abelian case, suppose that $\chain{f}:\chain{A}\rightarrow\chain{B}$ is a quasi-isomorphism. Consider the standard triangle \\ \begin{tikzcd}\chain{A} \ar{r}{\chain{f}} & \chain{B} \ar{r}{} & cone(\chain{f}) \ar{r}{} & \chain{A}[1]\end{tikzcd} in the homotopy category $K(\mathcal{A})$, then $\chain{f}$ becomes an isomorphism in the derived category $D(\mathcal{A})$. This shows that there is a quasi-isomorphism between $\chain{0}$ and $cone(\chain{f})$ by corollary 1.1.4.1. It follows that $cone(\chain{f})$ is an exact sequence, and this motivate to the following definition.
 
@@ -440,25 +438,21 @@ Write something about that this chapter is meant to give an exposition of derive
         \begin{center}
             \begin{tikzcd}
                 K(\mathcal{A}) \ar{r}{F} \ar{d}{q_{\mathcal{A}}} & K(\mathcal{B}) \ar{d}{q_{\mathcal{B}}} \\
-                D(\mathcal{A}) \ar[dotted]{r}{?} & D(\mathcal{B})
+                D(\mathcal{A}) \ar[dotted]{r}{?F} & D(\mathcal{B})
             \end{tikzcd}
         \end{center}
 
         % Give the construction of derived functors for any Verdier Quotient
-        For a more general discussion, suppose that $\mathcal{T}$ and $\mathcal{S}$ are triangulated categories and that there are triangulated subcategories $\mathcal{M}\subseteq\mathcal{T}$ and $\mathcal{N}\subseteq\mathcal{S}$. When does a triangulated functor $F:\mathcal{T}\rightarrow\mathcal{S}$ induce a functor $?F : \mathcal{T}/\mathcal{M}\rightarrow \mathcal{S}/\mathcal{N}$? As in the same case as above, F admits a lift if $F(\mathcal{M})\subseteq\mathcal{N}$ by the universal property of $\mathcal{T}/\mathcal{M}$.
+        For a more general discussion, suppose that $\mathcal{T}$ and $\mathcal{S}$ are triangulated categories and that there is a triangulated subcategories $\mathcal{M}\subseteq\mathcal{T}$ such that the Verdier quotient exists. When does a triangulated functor $F:\mathcal{T}\rightarrow\mathcal{S}$ induce a functor $?F : \mathcal{T}/\mathcal{M}\rightarrow \mathcal{S}$? Similar to above, F admits a lift if every morphism in $Mor_{\mathcal{M}}$ gets inverted. This functor is induced by the universal property of $\mathcal{T}/\mathcal{M}$
 
         \begin{center}
-            \begin{tikzcd}
-                \mathcal{T} \ar{r}{F} \ar{d}{q_{\mathcal{M}}} & \mathcal{S} \ar{d}{q_{\mathcal{N}}} \\
-                \mathcal{T}/\mathcal{M} \ar[dotted]{r}{?F} & \mathcal{S}/\mathcal{N}
-            \end{tikzcd}
             \begin{tikzcd}[column sep=small]
-                \mathcal{T} \ar{rd}{q} \ar{rr}{qF} & & \mathcal{S}/\mathcal{N} \\
-                & \mathcal{T}/\mathcal{M} \ar[dashed]{ru}{F}
+                \mathcal{T} \ar{rd}{q} \ar{rr}{F} & & \mathcal{S} \\
+                & \mathcal{T}/\mathcal{M} \ar[dotted]{ru}{?F}
             \end{tikzcd}
         \end{center}
 
-        There is a construction of derived functors, this thesis will follow Delignes approach on constructive right derived functors. Suppose there is an object $A:\mathcal{T}/\mathcal{M}$ and a functor $F:\mathcal{T}\rightarrow\mathcal{S}$, then let $\bf{r} F(\_,A):\mathcal{S}/\mathcal{N}^{op}\rightarrow Ab$ be a contravariant functor sending objects $B:\mathcal{S}/\mathcal{N}$ to groups of semi left fractions $(f:\mathcal{S}/\mathcal{N}(B,FC)|g:\mathcal{T}(A,C))$ such that $g:Mor_{\mathcal{M}}$. The equivalence relation on this set is given by the diagram below.
+        In order to answer the question about derived functors, this thesis will follow Delignes approach on how to construct right derived functors. Suppose there is an object $A:\mathcal{T}/\mathcal{M}$ and a functor $F:\mathcal{T}\rightarrow\mathcal{S}$, then let $\textbf{r}$$F(\_,A):\mathcal{S}^{op}\rightarrow Ab$ be a contravariant functor sending objects $B:\mathcal{S}$ to groups of semi left fractions $(f:\mathcal{S}(B,FC)|g:\mathcal{T}(A,C))$ such that $g:Mor_{\mathcal{M}}$. The caveat is that the functor sends objects of $\mathcal{T}/\mathcal{M}$ and $\mathcal{S}$ to arrows in $\mathcal{T}$ and $\mathcal{S}$. This is well-defined since $q(A)=A$ by definition and no choice of arrows need to be specified by the functor. Thus the localization is hidden from the functor at the element level. To illustrate how these elements look like the semi left fraction is to the left, and the equivalence relation on this set is given by the diagram on the right. In the same manner as before, blue arrows denote arrows located in $Mor_{S}$.
 
         \begin{center}
             \begin{tikzcd}
@@ -472,33 +466,42 @@ Write something about that this chapter is meant to give an exposition of derive
             \end{tikzcd}
         \end{center}
         
-        The aim is to construct a functor $\mathbb{R}F:\mathcal{U}\rightarrow \mathcal{S}/\mathcal{N}$ on a subcategory $\mathcal{U}$ of $\mathcal{T}/\mathcal{M}$. Define $\mathbb{R}F$ to be defined at $A$ if the functor $\bf{r} F(\_,A)$ is represented, i.e. $\mathcal{S}/\mathcal{N}(\_,\mathbb{R}FA)\simeq\bf{r} F(\_,A)$. This isomorphism defines a canonical morphism $can_r:qF\implies \mathbb{R}F\circ q$ given by the identity semi left fraction on every object $A:\mathcal{T}$.
+        The aim is to construct a functor $\mathbb{R}F:\mathcal{U}\rightarrow \mathcal{S}$ on a subcategory $\mathcal{U}$ of $\mathcal{T}/\mathcal{M}$. The functor $\mathbb{R}F$ is said to be defined at $A$ if the functor $\textbf{r} F(\_,A)$ is represented, i.e. $\mathcal{S}(\_,\mathbb{R}FA)\simeq$$\textbf{r}$$F(\_,A)$. This isomorphism also defines a canonical morphism $can_r:F\implies \mathbb{R}F\circ q$ given by the identity semi left fraction on every object $A:\mathcal{U}$.
         
         \begin{center}
             \begin{tikzcd}
-                FA \ar[equal]{r} & FA & A & A \ar[equal]{l}
+                FA \ar[equal]{r} & FA & A & A \ar[blue, equal]{l}
             \end{tikzcd} $\iff$
             \begin{tikzcd}
-                FA \ar{r}{canon} & \mathbb{R}FA
+                FA \ar{r}{can} & \mathbb{R}FA
             \end{tikzcd}
         \end{center}
 
-        One may also show that $\bf{r}F(\_,A)$ is also functorial in $A$. That is, suppose there is a left fraction $s^{-1}t:A\rightarrow A'$ in $\mathcal{T}/\mathcal{M}$, then for $(f|g)$ as described above one may define $\bf{r}F(s^{-1}t)(f|g)=(Fs'\circ f|g't)$. $g'$ and $s'$ are defined with the right Ore condition on $Mor_{\mathcal{M}}$, this may be seen with the diagram below.
+        In order to show that $\mathbb{R}F$ is a functor, one must show that $\textbf{r}$$F(\_,A)$ is functorial at the index $A$. That is, suppose there is a left fraction $t^{-1}s:A\rightarrow A'$ in $\mathcal{T}/\mathcal{M}$, then for $(f|g)$ as described above one may define $\textbf{r}$$F(t^{-1}s)(f|g)=(Fs'\circ f|g't)$. $g'$ and $s'$ are defined with the right Ore condition on $Mor_{\mathcal{M}}$, this may be seen with the diagram below.
 
         \begin{center}
             \begin{tikzcd}
                 FC'' & & C''\\
-                FC' \ar{u}{Fs'} & C' \ar{ru}{s'} & & A'' \ar{lu}{g'} \\
-                B \ar{u}{f} & & A \ar{lu}{g} \ar{ru}{s} & & A' \ar{lu}{t}
+                FC' \ar{u}{Fs'} & C' \ar{ru}{s'} & & A'' \ar[blue]{lu}{g'} \\
+                B \ar{u}{f} & & A \ar[blue]{lu}{g} \ar{ru}{s} & & A' \ar[blue]{lu}{t}
             \end{tikzcd}
         \end{center}
 
-        Functoriality of $\bf{r}F(\_,\_)$ shows that there is a functor $\mathbb{R}F$, where the action on maps are defined with the representative isomorphism. If $\mathcal{U}$ is the full subcategory of objects which are defined for $\mathbb{R}F$, then there is a triangulated functor $\mathbb{R}F:\mathcal{U}\rightarrow \mathcal{S}/\mathcal{N}$. $\mathcal{U}$ is in fact triangulated as $F$ is triangulated, so it commutes with the autoequivalence $\Sigma_{\mathcal{T}}$. Moreover, if $I:q^{-1}\mathcal{U}\rightarrow \mathcal{S}$ is the inclusion from the preimage of $\mathcal{U}$ into $\mathcal{S}$, the canonical morphism induces a morphism of triangulated functors $can:qFI\implies\mathbb{R}FI$.
+        Functoriality of $\textbf{r}$$F(\_,\_)$ shows that there is a functor $\mathbb{R}F$, where the action on maps are defined with the representative isomorphism.
+        
+        \begin{center}
+            \begin{tikzcd}
+                \mathcal{S}(\_,\mathbb{R}FA) \ar{r}{\simeq} \ar{d}{\mathbb{R}F(t^{-1}s)} & \textbf{r}F(\_,A) \ar{d}{\textbf{r}F(t^{-1}s)} \\
+                \mathcal{S}(\_,\mathbb{R}FA') \ar{r}{\simeq} & \textbf{r}F(\_,A')
+            \end{tikzcd}
+        \end{center}
+        
+        If $\mathcal{U}$ is the full subcategory of objects which are defined for $\mathbb{R}F$, then there is a triangulated functor $\mathbb{R}F:\mathcal{U}\rightarrow \mathcal{S}$. $\mathcal{U}$ is in fact triangulated as $F$ is a triangulated functor, so it commutes with the autoequivalence $\Sigma_{\mathcal{T}}$. Moreover, if $I:q^{-1}\mathcal{U}\rightarrow \mathcal{T}$ is the inclusion from the preimage of $\mathcal{U}$ into $\mathcal{T}$, then the canonical morphism induces a morphism of triangulated functors $can:FI\implies\mathbb{R}FI$. \\
 
-        Dually, one may define left derived functors using semi right fractions. As the set $Mor_{\mathcal{M}}$ is multiplicative, this doesn't make any problems. If the functor $F$ is in fact exact in the sense that $F(\mathcal{M})\subseteq \mathcal{N}$, then $\mathbb{R}F \simeq \mathbb{L}F$. If one would define derived functors between abelian categories $\mathcal{A}$ and $\mathcal{B}$, then the classical sense may be retrieved by taking homology, i.e. $\mathbb{R}^nF = H^n(\mathbb{R}F)$ and $\mathbb{L}_nF = H^{-n}(\mathbb{L}F)$.
+        Dually, one may define left derived functors using semi right fractions. As the set $Mor_{\mathcal{M}}$ is multiplicative, this doesn't make any problems. If the functor $F$ is in fact exact in the sense that $F$ sends morphisms in $Mor_{\mathcal{M}}$ to isomorphisms, then $\mathbb{R}F \simeq \mathbb{L}F$. If one would define derived functors between abelian categories $\mathcal{A}$ and $\mathcal{B}$, then the classical versions may be retrieved by taking homology, i.e. $\mathbb{R}^nF = H^n(\mathbb{R}F)$ and $\mathbb{L}_nF = H^{-n}(\mathbb{L}F)$. \\
         
         % Go back to the abelian case
-        Suppose that the categories $\mathcal{A}$ and $\mathcal{B}$ have exact structures and that there is an additive functor $F:\mathcal{A}\rightarrow \mathcal{B}$, then there is a connection to the classical derived functors. Let $\mathcal{A}^I$ be the full subcategory of injective objects, since every conflation in $\mathcal{A}^I$ splits, $F|_{\mathcal{A}^{I}}:\mathcal{A}^I\rightarrow \mathcal{B}$ is an exact functor. Thus $F$ induced on $K(\mathcal{A})$ preserves quasi-isomorphisms of left bounded injective complexes. In this manner there is a functor $\mathbb{R}F:D^+(\mathcal{A}^I)\rightarrow D^+(\mathcal{B})$, and moreover this functor extends to the subcategory $\mathcal{U}\subseteq D^+(\mathcal{A})$ where every object in $\mathcal{U}$ admits an injective resolution.
+        Suppose that the categories $\mathcal{A}$ and $\mathcal{B}$ have exact structures and that there is an additive functor $F:\mathcal{A}\rightarrow \mathcal{B}$, then there is a connection to the classical derived functors. Let $\mathcal{A}^I$ be the full subcategory of injective objects, since every conflation in $\mathcal{A}^I$ splits, $F|_{\mathcal{A}^{I}}:\mathcal{A}^I\rightarrow \mathcal{B}$ is an exact functor. Thus $F$ induced on $K(\mathcal{A})$ preserves quasi-isomorphisms of left bounded injective complexes. In this manner there is a functor $\mathbb{R}F:D^+(\mathcal{A}^I)\rightarrow D^+(\mathcal{B})$, and moreover this functor extends to the subcategory $\mathcal{U}\subseteq D^+(\mathcal{A})$ where every object in $\mathcal{U}$ admits an injective resolution. \\
 
     \subsection{Auslander-Reiten Triangles}
 

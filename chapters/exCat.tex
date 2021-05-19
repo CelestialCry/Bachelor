@@ -1,10 +1,8 @@
 \chapter{Exact Categories}
-            
-I can maybe write some of the history of the development of the idea of exact categories. 
 
 \section{Definitions and First Properties}
 
-    This section will focus on defining what an exact category is and its elementary properties. The main result from this section is proposition 2.1.3. This proposition is similar to the characterization theorem of push-outs and pullbacks in abelian categories. Another important result is the obscure axiom, this will be proved and hopefully seen to be not as obscure as its name suggests. Lastly, variants of some homological diagram lemmata, like 5-lemma, will also be proved for exact categories.
+    This section will focus on defining what an exact category is and its elementary properties. The main result from this section is proposition 2.1.3. This proposition is similar to the characterization theorem of push-outs and pullbacks in abelian categories. Another important result is the obscure axiom, this will be proved and hopefully seen to be not as obscure as its name suggests. Lastly, variants of some homological diagram lemmata, like 5-lemma, will also be proved for exact categories. \\
 
     To start with exact categories one should first take a look towards the abelian categories first. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
 
@@ -153,7 +151,7 @@ I can maybe write some of the history of the development of the idea of exact ca
         \begin{center}
             \begin{tikzcd}
                 A \ar[tail]{r}{i}[marking]{\circ} & B \ar[two heads]{r}{p}{\circ} & C
-            \end{tikzcd} \&
+            \end{tikzcd}, 
             \begin{tikzcd}
                 A' \ar[tail]{r}{i'}[marking]{\circ} & B' \ar[two heads]{r}{p'}[marking]{\circ} & C'
             \end{tikzcd} \\
@@ -289,11 +287,11 @@ I can maybe write some of the history of the development of the idea of exact ca
                 \end{pmatrix}}[marking]{\circ} \& B\oplus C
             \end{tikzcd}
         \end{center}
-        By corollary 3.2.1 the first map is an inflation, as the second map is an isomorphism it is also an inflation and the last map is the direct sum of two inflations. Thus the composite of all these maps is an inflation by (QE1), proving the first implication.
+        By corollary 3.2.1 the first map is an inflation, as the second map is an isomorphism it is also an inflation and the last map is the direct sum of two inflations. Thus the composite of all these maps is an inflation by (QE1), proving the first implication. \\
 
-        2. $\Rightarrow$ 3.: This follows from corollary 3.4.1.
+        2. $\Rightarrow$ 3.: This follows from corollary 3.4.1. \\
         
-        3 $\Rightarrow$ 1.: This is by definition.
+        3 $\Rightarrow$ 1.: This is by definition. \\
 
         1. $\Rightarrow$ 4.: Let $p$ be the cokernel of $i$, then form the diagram below using the push-out property.
         \begin{center}
@@ -310,7 +308,7 @@ I can maybe write some of the history of the development of the idea of exact ca
                 C \ar[tail]{r}{j}[marking]{\circ} \ar[bend right]{rrd}{0} & D \ar{rd}{t'} \ar[dashed, two heads]{r}{p'} & T \ar[dashed]{d}{t} \\
                 & & T'
             \end{tikzcd}
-        \end{center}
+        \end{center} 
  
         4. $\Rightarrow$ 2.: Start by taking the pullback of $p$ and $q$ using $(QE2^{op})$. The diagrams below are determined by using the dual statement of the last implication.
         \begin{center}
@@ -699,10 +697,10 @@ I can maybe write some of the history of the development of the idea of exact ca
                 & Y \ar[tail]{rr}[marking]{\circ}[near start]{j'} && J' \ar[two heads]{rr}[marking]{\circ}[near start]{q'} && \rotatebox[origin=c]{180}{$\Omega$}'Y
             \end{tikzcd}
         \end{center}
-        To see that the definition of the cosyzygy is well defined is to show that the 3 inner squares is commutative in the quotient category, i.e. that the diagram commutes in the quotient.
+        To see that the definition of the cosyzygy is well defined is to show that the 3 inner squares is commutative in the quotient category, i.e. that the diagram commutes in the quotient. \\
         
-        Observe that the left inner square commutes by definition, and that the central inner square commutes in the quotient as every morphism gets related to $0$. Thus it remains to show that \underline{$\gamma (Y)$}$\circ$\underline{\rotatebox[origin=c]{180}{$\Omega$}$f$}$=$\underline{\rotatebox[origin=c]{180}{$\Omega$}$'f$}$\circ$\underline{$\gamma (X)$}, which is the same as to say that $\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$ factors over an injective.
-
+        Observe that the left inner square commutes by definition, and that the central inner square commutes in the quotient as every morphism gets related to $0$. Thus it remains to show that \underline{$\gamma (Y)$}$\circ$\underline{\rotatebox[origin=c]{180}{$\Omega$}$f$}$=$\underline{\rotatebox[origin=c]{180}{$\Omega$}$'f$}$\circ$\underline{$\gamma (X)$}, which is the same as to say that $\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$ factors over an injective. \\
+ 
         By doing a diagram chase in the left cube one may find the following equation $(I'f\circ \beta(X)-\beta (Y)\circ If)i=0$. This means that the map $I'f\circ \beta(X)-\beta (Y)\circ If$ factors through the cokernel of $i$ as $\chi p$. By chasing the right cube one may assert the equation $q'\chi p = (\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X))p$, thus $q'\chi =$$\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$.
     \end{proof}
 
@@ -931,9 +929,9 @@ I can maybe write some of the history of the development of the idea of exact ca
         As $K[x]/(x^n)$ modules, there is only one indecomposable projective module up to isomorphism, that is $K[x]/(x^n)$. Since $K[x]/(x^n)$ is commutative, the duality functor is an automorphism of $mod_{K[x]/(x^n)}$, thus $Hom_K(K[x]/(x^n),K)$ is the indecomposable injective $K[x]/(x^n)$ module. As the duality functor preserves length the modules have equal length. By finding a monomorphism $i:K[x]/(x^n)\rightarrow Hom_K(K[x]/(x^n),K)$ we have that it is an isomorphism as the cokernel has length $0$. The socle $soc(K[x]/x^n)$ is the simple module $K$, this means that the injective envelope of $K[x]/(x^n)$ is indecomposable, thus it is in the same isomorphism class as $Hom_K(K[x]/(x^n),K)$, proving that there is a monomorphism as stated.
     \end{proof}
 
-    In this particular case the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations! This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these.
+    In this particular case the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations! This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these. \\
 
-    Observe that every submodule of $K[x]/(x^n)$ is indecomposable, these make up the class of the indecomposable modules up to isomorphism. Further observe that the cosyzygy of any submodule is \upside{$\Omega$}$(x^k)/(x^n)\simeq (x^{n-k})/(x^n)$. The repetition of the triangles can be seen as the natural isomorphism \upside{$\Omega$}$^2(x^k)/(x^n)\simeq (x^{n-(n-k)})/(x^n) = (x^k)/(x^n)$.
+    Observe that every submodule of $K[x]/(x^n)$ is indecomposable, these make up the class of the indecomposable modules up to isomorphism. Further observe that the cosyzygy of any submodule is \upside{$\Omega$}$(x^k)/(x^n)\simeq (x^{n-k})/(x^n)$. The repetition of the triangles can be seen as the natural isomorphism \upside{$\Omega$}$^2(x^k)/(x^n)\simeq (x^{n-(n-k)})/(x^n) = (x^k)/(x^n)$. \\
 
     To find the triangles, let $A,B:mod_{K[x]/(x^n)}$ and $T:A\rightarrow B$ be $K[x]/(x^n)$-linear. $T$ is in the same equivalence class as $\begin{pmatrix} T \\ -i \end{pmatrix}:A\rightarrow B\oplus I$ with $i$ as the injective envelope of $A$. Then there is a triangle as the diagram below.
 
@@ -1015,7 +1013,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{prop}
 
     \begin{proof}
-        In order to prove the proposition, one must show that the assignment is in fact a functor and that it is additive as well. It suffices to show that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is an additive functor, as it will follow by duality that the there is an additive bifunctor as proposed.
+        In order to prove the proposition, one must show that the assignment is in fact a functor and that it is additive as well. It suffices to show that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is an additive functor, as it will follow by duality that the there is an additive bifunctor as proposed. \\
         
         Suppose that there is a chain map $\chain{f}:\chain{B}\rightarrow\chain{C}$, then $nullHom_{\mathcal{A}}(\chain{A},\_)(\chain{f})=\chain{f}_*$. Let $(\chain{g},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be a null-homotopic chain map. By definition $\chain{f}_*(\chain{g},\chain{\varepsilon})=(\chain{f}\chain{g},f^{\bullet-1}\chain{\varepsilon})$. One may now see that $f^{\bullet-1}\chain{\varepsilon}$ is a homotopy by the following diagram. The commutativity of the lower left square shows the homotopy. It follows by functoriality from the Hom-functor that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is a functor.
         \begin{center}
@@ -1026,7 +1024,7 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
 
-        Lastly, one must show that the functor is additive. This is the same as showing that the assignment $nullHom_{\mathcal{A}}(\chain{A},\_):Hom_{Ch(\mathcal{A})}(\chain{B},\chain{C})\rightarrow Hom_{Ab}(nullHom_{\mathcal{A}}(\chain{A},\chain{B}),nullHom_{\mathcal{A}}(\chain{A},\chain{C}))$ is a group homomorphism. Let $\chain{f},\chain{g}:\chain{B}\rightarrow\chain{C}$ be two chain maps, and $(\chain{h},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$. Then the following equation asserts the additivity:
+        Lastly, one must show that the functor is additive. This is the same as showing that the assignment \\ $nullHom_{\mathcal{A}}(\chain{A},\_):Hom_{Ch(\mathcal{A})}(\chain{B},\chain{C})\rightarrow Hom_{Ab}(nullHom_{\mathcal{A}}(\chain{A},\chain{B}),nullHom_{\mathcal{A}}(\chain{A},\chain{C}))$ is a group homomorphism. Let $\chain{f},\chain{g}:\chain{B}\rightarrow\chain{C}$ be two chain maps, and $(\chain{h},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$. Then the following equation asserts the additivity:
         \begin{align*}
             (\chain{f}+\chain{g})_*(\chain{h},\chain{\varepsilon})\\
             =((\chain{f}+\chain{g})\chain{h},((\chain{f}+\chain{g})[-1])\chain{\varepsilon})\\
@@ -1065,7 +1063,7 @@ I can maybe write some of the history of the development of the idea of exact ca
     \end{definition}
 
     \begin{example}
-        \todo[color = green]{Dette ser ikke pent ut} Let $\chain{A}$ be a complex, then $cone(id_{\chain{A}})$ is contractible. That is \\$(\begin{pmatrix} \chain{id_{\chain{A}}} & 0 \\ 0 & \chain{id_{\chain{A}}}[1]\end{pmatrix},\begin{pmatrix} 0 & 0 \\ \chain{id_{\chain{A}}} & 0 \end{pmatrix}):nullHom_{\mathcal{A}}(cone(\chain{id_{\chain{A}}}), cone(\chain{id_{\chain{A}}}))$
+        Let $\chain{A}$ be a complex, then $cone(id_{\chain{A}})$ is contractible. That is \\$\bigg(\begin{pmatrix} \chain{id_{\chain{A}}} & 0 \\ 0 & \chain{id_{\chain{A}}}[1]\end{pmatrix},\begin{pmatrix} 0 & 0 \\ \chain{id_{\chain{A}}} & 0 \end{pmatrix}\bigg):nullHom_{\mathcal{A}}(cone(\chain{id_{\chain{A}}}), cone(\chain{id_{\chain{A}}}))$
     \end{example}
 
     \begin{prop}
@@ -1187,11 +1185,9 @@ I can maybe write some of the history of the development of the idea of exact ca
             \end{tikzcd}
         \end{center}
         
-        It is enough to show that every identity cone is projective, to show that every contractible is projective. This is shown if the functor \\$Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\_):Ch(\mathcal{A})\rightarrow Ab$ is an exact functor, which is the same as saying that every conflation gets mapped to short-exact sequences.
-        Suppose further that there is a morphism $\chain{p}:cone(\chain{\beta})\rightarrow\chain{B}[1]$, where $\chain{\beta}:\chain{B}\rightarrow\chain{C}$. To show exactness, one must show that $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})$ is a surjection.
+        It is enough to show that every identity cone is projective, to show that every contractible is projective. This is shown if the functor $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\_):Ch(\mathcal{A})\rightarrow Ab$ is an exact functor, which is the same as saying that every conflation gets mapped to short-exact sequences. Suppose further that there is a morphism $\chain{p}:cone(\chain{\beta})\rightarrow\chain{B}[1]$, where $\chain{\beta}:\chain{B}\rightarrow\chain{C}$. To show exactness, one must show that $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})$ is a surjection. \\
 
-
-        \todo[color = green]{Dette avsnittet ser ikke pent ut}First observe that there is an isomorphism $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})\simeq nullHom_{\mathcal{A}}(\chain{P},\chain{p})$. Suppose that $(\chain{f},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{P},\chain{B})$. Then there is a null-homotopic chain map $(\chain{f'},\chain{\varepsilon '})=(\begin{pmatrix} -\beta^{\bullet - 1}\chain{\varepsilon} \\ \chain{f} \end{pmatrix}, \begin{pmatrix} 0 \\ (-1)^{\bullet + 1}\chain{\varepsilon} \end{pmatrix}):nullHom_{\mathcal{A}}(\chain{P},cone(\chain{\beta})[-1])$ such that \\$\chain{p}_*(\chain{f'},\chain{\varepsilon '})=(\chain{f},\chain{\varepsilon})$. A diagram chase suffices to check that this is a chain map and the the proposed homotopy is in fact a homotopy.
+        First observe that there is an isomorphism $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})\simeq nullHom_{\mathcal{A}}(\chain{P},\chain{p})$. Suppose that $(\chain{f},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{P},\chain{B})$. Then there is a null-homotopic chain map $(\chain{f'},\chain{\varepsilon '})=(\begin{pmatrix} -\beta^{\bullet - 1}\chain{\varepsilon} \\ \chain{f} \end{pmatrix}, \begin{pmatrix} 0 \\ (-1)^{\bullet + 1}\chain{\varepsilon} \end{pmatrix}):nullHom_{\mathcal{A}}(\chain{P},cone(\chain{\beta})[-1])$ such that \\ $\chain{p}_*(\chain{f'},\chain{\varepsilon '})=(\chain{f},\chain{\varepsilon})$. A diagram chase suffices to check that this is a chain map and the the proposed homotopy is in fact a homotopy.
     \end{proof}
 
     \begin{corollary}

@@ -347,7 +347,7 @@
     \end{definition}
 
     \begin{remark}
-        Some literatures refer to triangulated functors as exact functors. \todo[color = red]{Trenger kilder her}
+        Some literatures refer to triangulated functors as exact functors.
     \end{remark}
     % Homological functor
     \begin{definition}
@@ -431,9 +431,9 @@
                 \mathcal{T}(C',A') \ar{r}{a'_*} & \mathcal{T}(C',B') \ar{r}{b'_*} & \mathcal{T}(C',C') \ar{r}{c'_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}A') \ar{r}{\Sigma_{\mathcal{T}}a_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}B)
             \end{tikzcd}
         \end{center}
-        By the 5-lemma, $(\phi_C)_*$ is an isomorphisms, i.e. $(\phi_C)_*$ is both mono and epi. Thus for some unique $s$ in $\mathcal{T}(C',C)$, ${\phi_C}_*(s)=id_{C'}$. 
+        By the 5-lemma, $(\phi_C)_*$ is an isomorphisms, i.e. $(\phi_C)_*$ is both mono and epi. Thus for some unique $s$ in $\mathcal{T}(C',C)$, ${\phi_C}_*(s)=id_{C'}$. \\ 
 
-        By applying the functor $\mathcal{T}(\_,C)$ yields the diagram:
+        Applying the functor $\mathcal{T}(\_,C)$ yields the diagram:
         \begin{center}
             \begin{tikzcd}
                 \mathcal{T}(A,C) & \mathcal{T}(B,C) \ar{l}{a^*} & \mathcal{T}(C,C) \ar{l}{b^*} & \mathcal{T}(\Sigma_{\mathcal{T}}A,C) \ar{l}{c^*} & \mathcal{T}(\Sigma_{\mathcal{T}}B,C) \ar{l}{\Sigma_{\mathcal{T}}a^*} \\
@@ -480,7 +480,7 @@
     \end{lemma}
 
     \begin{proof}
-        The proof has two parts. First assume that $a$ is split mono, then prove that $b$ is split epi and $c = 0$. By duality, it is then known that $b$ being split epi implies that $a$ is split mono and $c = 0$. The final part is to assume that $c = 0$, and prove either $a$ is split mono or $b$ is split epi.
+        The proof has two parts. First assume that $a$ is split mono, then prove that $b$ is split epi and $c = 0$. By duality, it is then known that $b$ being split epi implies that $a$ is split mono and $c = 0$. The final part is to assume that $c = 0$, and prove either $a$ is split mono or $b$ is split epi. \\
 
         Assume that $a$ is split mono, then there exist an $a^{-1}$ such that $id_A = a^{-1}a$. Let $M:\mathcal{T}$ be any object, then there is a long exact sequence.
         \begin{center}
@@ -553,7 +553,7 @@
     \end{lemma}
 
     \begin{proof}
-        $1. \implies 2.$ The composition $b'ga = ba = 0$ shows the claim. 
+        $1. \implies 2.$ The composition $b'ga = ba = 0$ shows the claim. \\
         
         $2. \implies 1.$ The existence of $f$ and $h$ are will be seen to be a consequence of the long exact sequence of the bottom triangle at the covariant functor represented by $A$. 
         \begin{center}
@@ -1013,8 +1013,6 @@
     %     \todo[color = pink]{Fjerne dette?} Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
     % \end{prototype}
 
-    Whenever one localizes a category over a multiplicative set, the morphisms in the localized category will be defined with fractions. This is to say that 
-
     As with the definition of localization of rings, localization of a category $\mathcal{C}$ at a multiplicative system will be defined with fractions. That is the morphisms will be "fractions" of morphisms. These morphisms will be described as diagrams over spans for right multiplicative systems (or dually cospans for left multiplicative systems), together with an equivalence relation.
 
     \begin{definition}
@@ -1147,7 +1145,7 @@
     \end{prop}
 
     \begin{proof}
-        In order to prove that the composite is well-defined one must prove that the composite is independent from the different options of morphisms provided by the right Ore condition, and that it is therefore independent from the choice of right fraction. There will only be presented a proof for that the choice of Ore maps is independent, as the other other case is analogous.
+        In order to prove that the composite is well-defined one must prove that the composite is independent from the different options of morphisms provided by the right Ore condition, and that it is therefore independent from the choice of right fraction. There will only be presented a proof for that the choice of Ore maps is independent, as the other other case is analogous. \\
 
         Suppose there are two right fractions $fs^{-1}$ and $gt^{-1}$ as indicated by the diagrams.
 
@@ -1285,7 +1283,7 @@
         \end{tikzcd}
     \end{center}
 
-    This category has a forgetful functor which associate each morphism to its domain $\delta_{A} : \mathcal{C}|_{S}\downarrow A \rightarrow \mathcal{C}$, and forgets the commutativity of the arrows. Choose a morphism $s : X \rightarrow A$ from $\mathcal{C}|_{S}\downarrow A$, then a morphism $g:\mathcal{C}(\delta_{A}(s),B)$ may be regarded as a right fraction $gs^{-1}$. In order to describe every possible right fraction from $A$ to $B$, consider the following colimit $\varinjlim\mathcal{C}(\delta_{A}(\_),B)$ over the category $\mathcal{C}|_{S}\downarrow A$. Since $S$ is a right multiplicative system it follows that $\mathcal{C}|_{S}$ is a cofiltered category, and the colimit is therefore filtered. As the colimit is filtered, it is created from the coproduct modulo an equivalence relation $\sim$. 
+    This category has a forgetful functor which associate each morphism to its domain $\delta_{A} : \mathcal{C}|_{S}\downarrow A \rightarrow \mathcal{C}$, and forgets the commutativity of the arrows. Choose a morphism $s : X \rightarrow A$ from $\mathcal{C}|_{S}\downarrow A$, then a morphism $g:\mathcal{C}(\delta_{A}(s),B)$ may be regarded as a right fraction $gs^{-1}$. In order to describe every possible right fraction from $A$ to $B$, consider the following colimit $\varinjlim\mathcal{C}(\delta_{A}(\_),B)$ over the category $\mathcal{C}|_{S}\downarrow A$. Since $S$ is a right multiplicative system it follows that $\mathcal{C}|_{S}$ is a cofiltered category, and the colimit is therefore filtered. As the colimit is filtered, it is created from the coproduct modulo an equivalence relation $\sim$. \\
     
     The relation $\sim$ can be described with maps from $S$. Suppose that there are two morphisms $f : \mathcal{C}(\delta_A(s),B)$ and $g : \mathcal{C}(\delta_A(t),B)$, and that there exists some morphism $\sigma : \mathcal{C}|_{S}(s,t)$. The induced morphism $\sigma^* : \mathcal{C}(\delta_A(t),B) \rightarrow \mathcal{C}(\delta_A(s),B)$ defines the relation, where $f \sim t$ if $f = g\sigma$. Observe that this relation is not an equivalence relation, so $\sim$ has to be the smallest equivalence relation generated by such relations. The smallest such equivalence relation may be seen to consist of zig-zags between morphisms in $S$, connecting two morphisms. Luckily, the right Ore condition simplifies this picture, reducing to at most 1 zig-zag. To illustrate with 2 zig-zags, consider two maps $f : \mathcal{C}(\delta_A(s),B)$ and $g : \mathcal{C}(\delta_A(t),B)$, where there are zig-zag morphisms $\sigma : s \rightarrow v$, $\tau : u \rightarrow v$ and $\upsilon : u \rightarrow t$ such that the diagram below commute, relating $f$ and $g$, i.e. $fs^{-1}=gt^{-1}$. It is evident that this equivalence relation is exactly the same as stated earlier in this section.
 
@@ -1298,7 +1296,7 @@
         \end{tikzcd}
     \end{center}
 
-    If $S$ is instead a left multiplicative system one would have to consider the colimit $\varinjlim \mathcal{C}(A,\gamma_B(\_))$ over the category $B\downarrow \mathcal{C}|_{S}$. Here $\gamma_B$ is the codomain functor, and $B\downarrow \mathcal{C}|_{S}$ may be seen to be filtered as $S$ is left multiplicative. The discussion would be dual to the right multiplicative case.
+    If $S$ is instead a left multiplicative system one would have to consider the colimit $\varinjlim \mathcal{C}(A,\gamma_B(\_))$ over the category $B\downarrow \mathcal{C}|_{S}$. Here $\gamma_B$ is the codomain functor, and $B\downarrow \mathcal{C}|_{S}$ may be seen to be filtered as $S$ is left multiplicative. The discussion would be dual to the right multiplicative case. \\
  
     The localization of a category exists whenever each hom-set is in fact a set. That is to say that $\mathfrak{r}S^{-1}\mathcal{C}(A,B)\simeq\varinjlim\mathcal{C}(\delta_A(\_),B)$ is a Set, which is to ask for the colimit to exist for every $A$ and $B$. One assumption which does this is to assume that the colimit is equivalent to a smaller colimit.
 
@@ -1396,7 +1394,7 @@
     \end{prop}
 
     \begin{proof}
-        From the previous propositions it is known that $q0$ is the zero object and that $q(A\times B)\simeq qA\times qB$. By proving that there is an addition induced by $\mathcal{A}$ and that $q$ preserves this addition one obtains that the product is the biproduct induced by the maps in $\mathcal{A}$.
+        From the previous propositions it is known that $q0$ is the zero object and that $q(A\times B)\simeq qA\times qB$. By proving that there is an addition induced by $\mathcal{A}$ and that $q$ preserves this addition one obtains that the product is the biproduct induced by the maps in $\mathcal{A}$. \\
 
         Suppose that there are fractions $fs^{-1}, gt^{-1}:S^{-1}\mathcal{C}(A,B)$. Define their addition by using the right Ore condition to find new morphisms $f'$, $g'$ and $u$ such that $fs^{-1} = f'u^{-1}$ and $gt^{-1} = g'u^{-1}$.
         \begin{equation*}
@@ -1413,7 +1411,7 @@
                 & B
             \end{tikzcd}
         \end{center}
-        The line to the bottom represents $\bar{\bar{f}}$ and the line to the right represents $f''$. Using left cancellation on the common morphism $s$ into $A$ one obtains the morphism $p$, which relates the two fractions and make the sum go to zero.
+        The line to the bottom represents $\bar{\bar{f}}$ and the line to the right represents $f''$. Using left cancellation on the common morphism $s$ into $A$ one obtains the morphism $p$, which relates the two fractions and make the sum go to zero. \\
 
         It remains to show that $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ respects addition. Assume that $f,g:\mathcal{C}(X,Y)$, then
         \begin{equation*}

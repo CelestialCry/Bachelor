@@ -27,13 +27,13 @@
 }
 
 % Title Page
-\DeclareOption{titlepage}{
-    \AtBeginDocument{
-        \begin{titlepage}
-            \maketitle
-        \end{titlepage}
-    }
-}
+% \DeclareOption{titlepage}{
+%     \AtBeginDocument{
+%         \begin{titlepage}
+%             \maketitle
+%         \end{titlepage}
+%     }
+% }
 
 % British
 \newif\ifcapitalize
@@ -191,7 +191,7 @@
 %% CUSTOMISATION
 
 % Page geometry and spacing (same for even and odd pages)
-\geometry{left=4cm, right=4cm, top=4cm, bottom=4.5cm}
+\geometry{left=3.4cm, right=3.4cm, top=4cm, bottom=4.5cm}
 \frenchspacing
 
 % Roman page numbers from the beginning of the document
