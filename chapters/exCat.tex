@@ -2,7 +2,7 @@
 
 \section{Definitions and First Properties}
 
-    This section will focus on defining what an exact category is and its elementary properties. The main result from this section is proposition 2.1.3. This proposition is similar to the characterization theorem of push-outs and pullbacks in abelian categories. Another important result is the obscure axiom, this will be proved and hopefully seen to be not as obscure as its name suggests. Lastly, variants of some homological diagram lemmata, like 5-lemma, will also be proved for exact categories. \\
+    This section will focus on defining what an exact category is and its elementary properties. The main result from this section is proposition 2.1.3. This proposition is similar to the characterization theorem of push-outs and pullbacks in abelian categories. Another important result is the obscure axiom, this will be proved and hopefully seen to be not as obscure as its name suggests. Lastly, variants of some homological diagram lemmata, like 5-lemma, will also be proved for exact categories. This section is based on \cite{buhler}. \\
 
     To start with exact categories one should first take a look towards the abelian categories. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
 
@@ -134,7 +134,7 @@
     \end{corollary}
 
     \begin{proof}
-        In a category with an initial object, the coproduct can be thought of as the push-out with the initial in the upper right corner. This can be assembled into push-out (1).
+        In a category with an initial object, the coproduct can be thought of as the push-out with the initial in the upper left corner. This can be assembled into the push-out (1).
         By the lemma the zero morphisms are inflations, asserting that $i$ and $i'$ are inflations by (QE2). Thus there are conflations $(i,p)$ and $(i',p')$.
 
         \begin{center}
@@ -428,7 +428,7 @@
         \end{tikzcd}
     \end{center}
 
-    The classical diagram lemmata which will be proven are the 5-lemma and the 3x3-lemma. In this context, they will be dubbed the short five lemma and Noether's isomorphism lemma respectively. To prove the short 5 lemma, a lemma is needed.
+    The classical diagram lemmata which will be proven are the 5-lemma and the 3x3-lemma. In this context, they will be dubbed the short five lemma and Noether's isomorphism lemma respectively. To prove the short 5-lemma, a lemma is needed.
 
     %Add the classical homological diagram lemmata down here
     \begin{lemma}
@@ -468,7 +468,7 @@
     \end{proof}
 
     \begin{corollary}
-        \textbf{The short five lemma}. Suppose that there is a morphism of conflations $(f,g,h)$ as above. If $f$ and $h$ are isomorphisms, then $g$ is an isomorphism.
+        \textbf{The short 5-lemma}. Suppose that there is a morphism of conflations $(f,g,h)$ as above. If $f$ and $h$ are isomorphisms, then $g$ is an isomorphism.
     \end{corollary}
 
     \begin{proof}
@@ -499,7 +499,7 @@
 
 \section{The Stable Frobenius Category}
 
-    This section aims to introduce Frobenius categories and show that their stabilization is triangulated. Categories that can be realized as stable Frobenius categories are called algebraic triangulated categories. To define this construction, one must define projective and injective objects in an exact category. It will then be shown that the stable Frobenius category is a quotient category by injective objects. One of the important ideas from this section is that conflations from the Frobenius category will be the class generating the triangles in the stable Frobenius category.
+    This section aims to introduce Frobenius categories and show that their stabilization is triangulated. Categories that can be realized as stable Frobenius categories are called algebraic triangulated categories. To define this construction, one must define projective and injective objects in an exact category. It will then be shown that the stable Frobenius category is a quotient category by injective objects. One of the important ideas from this section is that conflations from the Frobenius category will be the class generating the triangles in the stable Frobenius category. This section is based on \cite{buhler} and \cite{happel}.
 
     \begin{definition}
         Let $(\mathcal{A},\mathcal{E})$ and $(\mathcal{A}',\mathcal{E}')$ be two exact categories. A functor $F:(\mathcal{A},\mathcal{E})\rightarrow (\mathcal{A}',\mathcal{E}')$ is called exact if it is additive and $F(\mathcal{E})\subseteq \mathcal{E}'$. That is to say that conflations gets mapped to conflations. % \todo[color = pink]{Fjern dette?} One speaks of a reflective exact functor for whenever the pair $(Fp,Fq)$ is a conflation, then $(p,q)$ is a conflation.
@@ -589,7 +589,7 @@
     \end{proof}
 
     \begin{remark}
-        Any functor gives rise to a congruence relation. That is, if $F:\mathcal{C}\rightarrow \mathcal{D}$ is a functor, then there is a congruence relation $\sim$ defined as follows: $\forall A,B:\mathcal{C}$ and $f,g:A\rightarrow B$, we define $f\sim_{A,B}g \iff Ff=Fg$. This is a congruence as equality within $\mathcal{D}$ gives rise to an equivalence relation, and functoriality gives the congruence.
+        Any functor gives rise to a congruence relation. That is, if $F:\mathcal{C}\rightarrow \mathcal{D}$ is a functor, then there is a congruence relation $\sim$ defined as follows: $\forall A,B:\mathcal{C}$ and $f,g:A\rightarrow B$, one define $f\sim_{A,B}g \iff Ff=Fg$. This is a congruence as equality within $\mathcal{D}$ gives rise to an equivalence relation, and functoriality gives the congruence.
     \end{remark}
 
     \begin{remark}
@@ -751,7 +751,7 @@
                 I(X) \ar[equal]{r}{} & I(X)
             \end{tikzcd}
         \end{center}
-        Thus $(\underline{X},\underline{X},\underline{0},id_{\underline{X}},\underline{0},\underline{0})$ is a standard triangle.
+        Thus $(\underline{X},\underline{X},\underline{0},id_{\underline{X}},\underline{0},\underline{0})$ is a standard triangle. \\
 
         % (TR3) Let $(\underline{A},\underline{B},\underline{C},\underline{a},\underline{b},\underline{c})$ and $(\underline{A}',\underline{B}',\underline{C}',\underline{a}',\underline{b}',\underline{c}')$ be two standard triangles. Suppose that there are two morphisms $\phi_A:A\rightarrow A'$ and $\phi_B:B\rightarrow B'$ such that $\underline{a'\phi_A}=\underline{\phi_B a}$. That means there is a morphism $\alpha:I(A)\rightarrow B'$ such that $a'\phi_A-\phi_B a = \alpha i(A)$. There is a map $I(\phi_A):I(A)\rightarrow I(A')$ induced by the map $i(A')\phi_A:A\rightarrow I(A')$, such that $I(\phi_A)i(A)=i(A')\phi_A$ and \rotatebox[origin=c]{180}{$\Omega$}$\phi_Ap(A)=p(A')I(\phi_A)$. By calculating $b'\phi_B\alpha=b'a'\phi_A-b'\alpha i(A) =\widetilde{a'}i(A')\phi_A-b'\alpha i(A)=\widetilde{a'}I(\phi_A)i(A)-b'\alpha i(A)=(\widetilde{a'}I(\phi_A)-b'\alpha)i(A)$. As $C$ is a push-out there exists a $\phi_C:C\rightarrow C'$ such that $\phi_C b = b'\phi_B$ and $\phi_C\widetilde{a}=\widetilde{a'}I(\phi_A)-b'\alpha$.
         
@@ -790,7 +790,7 @@
             \end{tikzcd}
         \end{center}
 
-        Thus $(\underline{Y},\underline{Z},$\underline{\rotatebox[origin=c]{180}{$\Omega$}$X$}$,\underline{y},\underline{z},-$\underline{\rotatebox[origin=c]{180}{$\Omega$}$x$}$)$ is a standard triangle.
+        Thus $(\underline{Y},\underline{Z},$\underline{\rotatebox[origin=c]{180}{$\Omega$}$X$}$,\underline{y},\underline{z},-$\underline{\rotatebox[origin=c]{180}{$\Omega$}$x$}$)$ is a standard triangle. \\
 
         (TR4) Suppose that there are three standard triangles where $\nu\upsilon=\omega$.
         \begin{center}
@@ -872,13 +872,13 @@
 
 \section{Self-injective Algebras}
 
-    The first example of a triangulated category is going to be derived from finite-dimensional artin algebras. More specifically, let $\Lambda$ be a self-injective finite-dimensional artin $R$-algebra; that is $_{\Lambda}\Lambda$ is injective as left $\Lambda$-module, then the finitely generated projective objects coincide with the finitely generated injective objects.
+    The first example of a triangulated category is going to be derived from finite-dimensional artin algebras. More specifically, let $\Lambda$ be a self-injective finite-dimensional artin $R$-algebra; that is $_{\Lambda}\Lambda$ is injective as left $\Lambda$-module, then the finitely generated projective objects coincide with the finitely generated injective objects. This section is based on \cite{Rei95} and \cite{Kra12}.
 
     \begin{prop}
         If $\Lambda$ is a self-injective finite-dimensional artin $R$-algebra, then $mod_{\Lambda}$ is a Frobenius category.
     \end{prop}
 
-    To prove this statement we will need the following propositions.
+    To prove this statement one will need the following propositions.
 
     \begin{lemma}
         The category $mod_{\Lambda}$ has enough projectives
@@ -913,9 +913,9 @@
         \end{tikzcd}
     \end{center}
 
-    \begin{prop}
-        Let $G$ be a group and $R$ any commutative artin ring, then the group ring $R[G]$ is self-injective.
-    \end{prop}
+    % \begin{prop}
+    %     Let $G$ be a group and $R$ any commutative artin ring, then the group ring $R[G]$ is self-injective.
+    % \end{prop}
 
     % \begin{proof}
     %     Do I even want this?
@@ -926,10 +926,10 @@
     \end{prop}
 
     \begin{proof}
-        As $K[x]/(x^n)$ modules, there is only one indecomposable projective module up to isomorphism, that is $K[x]/(x^n)$. Since $K[x]/(x^n)$ is commutative, the duality functor is an automorphism of $mod_{K[x]/(x^n)}$, thus $Hom_K(K[x]/(x^n),K)$ is the indecomposable injective $K[x]/(x^n)$ module. As the duality functor preserves length the modules have equal length. By finding a monomorphism $i:K[x]/(x^n)\rightarrow Hom_K(K[x]/(x^n),K)$ we have that it is an isomorphism as the cokernel has length $0$. The socle $soc(K[x]/x^n)$ is the simple module $K$, this means that the injective envelope of $K[x]/(x^n)$ is indecomposable, thus it is in the same isomorphism class as $Hom_K(K[x]/(x^n),K)$, proving that there is a monomorphism as stated.
+        As $K[x]/(x^n)$ modules, there is only one indecomposable projective module up to isomorphism, that is $K[x]/(x^n)$. Since $K[x]/(x^n)$ is commutative, the duality functor is an automorphism of $mod_{K[x]/(x^n)}$, thus $Hom_K(K[x]/(x^n),K)$ is the indecomposable injective $K[x]/(x^n)$ module. As the duality functor preserves length the modules have equal length. By finding a monomorphism $i:K[x]/(x^n)\rightarrow Hom_K(K[x]/(x^n),K)$ one have that it is an isomorphism as the cokernel has length $0$. The socle $soc(K[x]/x^n)$ is the simple module $K$, this means that the injective envelope of $K[x]/(x^n)$ is indecomposable, thus it is in the same isomorphism class as $Hom_K(K[x]/(x^n),K)$, proving that there is a monomorphism as stated.
     \end{proof}
 
-    In this particular case, the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations! This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these. \\
+    In this particular case, the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations. This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these. \\
 
     Observe that every submodule of $K[x]/(x^n)$ is indecomposable, these make up the class of the indecomposable modules up to isomorphism. Further observe that the cosyzygy of any submodule is \upside{$\Omega$}$(x^k)/(x^n)\simeq (x^{n-k})/(x^n)$. The repetition of the triangles can be seen as the natural isomorphism \upside{$\Omega$}$^2(x^k)/(x^n)\simeq (x^{n-(n-k)})/(x^n) = (x^k)/(x^n)$. \\
 

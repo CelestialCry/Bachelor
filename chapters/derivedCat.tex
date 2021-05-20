@@ -77,7 +77,7 @@
         For an exact category $(\mathcal{A},\mathcal{E})$ the following are equivalent:
         \begin{enumerate}
             \item $\mathcal{A}$ is weakly idempotent complete
-            \item Let $f: A\rightarrow B$ and $g: B\rightarrow C$ be two morphisms in $\mathcal{A}$. Then if $gf:A\rightarrow C$ is a deflation, then $g$ is.
+            \item Let $f: A\rightarrow B$ and $g: B\rightarrow C$ be two morphisms in $\mathcal{A}$. Then if $gf:A\rightarrow C$ is a deflation, then $g$ is a deflation as well.
         \end{enumerate}
     \end{prop}
 
@@ -169,6 +169,8 @@
     More details and examples of Krull-Schmidt categories may be found in Henning Krause's notes (\cite{Kra12}).
 
 \section{Normal Morphisms and Long Exact Sequences}
+
+    For many of the purposes to encounter, a notion of long exact sequence is needed. This section aim to develop the definitions needed to talk about exactness, as well as show how well it is reflected by the classical lemmata from homological algebra. This section is based on \cite{buhler}, an every unproven result may be found there.
     
     \begin{definition}
         Let $(\mathcal{A},\mathcal{E})$ be an exact category. A morphism $f:A\rightarrow B$ is called normal if it has a deflation-inflation factorization. They will be drawn as in the following diagram.
@@ -305,7 +307,7 @@
 
 \section{Homology and Derived Categories}
 
-    This section aims to provide a construction for derived categories and discuss the underlying assumptions. In the case where $\mathcal{A}$ is abelian, the derived category is constructed by localizing at quasi-isomorphisms. However, in the context of exact categories, how much of the theory transfers? For abelian groups, homology is defined to be the quotient of the kernel of a map by the image of the preceding map. For exact categories, the discussion is a bit more complex. Consider the usual construction of homology, when does the homology exist?.
+    This section aims to provide a construction for derived categories and discuss the underlying assumptions. Every result in this section may be found in \cite{buhler}. In the case where $\mathcal{A}$ is abelian, the derived category is constructed by localizing at quasi-isomorphisms. However, in the context of exact categories, how much of the theory transfers? For abelian groups, homology is defined to be the quotient of the kernel of a map by the image of the preceding map. For exact categories, the discussion is a bit more complex. Consider the usual construction of homology, when does the homology exist?.
 
     \begin{center}
         \begin{tikzcd}
@@ -452,7 +454,7 @@
             \end{tikzcd}
         \end{center}
 
-        To answer the question about derived functors, this thesis will follow Deligne's approach on how to construct right derived functors. Suppose there is an object $A:\mathcal{T}/\mathcal{M}$ and a functor $F:\mathcal{T}\rightarrow\mathcal{S}$, then let $\textbf{r}$$F(\_,A):\mathcal{S}^{op}\rightarrow Ab$ be a contravariant functor sending objects $B:\mathcal{S}$ to groups of semi left fractions $(f:\mathcal{S}(B,FC)|g:\mathcal{T}(A,C))$ such that $g:Mor_{\mathcal{M}}$. The caveat is that the functor sends objects of $\mathcal{T}/\mathcal{M}$ and $\mathcal{S}$ to arrows in $\mathcal{T}$ and $\mathcal{S}$. This is well-defined since $q(A)=A$ by definition and no choice of arrows need to be specified by the functor. Thus the localization is hidden from the functor at the element level. To illustrate how these elements look like the semi left fraction is to the left, and the equivalence relation on this set is given by the diagram on the right. In the same manner, as before, blue arrows denote arrows located in $Mor_{S}$.
+        To answer the question about derived functors, this thesis will follow Deligne's approach on how to construct right derived functors. Suppose there is an object $A:\mathcal{T}/\mathcal{M}$ and a functor $F:\mathcal{T}\rightarrow\mathcal{S}$, then let $\textbf{r}$$F(\_,A):\mathcal{S}^{op}\rightarrow Ab$ be a contravariant functor sending objects $B:\mathcal{S}$ to groups of semi left fractions $(f:\mathcal{S}(B,FC)|g:\mathcal{T}(A,C))$ such that $g:Mor_{\mathcal{M}}$. The caveat is that the functor sends objects of $\mathcal{T}/\mathcal{M}$ and $\mathcal{S}$ to arrows in $\mathcal{T}$ and $\mathcal{S}$. This is well-defined since $q(A)=A$ by definition and no choice of arrows need to be specified by the functor. Thus the localization is hidden from the functor at the element level. To illustrate how these elements look like the semi left fraction is to the left, and the equivalence relation on this set is given by the diagram on the right. In the same manner, as before, blue arrows denote arrows located in $Mor_{\mathcal{M}}$.
 
         \begin{center}
             \begin{tikzcd}
@@ -505,7 +507,7 @@
 
     \subsection{Auslander-Reiten Triangles}
 
-        For the rest of this thesis it will be assumed that $\mathcal{A}$ is an additive $\mathbb{K}$-linear category, that is it is enriched over $Mod \mathbb{K}$, and it is also Krull-Schmidt. With these assumptions, one may be able to define a special set of triangles whenever $\mathcal{A}$ has a triangulation. As $\mathcal{A}$ is Krull-Schmidt, the notion of indecomposable objects exists, which motivates the definition of triangles which acts as indecomposable triangles.
+        Let $\mathbb{K}$ be a field. For the rest of this thesis it will be assumed that $\mathcal{A}$ is an additive $\mathbb{K}$-linear category, that is it is enriched over $Mod \mathbb{K}$, and it is also Krull-Schmidt. With these assumptions, one may be able to define a special set of triangles whenever $\mathcal{A}$ has a triangulation. As $\mathcal{A}$ is Krull-Schmidt, the notion of indecomposable objects exists, which motivates the definition of triangles which acts as indecomposable triangles.
 
         \begin{definition}[Auslander-Reiten triangles]
             A triangle $(X,Y,Z,u,v,w)$ is called an Auslander-Reiten triangle if it satisfies the following conditions:
