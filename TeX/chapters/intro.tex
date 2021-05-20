@@ -1,0 +1,98 @@
+\chapter*{Abstract}
+    This thesis aims to give an exposition to the theory on triangulated categories. The main goals are to show that the Verdier quotient, the homotopy category, and the derived category are triangulated.
+
+\chapter*{Sammendrag}
+    Denne bacheloroppgaven har som mål i å gi en presentasjon av teorien til triangulerte kategorier. Hovedmålet er å vise at Verdier kvotientent, homotopikategorien og den deriverte kategorien er triangulert.
+
+\chapter*{Introduction}
+
+%Where did triangulated come from? Algebraic vs. Topological
+    Triangulated categories were defined by Puppe and Verdier independently, as described by \cite{Kra21} and \cite{neeman}. Puppe's definition was motivated by the homotopy category of Spectra, but he missed the crucial Octahedron axiom. However, when Verdier introduced triangulated categories and derived categories in his Ph.D. thesis published in 1967, he noticed the importance of the Octahedron axiom. As it stands, there are different ways of defining a triangulated category. For instance, Neeman showed that the octahedron axiom is equivalent to having a choice when applying the morphism axiom, such that the mapping cone becomes a triangle itself. Even though the Octahedron axiom is crucial for showing many of the important results, it is not known of a pre-triangulated category that is not triangulated. \\
+    
+    In practice, there are two different types of triangulated categories, topological and algebraic. A triangulated category is said to be topological if it is the stable category of a model category, and likewise algebraic if it is the stable category of a Frobenius category. In definition, these types of categories are not similar, but in practice, their differences are quite subtle. This thesis will solely focus on algebraic triangulated categories. \\
+
+%How is this text structured?
+    This thesis is split into three parts. The first parts aim to give an exposition to the classical theory of triangulated categories. Part two aims to introduce exact categories and show that the stable Frobenius category is triangulated, among with giving examples of triangulated categories. The third part aims to introduce the derived category of the homotopy category and give an exposition to some related topics. \\
+
+    This thesis assumes that elementary category theory, abelian categories, and derived categories of abelian categories are known. It is not needed to know some representation theory of artin rings, but it is needed for the section on self-injective algebras.
+        
+\chapter*{Notation}
+    Some of the notation used throughout this text has no explanation before they are used. This section will cover the preliminary notation which is used. NB! Colors are used in diagrams throughout the text, these should never be necessary to read the diagram. Their purpose is to give visual aids to mentally sort the arrows.
+    \begin{itemize}
+        \item \emph{Containment} $\in$ \\
+        Instead of using the symbol $\in$, in this text $:$ marks containment. That is $A\in\mathcal{C} \iff A:\mathcal{C}$.
+        \item \emph{Hom-set} \\
+        For a category $\mathcal{C}$, the set of morphisms between objects $A,B:\mathcal{C}$ is denoted as $\mathcal{C}(A,B)$. There is one exception to this rule, and that is if for some ring $R$ $\mathcal{C}=ModR$, then $\mathcal{C}(A,B)=Hom_R(A,B)$.
+        \item \emph{Commutative diagrams} \\
+        Whenever a commutative diagram is drawn, it should be understood to be commutative unless stated otherwise. Due to that, the name triangle is being used, every commutative triangle should be called a commutative simplex. A diagram is called a commutative square if it has four corners, and it is called a commutative rectangle if it is a combination of more commutative squares.
+        \begin{center}
+            \begin{tikzcd}[row sep=small]
+                \underline{Simplex} \\
+                A \ar{r}{} \ar{dd}{} & B \ar{ldd}{} \\
+                \textcolor{white}{.} \\
+                C
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small]
+                \underline{Square} \\
+                A \ar{r}{} \ar{dd}{} & B \ar{dd}{} \\
+                \textcolor{white}{.} \\
+                C \ar{r}{} & D
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small]
+                & \underline{Rectangle} \\
+                A \ar{r}{} \ar{dd}{} & B \ar{dd}{} \ar{r}{} & E \ar{dd}{} \\
+                \textcolor{white}{.} \\
+                C \ar{r}{} & D \ar{r}{} & F
+            \end{tikzcd}
+        \end{center}
+        To denote that a square or a rectangle is a push-out or pullback the symbols $\lrcorner$ and $\ulcorner$ are used respectively. To illustrate how they are used, if $\lrcorner$ is on the inside of a square it says that the square is a push-out. If it is on the outside of a rectangle, it says that the outer rectangle is a push-out.
+        \begin{center}
+            \begin{tikzcd}[row sep=small]
+                \underline{Square} \\
+                A \ar{r}{} \ar{dd}{} \ar[phantom]{rdd}[very near end]{\lrcorner} & B \ar{dd}{} \\
+                \textcolor{white}{.} \\
+                C \ar{r}{} & D
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small]
+                & \underline{Rectangle} \\
+                A \ar{r}{} \ar{dd}{} & B \ar{dd}{} \ar{r}{} & E \ar{dd} \ar[phantom, xshift = 1.5ex]{dd}[very near end]{\lrcorner} \\
+                \textcolor{white}{.} \\
+                C \ar{r}{} & D \ar{r}{} & F
+            \end{tikzcd}
+        \end{center}
+        \item \emph{Comma category} $\downarrow$ \\
+        As described in \cite{Mac71}, there is a category called the comma category which has arrows as objects. Given two covariant functors $F:\mathcal{D}\rightarrow\mathcal{C}$ and $G:\mathcal{E}\rightarrow\mathcal{C}$, define the category $F\downarrow G$ to be the category of arrows indexed over $\mathcal{D}$ and $\mathcal{E}$. Let $D,D':\mathcal{D}$, $d:D\rightarrow D'$, $E,E':\mathcal{E}$, $e:E\rightarrow E'$, $f:F(D)\rightarrow G(E)$, and $f:F(D')\rightarrow G(E')$ then the following commutative diagrams can make this definition more precise.
+        \begin{center}
+            \begin{tikzcd}[row sep=small]
+                \underline{Objects} \\
+                F(D) \ar{dd}{f} \\
+                \textcolor{white}{.} \\
+                G(E)
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small]
+                \underline{Morphisms} \\
+                F(D) \ar{dd}{f} \ar{r}{F(d)} & F(D') \ar{dd}{f'} \\
+                \textcolor{white}{.} \\
+                G(E) \ar{r}{G(e)} & G(E')
+            \end{tikzcd}
+        \end{center}
+        Whenever there is a subcategory $\mathcal{C}'\subseteq \mathcal{C}$ with inclusion functor $I:\mathcal{C}'\rightarrow \mathcal{C}$, then the category $\mathcal{C}'\downarrow G$ should be considered as the comma category $I\downarrow G$.
+        \item \emph{Monos, epis, and isomorphisms} \\
+        The following arrows are decorated in this manner.
+        \begin{center}
+            \begin{tikzcd}[row sep=small]
+                \underline{Mono} \\
+                A \ar[tail]{r}{} & B
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small]
+                \underline{Epi} \\
+                A \ar[two heads]{r}{} & B
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small]
+                \underline{Iso} \\
+                A \ar{r}{\simeq} & B
+            \end{tikzcd}
+        \end{center}
+    \end{itemize}
+
+% \clearpage

@@ -1,0 +1,1208 @@
+\chapter{Exact Categories}
+
+\section{Definitions and First Properties}
+
+    This section will focus on defining what an exact category is and its elementary properties. The main result from this section is proposition 2.1.3. This proposition is similar to the characterization theorem of push-outs and pullbacks in abelian categories. Another important result is the obscure axiom, this will be proved and hopefully seen to be not as obscure as its name suggests. Lastly, variants of some homological diagram lemmata, like 5-lemma, will also be proved for exact categories. This section is based on \cite{buhler}. \\
+
+    To start with exact categories one should first take a look towards the abelian categories. Short exact sequences are of great interest, and they can be characterized with two morphisms $p:A\rightarrow B$ and $q:B\rightarrow C$ such that p is the kernel of q and q is the cokernel of p. This leads to the first definition.
+
+    \begin{definition}
+        Let $\mathcal{A}$ be an additive category. A kernel-cokernel pair is a pair of maps $(p,q)$ such that p is the kernel of q and q is the cokernel of p. A morphism of kernel-cokernel pairs $(p,q)$ and $(p',q')$ is a triple $(f,g,h)$ such that the following diagram commutes. An isomorphism of a kernel-cokernel pair is a triple in which each morphism is an isomorphism.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[tail]{r}{p} \ar[two heads]{d}{f} & B \ar{r}{q} \ar{d}{g} & C \ar{d}{h} \\
+                A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{lemma}
+        Let $(p,q)$ be a kernel-cokernel pair, then the image and coimage of p exists and are isomorphic. I.e. this diagram exists, such that the left square is a push-out and the right square is a pull-back:
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar{r}{0} \ar{rd}{0} & A \ar[tail]{r}{p} \ar[two heads]{d} & B \ar[two heads]{r}{q} & C \\
+                & Coim(p) \ar[tail, two heads]{r}{iso} & Im(p) \ar[tail]{u} \ar{ur}{0}
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+    
+    \begin{proof}
+        Since $(p,q)$ is a kernel-cokernel pair one may see that the first simplex is bicartesian and the second simplex is a push-out.
+        \begin{center}
+            \begin{tikzcd}
+            A \ar[tail]{r}{p} \ar{rd}{0} & B \ar[two heads]{d}{q} \\ & C
+            \end{tikzcd}
+            \begin{tikzcd}
+                0 \ar{r}{0} \ar{rd}{0} & A \ar[equal]{d} \\ & A
+            \end{tikzcd}
+        \end{center}
+        Thus $Im(p)=Coim(p)=A$, asserting the isomorphism as the identity in the diagram.
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar{r}{0} \ar{rd}{0} & A \ar[tail]{r}{p} \ar[equal]{d} & B \ar[two heads]{r}{q} & C \\
+                & A \ar[equal]{r} & A \ar[tail]{u}{p} \ar{ur}{0}
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{corollary}
+        Suppose that $(p,q)$ is a kernel-cokernel pair. If $p$ is an epimorphism, then $p$ is an isomorphism.
+    \end{corollary}
+
+    \begin{definition}
+        An exact structure for an additive category $\mathcal{A}$ is a class $\mathcal{E}$ of kernel-cokernel pairs which are closed under isomorphisms. A pair $(p,q):\mathcal{E}$ is called a conflation, here $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
+        \begin{itemize}
+            \item (QE0) $\forall A:\mathcal{A}$, $id_A$ is both an inflation and a deflation.
+            \item (QE1) Both inflations and deflations are closed under composition.
+            \item (QE2) The push-out of an inflation is an inflation.
+            \item (QE2$^{op}$) The pull-back of a deflation is a deflation.
+        \end{itemize}
+
+        An exact category is the additive category $\mathcal{A}$ together with an exact structure $\mathcal{E}$.
+    \end{definition}
+
+
+    \begin{remark}
+        Decorated arrows will be used when writing diagrams to indicate that a morphism is either an inflation or a deflation. A tail with a circle means inflation: \begin{tikzcd}
+            A \ar[tail]{r}[marking]{\circ} & B
+        \end{tikzcd}. Double heads with a circle means deflation: \begin{tikzcd}
+            A \ar[two heads]{r}[marking]{\circ} & B
+        \end{tikzcd}. $(QE2^*)$ axioms can now be written as the diagrams below.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[tail]{r}[marking]{\circ} \ar{d} \ar[phantom]{dr}[very near end]{\lrcorner} & B \ar{d} \\
+                C \ar[tail]{r}[marking]{\circ} & D
+            \end{tikzcd}
+            \begin{tikzcd}
+                A \ar[two heads]{r}[marking]{\circ} \ar{d} \ar[phantom]{dr}[very near start]{\ulcorner} & B \ar{d} \\
+                C \ar[two heads]{r}[marking]{\circ} & D
+            \end{tikzcd}
+        \end{center}
+    \end{remark}
+
+    \begin{remark}
+        In literature, inflations are also referred to as admissable monomorphisms, and deflations are referred to as admissable epimorphisms while conflations are also called short exact sequences.
+    \end{remark}
+
+    \begin{remark}
+        Observe that the axioms for an exact structure are self-dual. This allows for reasoning with duality, as a category has an exact structure $(\mathcal{A},\mathcal{E})$ if and only if $(\mathcal{A}^{op},\mathcal{E}^{op})$ is an exact structure.
+    \end{remark}
+
+    \begin{remark}
+        For any category $\mathcal{C}$, there is a category $\mathcal{C}^{\rightarrow}=\mathcal{C}\downarrow\mathcal{C}$ consisting of arrows and $\mathcal{C}^{\rightarrow\rightarrow}=\mathcal{C}\downarrow\mathcal{C}\downarrow\mathcal{C}$ consisting of pairs of composable arrows. If $\mathcal{A}$ is additive, then $\mathcal{A}^{\rightarrow}$ and $\mathcal{A}^{\rightarrow\rightarrow}$ are additive as well. It can be seen that $\mathcal{E}$ may be considered as an extension closed additive subcategory of $\mathcal{A}^{\rightarrow\rightarrow}$.
+    \end{remark}
+
+    Exact categories aim to characterize the fundamental properties of abelian categories. In nature, exact categories are quite common and one additive category usually admits more than one exact structure. Thus there may exist a chain of exact structures in the sense of subsets $\mathcal{E}_{min} \subseteq \mathcal{E}_1 \subseteq ... \subseteq \mathcal{E}_{max}$. 
+
+    \begin{example}
+        Any abelian category is exact with every short exact sequence as the exact structure. This exact structure us $\mathcal{E}_{max}$.
+    \end{example}
+
+    \begin{example}
+        Any additive category is exact with every split short exact sequence as the exact structure. This structure will always be $\mathcal{E}_{min}$, and it is always contained inside another exact structure.
+    \end{example}
+
+    \begin{lemma}
+        The map $0:0\rightarrow A$ is an inflation. Dually, the map $0:A\rightarrow 0$ is a deflation.
+    \end{lemma}
+
+    \begin{proof}
+        Consider the diagram \begin{tikzcd}
+            0 \ar[tail]{r}{0} & A \ar[two heads]{r}{id_A} & A
+        \end{tikzcd}. The left morphism is the kernel of the right morphism making a kernel-cokernel pair $(0,id_A)$. The identity $id_A$ is assumed to be a deflation, implying that the pair is a conflation.
+    \end{proof}
+
+    \begin{remark}
+        It can be seen that isomorphisms are deflations. Let $f:A\rightarrow B$ be an isomorphism, then there are two kernel-cokernel pairs: $(0,id_A)$ and $(0,f)$. Between these there is an isomorphism which is the triple $(0,id_A,f^{-1})$. As the conflations are closed under isomorphism, $(0,f)$ is a conflation, making f into a deflation. By dualizing this argument, $f$ is also an inflation.
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar{r}{0} \ar{d}{0} & A \ar[tail, two heads]{r}{f} \ar{d}{id_A} & B \ar[tail, two heads]{d}{f^{-1}} \\
+                0 \ar[tail]{r}{0}[marking]{\circ} & A \ar[two heads]{r}{id_A}[marking]{\circ} & A
+            \end{tikzcd}
+        \end{center}
+    \end{remark}
+
+    \begin{corollary}
+        A kernel-cokernel pair $(i,p)$ found as a split short-exact sequence (1) is a conflation. 
+        
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                A \ar[tail]{r}{i}[marking]{\circ} & A \oplus B \ar[two heads]{r}{p}[marking]{\circ} & B
+            \end{tikzcd}
+        \end{center}
+    \end{corollary}
+
+    \begin{proof}
+        In a category with an initial object, the coproduct can be thought of as the push-out with the initial in the upper left corner. This can be assembled into the push-out (1).
+        By the lemma the zero morphisms are inflations, asserting that $i$ and $i'$ are inflations by (QE2). Thus there are conflations $(i,p)$ and $(i',p')$.
+
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                0 \ar[tail]{r}{0}[marking]{\circ} \ar[tail]{d}{0}[marking]{\circ} & A \ar[tail]{d}{i}[marking]{\circ} \\
+                B \ar[tail]{r}{i'}[marking]{\circ} & A \oplus B
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{corollary}
+        The direct sum of conflations is a conflation. I.e. there is a diagram:
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[tail]{r}{i}[marking]{\circ} & B \ar[two heads]{r}{p}{\circ} & C
+            \end{tikzcd}, 
+            \begin{tikzcd}
+                A' \ar[tail]{r}{i'}[marking]{\circ} & B' \ar[two heads]{r}{p'}[marking]{\circ} & C'
+            \end{tikzcd} \\
+            $\Downarrow$ \\
+            \begin{tikzcd}
+                A\oplus A' \ar[tail]{r}{i\oplus i'}[marking]{\circ} & B\oplus B' \ar[two heads]{r}{p\oplus p'}[marking]{\circ} & C\oplus C'
+            \end{tikzcd}
+        \end{center}
+    \end{corollary}
+
+    \begin{proof}
+        Start by only considering the conflation $(i,p)$. For any $D:\mathcal{A}$ there is a conflation $(i\oplus id_D, p\oplus 0)$, drawn as the diagram.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                A\oplus D \ar[tail]{r}{\begin{pmatrix}i & 0 \\ 0 & 1\end{pmatrix}}[marking]{\circ} \& B\oplus D \ar[two heads]{r}{\begin{pmatrix}p & 0\end{pmatrix}}[marking]{\circ} \& C
+            \end{tikzcd}
+        \end{center}
+        As kernels and cokernels are preserved by direct sums, this pair is in fact a kernel-cokernel pair. The epimorphism is a deflation as it can be factored by the deflations:
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                B\oplus D \ar[two heads]{r}{\begin{pmatrix}1 & 0\end{pmatrix}}[marking]{\circ} \& B \ar[two heads]{r}{p}[marking]{\circ} \& C
+            \end{tikzcd}
+        \end{center}
+        Thus it is seen that $(i\oplus id_D, p\oplus 0)$ is a conflation, and dually $(i\oplus 0, p\oplus id_D)$ is also a conflation. To finish off the proof it is seen that the morphism $i\oplus i'$ factors as $i\oplus id_{A'}\circ id_A\oplus i'$, asserting that it is an inflation by (QE1). By dualizing the argument, one gets that the direct sum of conflations is a conflation.
+    \end{proof}
+
+    \begin{definition}
+        A square is bicartesian if it is both a pull-back and a push-out.
+        \begin{tikzcd}
+            A \ar{r}{} \ar{d}{} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} & B \ar{d}{} \\
+            C \ar{r}{} & D
+        \end{tikzcd}
+    \end{definition}
+
+    \begin{prop} 
+        The following statements are equivalent:
+        \begin{enumerate}
+            \item The square (1) is a push-out.
+            \item The sequence (2) is a conflation.
+            \item The square (1) is bicartesian.
+            \item The square (1) is a part of the commutative diagram (3)
+        \end{enumerate}
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                A \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \\
+                C \ar[tail]{r}{j}[marking]{\circ} & D
+            \end{tikzcd}
+            \space (2)
+            \begin{tikzcd}[ampersand replacement=\&]
+                A \ar[tail]{r}{\begin{pmatrix} 
+                    i \\ -f 
+                \end{pmatrix}}[marking]{\circ} \& B\oplus C \ar[two heads]{r}{\begin{pmatrix}
+                    g & j
+                \end{pmatrix}}[marking]{\circ} \& D 
+            \end{tikzcd}
+            \space (3)
+            \begin{tikzcd}
+                A \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar[two heads]{r}{p}[marking]{\circ} \ar{d}{g} & E \ar[equal]{d} \\
+                C \ar[tail]{r}{j}[marking]{\circ} & D \ar[two heads]{r}{q}[marking]{\circ} & E
+            \end{tikzcd}
+        \end{center}
+    \end{prop}
+
+    Before the proof for this proposition, there will be presented a useful lemma, which will be proved first.
+
+    \begin{lemma}
+        Assume that there is a commutative square (1) and an associated sequence (2). (1) is a push-out square if and only if $\begin{pmatrix}
+            p & q
+        \end{pmatrix}$ is the cokernel of the morphism $\begin{pmatrix}
+            i \\ -j
+        \end{pmatrix}$
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                A \ar{r}{i} \ar{d}{j} & B \ar{d}{p} \\
+                C \ar{r}{q} & D
+            \end{tikzcd}
+            \space (2)
+            \begin{tikzcd}[ampersand replacement=\&]
+                A \ar{r}{\begin{pmatrix}i \\ -j\end{pmatrix}} \& B\oplus C \ar{r}{\begin{pmatrix}p & q\end{pmatrix}} \& D
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        For any test object $T$ and two maps $t_1:B\rightarrow T$ and $t_2:C\rightarrow T$, one may construct the diagrams for the universal properties of both the cokernel and the push-out. It is seen that these diagrams are equivalent, proving the lemma.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                A \ar{rd}{0} \ar{r}{\begin{pmatrix}i \\ -f\end{pmatrix}} \& B\oplus C \ar[two heads]{d}{\begin{pmatrix}g & j\end{pmatrix}} \ar[bend left]{rd}{\begin{pmatrix}t_1 & t_2\end{pmatrix}} \\
+                \& D \ar[dashed]{r}{t'}\& T
+            \end{tikzcd}
+            $\Leftrightarrow$
+            \begin{tikzcd}[ampersand replacement=\&]
+                A \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{i} \ar{d}{f} \& B \ar{d}{g} \ar[bend left]{rdd}{t_1} \\
+                C \ar{r}{j} \ar[bend right]{rrd}{t_2} \& D \ar[dashed]{rd}{t'} \\
+                \&\& T
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{corollary}
+        For the same diagrams (1) and (2) as above the dual statement is also true. (1) is a pull-back square if and only if $\begin{pmatrix}
+            i \\ -j
+        \end{pmatrix}$ is a kernel of the morphism $\begin{pmatrix}
+            p & q
+        \end{pmatrix}$. Thus it follows that (1) is bicartesian (i.e. both a pull-back and a push-out) if and only if the morphisms make a kernel-cokernel pair.
+    \end{corollary}
+
+    \begin{proof}\emph{of Proposition 2.1.3.} 
+        1. $\Rightarrow$ 2.: By the previous lemma it is known that $\begin{pmatrix}
+            g & j
+        \end{pmatrix}$ is the cokernel of $\begin{pmatrix}
+            i \\ -j
+        \end{pmatrix}$. Thus proving that $\begin{pmatrix}
+            i \\ -j
+        \end{pmatrix}$ is an inflation, will prove that the pair is a conflation. 
+        
+        Observe that the morphism $\begin{pmatrix}
+            i \\ -f
+        \end{pmatrix}$ can be factored through the sequence. 
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                A \ar[tail]{r}{\begin{pmatrix}
+                    1 \\ 
+                    0
+                \end{pmatrix}}[marking]{\circ} \& A\oplus C \ar[tail, two heads]{r}{\begin{pmatrix}
+                    1 & 0 \\
+                    -f & 1
+                \end{pmatrix}}[below]{\simeq}[marking]{\circ} \& A\oplus C \ar[tail]{r}{\begin{pmatrix}
+                    i & 0 \\
+                    0 & 1
+                \end{pmatrix}}[marking]{\circ} \& B\oplus C
+            \end{tikzcd}
+        \end{center}
+        By corollary 3.2.1 the first map is an inflation, as the second map is an isomorphism it is also an inflation and the last map is the direct sum of two inflations. Thus the composite of all these maps is an inflation by (QE1), proving the first implication. \\
+
+        2. $\Rightarrow$ 3.: This follows from Corollary 2.1.4.1.
+        
+        3 $\Rightarrow$ 1.: This is by definition. \\
+
+        1. $\Rightarrow$ 4.: Let $p$ be the cokernel of $i$, then form the diagram below using the push-out property.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \ar[two heads, bend left]{rdd}{p}[marking]{\circ} \\
+                C \ar[tail]{r}{j}[marking]{\circ} \ar[bend right]{rrd}{0} & D \ar[dashed, two heads]{rd}{p'} \\
+                & & T
+            \end{tikzcd}
+        \end{center}
+        $p'$ is an epimorphism as $p=p'g$ is epi. To prove that $p'$ is the cokernel of $j$ let $T'$ be another test object with a map $t':D\rightarrow T'$ such that $0 = t'j$. By doing some diagram chases one may see that $0=t'jf=t'gi$, thus by the universal property of $p$ the morphism $t'g$ factors through $T$ such that $t'g=tp$ for some unique $t$. This shows that $t'g=tp'g=tp$, and $t'j=tp'j=0$. Since $t'$ is the unique morphism satisfying this equation we demand that $t'=tp'$. $t$ is also unique, for if there exist another map $h$ such that $tp'=hp'$, then $t=h$ as $p'$ is epic. The unique existence proves the universal property, and $p'$ is the cokernel of $j$.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{i}[marking]{\circ} \ar{d}{f} & B \ar{d}{g} \ar[two heads]{r}{p}[marking]{\circ} & T \ar[equal]{d} \\
+                C \ar[tail]{r}{j}[marking]{\circ} \ar[bend right]{rrd}{0} & D \ar{rd}{t'} \ar[dashed, two heads]{r}{p'} & T \ar[dashed]{d}{t} \\
+                & & T'
+            \end{tikzcd}
+        \end{center} 
+ 
+        4. $\Rightarrow$ 2.: Start by taking the pullback of $p$ and $q$ using $(QE2^{op})$. The diagrams below are determined by using the dual statement of the last implication.
+        \begin{center}
+            \begin{tikzcd}
+                & A \ar[equal]{r} \ar[tail]{d}{i'}[marking]{\circ} & A \ar[tail]{d}{i}[marking]{\circ} \\
+                C \ar[equal]{d} \ar[tail]{r}{j'}[marking]{\circ} & T \ar[two heads]{r}{q'}[marking]{\circ} \ar[two heads]{d}{p'}[marking]{\circ} \ar[phantom]{dr}[very near start]{\ulcorner} & B \ar[dashed]{ld}[above]{g} \ar[two heads]{d}{p}[marking]{\circ} \\
+                C \ar[tail]{r}{j}[marking]{\circ} & D \ar[two heads]{r}{q}[marking]{\circ} & E
+            \end{tikzcd}
+            \space $\Rightarrow$
+            \begin{tikzcd}
+                B \ar[dashed]{rd}{k} \ar[bend left, equal]{rrd} \ar[bend right]{ddr}{g} \\
+                & T \ar[two heads]{r}{q'}[marking]{\circ} \ar[two heads]{d}{p'}[marking]{\circ} & B \ar[two heads]{d}{p}[marking]{\circ} \\
+                & D \ar[two heads]{r}{q}[marking]{\circ} & E
+            \end{tikzcd}
+        \end{center}
+        From these diagrams one can see that $q'$ is a split epimorphism. The composite $q'(id_T-kq')=q'-q'kq'=q'-q'=0$ as q' is split epi, so $(id_T-kq')$ factors over $j'$ as in the following diagram.
+        \begin{center}
+            \begin{tikzcd}
+                T \ar[dashed]{rd}{l} \ar[bend left]{rrd}{id_T-kq'} \\
+                & C \ar[tail]{r}{j'}[marking]{\circ} \ar{rd}{0} & T \ar[two heads]{d}{q'}[marking]{\circ} \\
+                & & B
+            \end{tikzcd}
+        \end{center}
+        From these diagrams one may find three different equations:
+        \begin{itemize}
+            \item $0=k-k=k-kq'k=(id_T-kq')k=j'lk \implies lk=0$ as $j'$ is monic
+            \item $j'lj'=(id_T-kq')j'=j'\implies lj'=id_C$ as $j'$ is monic
+            \item $jli'=(p'j')li'=p'(id_T-kq')i'=-(p'k)(q'i')=-gi=-jf \implies li'=-f$ as $j$ is monic
+        \end{itemize}
+        The morphisms $\begin{pmatrix}
+            k & j'
+        \end{pmatrix}$ and $\begin{pmatrix}
+            q' \\ l
+        \end{pmatrix}$ are inverses:
+        \begin{itemize}
+            \item $\begin{pmatrix}
+                k & j'
+            \end{pmatrix}\begin{pmatrix}
+                q' \\ l
+            \end{pmatrix}=kq'+j'l=kq'+id_T-kq'=id_T$
+            \item $\begin{pmatrix}
+                q' \\ l
+            \end{pmatrix}\begin{pmatrix}
+                k & j'
+            \end{pmatrix}=\begin{pmatrix}
+                q'k & q'j' \\ lk & lj'
+            \end{pmatrix} = \begin{pmatrix}
+                id_B & 0 \\ 0 & id_C
+            \end{pmatrix}$
+        \end{itemize}
+        Thus there is an isomorphism of kernel-cokernel pairs $(id_A,,\begin{pmatrix}
+            q' \\ l
+        \end{pmatrix}\begin{pmatrix}
+            k & j'
+        \end{pmatrix})$, \\ from $(\begin{pmatrix}i \\ -f\end{pmatrix},\begin{pmatrix}f' & i'\end{pmatrix})$ to $(i',p')$. This proves 2.
+    \end{proof}
+
+    \begin{corollary}
+        The pull-back of an inflation along a deflation is an inflation.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[tail]{r}{i'}[marking]{\circ} \ar[two heads]{d}{e'}[marking]{\circ} \ar[phantom]{rd}[very near start]{\ulcorner} & B \ar[two heads]{d}{e}[marking]{\circ} \\
+                C \ar[tail]{r}{i}[marking]{\circ} & D
+            \end{tikzcd}
+        \end{center}
+    \end{corollary}
+
+    \begin{proof}
+        By (QE2) this pullback exists, as there is a deflation in the pullback. Extend the diagram by adding the deflation of the inflation in the following manner.
+        \begin{center}
+            \begin{tikzcd}
+                & T \ar{d}{t} \ar[bend left]{rd}{0} \ar[bend right, dashed]{ld}{t'} \ar[bend left, dashed]{ddl}[above, near end]{t''} & \\
+                A \ar[tail]{r}{i'} \ar[two heads]{d}{e'}[marking]{\circ} \ar[phantom]{rd}[very near start]{\ulcorner} & B \ar[two heads]{d}{e}[marking]{\circ} \ar[two heads]{r}{pe}[marking]{\circ} & C \ar[equal]{d} \\
+                C \ar[tail]{r}{i}[marking]{\circ} & D \ar[two heads]{r}{p}[marking]{\circ} & C
+            \end{tikzcd}
+        \end{center}
+        $pe$ is a deflation by (QE1), and $i'$ is a mono as a limit of a mono is a mono. The goal is to prove that $i'$ is the kernel of $pe$. Let T be a test object such that $pet=0$, then if follows that $te$ factorizes over $i$, such that we can apply the universal property of the pullback to factorize $te$ over $i'$. The uniqueness of $t'$ is achieved with $i'$ being monic. This proves that $(i',pe)$ is a conflation.
+    \end{proof}
+
+    \begin{theorem}
+        \textbf{The Obscure Axiom.} Assume that $i:A\rightarrow B$ is a morphism with a cokernel. If there is a morphism $j:B\rightarrow C$ such that $ji$ is an inflation, then $i$ is an inflation.
+    \end{theorem}
+
+    \begin{proof}
+        Let $k:B\rightarrow D$ be the cokernel of $i$. Start by forming the push-out of $i$ and $ji$.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{r}{ji}[marking]{\circ} \ar{d}{i} & C \ar{d} \\
+                B \ar[tail]{r}[marking]{\circ} & E
+            \end{tikzcd}
+        \end{center}
+        By proposition 2.1.3 $\begin{pmatrix}
+            i \\ ji
+        \end{pmatrix}$ is an inflation. $\begin{pmatrix}
+            i \\ 0
+        \end{pmatrix}=\begin{pmatrix}
+            id_B & 0 \\ -j & id_C
+        \end{pmatrix}\begin{pmatrix}
+            i \\ ji
+        \end{pmatrix}$, this is an inflation by (QE1) as the 2x2 matrix is an isomorphism. Observe that the cokernel of $\begin{pmatrix} i \\ 0 \end{pmatrix}$ is $\begin{pmatrix}
+            k & 0 \\ 0 & id_C
+        \end{pmatrix}$. The final trick will be to show that there is a pullback square, and then use (QE2) to say that k is a deflation.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                T \ar[bend left]{rrd}{t_1} \ar[bend right]{ddr}[below]{\begin{pmatrix}t_2 \\ 0\end{pmatrix}} \ar[dashed]{rd}{t} \\
+                \& B \ar{r}{k} \ar{d}{\begin{pmatrix}1 \\ 0\end{pmatrix}} \& D \ar{d}{\begin{pmatrix}1 \\ 0\end{pmatrix}} \\
+                \& B\oplus C \ar[two heads]{r}[below]{\begin{pmatrix}k & 0 \\ 0 & id_C\end{pmatrix}}[marking]{\circ} \& D\oplus C
+            \end{tikzcd}
+        \end{center}
+        Note that setting $t=t_2$ one get the universal property. This is well defined as $kt_2=t_1$ by assumption, thus $kt=t_1$. This is what is needed to prove that the square is a pullback, proving the obscure axiom.
+    \end{proof}
+
+    Contrary to its name, The Obscure Axiom is a very natural result. To motivate this, let $\mathcal{A}$ be an abelian category. Here every map has a cokernel, and if $i : A \rightarrow B$ is a map and the composition $ji : A \rightarrow C$ is a monomorphism, this result follows. Since $ji$ is mono, it follows that $i$ has to be mono, thus the kernel of $i$ is $0$. This gives a short exact sequence with the same implications as the obscure axiom.
+    \begin{center}
+        \begin{tikzcd}
+            0 \ar{r}{} & A \ar[tail]{r}{i} & B \ar[two heads]{r}{\pi_{i}} & Cok(i) \ar{r}{} & 0
+        \end{tikzcd}
+    \end{center}
+
+    The classical diagram lemmata which will be proven are the 5-lemma and the 3x3-lemma. In this context, they will be dubbed the short five lemma and Noether's isomorphism lemma respectively. To prove the short 5-lemma, a lemma is needed.
+
+    %Add the classical homological diagram lemmata down here
+    \begin{lemma}
+        Let $(p,q)$ and $(p',q')$ be the conflations:
+        \begin{itemize}
+            \item $(p,q)$: \begin{tikzcd}A \ar[tail]{r}{p} & B \ar[two heads]{r}{q} & C\end{tikzcd}
+            \item $(p',q')$: \begin{tikzcd}A' \ar[tail]{r}{p'} & B' \ar[two heads]{r}{q'} & C'\end{tikzcd}
+        \end{itemize}
+        A morphism of the conflations $(f,g,h):(p,q)\rightarrow (p',q')$ factors through the conflation 
+        \begin{tikzcd}
+            A \ar[tail]{r} & D \ar[two heads]{r} & C'
+        \end{tikzcd} such that the following diagram exists, where $g = g_2g_1$.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} & B \ar[two heads]{r}{q}[marking]{\circ} \ar{d}{g_1} & C \ar[equal]{d} \\
+                A' \ar[tail]{r}[marking]{\circ}  \ar[equal]{d} & D \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}[marking]{\circ} \ar{d}{g_2} & C \ar{d}{h} \\
+                A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        Observe that the upper part of the diagram is made by taking a push-out of $p$ and $f$, where the right part is gained from proposition 2.1.3. Combine the upper part with the lower part using the push-out property.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} \ar[phantom]{rd}[very near end]{\lrcorner} & B \ar{d}{g_1} \ar[bend left]{rdd}{g} \\
+                A' \ar[tail]{r}[marking]{\circ} \ar[tail, bend right]{rrd}{p'}[marking]{\circ} & D \ar[dashed]{rd}{g_2} \\
+                & & B'
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}
+                A \ar[tail]{r}{p}[marking]{\circ} \ar{d}{f} \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} & B \ar{d}{g_1} \ar[two heads]{r}{q}[marking]{\circ} & C \ar[equal]{d} \\
+                A' \ar[equal]{d} \ar[tail]{r}{a}[marking]{\circ} & D \ar{d}{g_2} \ar[two heads]{r}{c}[marking]{\circ} & C \ar{d}{h} \\
+                A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
+            \end{tikzcd}
+        \end{center}
+        It remains to show that the lower right square is commutative, then to use the dual of proposition 2.1.3 to see that the square is bicartesian. Note that $q=cg_1$ by prop 2.1.3 thus $q'g_2g_1=q'g=hq=hcg_1$. Uniqueness of the push-out property asserts that $hc=q'g_2$.
+    \end{proof}
+
+    \begin{corollary}
+        \textbf{The short 5-lemma}. Suppose that there is a morphism of conflations $(f,g,h)$ as above. If $f$ and $h$ are isomorphisms, then $g$ is an isomorphism.
+    \end{corollary}
+
+    \begin{proof}
+        Since $f$ is an isomorphism it is at least an inflation, thus $g_1$ is an inflation by (QE2). As colimits preserve epis, $g_1$ is also an epimorphism. Corollary 2.1.1.1 states that $g_1$ is an iso, and dually that $g_2$ is an iso. Since isomorphisms are closed under composition it follows that $g$ is an isomorphism. 
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{r}{p}[marking]{\circ} \ar[tail]{d}{f}[rotate=90, above]{\simeq} & B \ar[two heads]{r}{q}[marking]{\circ} \ar[tail]{d}{g_1}[rotate=90, above]{\simeq}& C \ar[equal]{d} \\
+                A' \ar[tail]{r}[marking]{\circ}  \ar[equal]{d} & D \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}[marking]{\circ} \ar[two heads]{d}{g_2}[rotate=90, above]{\simeq} & C \ar[two heads]{d}{h}[rotate=90, above]{\simeq} \\
+                A' \ar[tail]{r}{p'}[marking]{\circ} & B' \ar[two heads]{r}{q'}[marking]{\circ} & C'
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{lemma}
+        \textbf{Noethers isomorphism lemma}. Suppose there is a diagram with rows as conflations and the first column as a conflation. Then the final column is also a conflation.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[equal]{d} \ar[tail]{r}[marking]{\circ} & B \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}[marking]{\circ} \ar[tail]{d}[marking]{\circ} & X \ar[tail, dashed]{d}[marking]{\circ} \\
+                A \ar[tail]{r}[marking]{\circ} & C \ar[two heads]{d}[marking]{\circ} \ar[two heads]{r}[marking]{\circ} & Y \ar[two heads, dashed]{d}[marking]{\circ} \\
+                & Z \ar[equal]{r} & Z
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        Assume that only the solid part of the diagram above exists. By the universal property of cokernels, the upper dashed map exists, and by the dual of proposition 2.1.3 the square is bicartesian. This infers that the upper dashed map is an inflation, and since the square is a push-out it follows that the lower dashed map exists such that the final column is a conflation by proposition 2.1.3.
+    \end{proof}
+
+\section{The Stable Frobenius Category}
+
+    This section aims to introduce Frobenius categories and show that their stabilization is triangulated. Categories that can be realized as stable Frobenius categories are called algebraic triangulated categories. To define this construction, one must define projective and injective objects in an exact category. It will then be shown that the stable Frobenius category is a quotient category by injective objects. One of the important ideas from this section is that conflations from the Frobenius category will be the class generating the triangles in the stable Frobenius category. This section is based on \cite{buhler} and \cite{happel}.
+
+    \begin{definition}
+        Let $(\mathcal{A},\mathcal{E})$ and $(\mathcal{A}',\mathcal{E}')$ be two exact categories. A functor $F:(\mathcal{A},\mathcal{E})\rightarrow (\mathcal{A}',\mathcal{E}')$ is called exact if it is additive and $F(\mathcal{E})\subseteq \mathcal{E}'$. That is to say that conflations gets mapped to conflations. % \todo[color = pink]{Fjern dette?} One speaks of a reflective exact functor for whenever the pair $(Fp,Fq)$ is a conflation, then $(p,q)$ is a conflation.
+    \end{definition}
+
+    \begin{definition}
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category. An object $P:\mathcal{A}$ is called projective if $\mathcal{A}(P,\_):(\mathcal{A},\mathcal{E})\rightarrow \textbf{Ab}$ is an exact functor. Objects $I:\mathcal{A}$ are called injective whenever $\mathcal{A}(\_,I):\mathcal{A}^{op}\rightarrow\textbf{Ab}$ is an exact functor.
+    \end{definition}
+
+    \begin{remark}
+        In the case of exact functors $F:(\mathcal{A},\mathcal{E})\rightarrow\textbf{Ab}$, one generally speaks of a functor which maps conflations to short exact sequences.
+    \end{remark}
+
+    \begin{remark}
+        The hom-functor is called left-exact. This means that conflations get mapped to sequences which is only exact in the first two terms.
+    \end{remark}
+
+    \begin{prop}
+        Let $(\mathcal{A},\mathcal{E})$ be an exact category. $P:\mathcal{A}$ is projective if and only if for every deflation $q:A\rightarrow B$ and morphism $f:P\rightarrow B$  there is a morphism $f':P\rightarrow A$ rendering the diagram below commutative.
+        \begin{center}
+            \begin{tikzcd}
+                & P \ar[dashed]{ld}[above]{f'} \ar{d}{f} \\
+                A \ar[two heads]{r}[below]{q}[marking]{\circ} & B
+            \end{tikzcd}
+        \end{center}
+    \end{prop}
+
+    \begin{proof}
+        Suppose that $P$ is projective, then $\mathcal{A}(P,\_)$ is an exact functor. Let $(p:A\rightarrow B,q:B\rightarrow C)$ be a conflation, then there is a short exact sequence.
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar{r}{0} & \mathcal{A}(P,A) \ar[tail]{r}{p_*}& \mathcal{A}(P,B) \ar[two heads]{r}{q_*} & \mathcal{A}(P,C) \ar{r}{0} & 0
+            \end{tikzcd}
+        \end{center}
+        Pick $f:\mathcal{A}(P,C)$, since $q_*$ is a surjection there exists an $f':\mathcal{A}(P,B)$ such that $pf'=f$.
+        Now, suppose that $P$ has the property described by the diagram in the proposition and that $(p:A\rightarrow B,q:B\rightarrow C)$ is a conflation, then there is an exact sequence in $\textbf{Ab}$ by $\mathcal{A}(P,\_)$.
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar{r}{0} & \mathcal{A}(P,A) \ar[tail]{r}{p_*}& \mathcal{A}(P,B) \ar{r}{q_*} & \mathcal{A}(P,C)
+            \end{tikzcd}
+        \end{center}
+        To see that $q_*$ is a surjection, let $f:P\rightarrow C$. As $q$ is a deflation there exists an $f':P\rightarrow B$ such that $q_*(f')=f$. Thus the sequence above is short exact and $P$ is projective. 
+    \end{proof}
+
+    \begin{corollary}
+        Let $P$ be projective, then if $q:A\rightarrow P$ is a deflation, it is split-epi.
+    \end{corollary}
+
+    \begin{corollary}
+        Two objects $P$ and $Q$ are projective if and only if $P\oplus Q$ is projective.
+    \end{corollary}
+
+    \begin{corollary}
+        $I:\mathcal{A}$ is injective if and only if for every inflation $p:B\rightarrow A$ and morphism $g:B\rightarrow I$ there is a morphism $g':A\rightarrow I$ rendering the diagram below commutative.
+        \begin{center}
+            \begin{tikzcd}
+                & I \\
+                A \ar[dashed]{ru}{g'} & B \ar[tail]{l}{p}[marking]{\circ} \ar{u}{f}
+            \end{tikzcd}
+        \end{center}
+    \end{corollary}
+
+    \begin{definition}
+        A category $(\mathcal{A}, \mathcal{E})$ has enough projective objects if for any object $A:\mathcal{A}$ there is a projective object $P$ along with a deflation $q:P\rightarrow A$. Dually, it has enough injective objects if for any object $A:\mathcal{A}$ there is an injective object $I$ along with an inflation $p:A\rightarrow I$.
+    \end{definition}
+
+    \begin{definition}
+        An exact category is called a Frobenius category if it has enough projective and injective objects and the class of projective objects coincides with the injective objects.
+    \end{definition}
+
+    The stable Frobenius category will be defined as the quotient of every morphism factoring through an injective object. This will be made precise, following the construction of the quotient category provided by \cite{Mac71}.
+
+    \begin{definition}
+        A congruence relation $\sim$ on a category $\mathcal{C}$ is a relation on the hom-sets, such that:
+        \begin{enumerate}
+            \item $\forall A,B:\mathcal{C}$ the relation $\sim_{A,B}$ is an equivalence relation.
+            \item Given that $f,f':A\rightarrow B$ is related ($f\sim f'$) and morphisms $g:A'\rightarrow A$ and $h:B\rightarrow B'$, then $hfg\sim hf'g$.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{prop}
+        Let $\mathcal{C}$ be a category and $\sim$ be a congruence relation. Then there is a universal category $\mathcal{C}/\sim$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}/\sim$ such that morphisms $f,g:A\rightarrow B$ are identified if $f\sim g$. Universality means that if there is a functor $H:\mathcal{C}\rightarrow \mathcal{D}$ such that $Hf=Hg$ for any $f,g$ if$f\sim g$, then H factors uniquely through $\mathcal{C}/\sim$.
+    \end{prop}
+
+    \begin{proof}
+        Define the category $\mathcal{C}/\sim$ to have the same objects as $\mathcal{C}$, and define $\mathcal{C}/\sim (A,B)=\mathcal{C}(A,B)/\sim_{a,b}$. This definition is well defined as $\sim$ is a congruence relation. A sketch of this proof can be found in \cite{Mac71}.
+    \end{proof}
+
+    \begin{remark}
+        Any functor gives rise to a congruence relation. That is, if $F:\mathcal{C}\rightarrow \mathcal{D}$ is a functor, then there is a congruence relation $\sim$ defined as follows: $\forall A,B:\mathcal{C}$ and $f,g:A\rightarrow B$, one define $f\sim_{A,B}g \iff Ff=Fg$. This is a congruence as equality within $\mathcal{D}$ gives rise to an equivalence relation, and functoriality gives the congruence.
+    \end{remark}
+
+    \begin{remark}
+        For any relation $\sim$ the universal category $\mathcal{C}/\sim$ exists. As in the case for the Verdier quotient, $\mathcal{C}/\sim$ is the same as the quotient category of the smallest congruence relation having the same relations as $\sim$.
+    \end{remark}
+
+    If $\mathcal{A}$ is an additive category, the quotient categories which respect the additive structures are of interest. That is to say that the functor $q:\mathcal{A}\rightarrow \mathcal{C}/\sim$ is additive and the equivalence relation $\sim$ should respect the additive structure. Then a quotient category is additive if $f\sim f'$ and $g\sim g'$, then $f+g\sim f'+g'$. This leads to the following definition. 
+
+    \begin{definition}
+        Let $\mathcal{A}$ be an additive category. $\mathcal{I}$ is an ideal of $\mathcal{A}$ if:
+        \begin{enumerate}
+            \item (subgroup) for every abelian group $\mathcal{A}(A,B)$ there is a subgroup $\mathcal{I}(A,B)\subseteq\mathcal{A}(A,B)$.
+            \item (absorption) For every $g:A'\rightarrow A$, $h:B\rightarrow B'$ and $f:\mathcal{I}(A,B)$ it follows that $hfg:\mathcal{I}(A',B')$
+        \end{enumerate}
+        This is equivalent of saying that the equivalence relation $f\sim g \iff f-g:\mathcal{I}(A,B)$ is a congruence relation.
+    \end{definition}
+
+    \begin{corollary}
+        Let $\mathcal{A}$ be an additive category and $\mathcal{I}$ be an ideal of $\mathcal{A}$, then $\mathcal{A}/\mathcal{I}$ is an additive category.
+    \end{corollary}
+
+    Let $\mathcal{A}$ be a Frobenius category. Define the ideal $\mathcal{I}$ as the subgroups of every morphism factoring through injective objects.
+
+    \begin{prop}
+        For any Frobenius category $\mathcal{A}$ the ideal $\mathcal{I}$ is well defined and $\underline{\mathcal{A}}=\mathcal{A}/\mathcal{I}$ is the stable Frobenius category.
+    \end{prop}
+
+    \begin{proof}
+        To prove this one must show that $\mathcal{I}(A,B)$ is a subgroup for any $A,B:\mathcal{A}$, and that it is absorptive.
+        First observe that $0:\mathcal{I}(A,B)$. Let $f,g:\mathcal{I}(A,B)$. Since $\mathcal{A}$ has enough injectives, there exists an injective object with an inflation from $A$.
+        \begin{center}
+            \begin{tikzcd}
+                & J_1 \ar{rd}{f_2}\\
+                A \ar{ru}{f_1} \ar{rd}{g_1} \ar[tail]{r}{i}[marking]{\circ} & I \ar[dashed]{u}{f_1'} \ar[dashed]{d}{g_1'} & B \\
+                & J_2 \ar{ru}{g_2}
+            \end{tikzcd}
+        \end{center}
+        $f-g = f_2 \circ f_1 - g_2 \circ g_1 = (f_2 \circ f_1' - g_2 \circ g_1') \circ i$. Thus $f-g$ factors through an injective, and $\mathcal{I}(A,B)$ is a subgroup.
+        To see that it is absorptive is to see that if $f$ factors through an injective, then $gf$ factors through an injective as well.
+    \end{proof}
+
+    Objects in the stable Frobenius category is denoted as $\underline{X}$ and morphisms are denoted as $\underline{f}$. That is the functor $q:\mathcal{A}\rightarrow\underline{\mathcal{A}}$ is defined as $q(X)=\underline{X}$ and $q(f)=\underline{f}$. One important property of the stable Frobenius category is that taking syzygies or cosyzygies is a functor.
+
+    \begin{definition}
+        A syzygy of an object $X$, if it exists, is denoted $\Omega X$. The syzygy is defined to be the kernel object of a deflation $p:P\rightarrow X$, where $P$ is projective. A cosyzygy, denoted as \upside{$\Omega$}$X$ is defined to be the cokernel of an inflation $i:X\rightarrow I$, where $I$ is injective.
+    \end{definition}
+
+    \begin{remark}
+        Note that this choice is not necessarily unique up to isomorphism. Thus syzygies and cosyzygies are not in general functors.
+    \end{remark}
+
+    \begin{lemma}
+        Let $\mathcal{A}$ be a Frobenius category and suppose that there are two conflations with injectives as below. Then $\underline{X}'\simeq\underline{X}''$.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar[tail]{r}{i}[marking]{\circ} & I \ar[tail]{r}{i'}[marking]{\circ} & X' \\
+                X \ar[tail]{r}{j}[marking]{\circ} & J \ar[tail]{r}{j'}[marking]{\circ} & X'' 
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        Observe that there are morphisms in the diagram as $I$ and $J$ are injective.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar{dr}{j} \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & I \ar[dashed]{d}{f} \\
+                X \ar[tail]{r}{j}[marking]{\circ} & J
+            \end{tikzcd}
+        \end{center}
+        The commutative diagram below is created by the cokernel property.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & I \ar[two heads]{r}{i'}[marking]{\circ} \ar{d}{f} & X' \ar[dashed]{d}{g} \\
+                X \ar[equal]{d} \ar[tail]{r}{j}[marking]{\circ} & J \ar[two heads]{r}{j'}[marking]{\circ} \ar{d}{f'} & X'' \ar[dashed]{d}{g'} \\
+                X \ar[tail]{r}{i}[marking]{\circ} & I \ar[two heads]{r}{i'}[marking]{\circ} & X'
+            \end{tikzcd}
+        \end{center}
+    A diagram chase shows that $i-f'fi=(id_I-f'f)\circ i = 0$. This means that $(f'f-id_I)$ factors through $X'$, i.e. there exists $h:X'\rightarrow I$ and $f'f = hi'+id_I$. Diagram chasing also reveals that $g'gi' = i'f'f = i'(hi' +id_I) = i'hi' + i' = (i'h+id_{X'})i'$. As $i'$ is an epi one obtains that $g'g = i'h + id_{X'} \implies \underline{g'g}=id_{\underline{X}'}$ as $i'h$ factors through $I$. $\underline{gg'}=id_{\underline{X}''}$ is dual.
+    \end{proof}
+
+    \begin{corollary}
+        Cosyzygy is a well defined functor \rotatebox[origin=c]{180}{$\Omega$}$:\underline{\mathcal{A}}\rightarrow\underline{\mathcal{A}}$
+    \end{corollary}
+
+    \begin{proof}
+        Let $f:X\rightarrow Y$ be a morphism in $\mathcal{A}$. Then the following diagrams representing the different choices of syzygies.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar{d}{f} \ar{r}{i} & I \ar{r}{p} \ar[dashed]{d} & \rotatebox[origin=c]{180}{$\Omega$}X \ar[dashed]{d}{\rotatebox[origin=c]{180}{$\Omega$}f} \\
+                Y \ar{r}{j} & J \ar{r}{q} & \rotatebox[origin=c]{180}{$\Omega$}Y
+            \end{tikzcd}
+            \begin{tikzcd}
+                X \ar{d}{f} \ar{r}{i'} & I' \ar{r}{p'} \ar[dashed]{d} & \rotatebox[origin=c]{180}{$\Omega$}'X \ar[dashed]{d}{\rotatebox[origin=c]{180}{$\Omega$}'f} \\
+                Y \ar{r}{j'} & J' \ar{r}{q'} & \rotatebox[origin=c]{180}{$\Omega$}'Y
+            \end{tikzcd}
+        \end{center}
+        By the previous proof, there are maps between the diagrams making an almost commutative diagram where all the 8 outer squares commute.
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                X \ar{dddd}{f} \ar[equal]{rd}[above, pos=0.8]{\alpha (X)} \ar[tail]{rr}[marking]{\circ}[near start]{i} & & I \ar{rd}[above, pos=0.8]{\beta (X)} \ar[two heads]{rr}[marking]{\circ}[near start]{p} \ar[dashed]{dddd}{If} & &\rotatebox[origin=c]{180}{$\Omega$}X \ar{rd}[above, pos=0.8]{\gamma (X)} \ar[dashed]{dddd}{\rotatebox[origin=c]{180}{$\Omega$}f} \ar[dashed, squiggly]{lddddd}{\chi}\\
+                \textcolor{white}{.} & X \ar[tail]{rr}[marking]{\circ}[near start]{i'} \ar{dddd}{f} && I' \ar[dashed]{dddd}{I'f} \ar[two heads]{rr}[marking]{\circ}[near start]{p'} && \rotatebox[origin=c]{180}{$\Omega$}'X \ar[dashed]{dddd}{\rotatebox[origin=c]{180}{$\Omega$}'f}\\
+                \textcolor{white}{.} \\
+                \textcolor{white}{.} \\
+                Y \ar[equal]{rd}[above, pos=0.9]{\alpha (Y)} \ar[tail]{rr}[marking]{\circ}[near start]{j} & & J \ar{rd}[above, pos=0.8]{\beta (Y)} \ar[two heads]{rr}[marking]{\circ}[near start]{q} & & \rotatebox[origin=c]{180}{$\Omega$}Y \ar{rd}[above, pos=0.8]{\gamma (Y)} \\
+                & Y \ar[tail]{rr}[marking]{\circ}[near start]{j'} && J' \ar[two heads]{rr}[marking]{\circ}[near start]{q'} && \rotatebox[origin=c]{180}{$\Omega$}'Y
+            \end{tikzcd}
+        \end{center}
+        To see that the definition of the cosyzygy is well defined is to show that the 3 inner squares are commutative in the quotient category, i.e. that the diagram commutes in the quotient. \\
+        
+        Observe that the left inner square commutes by definition, and that the central inner square commutes in the quotient as every morphism gets related to $0$. Thus it remains to show that \underline{$\gamma (Y)$}$\circ$\underline{\rotatebox[origin=c]{180}{$\Omega$}$f$}$=$\underline{\rotatebox[origin=c]{180}{$\Omega$}$'f$}$\circ$\underline{$\gamma (X)$}, which is the same as to say that $\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$ factors over an injective. \\
+ 
+        By doing a diagram chase in the left cube one may find the following equation $(I'f\circ \beta(X)-\beta (Y)\circ If)i=0$. This means that the map $I'f\circ \beta(X)-\beta (Y)\circ If$ factors through the cokernel of $i$ as $\chi p$. By chasing the right cube one may assert the equation $q'\chi p = (\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X))p$, thus $q'\chi =$$\gamma (Y)\circ$\rotatebox[origin=c]{180}{$\Omega$}$f-$\rotatebox[origin=c]{180}{$\Omega$}$'f\circ\gamma (X)$.
+    \end{proof}
+
+    \begin{corollary}
+        Cosyzygy \upside{$\Omega$} is an autoequivalence with syzygy $\Omega$ as quasi-inverse.
+    \end{corollary}
+
+    \begin{proof}
+        The goal is to show that there is a natural isomorphisms $\Omega$\upside{$\Omega$}$\simeq Id_{\underline{\mathcal{A}}}$ and \upside{$\Omega$}$\Omega\simeq Id_{\underline{\mathcal{A}}}$. As these are inverse operations one has that taking syzygy then cosyzygy is the same as taking cosyzygy then syzygy in $\mathcal{A}^{op}$.
+        Let $X:\mathcal{A}$, the goal is to show that the following diagram gives a natural isomorphism at the rightmost arrow in $\underline{\mathcal{A}}$.
+        \begin{center}
+            \begin{tikzcd}
+                \Omega X \ar{r} \ar[equal]{d} & P \ar[dashed]{d} \ar{r} & X \ar[dashed]{d} \\
+                \Omega X \ar{r} & I \ar{r} & \upside{$\Omega$}\Omega X
+            \end{tikzcd}
+        \end{center}
+        Observe that this case is identical to the one previous proved. This shows that there is a natural isomorphism from $X$ to \upside{$\Omega$}$\Omega$X.
+    \end{proof}
+
+    \begin{remark}
+        A subtle, but important point is that the category $\mathcal{A}$ has enough projectives and injectives. This enables one to find the syzygies and cosyzygies. It is also important that the projectives are the same as the injectives for this construction to give the isomorphisms as well.
+    \end{remark}
+
+    With the category $\underline{\mathcal{A}}$ and the functor \upside{$\Omega$} it remains to find the triangulation $\Delta_{\underline{\mathcal{A}}}$. The triangulation of $\underline{\mathcal{A}}$ will be defined as the set of candidate triangles in $\underline{\mathcal{A}}$ called standard triangles. Let $\underline{x}:\underline{X}\rightarrow\underline{Y}$ be a morphism, then by (QE2) there is a push-out in $\mathcal{A}$. Moreover, by Proposition 2.1.3 $(y,z)$ is a conflation.
+
+    \begin{minipage}[c]{0.6\textwidth}
+        \begin{center}
+            \begin{tikzcd}
+                X \ar{r}{x} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} & Y \ar[tail]{d}{y}[marking]{\circ} \ar[bend left]{rdd}{0}\\
+                I(X) \ar[bend right, two heads]{rrd}{p}[marking]{\circ} \ar{r}{x'} & Z \ar[dashed, two heads]{dr}{z}[marking]{\circ} \\
+                & & \rotatebox[origin=c]{180}{$\Omega$}X
+            \end{tikzcd}
+        \end{center}
+    \end{minipage}
+    \begin{minipage}[c]{0.4\textwidth}
+        The set of standard triangles will be of the form $(\underline{X},\underline{Y},\underline{Z},\underline{x},\underline{y},\underline{z})$. Thus a triangle $(A,B,C,a,b,c):\Delta_{\underline{\mathcal{A}}}$ if and only if $(A,B,C,a,b,c)$ is isomorphic to a standard triangle.
+    \end{minipage}
+
+    \begin{prop}
+        $\Delta_{\underline{\mathcal{A}}}$ is a triangulation of $\underline{\mathcal{A}}$.
+    \end{prop}
+
+    \begin{proof}\emph{Sketch.}
+        Most of the details of this proof will be omitted, and they can be found in \cite{happel} or \cite{May01}. The proof is structured into 3 different parts, namely showing TR1, TR2, and TR4. Note that TR1 is satisfied by definition of $\Delta_{\underline{\mathcal{A}}}$. To see this observe that the following diagram is a push-out.
+        \begin{center}
+            \begin{tikzcd}[row sep=large]
+                X \ar[equal]{r}{} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} & X \ar[tail]{d}{i}[marking]{\circ} \\
+                I(X) \ar[equal]{r}{} & I(X)
+            \end{tikzcd}
+        \end{center}
+        Thus $(\underline{X},\underline{X},\underline{0},id_{\underline{X}},\underline{0},\underline{0})$ is a standard triangle. \\
+
+        % (TR3) Let $(\underline{A},\underline{B},\underline{C},\underline{a},\underline{b},\underline{c})$ and $(\underline{A}',\underline{B}',\underline{C}',\underline{a}',\underline{b}',\underline{c}')$ be two standard triangles. Suppose that there are two morphisms $\phi_A:A\rightarrow A'$ and $\phi_B:B\rightarrow B'$ such that $\underline{a'\phi_A}=\underline{\phi_B a}$. That means there is a morphism $\alpha:I(A)\rightarrow B'$ such that $a'\phi_A-\phi_B a = \alpha i(A)$. There is a map $I(\phi_A):I(A)\rightarrow I(A')$ induced by the map $i(A')\phi_A:A\rightarrow I(A')$, such that $I(\phi_A)i(A)=i(A')\phi_A$ and \rotatebox[origin=c]{180}{$\Omega$}$\phi_Ap(A)=p(A')I(\phi_A)$. By calculating $b'\phi_B\alpha=b'a'\phi_A-b'\alpha i(A) =\widetilde{a'}i(A')\phi_A-b'\alpha i(A)=\widetilde{a'}I(\phi_A)i(A)-b'\alpha i(A)=(\widetilde{a'}I(\phi_A)-b'\alpha)i(A)$. As $C$ is a push-out there exists a $\phi_C:C\rightarrow C'$ such that $\phi_C b = b'\phi_B$ and $\phi_C\widetilde{a}=\widetilde{a'}I(\phi_A)-b'\alpha$.
+        
+        % \begin{center}
+        %     \begin{tikzcd}
+        %         A \ar{r}{a} \ar[bend left]{rrr}{\phi_A} \ar{d}{i(A)} & B \ar{d}{b} \ar{r}{\phi_B} & B' \ar{d}{b'} & A' \ar{l}[above]{a'} \ar{d}{i(A')} \\
+        %         I(A) \ar[dashed, squiggly]{rru}{\alpha} \ar[bend right]{rrr}{I(\phi_A)} \ar{r}{\widetilde{a}} & C \ar[dashed]{r}{\phi_C} & C' & I(A') \ar{l}{\widetilde{a'}} \\
+        %     \end{tikzcd}
+        % \end{center}
+        % Now it remains to see that $c'\phi_C=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ c$. By using the universal property of the push-out we can instead verify that $c'\phi_Cb=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ cb$ and $c'\phi_C\widetilde{a}=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ c\widetilde{a}$. We first start by seeing that
+        % $c'\phi_Cb=c'b'\phi_B=0$ and \rotatebox[origin=c]{180}{$\Omega$}$a\circ cb = 0$, then $c'\phi_C\widetilde{a}=c'(\widetilde{a'}I(\phi_A)-b'\alpha)=c'\widetilde{a'}I(\phi_A)=p(A')I(\phi_A)=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ p(A)=$\rotatebox[origin=c]{180}{$\Omega$}$a\circ c\widetilde{a}$.
+
+        (TR2) Consider the standard triangle $(\underline{X},\underline{Y},\underline{Z},\underline{x},\underline{y},\underline{z})$, the goal is to show that there is a triangle $(\underline{Y},\underline{Z},$\underline{\rotatebox[origin=c]{180}{$\Omega$}$X$}$,\underline{x},\underline{y},-$\underline{\rotatebox[origin=c]{180}{$\Omega$}$x$}$)$. Let $I(X)$ and $I(Y)$ be injectives with inflations from $X$ and $Y$ respectively. Since $I(Y)$ is injective there is a unique map by the push-out property in (1).
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                X \ar{r}{x} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i(X)}[marking]{\circ} & Y \ar{d}{y} \ar[bend left]{rdd}{i(Y)} \\
+                I(X) \ar{r}{x'} \ar[bend right]{rrd}{f} & Z \ar[dashed]{rd}{g} \\
+                & & I(Y)
+            \end{tikzcd}
+            (2)
+            \begin{tikzcd}
+                X \ar{r}{x} \ar[phantom]{rd}[very near end]{\lrcorner} \ar{d}{i(X)} & Y \ar{d}{y} \ar{rd}{0} \\
+                I(X) \ar{rd}{f} \ar{r}{x'} & Z \ar{d}{g} \ar{r}{z} & \rotatebox[origin=c]{180}{$\Omega$}X \ar{d}{\rotatebox[origin=c]{180}{$\Omega$}x} \\
+                & I(Y) \ar{r}{p(Y)} & \rotatebox[origin=c]{180}{$\Omega$}Y
+            \end{tikzcd}
+        \end{center}
+        From (2) one are able to use the push-out to see that the lower right square commutes, that is $p(Y)fi(X)=$\rotatebox[origin=c]{180}{$\Omega$}$xzyz=0$. This is true as $p(Y)fi(X)=p(Y)gyx=p(Y)i(Y)x=0$ by (1). Note that since $z$ and $p(Y)$ are deflations with equal kernels, Proposition 2.1.3 says that $(\begin{pmatrix}g \\ z\end{pmatrix},\begin{pmatrix}p(Y) & -\rotatebox[origin=c]{180}{$\Omega$}x\end{pmatrix})$ is a conflation. 
+
+        One is now able to find a commutative diagram and by Proposition 2.1.3 the upper left square is bicartesian.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                Y \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{d}{i(Y)}[marking]{\circ} \ar[tail]{r}{y}[marking]{\circ} \& Z \ar[tail]{d}{\begin{pmatrix}g \\ z\end{pmatrix}}[marking]{\circ} \ar[two heads]{r}{z}[marking]{\circ} \& \rotatebox[origin=c]{180}{$\Omega$}X \ar[equal]{d} \\
+                I(Y) \ar[two heads]{d}{p(Y)}[marking]{\circ} \ar[tail]{r}[below]{\iota_1}[marking]{\circ} \& I(Y)\oplus \rotatebox[origin=c]{180}{$\Omega$}X \ar[two heads]{r}[below]{\pi_2}[marking]{\circ} \ar[two heads]{d}{\begin{pmatrix}p(Y) & -\rotatebox[origin=c]{180}{$\Omega$}x\end{pmatrix}}[marking]{\circ} \& \rotatebox[origin=c]{180}{$\Omega$}X. \\
+                \rotatebox[origin=c]{180}{$\Omega$}Y \ar[equal]{r}{} \& \rotatebox[origin=c]{180}{$\Omega$}Y
+            \end{tikzcd}
+        \end{center}
+
+        Thus $(\underline{Y},\underline{Z},$\underline{\rotatebox[origin=c]{180}{$\Omega$}$X$}$,\underline{y},\underline{z},-$\underline{\rotatebox[origin=c]{180}{$\Omega$}$x$}$)$ is a standard triangle. \\
+
+        (TR4) Suppose that there are three standard triangles where $\nu\upsilon=\omega$.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{\upsilon} \ar{d}{x} & Y \ar{d}{i} \\
+                I(X) \ar{r}{\bar{\upsilon}} \ar{d}{\bar{x}} & Z' \ar{d}{i'} \\
+                \upside{$\Omega$}X \ar[equal]{r} & \upside{$\Omega$}X
+            \end{tikzcd}
+            \begin{tikzcd}
+                Y \ar{r}{\nu} \ar[phantom]{rd}[very near end]{\lrcorner} \ar{d}{y} & Z \ar{d}{j} \\
+                I(Y) \ar{r}{\bar{\nu}} \ar{d}{\bar{y}} & X' \ar{d}{j'} \\
+                \upside{$\Omega$}Y \ar[equal]{r} & \upside{$\Omega$}Y
+            \end{tikzcd}
+            \begin{tikzcd}
+                X \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{\omega} \ar{d}{x} & Z \ar{d}{k} \\
+                I(X) \ar{d}{\bar{x}} \ar{r}{\bar{\omega}} & Y' \ar{d}{k'} \\
+                \upside{$\Omega$}X \ar[equal]{r} & \upside{$\Omega$}X
+            \end{tikzcd}
+        \end{center}
+        By Noether's isomorphism lemma there is a conflation passing through on the right column and the middle square is bicartesian. $z'$ exists by the injectivity of $I(Y)$ and that $i$ is an inflation. $z'$ is an inflation as $y$ is an inflation, thus $\bar{z'}$ exists.
+        \begin{center}
+            \begin{tikzcd}
+                Y \ar[equal]{d} \ar[tail]{r}{i}[marking]{\circ} & Z' \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[tail]{d}{z'}[marking]{\circ} \ar[two heads]{r}{i'}[marking]{\circ} & \upside{$\Omega$}X \ar[tail, dashed]{d}{s}[marking]{\circ} \\
+                Y \ar[tail]{r}{y}[marking]{\circ} & I(Y) \ar[two heads]{r}{\bar{y}}[marking]{\circ} \ar[two heads]{d}{\bar{z'}}[marking]{\circ} & \upside{$\Omega$}Y \ar[two heads, dashed]{d}{r}[marking]{\circ} \\
+                & \upside{$\Omega$}Z' \ar[equal]{r} & \upside{$\Omega$}Z'
+            \end{tikzcd}
+        \end{center}
+        There is also a map $I_\upsilon:I(X)\rightarrow I(Y)$ induced by the maps between $X$ and $I(Y)$. By using the following universal properties one may find the unique maps $f$ and $g$.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar[phantom]{rd}[very near end]{\lrcorner} \ar{r}{\upsilon} \ar[bend left]{rr}{\omega} \ar{d}{x} & Y \ar{d}{i} \ar{r}{\nu} & Z \ar{dd}{k} \\
+                I(X) \ar[bend right]{rrd}{\bar{\omega}} \ar{r}{\bar{\upsilon}} & Z' \ar[dashed]{rd}{f} \\
+                & & Y'
+            \end{tikzcd}
+            \begin{tikzcd}
+                X \ar{r}{\omega} \ar{d}{x} & Z \ar{d}{k} \ar[bend left]{rdd}{j} \\
+                I(X) \ar{r}{\bar{w}} \ar[bend right]{rd}{I_\upsilon} & Y' \ar[dashed]{rd}{g} \\
+                & I(Y) \ar[bend right]{r}{\bar{\nu}}& X'
+            \end{tikzcd}
+        \end{center}
+        These maps can be arranged in the diagram below. It can be seen that the middle square is a push-out, by using the fact that the upper left square and the larger rectangles are push-outs.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar{r}{\upsilon} \ar{d}{x} \ar[phantom]{rd}[very near end]{\lrcorner} & Y \ar{r}{\nu} \ar{d}{i} & Z \ar{d}{k} \\
+                I(X) \ar{r}{\bar{\upsilon}} \ar{d}{\bar{x}} \ar{rd}{I_\upsilon} & Z' \ar{r}{f} \ar{d}{z'} & Y' \ar[bend left, phantom]{d}[very near start]{\lrcorner} \ar{d}{g} \\
+                \upside{$\Omega$}X \ar{rd}{s} & I(Y)\ar{d}{r} \ar{r}{\bar{\nu}} & X' \ar[bend left, phantom]{d}[very near start]{\lrcorner} \ar{d}{\upside{$\Omega$}i\circ j'} \\
+                & \upside{$\Omega$}Y \ar{r}{\upside{$\Omega$}i} & \upside{$\Omega$}Z'
+            \end{tikzcd}
+            \begin{tikzcd}
+                Z' \ar{r}{f} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{z'}[marking]{\circ} & Y' \ar[tail]{d}{g}[marking]{\circ} \\
+                I(Y) \ar{r}{\bar{\nu}} \ar[two heads]{d}{\bar{z'}}[marking]{\circ} & X' \ar[two heads]{d}{\upside{$\Omega$}i\circ j'}[marking]{\circ} \\
+                \upside{$\Omega$}Z' \ar[equal]{r} & \upside{$\Omega$}Z'
+            \end{tikzcd}
+        \end{center}
+        Thus $(\underline{Z'},\underline{Y'},\underline{X'},\underline{f},\underline{g},$\underline{\upside{$\Omega$}$i$}$\circ$\underline{$ j'$}$)$ is a triangle. 
+    \end{proof}
+
+    \begin{remark}
+        A more detailed and different proof may be found in \cite{Hol12} or \cite{Mat20}.
+    \end{remark}
+
+    This construction of triangles admits a close relation to conflations. If there is a conflation $(p:X\rightarrow Y,q:Y\rightarrow Z)$, then there is a triangle $(\underline{X},\underline{Y},\underline{Z},\underline{p},\underline{q},-\underline{r})$ constructed as follows: Let $P:\mathcal{A}$ be a projective object with a deflation $\bar{p}:P\rightarrow Y$, then there exists a pullback (1), moreover the pullback square is bicartesian. By using TR2 one may find the triangle (2) as indicated in the diagram.
+    \begin{center}
+        (1)
+        \begin{tikzcd}
+            \Omega Z \ar[phantom]{rd}[very near start]{\ulcorner}[very near end]{\lrcorner} \ar[two heads]{r}{\Omega r}[marking]{\circ} \ar[tail]{d}[marking]{\circ} & X \ar[tail]{d}{p}[marking]{\circ} \\
+            P \ar[two heads]{r}{\bar{p}}[marking]{\circ} \ar[two heads]{d}[marking]{\circ} & Y \ar[two heads]{d}{q}[marking]{\circ} \\
+            Z \ar[equal]{r}{} & Z 
+        \end{tikzcd}
+        (2)
+        \begin{tikzcd}
+            \underline{X} \ar{r}{\underline{p}} & \underline{Y} \ar{r}{\underline{q}} & \underline{Z} \ar{r}{-\underline{r}} & \underline{\upside{$\Omega$}X}
+        \end{tikzcd}
+    \end{center}
+
+    \begin{remark}
+        For any morphism $f:A\rightarrow B$ in $\mathcal{A}$, there is an inflation $\begin{pmatrix}f \\ -i \end{pmatrix}:A\rightarrow B\oplus I$ which is in the same equivalence class as $f$. Thus $\underline{f}=\underline{\begin{pmatrix}f \\ -i \end{pmatrix}}$, and any morphism in $\underline{\mathcal{A}}$ can be obtained from an inflation in $\mathcal{A}$.
+    \end{remark}
+
+\section{Self-injective Algebras}
+
+    The first example of a triangulated category is going to be derived from finite-dimensional artin algebras. More specifically, let $\Lambda$ be a self-injective finite-dimensional artin $R$-algebra; that is $_{\Lambda}\Lambda$ is injective as left $\Lambda$-module, then the finitely generated projective objects coincide with the finitely generated injective objects. This section is based on \cite{Rei95} and \cite{Kra12}.
+
+    \begin{prop}
+        If $\Lambda$ is a self-injective finite-dimensional artin $R$-algebra, then $mod_{\Lambda}$ is a Frobenius category.
+    \end{prop}
+
+    To prove this statement one will need the following propositions.
+
+    \begin{lemma}
+        The category $mod_{\Lambda}$ has enough projectives
+    \end{lemma}
+
+    \begin{proof}
+        Let $A:mod_{\Lambda}$, then $A$ is finitely generated. This means there exists an epimorphism $p:R^n\rightarrow A$, where $n$ is the number of generators of $A$.
+    \end{proof}
+
+    \begin{lemma}
+        Let $R$ be an artin ring and $\mathfrak{r}$ denote the nilradical of $R$. Moreover, let $J$ be the injective envelope of $R/\mathfrak{r}$, then functor $Hom_R(\_,J):mod_{\Lambda}\rightarrow mod_{\Lambda^{op}}$ is a duality.
+    \end{lemma}
+
+    \begin{corollary}
+        The category $mod_{\Lambda}$ has enough injectives
+    \end{corollary}
+
+    Detailed proofs of these statements can be found in \cite{Rei95}.
+
+    \begin{proof}
+        Suppose that $\Lambda$ is self-injective. By the lemmas above it is known that $mod_{\Lambda}$ has enough projectives and enough injectives. It remains to show that the class of injectives coincides with the projectives. Since every indecomposable $\Lambda$ module is a summand of $\Lambda$ up to isomorphism, it follows that they are injective. As they also are projective, the class of injectives and projectives coincide.
+    \end{proof}
+
+    This shows that $mod_{\Lambda}$ is a Frobenius category, thus \underline{$mod_{\Lambda}$} is triangulated. The triangles in \underline{$mod_{\Lambda}$} are the quotients of every short exact sequence in $mod_{\Lambda}$.
+    \begin{center}
+        \begin{tikzcd}
+            0 \ar{r}{} & X \ar[tail]{r}{a} & Y \ar[two heads]{r}{b} & Z \ar{r}{} & 0 
+        \end{tikzcd}
+        $\implies$
+        \begin{tikzcd}
+            \underline{X} \ar{r}{\underline{a}} & \underline{Y} \ar{r}{\underline{b}} & \underline{Z} \ar{r}{\underline{c}} & \underline{\upside{$\Omega$}X}
+        \end{tikzcd}
+    \end{center}
+
+    % \begin{prop}
+    %     Let $G$ be a group and $R$ any commutative artin ring, then the group ring $R[G]$ is self-injective.
+    % \end{prop}
+
+    % \begin{proof}
+    %     Do I even want this?
+    % \end{proof}
+
+    \begin{prop}
+        Let $K$ be a field, then $K[x]/(x^n)$ is self-injective.
+    \end{prop}
+
+    \begin{proof}
+        As $K[x]/(x^n)$ modules, there is only one indecomposable projective module up to isomorphism, that is $K[x]/(x^n)$. Since $K[x]/(x^n)$ is commutative, the duality functor is an automorphism of $mod_{K[x]/(x^n)}$, thus $Hom_K(K[x]/(x^n),K)$ is the indecomposable injective $K[x]/(x^n)$ module. As the duality functor preserves length the modules have equal length. By finding a monomorphism $i:K[x]/(x^n)\rightarrow Hom_K(K[x]/(x^n),K)$ one have that it is an isomorphism as the cokernel has length $0$. The socle $soc(K[x]/x^n)$ is the simple module $K$, this means that the injective envelope of $K[x]/(x^n)$ is indecomposable, thus it is in the same isomorphism class as $Hom_K(K[x]/(x^n),K)$, proving that there is a monomorphism as stated.
+    \end{proof}
+
+    In this particular case, the triangles take on a somewhat special form, where repeatedly applying TR2 yields the same triangles after 6 iterations. This can be seen by calculating the triangles of the indecomposable modules. Every other triangle will be a direct sum of these. \\
+
+    Observe that every submodule of $K[x]/(x^n)$ is indecomposable, these make up the class of the indecomposable modules up to isomorphism. Further observe that the cosyzygy of any submodule is \upside{$\Omega$}$(x^k)/(x^n)\simeq (x^{n-k})/(x^n)$. The repetition of the triangles can be seen as the natural isomorphism \upside{$\Omega$}$^2(x^k)/(x^n)\simeq (x^{n-(n-k)})/(x^n) = (x^k)/(x^n)$. \\
+
+    To find the triangles, let $A,B:mod_{K[x]/(x^n)}$ and $T:A\rightarrow B$ be $K[x]/(x^n)$-linear. $T$ is in the same equivalence class as $\begin{pmatrix} T \\ -i \end{pmatrix}:A\rightarrow B\oplus I$ with $i$ as the injective envelope of $A$. Then there is a triangle as the diagram below.
+
+    \begin{center}
+        \begin{tikzcd}
+            \underline{A} \ar{r}{\underline{T}} & \underline{B} \ar{r}{} & Cok\underline{T}\oplus Ker\underline{\upside{$\Omega$}T} \ar{r}{} & \underline{\upside{$\Omega$}A}
+        \end{tikzcd}
+    \end{center}
+
+    Observe that $Cok\underline{\begin{pmatrix} f \\ -i \end{pmatrix}} \simeq Cok\underline{T}\oplus Ker$\underline{\upside{$\Omega$}$T$}, so the triangle above is in fact well-defined.
+
+    \begin{lemma}
+        The category $Vect(K)$ is triangulated.
+    \end{lemma}
+
+    \begin{proof}\emph{Sketch.} This follows immediately from the discussion above. Look at $mod_{K[x]/(x^2)}$, the indecomposable objects of this category are $K[x]/(x^2)$ and $K$ up to isomorphism. As $K[x]/(x^2)$ is injective we have that $K$ is the only indecomposable object of \underline{$mod_{K[x]/(x^2)}$}, thus every object is a direct summand $K$. Also, observe that the cosyzygy is naturally isomorphic to the identity functor on the quotient. To be precise, one would need to show that there is an equivalence of categories $Vect(K)\simeq mod_{K[x]/(x^2)}$. The triangles in $Vect(K)$ can then be seen as this three-term repeating triangle.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                V \ar{r}{T} \& W \ar{r}{\begin{pmatrix} \pi_T \\ 0 \end{pmatrix}} \& CokT\oplus KerT \ar{r}{\begin{pmatrix} 0 & \iota_T \end{pmatrix}} \& V
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    % \todo[color = pink]{Fjern dette?} Suppose now that $\Lambda$ is not a self-injective artin $R$-algebra, then there is an extension to this ring which makes it self injective.
+
+    % \begin{definition}
+    %     Let $\Lambda$ be an artin $R$-algebra. There is an associated product called the semi-direct product with this ring and it's dual. Define $\Lambda \rtimes Hom_R(\Lambda,J)$ to have the elements $(\lambda, \phi)$, where $\lambda:\Lambda$ and $\phi:\Lambda\rightarrow J$. Let $(\lambda, \phi)$ and $(\mu, \psi)$ be two elements in this set. Set $(\lambda, \phi) + (\mu, \psi) = (\lambda + \mu, \phi + \psi)$ and $(\lambda, \phi)(\mu, \psi) = (\lambda\mu, \lambda\cdot\psi + \phi\cdot\mu)$, where $\lambda\phi (\chi)\mu = \phi(\lambda\chi\mu)$.
+    % \end{definition}
+
+    % \begin{prop}
+    %     The trivial extension $\Lambda\rtimes Hom_R(\Lambda,J)$ is self-injective.
+    % \end{prop}
+
+    % \begin{proof}
+
+    % \end{proof}
+
+\section{The Homotopy Category}
+    
+    The next example of a triangulated category is the homotopy category. This category may be regarded as the prototype for triangulated categories. To define it, the category of chain complexes and homotopies must be defined first.
+
+    \begin{definition}
+        Let $\mathcal{A}$ be an additive category. Define $Ch(\mathcal{A})$ to be the category of diagrams in $\mathcal{A}$ on the form
+        \begin{center}
+            \begin{tikzcd}
+                ... \ar{r}{d^{-2}_{\chain{A}}} & A^{-1} \ar{r}{d^{-1}_{\chain{A}}} & A^0 \ar{r}{d^0_{\chain{A}}} & A^1 \ar{r}{d^1_{\chain{A}}} & ...
+            \end{tikzcd}
+        \end{center}
+        such that $d^i_{\chain{A}}\circ d^{i-1}_{\chain{A}}=0$ for every $i:\{-\infty,...,\infty\}$. These objects are referred to as (co)chain complexes and they are denoted as $\chain{A}$, and the maps in the objects are called differentials/(co)boundaries. A morphism $\chain{\phi} : \chain{A}\rightarrow \chain{B}$ between (co)chain complexes, also called chain map, is a collection of morphisms from $\mathcal{A}$, such that the morphisms commute with the differentials in the following manner:
+        \begin{center}
+            \begin{tikzcd}
+                ... \ar{r}{d^{-2}_{\chain{A}}} & A^{-1} \ar{d}{\phi^{-1}} \ar{r}{d^{-1}_{\chain{A}}} & A^0 \ar{r}{d^0_{\chain{A}}} \ar{d}{\phi^0} & A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{\phi^1} & ... \\
+                ... \ar{r}{d^{-2}_{\chain{B}}} & B^{-1} \ar{r}{d^{-1}_{\chain{B}}} & B^0 \ar{r}{d^0_{\chain{B}}} & B^1 \ar{r}{d^1_{\chain{B}}} & ...
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{remark}
+        If $\mathcal{A}$ is abelian, then the category $Ch(\mathcal{A})$ is abelian. The kernels and cokernels of chain maps would be level-wise kernels and cokernels along the chain. Moreover, if $(\mathcal{A},\mathcal{E})$ is an exact category, then $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ will be exact as well, by using level-wise kernels and cokernels.
+    \end{remark}
+
+    \begin{remark}
+        On the category of cochain complexes there is an additive autoequivalence called the translation functor. The functor is denoted as $(\_)[1]:Ch(\mathcal{A})\rightarrow Ch(\mathcal{A})$ and it takes a complex $A^{\bullet}$ and shifts it one step to the left into $A^{\bullet + 1}$. In fact there is a family of functors $A^{\bullet}[n]=A^{\bullet + n}$. Thus $(\_)[-1]$ is the quasi-inverse of $(\_)[1]$.
+    \end{remark}
+
+    \begin{definition}
+        A chain map $f^{\bullet}:A^{\bullet}\rightarrow B^{\bullet}$ is called null-homotopic if there is a map $\varepsilon^{\bullet}:A^{\bullet}\rightarrow B^{\bullet}[-1]$ such that $f^{\bullet} = d_{B^{\bullet}}^{\bullet - 1}\varepsilon^{\bullet} + \varepsilon^{\bullet + 1}d_{A^{\bullet}}^{\bullet}$.
+        \begin{center}
+            \begin{tikzcd}
+                ... \ar{r}{d^{-2}_{\chain{A}}} & A^{-1} \ar{d}{f^{-1}} \ar{r}{d^{-1}_{\chain{A}}} & A^0 \ar{ld}[above]{\varepsilon^{0}} \ar{r}{d^0_{\chain{A}}} \ar{d}{f^0} & A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{f^1} \ar{ld}[above]{\varepsilon^1} & ... \\
+                ... \ar{r}{d^{-2}_{\chain{B}}} & B^{-1} \ar{r}{d^{-1}_{\chain{B}}} & B^0 \ar{r}{d^0_{\chain{B}}} & B^1 \ar{r}{d^1_{\chain{B}}} & ...
+            \end{tikzcd}
+        \end{center}
+        $\chain{\varepsilon}$ is called the homotopy. Two chain maps $\chain{f}$ and $\chain{g}$ are said to be homotopic $\chain{f}\sim\chain{g}$ if their difference $\chain{f}-\chain{g}$ is null-homotopic.
+    \end{definition}
+
+    \begin{prop}
+        There is an additive bifunctor $nullHom_{\mathcal{A}}(\_,\_):Ch(\mathcal{A})^{op}\times Ch(\mathcal{A})\rightarrow Ab$ mapping into the set of null-homotopic morphisms. The elements of $nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ are pairs made of null-homotopic maps with their homotopy $(\chain{f},\chain{\varepsilon})$. This is an abelian group with the product group structure, that is $(\chain{f},\chain{\varepsilon}) + (\chain{g},\chain{\gamma}) = (\chain{f}+\chain{g},\chain{\varepsilon}+\chain{\gamma})$. The functor acts on morphisms almost the same way as the hom-functor. On a chain map $\chain{f}:\chain{B}\rightarrow\chain{C}$ define the covariant direction to be $\chain{f}_{*} = nullHom_{\mathcal{A}}(\chain{A},\chain{f}) = \{(\chain{f}\chain{g},f^{\bullet-1}\chain{\varepsilon}) | (\chain{g},\chain{\varepsilon}) : nullHom_{\mathcal{A}}(\chain{A},\chain{B}) \}$, and dually $f^{*}(\chain{g},\chain{\varepsilon}) = (\chain{g}\chain{f}, \chain{\varepsilon}\chain{f})$ in the contravariant direction.
+    \end{prop}
+
+    \begin{proof}
+        To prove the proposition, one must show that the assignment is in fact a functor and that it is additive as well. It suffices to show that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is an additive functor, as it will follow by duality that there is an additive bifunctor as proposed. \\
+        
+        Suppose that there is a chain map $\chain{f}:\chain{B}\rightarrow\chain{C}$, then $nullHom_{\mathcal{A}}(\chain{A},\_)(\chain{f})=\chain{f}_*$. Let $(\chain{g},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be a null-homotopic chain map. By definition $\chain{f}_*(\chain{g},\chain{\varepsilon})=(\chain{f}\chain{g},f^{\bullet-1}\chain{\varepsilon})$. One may now see that $f^{\bullet-1}\chain{\varepsilon}$ is a homotopy by the following diagram. The commutativity of the lower left square shows the homotopy. It follows by functoriality from the Hom-functor that $nullHom_{\mathcal{A}}(\chain{A},\_)$ is a functor.
+        \begin{center}
+            \begin{tikzcd}
+                ... \ar{r}{d^{-2}_{\chain{A}}} & A^{-1} \ar{d}{g^{-1}} \ar{r}{d^{-1}_{\chain{A}}} & A^0 \ar{ld}[above]{\varepsilon^{0}} \ar{r}{d^0_{\chain{A}}} \ar{d}{g^0} & A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{g^1} \ar{ld}[above]{\varepsilon^1} & ... \\
+                ... \ar{r}{d^{-2}_{\chain{B}}} & B^{-1} \ar{r}{d^{-1}_{\chain{B}}} \ar{d}{f^{-1}} & B^0 \ar{r}{d^0_{\chain{B}}} \ar{d}{f^0} & B^1 \ar{r}{d^1_{\chain{B}}} \ar{d}{f^1} & ... \\
+                ... \ar{r}{d^{-2}_{\chain{C}}} & C^{-1} \ar{r}{d^{-1}_{\chain{C}}} & C^0 \ar{r}{d^0_{\chain{C}}} & C^1 \ar{r}{d^1_{\chain{C}}} & ...
+            \end{tikzcd}
+        \end{center}
+
+        Lastly, one must show that the functor is additive. This is the same as showing that the assignment \\ $nullHom_{\mathcal{A}}(\chain{A},\_):Hom_{Ch(\mathcal{A})}(\chain{B},\chain{C})\rightarrow Hom_{Ab}(nullHom_{\mathcal{A}}(\chain{A},\chain{B}),nullHom_{\mathcal{A}}(\chain{A},\chain{C}))$ is a group homomorphism. Let $\chain{f},\chain{g}:\chain{B}\rightarrow\chain{C}$ be two chain maps, and $(\chain{h},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{A},\chain{B})$. Then the following equation asserts the additivity:
+        \begin{align*}
+            (\chain{f}+\chain{g})_*(\chain{h},\chain{\varepsilon})\\
+            =((\chain{f}+\chain{g})\chain{h},((\chain{f}+\chain{g})[-1])\chain{\varepsilon})\\
+            =(\chain{f}\chain{h}+\chain{g}\chain{h},f^{\bullet-1}\chain{\varepsilon}+g^{\bullet-1}\chain{\varepsilon})\\
+            =(\chain{f}\chain{h},f^{\bullet-1}\chain{\varepsilon})+(\chain{g}\chain{h},g^{\bullet-1}\chain{\varepsilon})\\
+            =\chain{f}_*(\chain{h},\chain{\varepsilon})+\chain{g}_*(\chain{h},\chain{\varepsilon})
+        \end{align*}
+    \end{proof}
+
+    \begin{corollary}
+        The equivalence relation $\sim$ stated above is an additive congruence relation. The homotopy category is defined to be the quotient $K(\mathcal{A}) = Ch(\mathcal{A})/\sim$.
+    \end{corollary}
+
+    The goal is to prove that the homotopy category is triangulated. This will be done by seeing that $Ch(\mathcal{A})$ admits an exact structure, which allows us to view it as a Frobenius category. By checking that the construction of $K(\mathcal{A})$ coincide with $\underline{Ch(\mathcal{A})}$ will prove that it is triangulated. This will be revealed by studying the representable nature of $nullHom_{\mathcal{A}}(\_,\_)$.
+
+    \begin{definition}
+        Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map. Define the object $cone(\chain{f})$ to be the complex below.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                ... \ar{r} \& B^{-1}\oplus A^0 \ar{r}[below]{\begin{pmatrix} d^{-1}_{\chain{B}} & f^0 \\ 0 & -d^0_{\chain{A}} \end{pmatrix}} \& B^0\oplus A^1 \ar{r} \& ...
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{remark}
+        For any chain map $\chain{f}:\chain{A}\rightarrow\chain{B}$ there is a short exact sequence.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                \chain{B} \ar[tail]{r}{\chain{\begin{pmatrix}1 \\ 0 \end{pmatrix}}} \& cone(\chain{f}) \ar[two heads]{r}{\chain{\begin{pmatrix} 0 & \chain{-1} \end{pmatrix}}} \& \chain{A}[1]
+            \end{tikzcd}
+        \end{center}
+    \end{remark}
+
+    \begin{definition}
+        An object $\chain{A}$ of $Ch(\mathcal{A})$ is called contractible if $\chain{id_{\chain{A}}}$ is null-homotopic.
+    \end{definition}
+
+    \begin{example}
+        Let $\chain{A}$ be a complex, then $cone(id_{\chain{A}})$ is contractible. That is \\$\bigg(\begin{pmatrix} \chain{id_{\chain{A}}} & 0 \\ 0 & \chain{id_{\chain{A}}}[1]\end{pmatrix},\begin{pmatrix} 0 & 0 \\ \chain{id_{\chain{A}}} & 0 \end{pmatrix}\bigg):nullHom_{\mathcal{A}}(cone(\chain{id_{\chain{A}}}), cone(\chain{id_{\chain{A}}}))$
+    \end{example}
+
+    \begin{prop}
+        For any complex $\chain{A}$ there is a natural isomorphism $nullHom_{\mathcal{A}}(\chain{A},\_)\simeq Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\_)$. This establish that $cone(\chain{id_{\chain{A}}})$ is the universal contractible complex where null-homotopic morphisms from $\chain{A}$ factors through.
+    \end{prop}
+
+    \begin{proof}
+        This proof will construct two natural maps which are inverses. This is sufficient to prove the universal property by Yoneda's lemma.
+
+        Let $construct_{(\chain{A},\_)(\chain{B})}:nullHom_{\mathcal{A}}(\chain{A},\chain{B})\rightarrow Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\chain{B})$ and \\$destruct_{(\chain{A},\_)(\chain{B})}:Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{A}}}),\chain{B})\rightarrow nullHom_{\mathcal{A}}(\chain{A},\chain{B})$ be two morphisms defined the following way.
+        $construct_{(\chain{A},\_)(\chain{B})}(\chain{f},\chain{\varepsilon})=\begin{pmatrix}\chain{f} & \chain{\varepsilon}\end{pmatrix}$ and \\$destruct_{(\chain{A},\_)(\chain{B})}\begin{pmatrix}\chain{f} & \chain{\varepsilon}\end{pmatrix} = (\chain{f}, \chain{\varepsilon})$. These natural transformations are constructed such that they are inverses of each other. It remains to see that these maps are well defined. This will be done by showing that there is a chain map from the cone of the identity, if and only if there is a null-homotopic map from the object.
+
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                ... \ar{r}{d^{-2}_{cone(\chain{id_{\chain{A}}})}} \& A^{-1}\oplus A^0 \ar{r}{d^{-1}_{cone(\chain{id_{\chain{A}}})}} \ar{d}{\begin{pmatrix} f^{-1} & \varepsilon^{0} \end{pmatrix}} \& A^0 \oplus A^1 \ar{r}{d^{0}_{cone(\chain{id_{\chain{A}}})}} \ar{d}{\begin{pmatrix} f^0 & \varepsilon^1 \end{pmatrix}}\& ... \\
+                ... \ar{r}{d^{-2}_{\chain{B}}} \& B^{-1} \ar{r}{d^{-1}_{\chain{B}}} \& B^0 \ar{r}{d^0_{\chain{B}}} \& ... 
+            \end{tikzcd}
+        \end{center}
+
+        For $\begin{pmatrix}\chain{f} & \chain{\varepsilon}[1]\end{pmatrix}$ to be a chain map, the following conditions must hold, i.e. that the square commute.
+        \begin{equation*}
+            \begin{pmatrix}f^0 & \varepsilon^1 \end{pmatrix}\begin{pmatrix}d^{-1}_{\chain{A}} & id^0_{\chain{A}} \\ 0 & -d^0_{\chain{A}}\end{pmatrix}=d^{-1}_{\chain{B}}\begin{pmatrix} f^{-1} & \varepsilon^0 \end{pmatrix}
+        \end{equation*}
+
+        By calculating the matrix, it is a chain map if the following conditions are met.
+
+        \begin{align*}
+            f^0d^{-1}_{\chain{A}} = d^{-1}_{\chain{A}}f^{-1} \\
+            f^0 = d^{-1}_{\chain{B}}\varepsilon^0 + \varepsilon^1d^0_{\chain{A}}
+        \end{align*}
+
+        Thus, a morphism is a chain map from the identity cone if and only if it is a null-homotopic chain map, which proves that there is a natural isomorphism as stated.
+    \end{proof}
+
+    \begin{remark}
+        The identity cone is universal with respect to homotopies. A null-homotopic chain map $\chain{f}:\chain{A}\rightarrow \chain{B}$ might admit several factorization through the identity cone. The factorizations are unique when there is a homotopy witnessing the null-homotopy property.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                \chain{A} \ar{rd}[below, pos=0.3]{\begin{pmatrix}1 \\ 0\end{pmatrix}} \ar{rr}{(\chain{f},\chain{\varepsilon})} \& \& \chain{B} \\
+                \& cone(\chain{id_{\chain{A}}}) \ar[dashed]{ru}[below,pos=0.6, rotate=30]{\begin{pmatrix} \chain{f} & \chain{\varepsilon}[1]\end{pmatrix}}
+            \end{tikzcd}
+        \end{center}
+    \end{remark}
+
+    \begin{corollary}
+        The contravariant functor $nullHom_{\mathcal{A}}(\_,\chain{B})$ is represented by $cone(\chain{id_{\chain{B}}})[-1]$. Thus there is a factorization of null-homotopic maps which ends in $\chain{B}$ as follows.
+
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                \chain{A} \ar[dashed]{rd}[below, pos=0.3]{\begin{pmatrix} \chain{\varepsilon} \\ \chain{f} \end{pmatrix}} \ar{rr}{(\chain{f},\chain{\varepsilon})} \& \& \chain{B} \\
+                \& cone(\chain{id_{\chain{B}}})[-1] \ar{ru}[below,pos=0.6, rotate=30]{\begin{pmatrix} 0 & \chain{-1} \end{pmatrix}}
+            \end{tikzcd}
+        \end{center}
+    \end{corollary}
+
+    \begin{lemma}
+        $\chain{f}$ is null-homotopic if and only if $\chain{f}$ factors through a contractible object.
+    \end{lemma}
+
+    \begin{proof}
+        Suppose that $\chain{f}$ is null-homotopic, then by the universal property of null-homotopy, it factors through the identity cone.
+        Conversely, suppose that $\chain{f}:\chain{A}\rightarrow\chain{C}$ factors through a contractible object $\chain{B}$ as $\chain{g}\chain{h}$. Then $\chain{f}=\chain{g}\chain{h}=\chain{g}\chain{id_{\chain{B}}}\chain{h}$. $\chain{id_{\chain{B}}}$ is null-homotopic and homotopy equivalence is a congruence relation shows that $\chain{f}$ is null-homotopic.
+    \end{proof}
+
+    By the example in 3.1, any additive category $\mathcal{A}$ admits an exact category $\mathcal{A},\mathcal{E}$, where $\mathcal{E}=\{$Split short-exact sequences$\}$. Then there is an exact category $(Ch(\mathcal{A}),Ch(\mathcal{E}))$, where $Ch(\mathcal{E})=\{$level-wise split short-exact sequences$\}$. This exact structure has enough projectives and injectives which also coincide. Instead of using level-wise split short-exact sequences, there is a more specific description of this exact structure.
+
+    \begin{prop}
+        The exact structure $Ch(\mathcal{E})$ are diagrams on the form as below, where $\chain{r}:\chain{A}\rightarrow\chain{B}$ is a chain map.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                \chain{B} \ar[tail]{r}{\begin{pmatrix}1 \\ 0\end{pmatrix}}[marking]{\circ} \& cone(\chain{r}) \ar[two heads]{r}{\begin{pmatrix}0 & \chain{-1}\end{pmatrix}}[marking]{\circ} \& \chain{A}[1]
+            \end{tikzcd}
+        \end{center}
+    \end{prop}
+
+    \begin{proof}
+        Suppose that there is a conflation $(\chain{i}:\chain{Q}\rightarrow\chain{R},\chain{p}:\chain{R}\rightarrow\chain{P})$ in $Ch(\mathcal{A})$. The goal is to realize the object $\chain{R}$ as a cone of some map. Since the conflation is level-wise split one get that in the following diagram $R^i\simeq Q^i\oplus P^i$.
+        \begin{center}
+            \begin{tikzcd}[column sep=small, ampersand replacement=\&]
+                \& Q^1 \ar{rr}{i^1} \& \& R^1 \ar{rr}{p^1} \& \& P^1 \\
+                Q^0 \ar{ru}{d^0_{\chain{Q}}} \ar{rr}{i^0} \& \& R^0 \ar{ru}{d^0_{\chain{R}}} \ar{rr}{p^0} \& \& P^0 \ar{ru}{d^0_{\chain{P}}}
+            \end{tikzcd}
+        \end{center}
+
+        Commutativity of the squares may be rewritten as.
+        \begin{align*}
+            d^0_{\chain{R}}i^0=i^1d^0_{\chain{Q}} \iff \begin{pmatrix} a & b \\ c & d \end{pmatrix}\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} d^0_{\chain{Q}} \\ 0 \end{pmatrix} \\
+            d^0_{\chain{P}}p^0=p^1d^0_{\chain{R}} \iff \begin{pmatrix} 0 & d^0_{\chain{P}} \end{pmatrix} = \begin{pmatrix} 0 & -1 \end{pmatrix}\begin{pmatrix} a & b \\ c & d \end{pmatrix}
+        \end{align*}
+
+        Thus $a = d^0_{\chain{R}}$, $d = -d^0_{\chain{P}}$ and $c=0$. The map $b:P^0\rightarrow Q^1$ induces a map $\chain{b'}:\chain{P}[1]\rightarrow\chain{Q}$. This is a chain map by the following calculation.
+        \begin{equation*}
+            \begin{pmatrix} d^1_{\chain{Q}} & b^1 \\ 0 & d^1_{\chain{P}} \end{pmatrix}\begin{pmatrix} d^0_{\chain{Q}} & b^0 \\ 0 & -d^0_{\chain{P}} \end{pmatrix} = \begin{pmatrix} 0 & d^1_{\chain{Q}}b^0 - b^1d^0_{\chain{P}} \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+        \end{equation*}
+        $\chain{b}$ is a chain map and thus $\chain{R}=cone(\chain{b})$.
+    \end{proof}
+
+    To show that $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ is a Frobenius category, one must show that every projective object is contractible. The case of every injective object is contractible will follow from duality, as there is a covariant and contravariant representation of null-homotopies.
+
+    \begin{prop}
+        An object $\chain{P}$ is projective if and only if it is contractible.
+    \end{prop}
+
+    \begin{proof}
+        Suppose that $\chain{P}$ is projective, then it can be found in a conflation over $cone(\chain{id_{\chain{P}}})[-1]$. By the contravariant universal property of null-homotopies, the identity map is null-homotopic as described by the diagram below.
+        \begin{center}
+            \begin{tikzcd}
+                \chain{P}[-1] \ar[tail]{r}[marking]{\circ} & cone(\chain{id_{\chain{P}}})[-1] \ar[two heads]{r}[marking]{\circ} & \chain{P} \ar[equal]{d} \\
+                & & \chain{P} \ar[dashed]{lu}
+            \end{tikzcd}
+        \end{center}
+
+        Conversely, suppose that $\chain{P}$ is contractible, then one may see that $\chain{P}$ is projective if and only if $cone(\chain{id_{\chain{P}}})$ is projective by the following diagram.
+
+        \begin{center}
+            \begin{tikzcd}
+                \chain{P}[-1] \ar[tail]{r}[marking]{\circ} & cone(\chain{id_{\chain{P}}})[-1] \ar[two heads]{r}[marking]{\circ} & \chain{P} \ar[equal]{d} \\
+                & cone(\chain{id_{\chain{P}}}) \ar[dashed]{ru}{} \ar[dashed]{u}{} & \chain{P} \ar[tail]{l}[marking]{\circ}
+            \end{tikzcd}
+        \end{center}
+        
+        It is enough to show that every identity cone is projective, to show that every contractible is projective. This is shown if the functor $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\_):Ch(\mathcal{A})\rightarrow Ab$ is an exact functor, which is the same as saying that every conflation gets mapped to short-exact sequences. Suppose further that there is a morphism $\chain{p}:cone(\chain{\beta})\rightarrow\chain{B}[1]$, where $\chain{\beta}:\chain{B}\rightarrow\chain{C}$. To show exactness, one must show that $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})$ is a surjection. \\
+
+        First observe that there is an isomorphism $Hom_{Ch(\mathcal{A})}(cone(\chain{id_{\chain{P}}}),\chain{p})\simeq nullHom_{\mathcal{A}}(\chain{P},\chain{p})$. Suppose that $(\chain{f},\chain{\varepsilon}):nullHom_{\mathcal{A}}(\chain{P},\chain{B})$. Then there is a null-homotopic chain map $(\chain{f'},\chain{\varepsilon '})=(\begin{pmatrix} -\beta^{\bullet - 1}\chain{\varepsilon} \\ \chain{f} \end{pmatrix}, \begin{pmatrix} 0 \\ (-1)^{\bullet + 1}\chain{\varepsilon} \end{pmatrix}):nullHom_{\mathcal{A}}(\chain{P},cone(\chain{\beta})[-1])$ such that \\ $\chain{p}_*(\chain{f'},\chain{\varepsilon '})=(\chain{f},\chain{\varepsilon})$. A diagram chase suffices to check that this is a chain map and the the proposed homotopy is in fact a homotopy.
+    \end{proof}
+
+    \begin{corollary}
+        The class of contractible objects is precisely the class of projectives and the class of injectives, making $(Ch(\mathcal{A}),Ch(\mathcal{E}))$ a Frobenius category. The stable Frobenius category is equivalent with the homotopy category, i.e. $\underline{Ch(\mathcal{A})}=K(\mathcal{A})$. 
+    \end{corollary}
+
+    \begin{corollary}
+        The homotopy category $K(\mathcal{A})$ is triangulated.
+    \end{corollary}
+
+    Since the identity cones are injective, one may verify that the cosyzygy functor is the shift functor (\upside{$\Omega$}$\_=\_[1]$). The standard triangles in $K(\mathcal{A})$ are therefore the candidate triangles on the form below.
+    \begin{center}
+        \begin{tikzcd}
+            \chain{A} \ar{r}{\underline{\chain{f}}} & \chain{B} \ar{r}{} & cone(\chain{f}) \ar{r}{} & \chain{A}[1]
+        \end{tikzcd}
+    \end{center}
+
+% \clearpage

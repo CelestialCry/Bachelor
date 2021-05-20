@@ -1,0 +1,1669 @@
+\chapter{Triangulated Categories}
+
+\section{Definition and First Properties}
+    This section will present what a triangulated category is and show some properties of some functors from this category. The covariant functors which are of main interest are the ones that are called homological, while the contravariant are called cohomological. This family of functors will derive the elementary properties of the triangulation. In this section let $\mathcal{T}$ denote an additive category and $\Sigma_{\mathcal{T}}:\mathcal{T}\rightarrow\mathcal{T}$ be an additive autoequivalence of $\mathcal{T}$, which is either called the translation or suspension functor. This section is based on \cite{happel} and \cite{neeman}.
+    % Definition candidate triangle
+    
+    \begin{definition}
+        A candidate triangle is a collection $(A,B,C,a,b,c)$ of objects \\ $A,B,C\in T$ and morphisms $a:A\rightarrow B$, $b:B\rightarrow C$, $c:C\rightarrow \Sigma_{\mathcal{T}}A$. These candidate triangles can be drawn as diagrams in the following way:
+
+        \begin{center}
+            \begin{tikzcd}
+                A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & \Sigma_{\mathcal{T}}A
+            \end{tikzcd}
+        \end{center}
+
+        A morphism between candidate triangles is a triple of morphism $(\alpha, \beta, \gamma)$, where $\alpha : A \rightarrow A'$, $\beta : B \rightarrow B'$ and $\gamma : C \rightarrow C'$ such that the following diagram commutes.
+
+    \begin{center}
+        \begin{tikzcd}
+            A \arrow{r}{a} \arrow{d}{\alpha} & B \arrow{r}{b} \arrow{d}{\beta} & C \arrow{r}{c} \arrow{d}{\gamma} & \Sigma_{\mathcal{T}}A \arrow{d}{\Sigma_{\mathcal{T}}\alpha} \\
+            A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & \Sigma_{\mathcal{T}}A'
+        \end{tikzcd}
+    \end{center}
+
+    \end{definition}
+
+    Why these objects are called triangles become apparent when an alternate description of the diagrams above is given. To remove confusion about the domain or codomain of the arrows to be presented, one arrow of the triangle will be decorated with "$_{\Sigma_{\mathcal{T}}}$|". This decorator means that the functor $\Sigma_{\mathcal{T}}$ has to be applied to the corresponding edge of the arrow. With this notation the c arrow points to $\Sigma_{\mathcal{T}}A$, not $A$.
+
+    \begin{center}
+        \begin{tikzcd}[row sep=tiny]
+            A \arrow{rd}{a} & \\
+            & B \arrow{dl}{b} & & \\
+            C \arrow{uu}[pos = 0.80, marking]{|}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+        \end{tikzcd}
+        \begin{tikzcd}[row sep=tiny]
+            A \arrow{rd}[description]{a} \arrow{rrr}{\phi_a} & & & A' \arrow[ld, "a'" description] \\
+            & B \arrow{dl}[description]{b} \arrow{r}{\phi_b} & B' \arrow{rd}[description]{b'}\\
+            C \arrow{uu}[pos = 0.80, marking]{|}[near start, description]{c}[near end]{\Sigma_{\mathcal{T}}} \arrow{rrr}{\phi_c} & & & C' \arrow{uu}[pos = 0.80, marking]{|}[near start, description]{c'}[near end]{\Sigma_{\mathcal{T}}}
+        \end{tikzcd}
+    \end{center}
+
+    These triangles will make up a triangulation on the category $\mathcal{T}$. Thus, a triangulated category is an additive category together with a translation functor $\Sigma_{\mathcal{T}}$ and a triangulation class $\Delta_{\mathcal{T}}$ consisting of candidate triangles. When a candidate triangle is an element of $\Delta_{\mathcal{T}}$ it is usually called a triangle, an exact triangle, or a distinguished triangle. Note that if the candidate triangles are referred to as triangles it is common to either call the elements of $\Delta_{\mathcal{T}}$ for exact triangles or distinguished triangles. The elements of $\Delta_{\mathcal{T}}$ will be called for triangles.
+
+    % Definition of Triangulation
+    \begin{definition}
+        A triangulation of an additive category $\mathcal{T}$ with translation $\Sigma_{\mathcal{T}}$ is a collection $\Delta_{\mathcal{T}}$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying the following axioms: 
+
+        \begin{enumerate}
+            \item (TR1) Bookkeeping axiom
+
+                \begin{enumerate}
+                    \item A candidate triangle isomorphic to a triangle is a triangle.
+                    \item Every morphism $a : A \rightarrow B$ can be embedded into a triangle $(A,B,C,a,b,c)$.
+                    \begin{center}
+                        \begin{tikzcd}
+                            A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & \Sigma_{\mathcal{T}}A
+                        \end{tikzcd}
+                    \end{center}
+                    \item For every object A there is a triangle $(A,A,0,id_A,0,0)$.
+                    \begin{center}
+                        \begin{tikzcd}
+                            A \arrow{r}{id_A} & A \arrow{r}{0} & 0 \arrow{r}{0} & \Sigma_{\mathcal{T}}A
+                        \end{tikzcd}
+                    \end{center}
+                \end{enumerate}
+            \item (TR2) Rotation axiom
+
+                For every triangle $(A,B,C,a,b,c)$ there is a triangle $(B,C,TA,b,c,-\Sigma_{\mathcal{T}}a)$.
+                \begin{center}
+                    \begin{tikzcd}
+                        A \arrow{r}{a} & B \arrow{r}{b} & C \arrow{r}{c} & \Sigma_{\mathcal{T}}A
+                    \end{tikzcd} $\implies$
+                    \begin{tikzcd}
+                        B \arrow{r}{b} & C \arrow{r}{c} & \Sigma_{\mathcal{T}}A \arrow{r}{-\Sigma_{\mathcal{T}}a} & \Sigma_{\mathcal{T}}B
+                    \end{tikzcd}
+                    
+                \end{center}
+            \item (TR3) Morphism axiom
+            
+                Given the two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$,
+                \begin{center}
+                    \begin{tikzcd}[column sep=small]
+                        A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A & &
+                    \end{tikzcd}
+                    \begin{tikzcd}[column sep=small]
+                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+                    \end{tikzcd}
+                \end{center}
+                and morphisms $\phi_A : A \rightarrow A'$ and $\phi_B : B \rightarrow B'$ such that square (1) commutes, then there is a morphism $\phi_C : C \rightarrow C'$ (not necessarily unique) such that $(\phi_A ,\phi_B ,\phi_C)$ is a morphism of triangles (2).
+                
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}
+                        A \ar{r}{a} \ar{d}{\phi_A} & B \ar{d}{\phi_B} & \\
+                        A' \ar{r}{a'} & B'
+                    \end{tikzcd}
+                    (2)
+                    \begin{tikzcd}
+                        A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                        A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+                    \end{tikzcd}
+                \end{center}
+            \item (TR4) Octahedron axiom
+            
+                Given the triangles $(A,B,C',a,x,x')$ (1), $(B,C,A',b,y,y')$ (2) \\ and $(A,C,B',b\circ a,z,z')$ (3)
+                \begin{center}
+                    (1)
+                    \begin{tikzcd}[column sep=small]
+                        A \ar{r}{a} & B \ar{r}{x} & C' \ar{r}{x'} & \Sigma_{\mathcal{T}}A
+                    \end{tikzcd}
+
+                    (2)
+                    \begin{tikzcd}[column sep=small]
+                        B \ar{r}{b} & C \ar{r}{y} & A' \ar{r}{y'} & \Sigma_{\mathcal{T}}B
+                    \end{tikzcd}
+
+                    (3)
+                    \begin{tikzcd}[column sep=small]
+                        A \ar{r}{b\circ a} & C \ar{r}{z} & B' \ar{r}{z'} & \Sigma_{\mathcal{T}}A
+                    \end{tikzcd}                         
+                \end{center}
+                then there exist morphisms $f : C' \rightarrow B'$ and $g : B' \rightarrow A'$, the following diagram commutes, and the third row is a triangle.
+
+                \begin{center}
+                    \begin{tikzcd}
+                        \Sigma_{\mathcal{T}}^{-1}B' \ar{r}{\Sigma_{\mathcal{T}}^{-1}z'} \ar{d}{\Sigma_{\mathcal{T}}^{-1}g} & A \ar[equal]{r}{id_A} \ar{d}{a} & A \ar{d}{b\circ a} \\
+                        \Sigma_{\mathcal{T}}^{-1}A' \ar{r}{\Sigma_{\mathcal{T}}^{-1}y'} & B \ar{r}{b} \ar{d}{x} & C \ar{r}{y} \ar{d}{z} & A' \ar{r}{y'} \ar[equal]{d}{id_{A'}} & \Sigma_{\mathcal{T}}B \ar{d}{\Sigma_{\mathcal{T}}x'} \\
+                        & C' \ar{r}{f} \ar{d}{x'} & B' \ar{r}{g} \ar{d}{z'} & A' \ar{r}{\Sigma_{\mathcal{T}}i \circ y'} & \Sigma_{\mathcal{T}}C' \\
+                        & \Sigma_{\mathcal{T}}A \ar[equal]{r}{id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}A
+                    \end{tikzcd}
+                \end{center}
+        \end{enumerate}
+    \end{definition}
+
+    A triangulated category is denoted as $(\mathcal{T}, \Sigma_{\mathcal{T}}, \Delta_{\mathcal{T}})$, where $\mathcal{T}$ is the additive category, $\Sigma_{\mathcal{T}}$ is the translation and $\Delta_{\mathcal{T}}$ is the triangulation. When $\mathcal{T}$ is called a triangulated category, it should be understood like a triple.
+    
+    \begin{remark}
+        The third object in a triangle is usually called cone, fiber, or cofiber. These names are in use due to historic reasons, rather than portraying their functionality. The names weak kernel or weak cokernel would be better in the sense that it tells what the function of this object is. This object will either be referred to as cone, weak kernel, or weak cokernel.
+    \end{remark}
+    % Rotation axiom dual
+    \begin{remark}
+        The rotation axiom has a dual, and it can be thought of as a shift in the opposite direction. The dual rotation axiom goes as:
+        
+        \begin{quote}
+            Given a triangle \begin{tikzcd}[column sep=small]
+                A \ar{r}{a} & B \ar{r}{b} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A
+            \end{tikzcd},\\
+            there is a triangle \begin{tikzcd}[column sep=small]
+                \Sigma_{\mathcal{T}}^{-1}C \ar{r}{-\Sigma_{\mathcal{T}}^{-1}c} & A \ar{r}{a} & B \ar{r}{b} & C
+            \end{tikzcd}
+        \end{quote} %Hvordan fikser jeg linebreaks for at det blir pent??? Mener at denne skal kun brukes innad i en setning, idk man.
+        
+        To be able to prove this, some more lemmata are needed.
+    \end{remark}
+
+    \begin{remark}
+        By the previous remark, one may see that the definition of a triangulated category is self-dual. That is a category $\mathcal{T}$ is triangulated if and only if $\mathcal{T}^{op}$ is triangulated.
+    \end{remark}
+
+    % Octahedron axiom alternate
+    \begin{remark}
+        The final axiom is referred to as the octahedron axiom. By using the alternative description of the triangle diagram, it is possible to rewrite the diagram as an octahedron. The axiom can be restated as the following.
+
+        \begin{quote}
+            Given the triangles $(A,B,C',a,x,x')$ (1), $(B,C,A',b,y,y')$ (2) \\ and $(A,C,B',b\circ a,z,z')$ (3)
+            \begin{center}
+                (1)
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow[red]{rd}[black]{a} & \\
+                    & B \arrow[red]{dl}[black]{x} & & \\
+                    C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{\Sigma_{\mathcal{T}}}
+                \end{tikzcd}
+                (2)
+                \begin{tikzcd}[row sep=tiny]
+                    B \arrow[orange]{rd}[black]{b} & \\
+                    & C \arrow[orange]{dl}[black]{y} & & \\
+                    A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{\Sigma_{\mathcal{T}}}
+                \end{tikzcd}\\                
+                (3)
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow[violet]{rd}[black]{b\circ a} & \\
+                    & C \arrow[violet]{dl}[black]{z} & & \\
+                    B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{\Sigma_{\mathcal{T}}}
+                \end{tikzcd}
+            \end{center}
+            then there exist morphisms $f: C' \rightarrow B'$ and $g: B' \rightarrow A'$, the following diagram commutes and the squiggly teal back face is a triangle.
+            \begin{center}
+                \begin{tikzcd}[row sep=tiny]
+                    \color{white}.\color{black} & & B' \ar[teal, dashed, squiggly]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{z'}[pos=0.9, marking]{|}[pos=0.91]{\Sigma_{\mathcal{T}}} & & \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    C' \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{x'}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}} & & & A' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{\Sigma_{\mathcal{T}}x\circ y'}[pos=0.91, marking]{|}[very near end, above]{\Sigma_{\mathcal{T}}} \ar[orange, dashed]{dddddl}[black, description]{y'}[pos=0.9, marking]{|}[pos=0.89, above]{\Sigma_{\mathcal{T}}} \\
+                    \color{white}.\color{black} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{b\circ a} & & & C \ar[orange, dashed]{ul}[black, description]{y} \ar[violet]{uuuuull}[black, description]{z}\\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    & & B \ar[orange]{uuuurr}[black, description]{b} \ar[red]{uuuuull}[black, description]{x} & &
+                    
+                \end{tikzcd}
+            \end{center}
+        \end{quote}
+    \end{remark}
+
+
+    \begin{prop}
+        The axiom TR3 can be proven from TR1 and TR4.
+    \end{prop}
+
+
+    \begin{proof}
+        Suppose that there are two triangles and a commutative square as follows.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{\phi_A} \ar{rd}{\eta} & B \ar{d}{\phi_B} & \\
+                A' \ar{r}{a'} & B'
+            \end{tikzcd}
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+        The upper and lower simplex of the square may be completed to two sets of triangles satisfying the condition of TR4. Applying the Octahedron axiom twice yields the diagrams as below.
+        \begin{center}
+            (1)
+            \begin{tikzcd}[row sep=tiny]
+                A \ar[red]{rd}[black]{a} \\
+                & B \ar[red]{ld}[black]{b} \\
+                C \ar[red, very near end, "|" marking]{uu}[black, near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=tiny]
+                B \ar[orange]{rd}[black]{\phi_B} \\
+                & B' \ar[orange]{ld}[black]{\phi_B'} \\
+                B'' \ar[orange, very near end, "|" marking]{uu}[black, near start]{\phi_B''}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=tiny]
+                A \ar[violet]{rd}[black]{\eta} \\
+                & B' \ar[violet]{ld}[black]{\eta'} \\
+                E \ar[violet, very near end, "|" marking]{uu}[black, near start]{{\eta}''}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}\\
+            (2)
+            \begin{tikzcd}[row sep=tiny]
+                A \ar[red]{rd}[black]{\phi_A} \\
+                & A' \ar[red]{ld}[black]{\phi_A'} \\
+                A'' \ar[red, very near end, "|" marking]{uu}[black, near start]{\phi_A''}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=tiny]
+                A' \ar[orange]{rd}[black]{a'} \\
+                & B' \ar[orange]{ld}[black]{b'} \\
+                C' \ar[orange, very near end, "|" marking]{uu}[black, near start]{c'}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=tiny]
+                A \ar[violet]{rd}[black]{\eta} \\
+                & B' \ar[violet]{ld}[black]{\eta'} \\
+                E \ar[violet, very near end, "|" marking]{uu}[black, near start]{{\eta}''}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+        \end{center}
+        \begin{minipage}[t]{0.47\textwidth}
+            \begin{center}
+                (1) \\
+                \begin{tikzcd}[row sep=tiny]
+                    \textcolor{white}{.} & & E \ar[teal, dashed]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{\Sigma_{\mathcal{T}}} & & \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    C \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{c}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}} & & & B'' \ar[teal, dashed]{lll}[pos=0.45, black, description]{\Sigma_{\mathcal{T}}c\circ \phi_B''}[pos=0.91, marking]{|}[very near end, above]{\Sigma_{\mathcal{T}}} \ar[orange, dashed]{dddddl}[black, description]{\phi_B''}[pos=0.9, marking]{|}[pos=0.89, above]{\Sigma_{\mathcal{T}}} \\
+                    \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{\phi_B'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    & & B \ar[orange]{uuuurr}[black, description]{\phi_B} \ar[red]{uuuuull}[black, description]{b} & &
+                \end{tikzcd}
+            \end{center}
+        \end{minipage}
+        \begin{minipage}[t]{0.48\textwidth}
+            \begin{center}
+                (2) \\
+                \begin{tikzcd}[row sep=tiny]
+                    \textcolor{white}{.} & & E \ar[teal, dashed, squiggly]{ddddr}[black, description]{g'} \ar[violet]{dddddl}[black, description]{{\eta}''}[pos=0.9, marking]{|}[pos=0.91]{\Sigma_{\mathcal{T}}} & & \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    A'' \ar[teal]{uuuurr}[black, description]{f'} \ar[red]{dr}[black, description]{\phi_A''}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}} & & & C' \ar[teal, dashed]{lll}[pos=0.45, black, description]{\Sigma_{\mathcal{T}}\phi_A''\circ c'}[pos=0.91, marking]{|}[very near end, above]{\Sigma_{\mathcal{T}}} \ar[orange, dashed]{dddddl}[black, description]{c'}[pos=0.9, marking]{|}[pos=0.89, above]{\Sigma_{\mathcal{T}}} \\
+                    \textcolor{white}{.} & A \ar[red]{ddddr}[black, description]{\phi_A} \ar[violet]{rrr}[black, description]{\eta} & & & B' \ar[orange, dashed]{ul}[black, description]{b'} \ar[violet]{uuuuull}[black, description]{{\eta}'}\\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    \textcolor{white}{.} \\
+                    & & A' \ar[orange]{uuuurr}[black, description]{a'} \ar[red]{uuuuull}[black, description]{\phi_A'} & &
+                \end{tikzcd}
+            \end{center}
+        \end{minipage} \\
+        The teal squiggly lines at the back faces of each octahedron form a morphism $g'f:C\rightarrow C'$. It remains to see that the morphism is a triangle morphism. Diagram chasing reveals that the following diagram is commutative, which is exactly the requirement for the collection $(\phi_A,\phi_B,g'f)$ to be a morphism of triangles.
+        \begin{center}
+            \begin{tikzcd}
+                B \ar[red]{r}[black]{b} \ar[orange]{d}[black]{\phi_B}& C \ar[red]{rd}[black]{c} \ar[teal]{d}[black]{f} \\
+                B' \ar[orange]{rd}[black]{b'} \ar[violet]{r}[black]{\eta '} & E \ar[violet]{r}[black]{\eta ''} \ar[teal]{d}[black]{g'} & \Sigma_{\mathcal{T}}A \ar[red]{d}[black]{\Sigma_{\mathcal{T}}\phi_A} \\
+                & C' \ar[orange]{r}[black]{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{lemma}
+        Let $(A,B,C,a,b,c)$ be a triangle, then $b\circ a=0$
+    \end{lemma}
+
+    \begin{proof}
+        By TR2 the triangle $(A,B,C,a,b,c)$ can be rotated to $(B,C,\Sigma_{\mathcal{T}}A,b,c,-\Sigma_{\mathcal{T}}a)$.
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{a} & \\
+                & B \arrow{dl}{b}\\
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}[row sep=tiny]
+                B \arrow{rd}{b} \\
+                & C \arrow{dl}{c} \\
+                \Sigma_{\mathcal{T}}A \arrow{uu}[near start]{-\Sigma_{\mathcal{T}}a}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+        \end{center}
+        The triangle $(C,C,0,id_C,0,0)$ exists by TR1 and TR3 states that there exists a morphism from $\Sigma_{\mathcal{T}}A$ to 0 making the diagram below commute.
+        \begin{center}
+            \begin{tikzcd}
+                B \ar{r}{b} \ar{d}{b} & C \ar{r}{c} \ar{d}{id_C} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} \ar[dashed]{d}{0} & \Sigma_{\mathcal{T}}B \ar{d}{\Sigma_{\mathcal{T}}b} \\
+                C \ar{r}{id_C} & C \ar{r}{0} & 0 \ar{r}{0} & \Sigma_{\mathcal{T}}C
+            \end{tikzcd}
+        \end{center}
+        Thus $0 = \Sigma_{\mathcal{T}}b\circ -\Sigma_{\mathcal{T}}a = \Sigma_{\mathcal{T}}(-ba) \implies b\circ a = 0$ as $\Sigma_{\mathcal{T}}$ is a translation.
+    \end{proof}
+    % Triangulated functor
+    One fundamental object to study when looking at categories is functors. In the case of triangulated categories there are two import types of functors, triangulated functors, and homological functors. These are central to this discussion as one can relate triangulations to each other and derive information about triangulations through abelian categories. The result 5-lemma has an appearance in triangulated categories through the 2-out-of-3 property.
+    
+    \begin{definition}
+        A triangulated functor $F: \mathcal{S} \rightarrow \mathcal{T}$ between two triangulated categories $(\mathcal{S}, \Sigma_{\mathcal{S}}, \Delta_\mathcal{S})$ and $(\mathcal{T}, \Sigma_{\mathcal{T}}, \Delta_\mathcal{T})$, is an additive functor $F$ along with a natural isomorphism $\phi_X : F(\Sigma_{\mathcal{S}}(X)) \rightarrow \Sigma_{\mathcal{T}}(F(X))$ such that $F(\Delta_{\mathcal{S}}) \subseteq \Delta_{\mathcal{T}}$. This means that for every triangle in $\mathcal{T}$ there is a triangle in $\mathcal{S}$.
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{a} & \\
+                & B \arrow{dl}{b} \\
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{S}}}
+            \end{tikzcd}
+            $\implies$
+            \begin{tikzcd}[row sep=tiny]
+                F(A) \arrow{rd}{F(a)} & \\
+                & F(B) \ar{dl}{F(b)} \\
+                F(C) \arrow[very near end, "|" marking]{uu}[near start]{F(c)}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+ 
+    % Homological functor
+    \begin{definition}
+        Let $\mathcal{T}$ be a triangulated category and $\mathcal{A}$ be an abelian category. A covariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called homological if $\forall (A,B,C,a,b,c):\Delta_{\mathcal{T}}$ there is a long exact sequence in $\mathcal{A}$.
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{a} & \\
+                & B \arrow{dl}{b}\\
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}[column sep=small]
+                ... \ar{r} & H(\Sigma_{\mathcal{T}}^{i}A) \arrow{r}{H(\Sigma_{\mathcal{T}}^ia)} & H(\Sigma_{\mathcal{T}}^iB)\arrow{r}{H(\Sigma_{\mathcal{T}}^ib)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(\Sigma_{\mathcal{T}}^iC) \arrow[dll, "H(\Sigma_{\mathcal{T}}^ic)" description, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
+                & H(\Sigma_{\mathcal{T}}^{i+1}A) \arrow{r}{H(\Sigma_{\mathcal{T}}^{i+1}a)} & H(\Sigma_{\mathcal{T}}^{i+1}B) \arrow{r}{H(\Sigma_{\mathcal{T}}^{i+1}b)} & H(\Sigma_{\mathcal{T}}^{i+1}C) \ar{r} & ...
+            \end{tikzcd}
+        \end{center}
+
+        Dually, a contravariant functor $H:\mathcal{T} \rightarrow \mathcal{A}$ is called cohomological if $\forall (A,B,C,a,b,c):\Delta$ there is a long exact sequence in $\mathcal{A}$.
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{a} & \\
+                & B \arrow{dl}{b}\\
+                C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}[column sep=small]
+                ... & H(\Sigma_{\mathcal{T}}^{i-1}A) \arrow{l} & H(\Sigma_{\mathcal{T}}^{i-1}B) \arrow{l}{H(\Sigma_{\mathcal{T}}^{i-1}a)} \arrow[d,phantom, ""{coordinate, name=Z}]& H(\Sigma_{\mathcal{T}}^{i-1}C) \ar{l}{H(\Sigma_{\mathcal{T}}^{i-1}b)} \\
+                & H(\Sigma_{\mathcal{T}}^{i}A) \arrow[urr, "H(\Sigma_{\mathcal{T}}^ic)" description, rounded corners,to path={ --([xshift=-2ex]\tikztostart.west)|- (Z)[near end]\tikztonodes-| ([xshift=2ex]\tikztotarget.east)-- (\tikztotarget)}] & H(\Sigma_{\mathcal{T}}^{i}B) \ar{l}{H(\Sigma_{\mathcal{T}}^ia)} & H(\Sigma_{\mathcal{T}}^{i}C) \ar{l}{H(\Sigma_{\mathcal{T}}^ib)} & ... \ar{l}
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+    % Long exact sequence of representations
+    \begin{lemma}
+        Let $M:\mathcal{T}$ be any object of $\mathcal{T}$, then the represented functor $\mathcal{T}(M,\_)$ is homological and $\mathcal{T}(\_,M)$ is cohomological.
+    \end{lemma}
+
+    \begin{proof}
+        Only the covariant case needs to be proved, as the contravariant case is dual. For $\mathcal{T}(M,\_)$ to be homological, it has to create long exact sequences for every triangle in $\Delta_{\mathcal{T}}$. Let $(A,B,C,a,b,c):\Delta_{\mathcal{T}}$ be a triangle, then sequences in Ab can be extracted for any $i:\mathbb{Z}$.
+
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \ar{dr}{a} \\
+                & B \ar{dl}{b} \\
+                C \ar{uu}{c}[near end]{\Sigma_{\mathcal{T}}}[very near end, marking]{|}
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}
+                {\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iA) \ar{r}{\Sigma_{\mathcal{T}}^ia_*} & {\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iB) \ar{r}{\Sigma_{\mathcal{T}}^ib_*} & {\Sigma_{\mathcal{T}}}(M,\Sigma_{\mathcal{T}}^iC)
+            \end{tikzcd}
+        \end{center}
+
+        It is enough to prove that these types of diagrams are exact at $B$, as the other diagrams are obtained by the rotation axiom. Thus it remains to prove that $Im(\Sigma_{\mathcal{T}}^ia_*)=Ker(\Sigma_{\mathcal{T}}^ib_*)$. Since $ba=0$ it follows that $Im(\Sigma_{\mathcal{T}}^ia_*) \subseteq Ker(\Sigma_{\mathcal{T}}^ib_*)$. Assume that $f:Ker(\Sigma_{\mathcal{T}}^ib_*)$, that is $f:M\rightarrow \Sigma_{\mathcal{T}}^iB$ such that $b_*(f)=0$. Showing that $f$ factors through $\Sigma_{\mathcal{T}}^iA$ proves exactness, as this means that $Ker(\Sigma_{\mathcal{T}}^ib_*)\subseteq Im(\Sigma_{\mathcal{T}}^ia_*)$. Note that since $T$ is a translation, it is necessarily a right adjoint to the inverse translation; $\mathcal{T}(M,\Sigma_{\mathcal{T}}^iB) \simeq\mathcal{T}(\Sigma_{\mathcal{T}}^{-i}M,B)$ and by this assertion it suffices to assume that $f:\Sigma_{\mathcal{T}}^{-i}M\rightarrow B$ such that $b\circ f = 0$. By TR1 and TR2 there exists triangles $(\Sigma_{\mathcal{T}}^{-i}M,0,\Sigma_{\mathcal{T}}^{-i+1}M,0,0,-\Sigma_{\mathcal{T}}^{-i+1}id)$ and $(B,C,\Sigma_{\mathcal{T}}A,b,c,-\Sigma_{\mathcal{T}}a)$. 
+        \begin{center}
+            \begin{tikzcd}
+                \Sigma_{\mathcal{T}}^{-i}M \ar{r}{0} \ar{d}{f} & 0 \ar{r}{0} \ar{d}{0} & \Sigma_{\mathcal{T}}^{-i+1}M \ar{r}{-\Sigma_{\mathcal{T}}^{-i+1}id} \ar[dashed]{d}{g} & \Sigma_{\mathcal{T}}^{-i+1}M \ar{d}{\Sigma_{\mathcal{T}}f} \\
+                B \ar{r}{b} & C \ar{r}{c} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} & \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+        The left square commutes by the assumption, thus the morphism g exist by TR3 such that $-\Sigma_{\mathcal{T}}a\circ h = -\Sigma_{\mathcal{T}}f\circ \Sigma_{\mathcal{T}}^{-i+1}id = -\Sigma_{\mathcal{T}}f \implies \Sigma_{\mathcal{T}}a\circ h = \Sigma_{\mathcal{T}}f$. This shows that $f = a\circ T^{-1}h$, asserting that $f$ factors through A.
+    \end{proof}
+    % 2 out of 3 property
+    \begin{lemma}\textbf{2-out-of-3 property.}
+        Let $(\phi_A, \phi_B, \phi_C):(A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of triangles. If 2 of the maps are isomorphisms, then the last one is an isomorphism as well.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} & B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} & C \ar{r}{c} \ar[dashed]{d}{\phi_C}[rotate=90, above]{\simeq} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A}[rotate=90, above]{\simeq} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        Without loss of generality, assume that $\phi_A$ and $\phi_B$ are the isomorphisms. This can be done as the rotation axiom reduce the other cases to this case. Then the diagram depicted below exists.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} & B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} & C \ar{r}{c} \ar{d}{\phi_C} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A}[rotate=90, above]{\simeq} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+        Applying the functor $\mathcal{T}(C',\_)$ to the diagram yields the following diagram in Ab:
+        \begin{center}
+            \begin{tikzcd}
+                \mathcal{T}(C',A) \ar{r}{a_*} \ar{d}{(\phi_A)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',B) \ar{r}{b_*} \ar{d}{(\phi_B)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',C) \ar{r}{c_*} \ar{d}{(\phi_C)_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}A) \ar{r}{\Sigma_{\mathcal{T}}a_*} \ar{d}{(\Sigma_{\mathcal{T}}\phi_A)_*}[rotate=90, above]{\simeq} & \mathcal{T}(C',TB) \ar{d}{(\Sigma_{\mathcal{T}}\phi_B)_*}[rotate=90, above]{\simeq} \\
+                \mathcal{T}(C',A') \ar{r}{a'_*} & \mathcal{T}(C',B') \ar{r}{b'_*} & \mathcal{T}(C',C') \ar{r}{c'_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}A') \ar{r}{\Sigma_{\mathcal{T}}a_*} & \mathcal{T}(C',\Sigma_{\mathcal{T}}B)
+            \end{tikzcd}
+        \end{center}
+        By the 5-lemma, $(\phi_C)_*$ is an isomorphisms, i.e. $(\phi_C)_*$ is both mono and epi. Thus for some unique $s$ in $\mathcal{T}(C',C)$, ${\phi_C}_*(s)=id_{C'}$. \\ 
+
+        Applying the functor $\mathcal{T}(\_,C)$ yields the diagram:
+        \begin{center}
+            \begin{tikzcd}
+                \mathcal{T}(A,C) & \mathcal{T}(B,C) \ar{l}{a^*} & \mathcal{T}(C,C) \ar{l}{b^*} & \mathcal{T}(\Sigma_{\mathcal{T}}A,C) \ar{l}{c^*} & \mathcal{T}(\Sigma_{\mathcal{T}}B,C) \ar{l}{\Sigma_{\mathcal{T}}a^*} \\
+                \mathcal{T}(A',C) \ar{u}{(\phi_A)^*}[rotate=90, below]{\simeq} & \mathcal{T}(B,C) \ar{l}{a'^*} \ar{u}{(\phi_B)^*}[rotate=90, below]{\simeq} & \mathcal{T}(C',C) \ar{l}{b'^*} \ar{u}{(\phi_C)^*} & \mathcal{T}(\Sigma_{\mathcal{T}}A',C) \ar{l}{c'^*} \ar{u}{(\Sigma_{\mathcal{T}}\phi_A)^*}[rotate=90, below]{\simeq} & \mathcal{T}(\Sigma_{\mathcal{T}}B',C) \ar{l}{\Sigma_{\mathcal{T}}a'^*} \ar{u}{(\Sigma_{\mathcal{T}}\phi_B)^*}[rotate=90, below]{\simeq}
+            \end{tikzcd}
+        \end{center}
+        Again, the 5-lemma asserts that $(\phi_C)^*$ is an isomorphisms, and by the same argument $id_{C} = s'\circ\phi_C$ for some unique $s'$. $\phi_C$ is both split mono and split epi, which means it is an isomorphism.
+    \end{proof}
+
+    \begin{corollary}
+        $(A,B,0,a,0,0)$ is a triangle if and only if a is an isomorphism.
+    \end{corollary}
+
+    \begin{proof}
+        Assume that a is an isomorphism. Then it is seen that $(a,id_B,0)$ is an isomorphism of triangles.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{a}[rotate=90, above]{\simeq} & B \ar{r}{0} \ar{d}{id_B}[rotate=90, above]{\simeq} & 0 \ar{r}{0} \ar{d}{0}[rotate=90, above]{\simeq} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}a}[rotate=90, above]{\simeq} \\
+                B \ar{r}{id_B} & B \ar{r}{0} & 0 \ar{r}{0} & \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+        Conversely, assume that $(A,B,0,a,0,0)$ is a triangle. Then the same diagram as above can be constructed, and by the 2-out-of-3 property, $a$ has to be an isomorphism.
+    \end{proof}
+
+    \begin{lemma}
+        For a triangle $(A,B,C,a,b,c)$ the following are equivalent:
+
+        \begin{center}
+            \begin{minipage}[c]{0.3\textwidth}
+                \begin{tikzcd}[row sep=tiny]
+                    A \arrow{rd}{a} & \\
+                    & B \arrow{dl}{b} & & \\
+                    C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+                \end{tikzcd}
+            \end{minipage}
+            \begin{minipage}[c]{0.3\textwidth}
+                \begin{itemize}
+                    \item $a$ is split mono
+                    \item $b$ is split epi
+                    \item $c = 0$
+                \end{itemize}
+            \end{minipage}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        The proof has two parts. First assume that $a$ is split mono, then prove that $b$ is split epi and $c = 0$. By duality, it is then known that $b$ being split epi implies that $a$ is split mono and $c = 0$. The final part is to assume that $c = 0$, and prove either $a$ is split mono or $b$ is split epi. \\
+
+        Assume that $a$ is split mono, then there exist an $a^{-1}$ such that $id_A = a^{-1}a$. Let $M:\mathcal{T}$ be any object, then there is a long exact sequence.
+        \begin{center}
+            \begin{tikzcd}
+                \mathcal{T}(M,\Sigma_{\mathcal{T}}^{-1}C) \ar{r}{\Sigma_{\mathcal{T}}^{-1}c_*} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{c_*} & \mathcal{T}(M,\Sigma_{\mathcal{T}}A)
+            \end{tikzcd}
+        \end{center}
+        By assumption $a_*$ is split mono, thus $\Sigma_{\mathcal{T}}^{-1}c_* = 0$ and in particular $c = 0$. This implies that $b_*$ is epi, making a split short exact sequence.
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar{r}{0} & \mathcal{T}(M,A) \ar[bend left]{r}{a_*} & \mathcal{T}(M,B) \ar[bend left]{r}{b_*} \ar[dashed, bend left]{l}{a^{-1}_*} & \mathcal{T}(M,C) \ar{r}{0} \ar[dashed, bend left]{l}{b^{-1}_*} & 0
+            \end{tikzcd}
+        \end{center}
+        This split short exact sequence shows that b is split epi, completing the first part of the proof.
+
+        For the final part, assume that $c = 0$; construct the following triangles.
+        \begin{center}
+            (1)
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{a} \\
+                & B \arrow{dl}{b} \\
+                C \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}[row sep=tiny]
+                C \arrow{rd}{0} \\
+                & \Sigma_{\mathcal{T}}A \arrow{dl}{-\Sigma_{\mathcal{T}}a} \\
+                \Sigma_{\mathcal{T}}B \arrow[very near end, "|" marking]{uu}[near start]{-\Sigma_{\mathcal{T}}b}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+        \end{center}
+        \begin{center}
+            (2)
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow{rd}{id_A} \\
+                & A \arrow{dl}{0} \\
+                0 \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd} $\implies$
+            \begin{tikzcd}[row sep=tiny]
+                0 \arrow{rd}{0} & \\
+                & \Sigma_{\mathcal{T}}A \arrow{dl}{-id_{\Sigma_{\mathcal{T}}A}}\\
+                \Sigma_{\mathcal{T}}A \arrow[very near end, "|" marking]{uu}[near start]{0}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+        \end{center}
+        (1) is constructed by applying TR2 twice, while (2) is constructed with TR1 and then applying TR2 twice. Observe that there is a commutative square between the triangles, allowing for TR3 to make a morphism of triangles.
+        \begin{center}
+            \begin{tikzcd}
+                C \ar{r}{0} \ar{d}{0} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} \ar[equal]{d}{id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}B \ar{r}{-\Sigma_{\mathcal{T}}b} \ar[dashed]{d}{\Sigma_{\mathcal{T}}a^{-1}} & \Sigma_{\mathcal{T}}C \ar{d}{0} \\
+                0 \ar{r}{0} & \Sigma_{\mathcal{T}}A \ar[equal]{r}{-id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}A \ar{r}{0} & 0
+            \end{tikzcd}
+        \end{center}
+        Thus $T(a^{-1}a)=id_{\Sigma_{\mathcal{T}}A}=\Sigma_{\mathcal{T}}(id_A) \implies id_A = a^{-1}a$, making a split mono.
+    \end{proof}
+
+    \begin{lemma}
+        Given two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$ the following are equivalent:
+        \begin{center}
+            \begin{minipage}[c]{0.4\textwidth}
+                \begin{tikzcd}
+                    A \ar{r}{a} \ar{d}{f} & B \ar{r}{b} \ar{d}{g} & C \ar{r}{c} \ar{d}{h} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}f} \\
+                    A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+                \end{tikzcd}
+            \end{minipage}
+            \begin{minipage}[c]{0.5\textwidth}
+                \begin{enumerate}
+                    \item $(f,g,h)$ is a morphism of triangles
+                    \item $\exists g:B\rightarrow B'$ such that $b'ga = 0$
+                \end{enumerate}
+            \end{minipage}
+        \end{center}
+        Moreover, if $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq 0$, then f and h are unique.
+    \end{lemma}
+
+    \begin{proof}
+        $1. \implies 2.$ The composition $b'ga = ba = 0$ shows the claim. \\
+        
+        $2. \implies 1.$ The existence of $f$ and $h$ will be seen to be a consequence of the long exact sequence of the bottom triangle at the covariant functor represented by $A$. 
+        \begin{center}
+            \begin{tikzcd}
+                \mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C') \ar{r}{\Sigma_{\mathcal{T}}^{-1}c'_*} & \mathcal{T}(A,A') \ar{r}{a'_*} & \mathcal{T}(A,B') \ar{r}{b'_*} & \mathcal{T}(A,C')
+            \end{tikzcd}
+        \end{center}
+        The morphism $ga:\mathcal{T}(A,B')$ has the property that $b'ga=b'_*(ga)=0$, thus $ga:Ker(b'_*)$. By exactness, $\exists f:\mathcal{T}(A,A')$ such that $a'f = ga$, and by TR3 $\exists h: C \rightarrow C'$ such that $(f,g,h)$ is a morphism of triangles. This have shown that $f$ and $g$ exists, it remains to check uniqueness if the assumption is true. \\
+        Now assume that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq 0$. Exactness determines that $a'_*$ is a monomorphism, and $f$ is therefore unique. Since $\Sigma_{\mathcal{T}}$ is a translation, one gets that $\mathcal{T}(A,\Sigma_{\mathcal{T}}^{-1}C')\simeq\mathcal{T}(\Sigma_{\mathcal{T}}A,C')$. By using the functor $\mathcal{T}(\_,C')$ at the top triangle, it is seen that $b^*$ is a monomorphism, thus $h$ is also unique.
+    \end{proof}
+
+    \begin{lemma} \textbf{Opposite Rotation Axiom; $TR2^{op}$.}
+        If $(A,B,C,a,b,c)$ is a triangle, then $(\Sigma_{\mathcal{T}}^{-1}C,A,B,-\Sigma_{\mathcal{T}}^{-1}c,a,b)$ is a triangle.
+    \end{lemma}
+
+    \begin{remark}
+        It is known a priori that the direct sum of triangles is a candidate triangle, thus it remains to check if it is isomorphic to a triangle.
+    \end{remark}
+
+    \begin{proof}
+        Apply TR2 twice to construct the triangle below.
+        \begin{center}
+            \begin{tikzcd}[row sep=tiny]
+                A \ar{rd}{a} \\
+                & B \ar{ld}{b} \\
+                C \ar{uu}[near start]{c}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+            $\implies$
+            \begin{tikzcd}[row sep=tiny]
+                C \ar{rd}{c} \\
+                & \Sigma_{\mathcal{T}}A \ar{ld}{-\Sigma_{\mathcal{T}}a} \\
+                \Sigma_{\mathcal{T}}B \ar{uu}[near start]{-\Sigma_{\mathcal{T}}b}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd}
+        \end{center}
+        The morphism $\Sigma_{\mathcal{T}}^{-1}c$ has a triangle $(\Sigma_{\mathcal{T}}^{-1}C,A,B',\Sigma_{\mathcal{T}}^{-1}c,a',b')$ by TR1. Use TR3 to find a morphism between these associated candidate triangles.
+        \begin{center}
+            \begin{tikzcd}
+                C \ar{r}{c} \ar[equal]{d}{id_C} & \Sigma_{\mathcal{T}}A \ar{r}{\Sigma_{\mathcal{T}}a'} \ar[equal]{d}{id_{\Sigma_{\mathcal{T}}A}} & \Sigma_{\mathcal{T}}B' \ar{r}{\Sigma_{\mathcal{T}}b'} \ar[dashed]{d}{h} & \Sigma_{\mathcal{T}}C \ar[equal]{d}{id_{\Sigma_{\mathcal{T}}C}} \\
+                C \ar{r}{c} & \Sigma_{\mathcal{T}}A \ar{r}{-\Sigma_{\mathcal{T}}a} & \Sigma_{\mathcal{T}}B \ar{r}{-\Sigma_{\mathcal{T}}b} & \Sigma_{\mathcal{T}}C
+            \end{tikzcd}
+        \end{center}
+        By the 2-out-of-3 property it is seen that h is an isomorphism, so the triple $(id_{\Sigma_{\mathcal{T}}^{-1}C}, id_A, \Sigma_{\mathcal{T}}^{-1}h)$ is an isomorphism of candidate triangles, and by TR1, is an isomorphism of triangles, asserting that $(\Sigma_{\mathcal{T}}^{-1}C,A,B,-\Sigma_{\mathcal{T}}^{-1}c,a,b)$ is in fact a triangle.
+    \end{proof}
+
+    \begin{lemma}
+        Let $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$ be two triangles, then the direct sum of these triangles is a triangle.
+    \end{lemma}
+
+    \begin{proof}
+        Observe that direct sums of triangles admits long exact sequences of hom-functor, as $\mathcal{T}(K,A\oplus A')\simeq\mathcal{T}(K,A)\oplus\mathcal{T}(K,A')$. Thus the direct sum of the triangles has the following exact sequence.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                A\oplus A' \ar{r}{\begin{pmatrix}a & 0 \\ 0 & a'\end{pmatrix}} \& B\oplus B' \ar{r}{\begin{pmatrix}b & 0 \\ 0 & b'\end{pmatrix}} \& C\oplus C' \ar{r}{\begin{pmatrix}c & 0 \\ 0 & c'\end{pmatrix}} \& TA\oplus TC
+            \end{tikzcd} \\
+            $\Downarrow$ \\
+            \begin{tikzcd}[column sep=small]
+                ... \ar{r} & \mathcal{T}(K,A)\oplus\mathcal{T}(K,A') \ar{r} & \mathcal{T}(K,B)\oplus\mathcal{T}(K,B') \ar[dll, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
+                \mathcal{T}(K,C)\oplus\mathcal{T}(K,C') \ar{r} & \mathcal{T}(K,\Sigma_{\mathcal{T}}A)\oplus\mathcal{T}(K,\Sigma_{\mathcal{T}}A') \ar{r} & ...    
+            \end{tikzcd}
+        \end{center}
+        The 2-out-of-3 property holds for the direct sum, via 5-lemma. By TR1 there is a triangle 
+        \begin{center}
+            \begin{tikzcd}
+                A\oplus A' \ar{r} & B\oplus B' \ar{r} & D \ar{r} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+        By TR3 there are morphisms from this triangle to each of the direct summands. Adding these maps together, there is a map from this triangle to the direct sum. Using the 2-out-of-3 property this is an isomorphism between a candidate triangle and a triangle, showing that the direct sum is a triangle.
+        \begin{center}
+            \begin{tikzcd}
+                A\oplus A' \ar{r} \ar{d} & B\oplus B' \ar{r} \ar{d} & D \ar{r} \ar[dashed]{d} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A' \ar{d} \\
+                A \ar{r} & B \ar{r} & C \ar{r} & \Sigma_{\mathcal{T}}A
+            \end{tikzcd} \\
+            \& \\
+            \begin{tikzcd}
+                A\oplus A' \ar{r} \ar{d} & B\oplus B' \ar{r} \ar{d} & D \ar{r} \ar[dashed]{d} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A' \ar{d} \\
+                A' \ar{r} & B' \ar{r} & C' \ar{r} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd} \\
+            $\Downarrow$ \\
+            \begin{tikzcd}
+                A\oplus A' \ar{r} \ar[equal]{d} & B\oplus B' \ar{r} \ar[equal]{d}& D \ar{r} \ar[dashed]{d}[below, rotate=90]{\simeq} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A' \ar[equal]{d} \\
+                A\oplus A' \ar{r} & B\oplus B' \ar{r} & A''\oplus B'' \ar{r} & \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{lemma}
+        The direct summands of a triangle is a triangle.
+    \end{lemma}
+
+    \begin{proof}
+        The proof can be found in \cite{neeman}
+    \end{proof}
+    
+
+\section{Mapping Cones, Homotopies, and Contractibility}
+
+    Up until now, the Octahedron axiom has not yet been used once, other than for proving TR3. Only by assuming TR1, TR2, and TR3 all of the results from the previous section follow. This is what will motivate the next definition. This section is based on \cite{neeman} and \cite{May01}.
+
+    \begin{definition}
+        A pre-triangulation of an additive category $\mathcal{T}$ with translation $\Sigma_{\mathcal{T}}$ is a collection $\Delta_{\mathcal{T}}'$ of triangles consisting of candidate triangles in $\mathcal{T}$ satisfying TR1, TR2, and TR3.
+
+        The category $\mathcal{T}$ with the pre-triangulation $\Delta_{\mathcal{T}}'$ is called a pre-triangulated category, and the candidate triangles in $\Delta_{\mathcal{T}}'$ are called  triangles.
+    \end{definition}
+
+    \begin{remark}
+        This notion of triangles will only be used in this section.
+    \end{remark}
+
+    This section aims to see how candidate triangles are constructed and formed. More importantly, it will be discussed when these objects are triangles. These results are essential to motivate the definition of good morphisms between triangles. Lastly, another equivalent version of TR4 will be presented, and the construction of weak kernels and cokernels will be shown. For this section, it is assumed that $\mathcal{T}$ pre-triangulated.
+
+    \begin{definition}
+        Let $\phi : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ be a morphism of candidate triangles.
+        \begin{center}
+            \begin{tikzcd}
+                A \arrow{r}{a} \arrow{d}{\phi_A} & B \arrow{r}{b} \arrow{d}{\phi_B} & C \arrow{r}{c} \arrow{d}{\phi_C} & \Sigma_{\mathcal{T}}A \arrow{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+        The mapping cone of $\phi$ is defined to be the candidate triangle below.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                A' \oplus B \ar{r}{\begin{pmatrix}
+                    b & \phi_B \\ 0 & -a'
+                \end{pmatrix}} \& B'\oplus C \ar{r}{\begin{pmatrix}
+                    c & \phi_C \\ 0 & -b'
+            \end{pmatrix}} \& C'\oplus \Sigma_{\mathcal{T}}A \ar{r}{\begin{pmatrix}
+                \Sigma_{\mathcal{T}}a & \Sigma_{\mathcal{T}}\phi_A \\ 0 & -c'
+            \end{pmatrix}} \& \Sigma_{\mathcal{T}}A'\oplus \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{definition}
+        A morphism $\alpha : (A,B,C,a,b,c) \rightarrow (A',B',C',a',b',c')$ between candidate triangles is called null-homotopic if it factors through a homotopy. A homotopy is defined to be a triple of maps $(\Theta, \Phi, \Psi)$ in the following sense.
+        \begin{center}
+            \begin{tikzcd}
+                A \arrow{r}{a} \arrow{d}{\alpha_A} & B \arrow{r}{b} \arrow{ld}{\Theta} \ar{d}{\alpha_B} & C \arrow{r}{c} \arrow{ld}{\Phi} \ar{d}{\alpha_C} & \Sigma_{\mathcal{T}}A \arrow{ld}{\Psi} \ar{d}{\Sigma_{\mathcal{T}}\alpha_A} \\
+                A' \arrow{r}{a'} & B' \arrow{r}{b'} & C \arrow{r}{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+        It is required that $\alpha_A  = \Theta a + \Sigma_{\mathcal{T}}^{-1}(c'\Psi)$, $\alpha_B = \Phi b + a'\Theta$ and $\alpha_C = \Psi c + b'\Phi$ for the triple to be a homotopy.
+        Two maps are called homotopic if their difference is null-homotopic
+    \end{definition}
+
+    \begin{lemma}
+        The mapping cone only depends on morphisms up to homotopy. I.e. if two maps are homotopic, then their mapping cones are isomorphic.
+    \end{lemma}
+
+    \begin{proof}
+        Suppose that $(f,g,h)$ and $(f',g',h')$ are two homotopic morphisms of triangles:
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d} & B \ar{r}{b} \ar{d} & C \ar{r}{c} \ar{d} & \Sigma_{\mathcal{T}}A \ar{d} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+        Let $(\Theta,\Phi,\Psi)$ be the homotopy between the triangle morphisms. Then there is an isomorphism of triangles.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                A' \oplus B \ar{r}{\begin{pmatrix}
+                    b & g \\ 0 & -a'
+                \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & \Theta \\ 0 & 1 \end{pmatrix}} \& B'\oplus C \ar{r}{\begin{pmatrix}
+                    c & h \\ 0 & -b'
+            \end{pmatrix}} \ar{d}{\begin{pmatrix} 1 & \Phi \\ 0 & 1\end{pmatrix}} \& C'\oplus \Sigma_{\mathcal{T}}A \ar{r}{\begin{pmatrix}
+                \Sigma_{\mathcal{T}}a & \Sigma_{\mathcal{T}}f \\ 0 & -c'
+            \end{pmatrix}} \ar{d}{\begin{pmatrix}1 & \Psi \\ 0 & 1\end{pmatrix}} \& \Sigma_{\mathcal{T}}A'\oplus \Sigma_{\mathcal{T}}B \ar{d}{\begin{pmatrix}1 & \Sigma_{\mathcal{T}}\Theta \\ 0 & 1 \end{pmatrix}}\\
+            A' \oplus B \ar{r}[below]{\begin{pmatrix}
+                b & g' \\ 0 & -a'
+            \end{pmatrix}} \& B'\oplus C \ar{r}[below]{\begin{pmatrix}
+                c & h' \\ 0 & -b'
+        \end{pmatrix}} \& C'\oplus \Sigma_{\mathcal{T}}A \ar{r}[below]{\begin{pmatrix}
+            \Sigma_{\mathcal{T}}a & \Sigma_{\mathcal{T}}f' \\ 0 & -c'
+        \end{pmatrix}} \& \Sigma_{\mathcal{T}}A'\oplus \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{lemma}
+        Let $A$ denote the candidate triangle $(A,A',A'')$ and $B$ denote $(B,B',B'')$. Suppose $\alpha, \beta : A \rightarrow B$ are two homotopic morphisms of candidate triangles. Then for any map $\gamma : \widetilde{A} \rightarrow A$ and any map $\delta : B \rightarrow \widetilde{B}$ the maps $\delta\alpha\gamma$ and $\delta\beta\gamma$ are homotopic as well.
+    \end{lemma}
+
+    \begin{proof}
+        To prove this statement it is enough to prove that $\alpha\gamma$ is homotopic to $\beta\gamma$ due to the symmetry of the statement. The goal is then to show that $(\Theta\gamma ',\Phi\gamma '',\Psi \Sigma_{\mathcal{T}}\gamma)$ is the homotopy between these maps. This can be seen as
+        \begin{multline*}
+            {\alpha}'{\gamma}'-{\beta}'{\gamma}' = ({\alpha}'-{\beta}'){\gamma}' = (b\Theta +\Phi a'){\gamma}' = b\Theta {\gamma}' + \Phi a'{\gamma}' = b({\Theta}{\gamma}') + ({\Phi}{\gamma}'')\widetilde{a}'
+        \end{multline*}.
+    \end{proof}
+
+    \begin{definition}
+        A candidate triangle $A$ is called a contractible triangle if $id_A$ is null-homotopic.
+    \end{definition}
+
+    \begin{remark}
+        If $A$ is a contractible triangle and $F:\mathcal{T}\rightarrow \mathcal{A}$ is an additive functor to an abelian category, then the identity of the cochain is null-homotopic as well.
+        \begin{center}
+            \begin{tikzcd}
+                ... \ar{r} & F(A) \ar{r} & F(A') \ar{r} & F(A'') \ar{r} & F(\Sigma_{\mathcal{T}}A) \ar{r} & ...
+            \end{tikzcd}
+        \end{center}
+        The homology of this sequence is, therefore, $0$ everywhere, asserting that it is an exact sequence.
+        The exactness of such sequences allows one to use the 2-out-of-3 property on morphisms between contractible triangles.
+    \end{remark}
+
+    \begin{corollary}
+        If A is a contractible triangle, then any map in $\mathcal{T}(A,\_)$ or $\mathcal{T}(\_,A)$ is null-homotopic.
+    \end{corollary}
+
+    \begin{proof}
+        By definition, being contractible is the same as the existence of a homotopy between the map and the zero map. If $id_A\sim 0 \implies f\circ id_A = f \sim f\circ 0 = 0$. So any map $f$ is null-homotopic.
+    \end{proof}
+
+    \begin{lemma}
+        A contractible triangle is a triangle.
+    \end{lemma}
+
+    \begin{proof}
+        Let $A$ be the contractible triangle $(A,A',A'')$. Writing everything out, there is a homotopy between candidate triangles.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{id_A} & A' \ar{r}{a'} \ar{d}{id_{A'}} \ar{ld}{\Theta} & A'' \ar{r}{a''} \ar{d}{id_{A''}} \ar{ld}{\Phi} & \Sigma_{\mathcal{T}}A \ar{d}{id_{\Sigma_{\mathcal{T}}A}} \ar{ld}{\Psi} \\
+                A \ar{r}{a} & A' \ar{r}{a'} & A'' \ar{r}{a''} & \Sigma_{\mathcal{T}}A
+            \end{tikzcd}
+        \end{center}
+        By using TR1 there is a triangle, and consequently, a long exact sequence.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{a} & A' \ar{r}{e} & E \ar{r}{e'} & \Sigma_{\mathcal{T}}A
+            \end{tikzcd} \\
+            $\Downarrow$ \\
+            \begin{tikzcd}
+                ... \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,A) \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,A') \ar{r} & \mathcal{T}(\Sigma_{\mathcal{T}}A,E) \ar{r}{e'_*} & \mathcal{T}(\Sigma_{\mathcal{T}}A,\Sigma_{\mathcal{T}}A) \ar{r}{\Sigma_{\mathcal{T}}a_*} & ...    
+            \end{tikzcd}
+        \end{center}
+        Since the map $\Sigma_{\mathcal{T}}a\circ a''\Psi = 0$ and by exactness at $\mathcal{T}(\Sigma_{\mathcal{T}}A,\Sigma_{\mathcal{T}}A)$, the kernel $Ker\Sigma_{\mathcal{T}}a_*=Ime'_*\neq 0$. This shows that there is a map ${\Psi}':\mathcal{T}(\Sigma_{\mathcal{T}}A,E)$ such that $e'{\Psi}'=a''\Psi$, and the map $(id_A,id_{A'},e\Theta+{\Psi}'a'')$ is a well defined map of candidate triangles. By the remark, one may use the 2-out-of-3 properties to assert that the map found is an isomorphism, giving an isomorphism of triangles, showing that the contractible triangle is a triangle by the Bookkeeping axiom. 
+    \end{proof}
+
+    \begin{corollary}
+        The mapping cone of the zero map between  triangles is a triangle. 
+    \end{corollary}
+
+    \begin{proof}
+        The mapping cone of the zero map can be seen to be the direct sum of two triangles. Thus it is a triangle.
+    \end{proof}
+
+    \begin{corollary}
+        The mapping cone of a null-homotopic map between triangles is a triangle.
+    \end{corollary}
+
+    A natural question to ask is when does the map between triangles admit a mapping cone which is a triangle. It has been shown that this is true whenever the map is null-homotopic. It can then be seen that if either of the triangles the map is between is contractible, the mapping cone is a triangle. This section's main result shows the connection between triangulations and the realization of mapping cones as triangles.
+
+    \begin{definition}
+        A map between triangles will be called good if the mapping cone is a triangle.
+    \end{definition}
+
+    \begin{theorem}
+        A pre-triangulated category $\mathcal{T}$ is triangulated if given two triangles $(A,B,C,a,b,c)$ and $(A',B',C',a',b',c')$ and diagram (1) commutes, then diagram (1) can be completed to diagram (2) such that $\phi$ is good.
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{d}{\phi_B} & \\
+                A' \ar{r}{a'} & B'
+            \end{tikzcd}
+            (2)
+            \begin{tikzcd}
+                A \ar{r}{a} \ar{d}{\phi_A} & B \ar{r}{b} \ar{d}{\phi_B} & C \ar{r}{c} \ar[dashed]{d}{\phi_C} & \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                A' \ar{r}{a'} & B' \ar{r}{b'} & C' \ar{r}{c'} & \Sigma_{\mathcal{T}}A'
+            \end{tikzcd}
+        \end{center}
+    \end{theorem}
+
+    This result was shown by \cite{neeman}, however, it also holds in the opposite direction. That is, if $\mathcal{T}$ is a triangulated category, then every pair of morphisms as in (1) may be completed to a good map between triangles. This highlights an interesting connection between mapping cones and the Octahedron axiom. 
+
+    \begin{definition}
+         A commutative square (1) is called homotopy cartesian if and only if (2) is a triangle. One would say that homotopy cartesian squares arise from triangles.
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                D \ar{r} \ar{d} \ar[phantom]{rd}{HO}[very near start]{\ulcorner}[very near end]{\lrcorner}& A \ar{d} \\
+                B \ar{r} & C
+            \end{tikzcd}
+            $\implies$
+            (2)
+            \begin{tikzcd}[row sep=small]
+                D \ar{rd} \\
+                & A\oplus B \ar{ld} \\ 
+                C \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{T}}} 
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+        
+    \begin{remark}
+        One method to construct homotopy cartesian squares is with homotopy pullbacks. A homotopy pullback is created with the application of TR1 and TR2, the procedure is drawn out below.
+        \begin{center}
+            \begin{tikzcd}
+                & A \ar{d}{a} \\
+                B \ar{r}{b} & C
+            \end{tikzcd}
+            $\stackrel{Collapse}{\implies}$
+            \begin{tikzcd}[ampersand replacement=\&]
+                A\oplus B \ar{r}{\begin{pmatrix}a & b\end{pmatrix}} \& C
+            \end{tikzcd} \\
+            $\stackrel{TR1}{\implies}$
+            \begin{tikzcd}[ampersand replacement=\&]
+                A\oplus B \ar{r}{\begin{pmatrix}a & b\end{pmatrix}} \& C \ar{r} \& \Sigma_{\mathcal{T}}D \ar{r} \& \Sigma_{\mathcal{T}}A\oplus \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+            $\stackrel{TR2}{\implies}$
+            \begin{tikzcd}
+                D \ar{r} \ar{d} \ar[phantom]{rd}{HO}[very near start]{\ulcorner}[very near end]{\lrcorner}& A \ar{d} \\
+                B \ar{r} & C
+            \end{tikzcd}
+        \end{center}
+
+        Dually, one may use homotopy push-outs to construct homotopy cartesian squares.
+    \end{remark}
+
+    \begin{lemma}
+        Suppose that there is a homotopy cartesian square (1). Then there are triangles and a morphism of triangles as in (2).
+        \begin{center}
+            (1)
+            \begin{tikzcd}
+                D \ar{r}{g'} \ar{d}{f'} \ar[phantom]{rd}{HO}[very near start]{\ulcorner}[very near end]{\lrcorner}& A \ar{d}{f} \\
+                B \ar{r}{g} & C
+            \end{tikzcd}
+            (2)
+            \begin{tikzcd}
+                D \ar{r} \ar{d}{f'} & A \ar{d}{f} \ar{r} & E \ar{r} \ar[equal]{d} & \Sigma_{\mathcal{T}}D \ar{d}{\Sigma_{\mathcal{T}}f'} \\
+                B \ar{r} & C \ar{r} & E \ar{r} & \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+    \end{lemma}
+
+    \begin{proof}
+        There is a commutative square (1) that satisfies the requirements of the Octahedron axiom (2), yielding a triangle (3).
+        \begin{center}
+            (1)
+            \begin{tikzcd}[ampersand replacement=\&]
+                D \ar{r}{\begin{pmatrix}g' \\ f'\end{pmatrix}} \ar[equal]{d} \& A\oplus B \ar{d}{\begin{pmatrix}1 & 0\end{pmatrix}} \\
+                D \ar{r}{g'} \& A
+            \end{tikzcd} \\
+            (2)
+            \begin{tikzcd}[row sep=small, ampersand replacement=\&]
+                D \ar[red]{rd}[black]{\begin{pmatrix}g' \\ f'\end{pmatrix}} \\
+                \& A\oplus B \ar[red]{ld}[black]{\begin{pmatrix}f & g\end{pmatrix}} \\
+                C \ar[red]{uu}[black, very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}[pos=0.5]{0}
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small, ampersand replacement=\&]
+                A\oplus B \ar[orange]{rd}[black]{\begin{pmatrix} 1 & 0\end{pmatrix}} \\
+                \& A \ar[orange]{ld}[black]{0} \\
+                \Sigma_{\mathcal{T}}B \ar[orange]{uu}[black, very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}[near start]{\begin{pmatrix}0 \\ 1\end{pmatrix}}
+            \end{tikzcd}
+            \begin{tikzcd}[row sep=small]
+                D \ar[violet]{rd}[black]{f'} \\
+                & A \ar[violet]{ld}{} \\
+                E \ar[violet]{uu}[black, very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}}
+            \end{tikzcd} \\
+            (3)
+            \begin{tikzcd}
+                \textcolor{white}{.} \\
+                C \ar[teal]{r} & E \ar[teal]{r}{} & \Sigma_{\mathcal{T}}B \ar[teal]{r}{\Sigma_{\mathcal{T}}g} & \Sigma_{\mathcal{T}}C \\
+                \textcolor{white}{.}
+            \end{tikzcd}
+        \end{center}
+        By TR4 (3) is a triangle, and two commutative squares as below. Every arrow should be understood to be the arrow from its corresponding triangle.
+        \begin{center}
+            \begin{tikzcd}[ampersand replacement=\&]
+                A\oplus B \ar[orange]{r} \ar[red]{d} \& A \ar[dotted]{ld}{f} \ar[violet]{d}{} \\
+                C \ar[teal]{r}{} \& E
+            \end{tikzcd}
+            \begin{tikzcd}
+                E \ar[teal]{d}{} \ar[violet]{r}{} & \Sigma_{\mathcal{T}}D \ar[red]{d}{} \ar[dotted]{ld}[above]{\Sigma_{\mathcal{T}}g} \\
+                \Sigma_{\mathcal{T}}B \ar[orange]{r}{} & \Sigma_{\mathcal{T}}A \oplus \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+        Since the composition \begin{tikzcd}
+            B \ar[teal]{r}{g} & C \ar[teal]{r}{} & E
+        \end{tikzcd} is 0, it is seen that the lower simplex in the first diagram commute. Dually, the upper simplex in the second triangle also commutes. This is exactly the condition that the triple of morphisms is a morphism of triangles, as illustrated below.
+        % Since $\begin{pmatrix}1 & 0\end{pmatrix}$ is split mono, there is a morphism of triangles proving the statement.
+        \begin{center}
+            \begin{tikzcd}
+                D \ar{r}{} \ar{d}{} & A \ar{r}{} \ar{d}{} & E \ar{r}{} \ar[equal]{d}{} & \Sigma_{\mathcal{T}}D \ar{d}{} \\
+                B \ar{r}{} & C \ar{r}{} & E \ar{r}{} & \Sigma_{\mathcal{T}}B
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+\section{Calculus of Fractions and the Verdier Quotient}
+    One important construction of triangulated categories is the Verdier Quotient. This construction is a localization of a triangulated category at some set related to a triangulated subcategory, and this gives the construction some resemblance of classical quotients in algebra. This section aims to introduce the concept localization of categories, as well as show how triangulated categories fit within this theory. Localization is most notably known in commutative algebra where elements are given formal inverses. The idea for categories is to attach formal inverses of morphisms onto the category. This section is based on \cite{weibel}, \cite{zisman}, and \cite{neeman}.
+    \begin{definition}
+        Let $S$ be a collection of morphisms in the category $\mathcal{C}$. The Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
+        \begin{itemize}
+            \item $\forall s:S|q(s)$ is an isomorphism
+            \item Any functor $F:\mathcal{C}\rightarrow\mathcal{D}$ such that $\forall s:S$ $F(s)$ is an isomorphism, then $F$ factors through $q$. That is to say that there is a natural isomorphism $\eta : F\rightarrow F'\circ q$ so that $\mathcal{C}[S^{-1}]$ is the universal category where morphisms in $S$ are isomorphisms.
+        \end{itemize}
+        \begin{center}
+            \begin{tikzcd}[row sep = tiny]
+                \mathcal{C} \ar{rr}{F} \ar{rd}[below]{q} & & \mathcal{D} \\
+                & S^{-1}\mathcal{C} \ar[dashed]{ru}[below]{F'}
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{remark}
+        Even though it is known that $\mathcal{C}$ is locally small, it is not clear a priori that the category $\mathcal{C}[S^{-1}]$ is again locally small. Thus it is not evident that these localizations exist.
+    \end{remark}
+
+    \begin{remark}
+        Suppose $X:\mathcal{C}$, then one may always assume that $id_{X}:S$. To see this, let $T = \{id_{X} |\forall X:\mathcal{C} \}$, then it is evident that $Id_{\mathcal{C}}$ is the universal functor in which morphisms in $T$ are inverted. Thus adding identities to a set, does not alter its localization.
+    \end{remark}
+
+    In general, it is difficult to describe a method to construct the localization of a category at a set. This discussion will however be much easier if one is to put assumptions on the set $S$ of morphisms. To mimic the construction of localization of rings, one wants to assume that $S$ is a multiplicative system. Note that every morphism in $S$ will be colored blue.
+
+    \begin{definition}
+        A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
+        \begin{itemize}
+            \item $S$ is closed under composition, i.e. if $f,g : S$ are composable then $gf : S$. Every identity morphism in $\mathcal{C}$ is in $S$.
+            \item (Right Ore condition) If $t : X \rightarrow Y$ is a morphism in $S$, then $\forall g:Z\rightarrow Y$ there is a commutative square (1) such that $f:W\rightarrow X$ and $s:W\rightarrow Z$ exists, where $s:S$.
+            \begin{center}
+                (1)
+                \begin{tikzcd}
+                    W \ar[dashed]{r}{f} \ar[blue, dashed]{d}{s} & X \ar[blue]{d}{t} \\
+                    Z \ar{r}{g} & Y
+                \end{tikzcd}
+            \end{center}
+            \item (Left cancellation) Suppose $f,g:X\rightarrow Y$ are parallel morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+            \begin{enumerate}
+                \item $sf = sg$ for som $s:S$ starting at $Y$
+                \item $ft = gt$ for som $t:S$ ending at $X$
+            \end{enumerate}
+        \end{itemize}
+    \end{definition}
+
+    \begin{remark}
+        The previous definition has a dual statement. A set $S$ of morphisms is left multiplicative if it satisfies:
+        \begin{itemize}
+            \item $S$ is closed under composition, i.e. if $f,g : S$ are composable then $gf : S$. Every identity morphism in $\mathcal{C}$ is in $S$.
+            \item (Left Ore condition) If $s : Y \rightarrow Z$ is a morphism in $S$, then $\forall f:Y\rightarrow X$ there is a commutative square (1) such that $g:Z\rightarrow W$ and $t:X\rightarrow W$ exists and $t:S$ as well.
+            \begin{center}
+                (1)\begin{tikzcd}
+                    Y \ar{r}{f} \ar[blue]{d}{s} & X \ar[blue, dashed]{d}{t} \\
+                    Z \ar[dashed]{r}{g} & W
+                \end{tikzcd}
+            \end{center}
+            \item (Right cancellation) Suppose $f,g:X\rightarrow Y$ are parallel morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+            \begin{enumerate}
+                \item $ft = gt$ for som $t:S$ ending at $X$
+                \item $sf = sg$ for som $s:S$ starting at $Y$
+            \end{enumerate}
+        \end{itemize}
+        If $S$ is both right multiplicative and left multiplicative then it is called multiplicative.
+    \end{remark}
+
+    % \begin{prototype}
+    %     \todo[color = pink]{Fjerne dette?} Let $R$ be a commutative integral domain, ... (look at Bacharaya and how they define the field of fractions, or ask Andreas if he have any good literature on this topic)
+    % \end{prototype}
+
+    As with the definition of localization of rings, localization of a category $\mathcal{C}$ at a multiplicative system will be defined with fractions. That is the morphisms will be "fractions" of morphisms. These morphisms will be described as diagrams over spans for right multiplicative systems (or dually cospans for left multiplicative systems), together with an equivalence relation.
+
+    \begin{definition}
+        A span is a diagram of the form:
+        \begin{center}
+            \begin{tikzcd}
+                \cdot & \cdot \ar{l} \ar{r} & \cdot
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{definition}
+        Let $S$ be a right multiplicative system of morphisms in a category $\mathcal{C}$. Given a morphism $s : Y\rightarrow X$ in $S$ and a morphism $t:Y\rightarrow Z$, define the right fraction of $s$ and $t$ to be the span of the morphisms. That is $s$ and $t$ fit in the diagram below.
+        \begin{center}
+            \begin{tikzcd}
+                X & Y \ar[blue]{l}{s} \ar{r}{t} & Z
+            \end{tikzcd}
+        \end{center}
+        Right fractions are denoted as $ts^{-1}$.
+        Let $\sim$ be the equivalence relation of right fractions given by the diagram (1) such that $ts^{-1}\sim t's'^{-1}$ if and only if $\exists w,w':\mathcal{C}$ making the diagram commute and that the middle row is a right fraction.
+        \begin{center}
+            \begin{tikzcd}
+                & Y \ar[blue]{ld}[above]{s} \ar{rd}{t} \\
+                X & W \ar[dashed]{r} \ar[blue, dashed]{l} \ar[blue]{u}{w} \ar[blue]{d}{w'} & Z \\
+                & Y' \ar[blue]{lu}{s'} \ar{ru}[below]{t'}
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    Dually, define left fractions as diagrams over cospans such that if $t:S$, then there is a left fraction $t^{-1}s$ as the diagram below.
+    \begin{center}
+        \begin{tikzcd}
+            X \ar{r}{s} & Y & Z \ar[blue]{l}{t}
+        \end{tikzcd}
+    \end{center}
+
+    The equivalence relation $\sim$ is given by the diagram in the same manner as above.
+    \begin{center}
+        \begin{tikzcd}
+            & Y \ar[blue]{d}{w} \\
+            X \ar{ru}{s} \ar[dashed]{r} \ar{rd}{s'} & W & Z \ar[blue]{lu}{t} \ar[blue, dashed]{l} \ar[blue]{ld}{t'} \\
+            & Y' \ar[blue]{u}{w'}
+        \end{tikzcd}
+    \end{center}
+
+    \begin{prop}
+        Suppose that $S$ is a right multiplicative system, then the relation stated above is in fact an equivalence relation.
+    \end{prop}
+
+    \begin{proof}
+        An equivalence relation is proven by showing that $\sim$ is reflexive, symmetric, and transitive.
+        \begin{itemize}
+            \item (Reflexive) Let $fs^{-1}$ be a right fraction. Then diagram (1) shows that $fs^{-1}\sim fs^{-1}$.
+            \begin{center} (1)
+                \begin{tikzcd}
+                    & W \ar[blue]{ld}{s} \ar{rd}{f} \ar[blue, equal]{d} \\
+                    X & W \ar[dashed]{r}{f} \ar[blue, dashed]{l}{s} & Y \\
+                    & W \ar[blue]{lu}{s} \ar[blue, equal]{u} \ar{ru}{f}
+                \end{tikzcd}
+            \end{center}
+            \item (Symmetric) Let $fs^{-1}$ and $gt^{-1}$ be two right fractions such that $fs^{-1}\sim gt^{-1}$, that is diagram (2) commute. Due to inherent symmetric nature of the diagram it follows that $gt^{-1}\sim fs^{-1}$.
+            \begin{center} (2)
+                \begin{tikzcd}
+                    & W \ar[blue]{ld}{s} \ar{rd}{f} \\
+                    X & \widetilde{W} \ar[dashed]{r} \ar[blue, dashed]{l} \ar[blue]{u}{w} \ar[blue]{d}{w'} & Y \\
+                    & W' \ar[blue]{lu}{t} \ar{ru}{g}
+                \end{tikzcd}
+                $\implies$
+                \begin{tikzcd}
+                    & W' \ar[blue]{ld}{t} \ar{rd}{g} \\
+                    X & \widetilde{W} \ar[dashed, blue]{l} \ar[dashed]{r} \ar[blue]{u}{w'} \ar[blue]{d}{w} & Y \\
+                    & W \ar[blue]{lu}{s} \ar{ru}{f}
+                \end{tikzcd}
+            \end{center}
+            \item (Transitive) Suppose that there are three right fractions $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ such that $fs^{-1}\sim gt^{-1}$ and $gt^{-1}\sim hu^{-1}$. This may be written as diagram (3) and (4).
+            \begin{center} (3)
+                \begin{tikzcd}
+                    & W' \ar[blue]{ld}{s} \ar{rd}{f} \\
+                    X & \widetilde{W} \ar[dashed]{r} \ar[blue, dashed]{l} \ar[blue]{u}{w'} \ar[blue]{d}{\widetilde{w'}} & Y \\
+                    & W \ar[blue, dashed]{lu}{t} \ar{ru}{g}
+                \end{tikzcd} 
+                (4)
+                \begin{tikzcd}
+                    & W \ar[blue]{ld}{t} \ar{rd}{g} \\
+                    X & \widetilde{\widetilde{W}} \ar[dashed]{r} \ar[blue, dashed]{l} \ar[blue]{u}{\widetilde{w''}} \ar[blue]{d}{w''} & Y \\
+                    & W'' \ar[blue]{lu}{u} \ar{ru}{h}
+                \end{tikzcd}
+            \end{center}
+            Diagram (5) may be created by using the Ore condition on the maps $\widetilde{w'}$ and $\widetilde{w''}$. Since both morphisms are assumed to be in $S$, it follows that both $\widetilde{w'}$ and $\widetilde{w''}$ are in $S$ as well. Diagram (6) then shows that $fs^{-1}\sim hu^{-1}$.
+            \begin{center} (5)
+                \begin{tikzcd}
+                    \widetilde{\widetilde{\widetilde{W}}} \ar[blue]{d}{\widetilde{\widetilde{w'}}} \ar[blue]{r}{\widetilde{\widetilde{w''}}} & \widetilde{\widetilde{W}} \ar[blue]{d}{\widetilde{w''}} \\
+                    \widetilde{W} \ar[blue]{r}{\widetilde{w'}} & W
+                \end{tikzcd}
+                (6)
+                \begin{tikzcd}
+                    & W' \ar[blue]{ldd}{s} \ar{rdd}{f} \\
+                    & \widetilde{W} \ar[blue]{ld} \ar{rd} \ar[blue]{u}{\widetilde{w'}} \\
+                    X & \widetilde{\widetilde{\widetilde{W}}} \ar[blue, dashed]{l} \ar[dashed]{r} \ar[blue]{u}{\widetilde{\widetilde{w'}}} \ar[blue]{d}{\widetilde{\widetilde{w''}}}& Y \\
+                    & \widetilde{\widetilde{W}} \ar[blue]{lu} \ar{ru} \ar[blue]{d}{\widetilde{w''}} \\
+                    & W'' \ar[blue]{luu}{u} \ar{ruu}{h}
+                \end{tikzcd}
+            \end{center}
+        \end{itemize}
+    \end{proof}
+
+    \begin{definition}
+        Let $S$ be a multiplicate system in a category $\mathcal{C}$. Given two right fractions $fs^{-1}$ and $gt^{-1}$
+        \begin{center}
+            \begin{tikzcd}
+                X & W \ar[blue]{l}{s} \ar{r}{f} & Y
+            \end{tikzcd}, 
+            \begin{tikzcd}
+                Y & W' \ar[blue]{l}{t} \ar{r}{g} & Z
+            \end{tikzcd}
+        \end{center}
+        the composition of the fractions are defined to be $gt^{-1}\circ fs^{-1}$. The Ore condition describes how this composition should be defined,
+        \begin{center}
+            \begin{tikzcd}
+                & \widetilde{W} \ar[blue, dashed]{d}{u} \ar[dashed]{r}{h} & W' \ar[blue]{d}{t} \ar{r}{g} & Z \\
+                X & W \ar[blue]{l}{s} \ar{r}{f} & Y
+            \end{tikzcd}
+        \end{center}
+        the composite is the right fraction $gt^{-1}\circ fs^{-1} = gh(su)^{-1}$.
+    \end{definition}
+
+    \begin{prop}
+        The composition of right fractions is well-defined up to equivalence.
+    \end{prop}
+
+    \begin{proof}
+        To prove that the composite is well-defined one must prove that the composite is independent of the different options of morphisms provided by the right Ore condition and that it is, therefore, independent from the choice of a right fraction. There will only be presented proof that the choice of Ore maps is independent, as the other case is analogous. \\
+
+        Suppose there are two right fractions $fs^{-1}$ and $gt^{-1}$ as indicated by the diagrams.
+
+        \begin{center}
+            \begin{tikzcd}
+                X & W_1 \ar[blue]{l}{s} \ar{r}{f} & Y
+            \end{tikzcd}, 
+            \begin{tikzcd}
+                Y & W_2 \ar[blue]{l}{t} \ar{r}{g} & Z
+            \end{tikzcd}
+        \end{center}
+        Further, suppose that there are at least two different choices for the morphisms provided by the right Ore condition, for example, $\widetilde{W}$ and $\widehat{W}$. The two compositions may be drawn as the diagrams below.
+        \begin{center}
+            \begin{tikzcd}
+                & \widetilde{W} \ar{r}{\widetilde{g}} \ar[blue]{d}{\widetilde{s}} & W_2 \ar{r}{g} \ar[blue]{d}{t} & Z \\
+                X & W_1 \ar{r}{f} \ar[blue]{l}{s} & Y
+            \end{tikzcd}
+            \begin{tikzcd}
+                & \widehat{W} \ar{r}{\widehat{f}} \ar[blue]{d}{\widehat{s}} & W_2 \ar{r}{g} \ar[blue]{d}{t} & Z \\
+                X & W_1 \ar[blue]{l}{s} \ar{r}{f} & Y
+            \end{tikzcd}
+        \end{center}
+        Combining the diagrams at $W_1$ by using the right Ore condition, the object $W$ exists as in the diagram below together with its corresponding maps. 
+        \begin{center}
+            \begin{tikzcd}
+                \bar{W} \ar[blue, dashed]{rd}{\xi} \\
+                & W \ar[blue]{r}{\widehat{w}} \ar[blue]{d}{\widetilde{w}} & \widehat{W} \ar[blue]{d}[near start]{\widehat{s}} \ar{r}{\widehat{f}} & W_2 \ar[blue]{d}{t} \ar{r}{g} & Z \\
+                & \widetilde{W} \ar[blue]{r}{\widetilde{s}} \ar{rru}[near start]{\widetilde{g}} & W_1 \ar{r}{f} \ar[blue]{d}{s} & Y \\
+                & & X
+            \end{tikzcd}
+        \end{center}
+        Observe that the three squares commute, as by the definition of right Ore condition. Thus it follows that $s\widetilde{s}\widetilde{w} = s\widehat{s}\widehat{w}$, and that $t\widehat{f}\widehat{w}=t\widetilde{g}\widetilde{w}$. As $t:S$ one may use right cancellation to find a $\xi:\bar{W}\rightarrow W$ such that $\widehat{f}\widehat{w}\xi = \widetilde{g}\widetilde{w}\xi \implies g\widehat{f}\widehat{w}\xi = g\widetilde{g}\widetilde{w}\xi$. Thus the equivalence relation diagram commutes.
+        \begin{center}
+            \begin{tikzcd}
+                & \widehat{W} \ar[blue]{ld}[above]{s\widehat{s}} \ar{rd}{g\widehat{f}} \\
+                X & \bar{W} \ar[blue]{u}{\widehat{w}\xi} \ar[blue]{d}{\widetilde{w}\xi} \ar[blue, dashed]{l} \ar[dashed]{r} & Z \\
+                & \widetilde{W} \ar[blue]{lu}{s\widetilde{s}} \ar{ru}[below]{g\widetilde{g}}
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{prop}
+        The composition of right fractions is associative.
+    \end{prop}
+
+    \begin{proof}\emph{Sketch.}
+        Let $fs^{-1}$, $gt^{-1}$ and $hu^{-1}$ be right fractions as in the diagrams below.
+        \begin{center}
+            \begin{tikzcd}
+                A & X \ar[blue]{l}{s} \ar{r}{f} & B
+            \end{tikzcd}
+            ,
+            \begin{tikzcd}
+                B & Y \ar[blue]{l}{t} \ar{r}{g} & C
+            \end{tikzcd}, 
+            \begin{tikzcd}
+                C & Z \ar[blue]{l}{u} \ar{r}{h} & D
+            \end{tikzcd}
+        \end{center}
+        There are two different ways of calculating the composition.
+        \begin{center}
+            \begin{minipage}[c]{0.4\textwidth}
+                \underline{$hu^{-1}\circ (gt^{-1}\circ fs^{-1})$}\\
+                \begin{tikzcd}
+                    W \ar{rr} \ar[blue]{d}{} & & Z \ar{r}{} \ar[blue]{d}{} & D \\
+                    V \ar[blue]{d}{} \ar{r}{} & Y \ar{r}{} \ar[blue]{d}{} & C \\
+                    X \ar[blue]{d}{} \ar{r}{} & B \\
+                    A
+                \end{tikzcd}
+            \end{minipage}
+            \begin{minipage}[c]{0.4\textwidth}
+                \underline{$(hu^{-1}\circ gt^{-1})\circ fs^{-1}$}\\
+                \begin{tikzcd}
+                    V' \ar{r}{} \ar[blue]{dd}{} & W' \ar{r}{} \ar[blue]{d}{} & Z \ar{r}{} \ar[blue]{d}{} & D \\
+                    & Y \ar{r}{} \ar[blue]{d}{} & C \\
+                    X \ar{r}{} \ar[blue]{d}{} & B \\
+                    A
+                \end{tikzcd}
+            \end{minipage}
+        \end{center}
+        To be able to find a relation between these diagrams, create another diagram with the right Ore condition.
+        \begin{center}
+            \begin{minipage}[c]{0.3\textwidth}
+                \begin{tikzcd}
+                    T \ar[dashed, blue]{r}{} \ar[dashed, blue]{d}{} & V' \ar[blue]{d} \\
+                    W \ar[blue]{r}{} & X
+                \end{tikzcd}
+            \end{minipage}
+            \begin{minipage}[c]{0.5\textwidth}
+                To finish the proof, one would need to show that the maps to $A$ and $D$ commute. The maps to A commute right out of the bat, by the right Ore condition. To prove that the maps to D commute, first apply right cancellation on the maps to B, then on the maps to C.
+            \end{minipage}
+        \end{center}
+    \end{proof}
+
+    \begin{definition}
+        Let $S$ be a right multiplicative system in a category $\mathcal{C}$. Define a category $\mathfrak{r}S^{-1}\mathcal{C}$ to have objects $\mathfrak{Obr}S^{-1}\mathcal{C}=\mathfrak{Ob}\mathcal{C}$ and morphisms $\mathfrak{Arr}S^{-1}\mathcal{C} = \{$right fractions of $S\}/\sim$. This means that the morphisms $\mathfrak{r}S^{-1}\mathcal{C}(X,Y)$ are spans in $\mathcal{C}$ where one of the maps are in $S$ up to equivalence.
+        \begin{center}
+            \begin{tikzcd}
+                X & A \ar[blue]{l} \ar{r} & Y
+            \end{tikzcd}
+        \end{center}
+        This is well-defined by the previous results and the identity morphisms are the right fractions of the form:
+        \begin{center}
+            \begin{tikzcd}
+                X & X \ar[equal, blue]{l} \ar[equal]{r} & X
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{remark}
+        Dually there is a category $\mathfrak{l}S^{-1}\mathcal{C}$ for a left multiplicative system $S$ in a category $\mathcal{C}$. It is defined in the same manner as $\mathfrak{r}S^{-1}\mathcal{C}$, but with left fractions instead.
+    \end{remark}
+
+    A priori it does still not make sense to ask for these kind of categories to always exist. The class of morphisms $S^{-1}\mathcal{C}(A,B)$ consists of a large collection of morphism from $\mathcal{C}$. This collection has been described as a disjoint union of sets on the form $(f,g):\mathcal{C}(A,X)\times \mathcal{C}(X,B)$ modulo an equivalence relation. This disjoint union spans over the whole category $\mathcal{C}$ with the $X$ index. Since $\mathcal{C}$ is not assumed to be small, there is no reason for this set to be small as well. To see how this problem might be untangled, this collection will be further studied. This discussion is based on the results and definitions from \cite{zisman} and \cite{weibel}.
+
+    \begin{definition}
+        Let $\mathcal{C}$ be a category and $S$ a collection of morphisms from $\mathcal{C}$, such that every identity morphism is in $S$ and that it is closed under composition. Define the subcategory $\mathcal{C}|_{S} \subseteq \mathcal{C}$ to have $\mathfrak{Ob}\mathcal{C}|_{S} = \mathfrak{Ob}\mathcal{C}$ and $\mathfrak{Ar}\mathcal{C} = S$.
+    \end{definition}
+
+    This definition is seen to be well-defined, as it is closed under composition of morphisms and every identity morphism is in $\mathcal{C}|_{S}$ by assumption. Suppose now that $S$ is a right multiplicative system, then the category $\mathcal{C}|_{S}$ is defined. For any $A:\mathcal{C}$, look at the category $\mathcal{C}|_{S}\downarrow A$ which have objects $\mathfrak{Ob}\mathcal{C}|_{S}\downarrow A = \{s : X \rightarrow A$ $|$ $s : S\}$ and morphisms as indicated by the squiggly arrow in the commutative diagram below.
+    
+    \begin{center}
+        \begin{tikzcd}[row sep=small]
+            & X \ar[blue]{ld}{s} \ar[blue, squiggly]{dd}{\sigma} \\
+            A \\
+            & Y \ar[blue]{lu}{t}
+        \end{tikzcd}
+        $\stackrel{\delta_{A}}{\implies}$
+        \begin{tikzcd}[row sep=small]
+            X \ar[blue, squiggly]{dd}{\sigma} \\
+            \textcolor{white}{.}\\
+            Y
+        \end{tikzcd}
+    \end{center}
+
+    This category has a forgetful functor which associate each morphism to its domain $\delta_{A} : \mathcal{C}|_{S}\downarrow A \rightarrow \mathcal{C}$, and forgets the commutativity of the arrows. Choose a morphism $s : X \rightarrow A$ from $\mathcal{C}|_{S}\downarrow A$, then a morphism $g:\mathcal{C}(\delta_{A}(s),B)$ may be regarded as a right fraction $gs^{-1}$. In order to describe every possible right fraction from $A$ to $B$, consider the following colimit $\varinjlim\mathcal{C}(\delta_{A}(\_),B)$ over the category $\mathcal{C}|_{S}\downarrow A$. Since $S$ is a right multiplicative system it follows that $\mathcal{C}|_{S}$ is a cofiltered category, and the colimit is therefore filtered. The colimit is calculated as the coproduct modulo an equivalence relation $\sim$. \\
+    
+    The relation $\sim$ can be described with maps from $S$. Suppose that there are two morphisms $f : \mathcal{C}(\delta_A(s),B)$ and $g : \mathcal{C}(\delta_A(t),B)$, and that there exists some morphism $\sigma : \mathcal{C}|_{S}(s,t)$. The induced morphism $\sigma^* : \mathcal{C}(\delta_A(t),B) \rightarrow \mathcal{C}(\delta_A(s),B)$ defines the relation, where $f \sim t$ if $f = g\sigma$. Observe that this relation is not an equivalence relation, so $\sim$ has to be the smallest equivalence relation generated by such relations. The smallest such equivalence relation may be seen to consist of zig-zags between morphisms in $S$, connecting two morphisms. Luckily, the right Ore condition simplifies this picture, reducing to at most 1 zig-zag. To illustrate with 2 zig-zags, consider two maps $f : \mathcal{C}(\delta_A(s),B)$ and $g : \mathcal{C}(\delta_A(t),B)$, where there are zig-zag morphisms $\sigma : s \rightarrow v$, $\tau : u \rightarrow v$ and $\upsilon : u \rightarrow t$ such that the diagram below commute, relating $f$ and $g$, i.e. $fs^{-1}=gt^{-1}$. It is evident that this equivalence relation is exactly the same as stated earlier in this section.
+
+    \begin{center}
+        \begin{tikzcd}
+            & \delta_A(s) \ar[blue]{ld}{s} \ar[blue]{d}{\sigma} \ar{rd}{f} \\
+            A \ar[equal]{d} & \delta_A(u) \ar[blue, dotted]{l}{u} \ar[dotted]{r}{} & B \ar[equal]{d}{} \\
+            A & \delta_A(v) \ar[blue]{d}{\upsilon} \ar[blue]{u}{\tau} \ar[blue, dotted]{l}{v} \ar[dotted]{r}{} & B \\
+            & \delta_A(t) \ar[blue]{lu}{t} \ar{ru}{g}
+        \end{tikzcd}
+    \end{center}
+
+    If $S$ is instead a left multiplicative system one would have to consider the colimit $\varinjlim \mathcal{C}(A,\gamma_B(\_))$ over the category $B\downarrow \mathcal{C}|_{S}$. Here $\gamma_B$ is the codomain functor, and $B\downarrow \mathcal{C}|_{S}$ may be seen to be filtered as $S$ is left multiplicative. The discussion would be dual to the right multiplicative case. \\
+ 
+    The localization of a category exists whenever each hom-set is in fact a set. That is to say that $\mathfrak{r}S^{-1}\mathcal{C}(A,B)\simeq\varinjlim\mathcal{C}(\delta_A(\_),B)$ is an object of $Set$, which is to ask for the colimit to exist for every $A$ and $B$. One assumption which does this is to assume that the colimit is equivalent to a smaller colimit.
+
+    \begin{definition}
+        A right multiplicative system $S$ in a locally small category $\mathcal{C}$ is called locally small on the right if for every object $X:\mathcal{C}$ there is a set $\widehat{X}$, with a small category $\mathcal{C}|_{\widehat{X}}\downarrow X$ and a forgetful functor $\widehat{\delta_X} : \mathcal{C}|_{\widehat{X}}\downarrow X \rightarrow \mathcal{C}$, such that the colimit functor $\varinjlim\mathcal{C}(\widehat{\delta_X}(\_),\_) : \mathcal{C} \rightarrow Set$ actually evaluates in $Set$. Moreover there is an isomorphism, natural in both arguments $X$ and $Y$, $\varinjlim\mathcal{C}(\widehat{\delta_X}(\_),Y)\simeq\varinjlim\mathcal{C}(\delta_X(\_),Y)$. \\
+
+        Dually, a locally left multiplicative system would require the contravariant colimit functor to evaluate in $Set$.
+    \end{definition}
+
+    \begin{theorem}
+        \textbf{Gabriel-Zisman}. Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and it is the localization of $\mathcal{C}$ on $S$. This mean that there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $fid_X^{-1}$.
+    \end{theorem}
+
+    \begin{proof}
+        To prove the theorem one must show that $q$ is a functor, and that it is universal. Suppose that $f: X\rightarrow Y$ and $g: Y\rightarrow Z$ are morphisms in $\mathcal{C}$. Then $q(gf)=(gf)id_X^{-1}$ and $q(g)q(f)=(gid_Y^{-1})\circ(fid_X^{-1})$. Choose the composition to be defined by the diagram below.
+        \begin{center}
+            \begin{tikzcd}
+                X \ar{r}{f} \ar[equal,blue]{d} & Y \ar{r}{g} \ar[equal,blue]{d} & Z\\
+                X \ar{r}{f} \ar[equal,blue]{d} & Y \\
+                X
+            \end{tikzcd}
+        \end{center}
+        Observe that $(gid_Y^{-1})\circ(fid_X^{-1})=(gf)id_X^{-1}$, asserting the functoriality of $q$.
+
+        To see that $q$ is universal let $\mathcal{D}$ be a category where every morphism of $S$ is an isomorphism, and suppose there is a functor $F:\mathcal{C}\rightarrow\mathcal{D}$. Define a functor $\mathfrak{r}S^{-1}F : \mathfrak{r}S^{-1}\mathcal{C}\rightarrow\mathcal{D}$ by $\mathfrak{r}S^{-1}F(fs^{-1})=F(f)F(s)^{-1}$. One may see that $F = \mathfrak{r}S^{-1}F\circ q$, it remains to show that it is well-defined. Suppose $fs^{-1}=gt^{-1}$, that means there is a diagram in $\mathcal{C}$ with the blue arrows in $S$.
+        \begin{center}
+            \begin{tikzcd}
+                & W' \ar[blue]{ld}{s} \ar{rd}{f}  \\
+                X & W \ar[blue]{u}{w'} \ar[blue]{d}{w''} & Y \\
+                & W'' \ar[blue]{lu}{t} \ar{ru}{g}
+            \end{tikzcd}
+        \end{center}
+        Thus there is a relationship in $\mathcal{D}$ such that $F(t)=F(sw')F(w'')^{-1}$ and $F(g)=F(fw')F(w'')^{-1}$. This again shows that 
+        \begin{multline*}
+            \mathfrak{r}S^{-1}F(gt^{-1})=F(g)F(t)^{-1}\\
+            =F(fw')F(w'')^{-1}(F(fw')F(w'')^{-1})^{-1}=F(fw')F(w'')^{-1}F(w'')F(sw')^{-1}\\
+            =F(f)F(w')F(w')^{-1}F(s)^{-1}=F(f)F(s)^{-1}=\mathfrak{r}S^{-1}F(fs^{-1})
+        \end{multline*}
+        It follows that $\mathfrak{r}S^{-1}F$ is well-defined and is unique by construction.
+    \end{proof}
+
+    \begin{corollary}
+        If $S$ is a locally small left multiplicative system instead then $\mathfrak{l}S^{-1}\mathcal{C}$ is the localization of $\mathcal{C}$ on $S$. \\
+
+        If moreover $S$ is a locally small multiplicative system, then there is an equivalence of categories $\mathfrak{r}S^{-1}\mathcal{C}\simeq\mathfrak{l}S^{-1}\mathcal{C}$.
+    \end{corollary}
+
+    \begin{proof}
+        The first statement is dual to the theorem. \\
+
+        To see the other statement, note that both $\mathfrak{r}S^{-1}\mathcal{C}$ and $\mathfrak{l}S^{-1}\mathcal{C}$ are the universal categories where the morphisms of $S$ are isomorphisms. Thus it follows that these categories have to be equivalent.
+    \end{proof}
+
+    \begin{remark}
+        Since right-handedness or left-handedness of the multiplicative system $S$ doesn't affect the localization, one simply calls the localization of a (left/right) multiplicative system for $S^{-1}\mathcal{C}$.
+    \end{remark}
+
+    \begin{remark}
+        A morphisms $f:\mathcal{C}(X,Y)$ will be invertible in the localized category if it is in the same equivalence class as the identity, both $id_X$ and $id_Y$. This forces a morphism $f$ to be invertible in $S^{-1}\mathcal{C}$ if and only if there is $g,h:S$ such that $fg,hf:S$.
+    \end{remark}
+
+    \begin{prop}
+        Let $\mathcal{C}$ be a category, and $S$ a right multiplicative set of morphisms. The canonical functor $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ commutes with finite limits.
+    \end{prop}
+
+    \begin{proof}
+        Let $T:\mathcal{D}\rightarrow\mathcal{C}$ be a diagram over a finite category $\mathcal{D}$. Then for any object $A:S^{-1}\mathcal{C}$ one may find the following equation.
+        \begin{multline*}
+            S^{-1}\mathcal{C}(qA,q(\varprojlim T\_))\simeq \varinjlim\mathcal{C}(\delta\_,\varprojlim T\_))\\
+            \simeq \varinjlim\varprojlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim\varinjlim\mathcal{C}(\delta\_,T\_)\simeq \varprojlim S^{-1}\mathcal{C}(qA,q(T\_))
+        \end{multline*}
+        The first isomorphism is given by the remark and the second is given by the representative nature of finite limits. The third isomorphism is given by filtered colimits commute with finite limits in the category $Set$, this is shown as theorem 3.8.9 in \cite{riehl}. The colimits are filtered by the discussion of $\mathcal{C}|_{S}\downarrow A$, as the category is cofiltered, but considered as a contravariant diagram.
+    \end{proof}
+
+    \begin{remark}
+        For this thesis, it is also needed that the proposition above also holds for categories enriched over abelian groups. Luckily, other arguments allow for the interchange of filtered colimits and finite limits, which will not be discussed here.
+    \end{remark}
+
+    \begin{prop}
+        Let $\mathcal{C}$ be a category with a zero, that is an object which is both initial and terminal. Suppose that $S$ is a right multiplicative system, then $q0$ is a zero object in $S^{-1}\mathcal{C}$.
+    \end{prop}
+
+    \begin{proof}
+        The claim that $q0$ is initial follows from that initial is a limit of a diagram over the empty category. To see that $q0$ is terminal, one has to prove that every right fraction of the form $0f^{-1}$ is equivalent to $0id_A^{-1}$, where $A$ is the codomain of $f$. This fact can be seen in the diagram below.
+        \begin{center}
+            \begin{tikzcd}
+                & X \ar[blue]{ld}[above]{f} \ar[blue]{d}{f} \ar{rd}{0}\\
+                A & \ar[blue, equal]{l} A \ar{r}{0} & 0
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{prop}
+        If $\mathcal{A}$ is an additive category and $S$ is a right multiplicative system, then $S^{-1}\mathcal{A}$ is additive as well.
+    \end{prop}
+
+    \begin{proof}
+        From the previous propositions, it is known that $q0$ is the zero object and that $q(A\times B)\simeq qA\times qB$. By proving that there is an addition induced by $\mathcal{A}$ and that $q$ preserves this addition one obtains that the product is the biproduct induced by the maps in $\mathcal{A}$. \\
+
+        Suppose that there are fractions $fs^{-1}, gt^{-1}:S^{-1}\mathcal{C}(A,B)$. Define their addition by using the right Ore condition to find new morphisms $f'$, $g'$ and $u$ such that $fs^{-1} = f'u^{-1}$ and $gt^{-1} = g'u^{-1}$.
+        \begin{equation*}
+            fs^{-1}+gt^{-1} = (f'+g')u^{-1}
+        \end{equation*}
+        To prove that this is an addition one must prove that it is well defined; associativity, inverses, and commutativity will be inherited from $\mathcal{A}$.
+        Let $\bar{f}$, $\bar{g}$ and $v$ be another choice provided by the right Ore condition. To summarize, the equations $\bar{f}v^{-1}=fs^{-1}=f'u^{-1}$ and $\bar{g}v^{-1}=gt^{-1}=g'u^{-1}$ have been established. In order to prove well-definedness one must show that $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=0$. By definition $(\bar{f}+\bar{g})v^{-1}-(f'+g')u^{-1}=\bar{f}v^{-1}-f'u^{-1}+\bar{g}v^{-1}-g'u^{-1}$. Proving that the whole sum is $0$, is the same as proving that $\bar{f}v^{-1}+(-f')u^{-1}=(\bar{\bar{f}}-f'')w^{-1}=0$. This can be done by writing out the diagrams after repeatedly applying the right Ore condition.
+        \begin{center}
+            \begin{tikzcd}
+                \cdot \ar[bend right, dashed, blue]{rddd}{p} \ar[bend left, dashed, blue]{rrrd}{p} \ar[dashed, blue]{rd} \\
+                & \cdot \ar[blue]{r} \ar[blue]{d} \ar[blue]{rd}{w} & \cdot \ar[blue]{r} \ar[blue]{d}{u} & \cdot \ar{r}{f} \ar[blue]{ld}{s} & B \\
+                & \cdot \ar[blue]{d} \ar[blue]{r}{v} & A \\
+                & \cdot \ar[blue]{ru}{s} \ar{d}{f} \\
+                & B
+            \end{tikzcd}
+        \end{center}
+        The line to the bottom represents $\bar{\bar{f}}$ and the line to the right represents $f''$. Using left cancellation on the common morphism $s$ into $A$ one obtains the morphism $p$, which relates the two fractions and makes the sum go to zero. \\
+
+        It remains to show that $q:\mathcal{C}\rightarrow S^{-1}\mathcal{C}$ respects addition. Assume that $f,g:\mathcal{C}(X,Y)$, then
+        \begin{equation*}
+            q(f+g)=(f+g)id_X^{-1}=fid_X^{-1}+gid_X^{-1}=qf+qg.
+        \end{equation*}
+    \end{proof}
+
+    \begin{corollary}
+        If $\mathcal{A}$ is abelian and $S$ is a multiplicative system, then $S^{-1}\mathcal{A}$ is abelian as well.
+    \end{corollary}
+
+    General descriptions on how to localize categories have been discussed. The next natural step is to look at the localization of triangulated categories. The goal is to define the Verdier quotient for triangulated categories. The idea of this localization is to mimic quotient modules from algebra in a categorical setting. Thus triangulated subcategories will be at the center of this discussion. This method has been described ite{neeman} in a broader term than what was originally proposed by Verdier.
+
+    \begin{definition}
+        A triangulated subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is a full additive subcategory such that the inclusion functor is triangulated.
+    \end{definition}
+
+    \begin{definition}
+        Let $F : \mathcal{S} \rightarrow \mathcal{T}$ be a triangulated functor. The kernel of $F$ is defined to be the full subcategory $Ker(F)$ of $\mathcal{S}$ such that every object in $Ker(F)$ gets mapped to $0$ by $F$. That is, $Ker(F)$ is the class of objects $\{K : \mathcal{S} | F(K)\simeq 0\}$.
+    \end{definition}
+
+    \begin{lemma}
+        The kernel of a triangulated functor $F:\mathcal{C}\rightarrow{D}$ is a triangulated subcategory.
+    \end{lemma}
+
+    \begin{proof}
+        Let $X:KerF$, since $F$ is a triangulated functor $\Sigma_{\mathcal{C}}X:KerF$ as $F(\Sigma_{\mathcal{C}}X)=\Sigma_{\mathcal{D}}(FX)=\Sigma_{\mathcal{D}}0=0$. As $F$ is triangulated, one has that every triangle maps to a triangle. Let $X,Y:KerF$, then:
+        \begin{center}
+            \begin{tikzcd}[row sep=small]
+                X \ar{rd} \\
+                & Y \ar{ld} \\
+                Z \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{C}}}
+            \end{tikzcd}
+            $\implies$
+            \begin{tikzcd}[row sep=small]
+                0 \ar{rd} \\
+                & 0 \ar{ld}\\
+                F(Z) \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{D}}}
+            \end{tikzcd}
+        \end{center}
+        By TR3 and the 2-out-of-3 property $F(Z)\simeq 0 \implies Z:KerF$. Thus $KerF$ is a triangulated subcategory of $\mathcal{C}$.
+    \end{proof}
+
+    \begin{definition}
+        A subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is called thick if it contains all the direct summands of its objects.
+    \end{definition}
+
+    \begin{lemma}
+        The kernel of a triangulated functor $F:\mathcal{C}\rightarrow\mathcal{D}$ is thick.
+    \end{lemma}
+
+    \begin{proof}
+        Let $X\oplus Y:KerF$, since $F$ is additive one may see that $0\simeq F(X\oplus Y)\simeq F(X)\oplus F(Y)$, but then there is a splitmono $F(X)\rightarrow 0 \implies F(X)\simeq 0 \simeq F(Y)$.
+    \end{proof}
+
+    \begin{lemma}
+        Let $F:\mathcal{C}\rightarrow\mathcal{D}$ be a triangulated functor. Suppose that $f:X\rightarrow Y$ is a morphism such that $F(f)$ is an isomorphism. Then the cone of $f$ is in $KerF$.
+    \end{lemma}
+
+    \begin{proof}
+        There is an isomorphism of triangles in $\mathcal{D}$, showing that the cone of $f$ is in $KerF$.
+        \begin{center}
+            \begin{tikzcd}
+                FX \ar{r}{Ff} \ar[equal]{d} & FY \ar{r} \ar[equal]{d} & F(cone(f)) \ar{r} \ar[dashed]{d}[rotate=90, below]{\simeq} & F\Sigma_{\mathcal{C}}X \ar[equal]{d} \\
+                FX \ar{r}{Ff} & FY \ar{r} & 0 \ar{r} & F\Sigma_{\mathcal{C}}X
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    The goal for the rest of this section is to prove that there is a localization at any triangulated subcategory $\mathcal{S}\subseteq\mathcal{C}$. This localization will yield a functor $q:\mathcal{C}\rightarrow \mathcal{C}/\mathcal{S}$ such that $\mathcal{S}\subseteq Kerq$. There is a set of morphism $Mor_\mathcal{S}$ related to $\mathcal{S}$ such that this set is multiplicative.
+
+    \begin{definition}
+        Let $\mathcal{C}$ be a triangulated category and $\mathcal{S} \subseteq \mathcal{C}$ be a triangulated subcategory. Define the collection $Mor_{\mathcal{S}}$ to be a collection of morphisms in $\mathcal{C}$ such that for any $f : Mor_{\mathcal{S}}$ there is a triangle with $C : \mathcal{S}$.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{f} & B \ar{r} & C \ar{r} & \Sigma_{\mathcal{C}}A 
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{remark}
+        Every isomorphism is in $Mor_{\mathcal{S}}$. This is because isomorphisms are found in triangles $(A,B,0,f,0,0)$ and $0 : \mathcal{S}$ for any triangulated subcategory.
+    \end{remark}
+
+    \begin{lemma}
+        Let $f : X \rightarrow Y$ and $g : Y \rightarrow Z$ be two morphisms. If any two of the morphisms $f$, $g$ and $gf$ are in $Mor_{\mathcal{S}}$ then so is the third.
+    \end{lemma}
+
+    \begin{proof}
+        One can find three triangles in $\mathcal{C}$.
+        \begin{center}
+            (1)
+            \begin{tikzcd}[row sep=tiny]
+                X \arrow[red]{rd}[black]{f} & \\
+                & Y \arrow[red]{dl} & & \\
+                Z' \arrow[red, very near end, "|" marking]{uu}[black, near end]{\Sigma_{\mathcal{C}}}
+            \end{tikzcd}
+            (2)
+            \begin{tikzcd}[row sep=tiny]
+                Y \arrow[orange]{rd}[black]{g} & \\
+                & Z \arrow[orange]{dl} & & \\
+                X' \arrow[orange, very near end, "|" marking]{uu}[black, near end]{\Sigma_{\mathcal{C}}}
+            \end{tikzcd}
+            \\ (3)
+            \begin{tikzcd}[row sep=tiny]
+                A \arrow[violet]{rd}[black]{g\circ f} & \\
+                & C \arrow[violet]{dl} & & \\
+                Y' \arrow[violet, very near end, "|" marking]{uu}[black, near end]{\Sigma_{\mathcal{C}}}
+            \end{tikzcd}
+        \end{center}
+        By the Octahedron axiom there exist another triangle in $\mathcal{C}$:
+        \begin{center}
+            \begin{tikzcd}
+                Z' \ar[teal]{r} & X' \ar[teal]{r} & Y' \ar[teal]{r} & \Sigma_{\mathcal{C}}Z'
+            \end{tikzcd}
+        \end{center}
+        Note that $f$ is in $Mor_\mathcal{S}$ if and only if $Z' : S$. WLOG assume that $f$ and $g$ are in $Mor_\mathcal{S}$, this can be done by the rotation axiom. Thus one may find the triangle in $\mathcal{S}$ by TR1 $(Z',X',Y'')$ proving that $Y'\simeq Y''$.
+        \begin{center}
+            \begin{tikzcd}
+                Z' \ar[teal]{r} \ar[equal]{d} & X' \ar[equal]{d} \ar[teal]{r} & Y' \ar[teal]{r} \ar{d}[rotate=90, below]{\simeq} & \Sigma_{\mathcal{C}}Z' \ar[equal]{d} \\
+                Z' \ar{r} & X' \ar{r} & Y'' \ar{r} & \Sigma_{\mathcal{C}}Z'
+            \end{tikzcd}
+        \end{center}
+        To see that $gf$ is in $Mor_\mathcal{S}$ one can construct the triangle below with the isomorphism given above.
+        \begin{center}
+            \begin{tikzcd}
+                A \ar{r}{g\circ f} & C \ar{r} & Y'' \ar{r}{} & \Sigma_{\mathcal{C}}A
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{prop}
+        Let $\mathcal{S}\subseteq\mathcal{C}$ be a triangulated subcategory, then $Mor_\mathcal{S}$ satisfies the Ore condition.
+    \end{prop}
+
+    \begin{proof}
+        To prove that a system satisfies the Ore condition there has to be proof for both right and left conditions. Luckily, the arguments presented here can be dualized to give proof for the other condition. Thus there will only be presented proof for the right Ore condition.
+        Let $f:A\rightarrow C$ be in $Mor_\mathcal{S}$ and $g:B\rightarrow C$ in $\mathcal{C}$. Then one may form a homotopy pullback creating a homotopy cartesian square as below.
+        \begin{center}
+            \begin{tikzcd}
+                & A \ar{d}{f} \\
+                B \ar{r}{g} & C
+            \end{tikzcd}
+            $\implies$
+            \begin{tikzcd}
+                D \ar{r}{g'} \ar{d}{f'} \ar[phantom]{rd}[description]{HO}[very near start]{\ulcorner}[very near end]{\lrcorner} & A \ar{d}{f} \\
+                B \ar{r}{g} & C
+            \end{tikzcd}
+        \end{center}
+        By Lemma 1.2.5 there are triangles along this homotopy cartesian square identifying the cones. Since the cone of $f$ is assumed to be in $\mathcal{S}$, the cone of $f'$ is also in $\mathcal{S}$. This proves that $f':Mor_\mathcal{S}$.
+    \end{proof}
+
+    \begin{prop}
+        For any parallel morphism $f,g:X\rightarrow Y$ in $\mathcal{C}$ the following are equivalent:
+        \begin{enumerate}
+            \item $sf=sg$ for some $s:Mor_\mathcal{S}$ starting at $Y$.
+            \item $ft=gt$ for some $t:Mor_\mathcal{S}$ ending at $X$.
+            \item $f-g$ factors through an object $C:\mathcal{S}$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        $(1.\iff 3.)$:
+        Suppose that there exists an $s:Y\rightarrow Z$ such that $s(f-g)=0$. By TR1 there is a triangle \begin{tikzcd}Y \ar{r}{s} & Z \ar{r}{\Sigma_{\mathcal{C}}s'} & \Sigma_{\mathcal{C}}C \ar{r} & \Sigma_{\mathcal{C}}Y \end{tikzcd} and a long exact sequence.
+        \begin{center}
+            \begin{tikzcd}
+                \mathcal{C}(X,C) \ar{r}{s'_*} & \mathcal{C}(X,Y) \ar{r}{s_*} & \mathcal{T}(X,Z) \\
+                p \ar[pos=0, "|" marking]{r}[pos=0.5]{s'_*}& f-g \ar[pos=0, "|" marking]{r}[pos=0.5]{s_*} & 0
+            \end{tikzcd}
+        \end{center}
+        Since $s(f-g)=0$ there exists a $p:\mathcal{C}(X,C)$ such that $f-g = s'_*p$. By definition, $s:Mor_\mathcal{S}\iff C:\mathcal{S}$, but $s:Mor_\mathcal{S}\implies f-g$ factors through $\Sigma_{\mathcal{C}}$, and vice versa. \\
+
+        $(2.\iff 3.)$: This argument is dual.
+    \end{proof}
+
+    This has shown that $Mor_\mathcal{S}$ is a multiplicative system, and Theorem 1.3.4 says that the localization exists given that $Mor_\mathcal{S}$ is locally small. The category $Mor_\mathcal{S}^{-1}\mathcal{C}$ will be denoted as $\mathcal{C}/\mathcal{S}$ and it is called the Verdier quotient. As $\mathcal{C}$ is additive, it is known that $\mathcal{C}/\mathcal{S}$ is additive as well by Proposition 1.3.7. The remaining part is to show that $\mathcal{C}/\mathcal{S}$ is triangulated and that localization functor $q:\mathcal{C}\rightarrow \mathcal{C}/\mathcal{S}$ is a triangulated functor.
+
+    \begin{theorem}
+        Let $\mathcal{S}\subseteq\mathcal{C}$ be triangulated categories. Then the Verdier quotient $\mathcal{C}/\mathcal{S}$ together with the functor $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the universal triangulated category where morphisms in $Mor_\mathcal{S}$ are isomorphisms.
+    \end{theorem}
+
+    \begin{proof}
+        The triangulation on $\mathcal{C}/\mathcal{S}$ is defined as the following. Let $\Sigma_{\mathcal{C/S}}:\mathcal{C}/\mathcal{S}\rightarrow\mathcal{C}/\mathcal{S}$ be the additive autoequivalence defined by its action on objects $\Sigma_{\mathcal{C/S}}(A)=\Sigma_{\mathcal{C}}(A)$ and maps $\Sigma_{\mathcal{C/S}}(f) = \Sigma_{\mathcal{C}}f\circ id_{\Sigma{\_}}^{-1}$. Since $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ maps every object to itself it follows that $q(\Sigma_{\mathcal{C}}(A)) \simeq \Sigma_{\mathcal{C/S}}(A) = \Sigma_{\mathcal{C/S}}(q(A))$, and define $\Delta_{\mathcal{C}/\mathcal{S}}\supseteq q(\Delta_\mathcal{C})$ such that $\Delta_{\mathcal{C}/\mathcal{S}}$ has every isomorphism class of $q(\Delta_\mathcal{C})$. 
+        \begin{center}
+            \begin{tikzcd}[row sep=small]
+                qX \ar{rd} \\
+                & qY \ar{ld} \\
+                qZ \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{C/S}}}
+            \end{tikzcd}
+            $\impliedby$
+            \begin{tikzcd}[row sep=small]
+                X \ar{rd} \\
+                & Y \ar{ld} \\
+                Z \ar[very near end, "|" marking]{uu}[near end]{\Sigma_{\mathcal{C}}}
+            \end{tikzcd}
+        \end{center}
+        Then by definition, $q$ is triangulated if the category $\mathcal{C}/\mathcal{S}$ is triangulated.
+        By definition, the triangles are closed under isomorphisms, $(X,X,0,id_X,0,0)$ is a triangle, and TR2 holds. Thus it remains to show TR1 and TR4 (TR3 is implied by the other axioms). To prove TR1, let $fs^{-1}:\mathcal{C}/\mathcal{S}(qW,qY)$. Expand $f:\mathcal{C}(X,Y)$ to a triangle in $\mathcal{C}$ with TR1, it will induce a triangle in  $\mathcal{C}/\mathcal{S}$.
+        \begin{center}
+            \begin{tikzcd}
+                qX \ar{r}{fid_X^{-1}} & qY \ar{r}{gid_Y^{-1}} & qZ \ar{r}{hid_Z^{-1}} & q\Sigma_{\mathcal{C}}X
+            \end{tikzcd}
+        \end{center}
+        There is an isomorphism to the following candidate triangle from the induced triangle, proving TR1.
+        \begin{center}
+            \begin{tikzcd}
+                qX \ar{r}{fid_X^{-1}} \ar{d}{sid_X^{-1}}[above, rotate = 90]{\simeq} & qY \ar{r}{gid_Y^{-1}} \ar[equal]{d} & qZ \ar{r}{hid_Z^{-1}} \ar[equal]{d} & q\Sigma_{\mathcal{C}}X \ar{d}{(\Sigma_{\mathcal{C}}s)id_{\Sigma_{\mathcal{C}}x}^{-1}}[above, rotate = 90]{\simeq} \\
+                qW \ar{r}{fs^{-1}} & qY \ar{r}{gid_Y^{-1}} & qZ \ar{r}{(\Sigma_{\mathcal{C}}s)hid_Z^{-1}} & q\Sigma_{\mathcal{C}}W
+            \end{tikzcd}
+        \end{center}
+        To show the Octahedron axiom, suppose that there are three triangles in $\mathcal{C}/\mathcal{S}$. By construction, these triangles can be chosen such that only the first map is a fraction up to isomorphism of triangles.
+        \begin{center}
+            (1)
+            \begin{tikzcd}[row sep=tiny]
+                Z \ar{r}{t'}& X \ar{ld}[above]{s} \ar{dd}{a} \\
+                A \arrow[red]{rd}[black]{as^{-1}} \\
+                & B \arrow[red]{dl}[black]{x}\\
+                C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{\Sigma_{\mathcal{C/S}}}
+            \end{tikzcd}
+            (2)
+            \begin{tikzcd}[row sep=tiny]
+                & Y \ar{ld}[above]{t} \ar{dd}{b} \\ 
+                B \arrow[orange]{rd}[black]{bt^{-1}} &  \\
+                & C \arrow[orange]{dl}[black]{y}\\
+                A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{\Sigma_{\mathcal{C/S}}}
+            \end{tikzcd}
+            (3)
+            \begin{tikzcd}[row sep=tiny]
+                & Z \ar{ld}[above]{st'} \ar{dd}{ba'} \\
+                A \arrow[violet]{rd}[black]{b\circ a} \\
+                & C \arrow[violet]{dl}[black]{z} \\
+                B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{\Sigma_{\mathcal{C/S}}}
+            \end{tikzcd}
+        \end{center}
+        This is possible, as when composing the fractions from $A$ to $B$ and $B$ to $C$ one may find an object $Z$ as in the diagram by using the Ore condition. To illustrate with triangle (1), there is a correspondence of triangles in $\mathcal{C}/\mathcal{S}$ and $\mathcal{C}$ by the following isomorphism.
+        \begin{center}
+            \begin{tikzcd}
+                Z \ar{r}{at'} \ar{d}[below, rotate = 90]{\simeq}[very near start]{t'} & B \ar{r} \ar[equal]{d} & Z' \ar{r} \ar[dashed]{d}[below, rotate = 90]{\simeq} & \Sigma_{\mathcal{C}}Z \ar{d}[below, rotate = 90]{\simeq}[very near start]{\Sigma_{\mathcal{C}}t} \\
+                X \ar{r}{a} \ar{d}{s} & B \ar{r} & C' \ar{r} & \Sigma_{\mathcal{C}}X \ar{d}{\Sigma_{\mathcal{C}}s} \\
+                A & & & \Sigma_{\mathcal{C}}A 
+            \end{tikzcd}
+        \end{center}
+        The result of the octahedron axiom follows as one instead considers the triangles found by the composition of morphisms as below.
+        \begin{center}
+            \begin{tikzcd}
+                Z \ar{d}{f'} \ar{rd}{bf'} \\
+                Y \ar{r}{b} & C
+            \end{tikzcd}
+        \end{center}
+    \end{proof}
+
+    \begin{prop}
+        Let $\mathcal{S}\subseteq\mathcal{C}$ be triangulated categories. If $0:X\rightarrow 0$ is an isomorphism in $\mathcal{C}/\mathcal{S}$, then there is an object $Y$ such that $X\oplus Y:\mathcal{S}$.
+    \end{prop}
+
+    \begin{proof}
+        If $0:X\rightarrow 0$ is invertible, then there exist a map $0:0\rightarrow Y$, such that $0:X\rightarrow Y$ is in $Mor_S$. By definition $X\oplus Y$ is in $\mathcal{S}$.
+    \end{proof}
+
+    This proposition shows that the kernel of $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the smallest thick subcategory of $\mathcal{C}$ such that $\mathcal{C}/Kerq$ is the universal category where every morphism in $Mor_\mathcal{S}$ is an isomorphism. For this reason $\widehat{\mathcal{S}}=Kerq$ is called the thick closure of $\mathcal{S}$.
+
+% \section{Universal Homological Embedding}
+    % Do Yoneda embedding into functor categories. No more Brown rep
+
+% \clearpage
