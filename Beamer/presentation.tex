@@ -1,0 +1,430 @@
+\documentclass{beamer}
+
+\usetheme[slogan=english, displayframetotal]{NTNU}
+
+\title{Triangulated Categories}
+\author{Thomas Wilskow Thorbjørnsen}
+\date{14.06.2021}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amsthm}
+
+\usepackage{graphicx}
+
+\begin{document}
+    
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \section*{Outline}
+    \begin{frame}{Outline}
+        \tableofcontents
+    \end{frame}
+
+    \section{Introduction}
+    \begin{frame}{Introduction}
+        \begin{itemize}
+            \item Why study triangulated categories?
+            \item Stable Frobenius Categories vs. Stable Homotopy Categories
+        \end{itemize}
+    \end{frame}
+
+    \section{Triangulated Categories}
+        \begin{frame}{Candidate Triangles}
+            Assume that:
+            \begin{itemize}
+                \item $\mathcal{T}$ an additive category
+                \item $\Sigma_{\mathcal{T}}:\mathcal{T}\rightarrow \mathcal{T}$ an additive autoequivalence
+            \end{itemize}
+            
+            \begin{definition}[{Candidate triangle}]
+                \begin{flushleft}
+                    Candidate triangle:
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar{r}{a} \& B \ar{r}{b} \& C \ar{r}{c} \& \Sigma_{\mathcal{T}}A
+                    \end{tikzcd}
+                \end{flushleft}
+
+                \begin{flushleft}
+                    Morphism:
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar{r}{a} \ar{d}{\phi_A} \& B \ar{r}{b} \ar{d}{\phi_B} \& C \ar{r}{c} \ar{d}{\phi_C} \& \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                        A' \ar{r}{a'} \& B' \ar{r}{b'} \& C' \ar{r}{c'} \& \Sigma_{\mathcal{T} }A'
+                    \end{tikzcd}
+                \end{flushleft}
+            \end{definition}
+        \end{frame}
+        \subsection{The axioms}
+            \begin{frame}{Triangulation axioms; I}
+                A triangulated category is a triple $(\mathcal{T},\Sigma_{\mathcal{T}},\Delta_{\mathcal{T}})$ where $\Delta_{\mathcal{T}}$ is a triangulation.
+                \begin{definition}[Triangulation]
+                    \begin{itemize}
+                        \item $\Delta_{\mathcal{T}}$ class of candidate triangles
+                        \item Element of $\Delta_{\mathcal{T}}$ is called triangle
+                        \item $\Delta_{\mathcal{T}}$ is a triangulation if it satisfies the following axioms:
+                    \end{itemize}
+                    \begin{itemize}
+                        \item[TR1] \underbar{Bookkeeping axiom} \\
+                            \begin{enumerate}
+                                \item A candidate triangle isomorphic to a triangle is a triangle
+                                \item For every morphism $a:A\rightarrow B$ there is a triangle
+                                    \begin{flushleft}
+                                        \begin{tikzcd}[ampersand replacement=\&]
+                                            A \ar{r}{a} \& B \ar{r}{b} \& C \ar{r}{c} \& \Sigma_{\mathcal{T}}A
+                                        \end{tikzcd}
+                                    \end{flushleft}
+                                \item For every object $A:\mathcal{T}$ there is a triangle
+                                    \begin{flushleft}
+                                        \begin{tikzcd}[ampersand replacement=\&]
+                                            A \ar{r}{id_A} \& A \ar{r}{0} \& 0 \ar{r}{0} \& \Sigma_{\mathcal{T}}A
+                                        \end{tikzcd}
+                                    \end{flushleft}
+                            \end{enumerate}
+                    \end{itemize}
+                \end{definition}
+            \end{frame}
+
+            \begin{frame}{Triangulation axioms; II}
+                \begin{itemize}
+                    \item[TR2] \underbar{Rotation axiom} \\
+                    Given a triangle 
+                    \begin{flushleft}
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            A \arrow{r}{a} \& B \arrow{r}{b} \& C \arrow{r}{c} \& \Sigma_{\mathcal{T}}A
+                        \end{tikzcd}
+                    \end{flushleft}
+                    there are triangles
+                    \begin{flushleft}
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            B \arrow{r}{b} \& C \arrow{r}{c} \& \Sigma_{\mathcal{T}}A \arrow{r}{-\Sigma_{\mathcal{T}}a} \& \Sigma_{\mathcal{T}}B
+                        \end{tikzcd}
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            \Sigma^{-1}_{\mathcal{T}}C \ar{r}{-\Sigma_{\mathcal{T}}^{-1}c} \& A \ar{r}{a} \& B \ar{r}{b} \& C
+                        \end{tikzcd}
+                    \end{flushleft}
+                    \item[TR3] \underbar{Morphism axiom} \\
+                        Two triangles and a square of morphisms between the triangles may be completed to a triangle morphism.
+                \end{itemize}
+                \begin{center}
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar{r}{a} \ar{d}{\phi_A} \& B \ar{d}{\phi_B} \\
+                        A' \ar{r}{a'} \& B'
+                    \end{tikzcd} $\implies$
+                    \begin{tikzcd}[ampersand replacement=\&]
+                        A \ar{r}{a} \ar{d}{\phi_A} \& B \ar{r}{b} \ar{d}{\phi_B} \& C \ar{r}{c} \ar[dashed]{d}{\phi_C} \& \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A} \\
+                        A' \ar{r}{a'} \& B' \ar{r}{b'} \& C \ar{r}{c'} \& \Sigma_{\mathcal{T}}A'
+                    \end{tikzcd}
+                \end{center}             
+            \end{frame}
+
+            \begin{frame}{Triangulation axioms; III}
+                \begin{enumerate}
+                    \item[TR4] \underbar{Octahedron axiom} \\
+                    \begin{onlyenv}<1>
+                        Given three triangles \\
+                        (1)
+                        \begin{tikzcd}[column sep=small, ampersand replacement=\&]
+                            A \ar{r}{a} \& B \ar{r}{x} \& C' \ar{r}{x'} \& \Sigma_{\mathcal{T}}A
+                        \end{tikzcd}
+                        
+                        (2)
+                        \begin{tikzcd}[column sep=small, ampersand replacement=\&]
+                            B \ar{r}{b} \& C \ar{r}{y} \& A' \ar{r}{y'} \& \Sigma_{\mathcal{T}}B
+                        \end{tikzcd}
+                        
+                        (3)
+                        \begin{tikzcd}[column sep=small, ampersand replacement=\&]
+                            A \ar{r}{b\circ a} \& C \ar{r}{z} \& B' \ar{r}{z'} \& \Sigma_{\mathcal{T}}A
+                        \end{tikzcd}
+                            
+                        such that there is a commutative diagram \\
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            A \ar{r}{a} \ar{rd}[below]{b\circ a} \& B \ar{d}{b} \\
+                            \& C
+                        \end{tikzcd}
+                    \end{onlyenv} 
+                    \begin{onlyenv}<2>
+                        then there exists morphisms $f$ and $g$ making the third row a triangle.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                \Sigma_{\mathcal{T}}^{-1}B' \ar{r}{\Sigma_{\mathcal{T}}^{-1}z'} \ar{d}{\Sigma_{\mathcal{T}}^{-1}g} \& A \ar[equal]{r}{id_A} \ar{d}{a} \& A \ar{d}{b\circ a} \\
+                                \Sigma_{\mathcal{T}}^{-1}A' \ar{r}{\Sigma_{\mathcal{T}}^{-1}y'} \& B \ar{r}{b} \ar{d}{x} \& C \ar{r}{y} \ar{d}{z} \& A' \ar{r}{y'} \ar[equal]{d}{id_{A'}} \& \Sigma_{\mathcal{T}}B \ar{d}{\Sigma_{\mathcal{T}}x} \\
+                                \& C' \ar[dashed]{r}{f} \ar{d}{x'} \& B' \ar[dashed]{r}{g} \ar{d}{z'} \& A' \ar{r}{\Sigma_{\mathcal{T}}x \circ y'} \& \Sigma_{\mathcal{T}}C' \\
+                                \& \Sigma_{\mathcal{T}}A \ar[equal]{r}{id_{\Sigma_{\mathcal{T}}A}} \& \Sigma_{\mathcal{T}}A
+                            \end{tikzcd}
+                        \end{center} 
+                    \end{onlyenv}
+                    \begin{onlyenv}<3>
+                        \begin{center}
+                            (1)
+                            \begin{tikzcd}[row sep=tiny, ampersand replacement=\&]
+                                A \arrow[red]{rd}[black]{a} \& \\
+                                \& B \arrow[red]{dl}[black]{x} \& \& \\
+                                C' \arrow[red, very near end, "|" marking]{uu}[near start, black]{x'}[near end]{\Sigma_{\mathcal{T}}}
+                            \end{tikzcd} \\
+                            (2)
+                            \begin{tikzcd}[row sep=tiny, ampersand replacement=\&]
+                                B \arrow[orange]{rd}[black]{b} \& \\
+                                \& C \arrow[orange]{dl}[black]{y} \& \& \\
+                                A' \arrow[orange, very near end, "|" marking]{uu}[near start, black]{y'}[near end]{\Sigma_{\mathcal{T}}}
+                            \end{tikzcd} \\                
+                            (3)
+                            \begin{tikzcd}[row sep=tiny, ampersand replacement=\&]
+                                A \arrow[violet]{rd}[black]{b\circ a} \& \\
+                                \& C \arrow[violet]{dl}[black]{z} \& \& \\
+                                B' \arrow[violet, very near end, "|" marking]{uu}[near start, black]{z'}[near end]{\Sigma_{\mathcal{T}}}
+                            \end{tikzcd}
+                        \end{center}
+                    \end{onlyenv}
+                    \begin{onlyenv}<4->
+                        There exist morphisms $f: C' \rightarrow B'$ and $g: B' \rightarrow A'$, and the squiggly teal back face is a triangle.
+                        \begin{center}
+                            \begin{tikzcd}[row sep=tiny, ampersand replacement=\&]
+                                \color{white}.\color{black} \& \& B' \ar[teal, dashed, squiggly]{ddddr}[black, description]{g} \ar[violet]{dddddl}[black, description]{z'}[pos=0.9, marking]{|}[pos=0.91]{\Sigma_{\mathcal{T}}} \& \& \\
+                                \textcolor{white}{.} \\
+                                \textcolor{white}{.} \\
+                                \textcolor{white}{.} \\
+                                C' \ar[teal, squiggly]{uuuurr}[black, description]{f} \ar[red]{dr}[black, description]{x'}[very near end, marking]{|}[near end]{\Sigma_{\mathcal{T}}} \& \& \& A' \ar[teal, dashed, squiggly]{lll}[pos=0.45, black, description]{\Sigma_{\mathcal{T}}x\circ y'}[pos=0.91, marking]{|}[very near end, above]{\Sigma_{\mathcal{T}}} \ar[orange, dashed]{dddddl}[black, description]{y'}[pos=0.9, marking]{|}[pos=0.89, above]{\Sigma_{\mathcal{T}}} \\
+                                \color{white}.\color{black} \& A \ar[red]{ddddr}[black, description]{a} \ar[violet]{rrr}[black, description]{b\circ a} \& \& \& C \ar[orange, dashed]{ul}[black, description]{y} \ar[violet]{uuuuull}[black, description]{z}\\
+                                \textcolor{white}{.} \\
+                                \textcolor{white}{.} \\
+                                \textcolor{white}{.} \\
+                                \& \& B \ar[orange]{uuuurr}[black, description]{b} \ar[red]{uuuuull}[black, description]{x} \& \&
+                                
+                            \end{tikzcd}
+                        \end{center}
+                    \end{onlyenv}
+                \end{enumerate}
+            \end{frame}
+        \subsection{Homological functors}
+            \begin{frame}{Functors}
+                \begin{definition}[Triangulated functor]
+                    A functor $F:\mathcal{T}\rightarrow\mathcal{S}$ between triangulated categories is called triangulated if:
+                    \begin{itemize}
+                        \item $\phi: F\circ\Sigma_{\mathcal{T}}\implies \Sigma_{\mathcal{S}}\circ F$ is a natural isomorphism
+                        \item $F(\Delta_{\mathcal{T}})\subseteq\Delta_{\mathcal{S}}$
+                    \end{itemize}
+                \end{definition}
+                \begin{onlyenv}<2>
+                    
+                    \begin{definition}[Homological functor]
+                        A covariant functor $H:\mathcal{T}\rightarrow\mathcal{A}$ from a triangulated category and an abelian category is called homological if it sends triangles to long exact sequences.                    
+                    \end{definition}
+                    \scalebox{0.8}{\begin{tikzcd}[row sep=tiny, ampersand replacement=\&]
+                        A \arrow{rd}{a} \& \\
+                        \& B \arrow{dl}{b}\\
+                        C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+                    \end{tikzcd}} $\implies$
+                    \scalebox{0.8}{\begin{tikzcd}[column sep=small, ampersand replacement=\&]
+                        ... \ar{r} \& H(\Sigma_{\mathcal{T}}^{i}A) \arrow{r}{H(\Sigma_{\mathcal{T}}^ia)} \& H(\Sigma_{\mathcal{T}}^iB)\arrow{r}{H(\Sigma_{\mathcal{T}}^ib)} \arrow[d,phantom, ""{coordinate, name=Z}]\& H(\Sigma_{\mathcal{T}}^iC) \arrow[dll, "H(\Sigma_{\mathcal{T}}^ic)" description, rounded corners,to path={ --([xshift=2ex]\tikztostart.east)|- (Z)[near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}] \\
+                        \& H(\Sigma_{\mathcal{T}}^{i+1}A) \arrow{r}{H(\Sigma_{\mathcal{T}}^{i+1}a)} \& H(\Sigma_{\mathcal{T}}^{i+1}B) \arrow{r}{H(\Sigma_{\mathcal{T}}^{i+1}b)} \& H(\Sigma_{\mathcal{T}}^{i+1}C) \ar{r} \& ...
+                    \end{tikzcd}}
+                \end{onlyenv}
+                \begin{onlyenv}<3>
+                    \begin{definition}[Cohomological functor]
+                        A contravariant functor $H:\mathcal{T}\rightarrow\mathcal{A}$ from a triangulated category and an abelian category is called cohomological if it sends triangles to long exact sequences.                    
+                    \end{definition}
+                    \scalebox{0.8}{\begin{tikzcd}[row sep=tiny, ampersand replacement=\&]
+                        A \arrow{rd}{a} \& \\
+                        \& B \arrow{dl}{b}\\
+                        C \arrow[very near end, "|" marking]{uu}[near start]{c}[near end]{\Sigma_{\mathcal{T}}}
+                    \end{tikzcd}} $\implies$
+                    \scalebox{0.8}{\begin{tikzcd}[column sep=small, ampersand replacement=\&]
+                        ... \& H(\Sigma_{\mathcal{T}}^{i-1}A) \arrow{l} \& H(\Sigma_{\mathcal{T}}^{i-1}B) \arrow{l}{H(\Sigma_{\mathcal{T}}^{i-1}a)} \arrow[d,phantom, ""{coordinate, name=Z}]\& H(\Sigma_{\mathcal{T}}^{i-1}C) \ar{l}{H(\Sigma_{\mathcal{T}}^{i-1}b)} \\
+                        \& H(\Sigma_{\mathcal{T}}^{i}A) \arrow[urr, "H(\Sigma_{\mathcal{T}}^ic)" description, rounded corners,to path={ --([xshift=-2ex]\tikztostart.west)|- (Z)[near end]\tikztonodes-| ([xshift=2ex]\tikztotarget.east)-- (\tikztotarget)}] \& H(\Sigma_{\mathcal{T}}^{i}B) \ar{l}{H(\Sigma_{\mathcal{T}}^ia)} \& H(\Sigma_{\mathcal{T}}^{i}C) \ar{l}{H(\Sigma_{\mathcal{T}}^ib)} \& ... \ar{l}
+                    \end{tikzcd}}
+                \end{onlyenv}
+            \end{frame}
+
+            \begin{frame}{Hom-functor}
+                \begin{lemma}[Hom is (co)homological]
+                    For any $M:\mathcal{T}$
+                    \begin{itemize}
+                        \item $\mathcal{T}(M,\_):\mathcal{T}\rightarrow\mathcal{A}$ is a homological functor.
+                        \item $\mathcal{T}(\_,M):\mathcal{T}\rightarrow\mathcal{A}$ is a cohomological functor
+                    \end{itemize}
+                \end{lemma}
+                \begin{onlyenv}<2->
+                    \begin{lemma}[2-out-of-3 property]
+                        If 2-out-of-3 of the triangle morphism are isomorphism, the final one is as well.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                A \ar{r}{a} \ar{d}{\phi_A}[rotate=90, above]{\simeq} \& B \ar{r}{b} \ar{d}{\phi_B}[rotate=90, above]{\simeq} \& C \ar{r}{c} \ar[dashed]{d}{\phi_C}[rotate=90, above]{\simeq} \& \Sigma_{\mathcal{T}}A \ar{d}{\Sigma_{\mathcal{T}}\phi_A}[rotate=90, above]{\simeq} \\
+                                A' \ar{r}{a'} \& B' \ar{r}{b'} \& C' \ar{r}{c'} \& \Sigma_{\mathcal{T}}A'
+                            \end{tikzcd}
+                        \end{center}
+                    \end{lemma}
+                \end{onlyenv}
+                
+            \end{frame}
+        \subsection{Subcategories and Verdier Quotient}
+            \begin{frame}{Localization; I}
+                \begin{definition}[Localization]
+                    % \begin{itemize}
+                    %     \item $S$ os a collection of morphisms from $\mathcal{C}$
+                    % \end{itemize}
+                    Let $S$ be a collection of morphisms in the category $\mathcal{C}$. The Localization of $\mathcal{C}$ on $\mathcal{S}$ is the category $\mathcal{C}[S^{-1}]$ together with a functor $q:\mathcal{C}\rightarrow \mathcal{C}[S^{-1}]$ such that:
+                    \begin{itemize}
+                        \item $\forall s:S$ such that $q(s)$ is an isomorphism
+                        \item Any functor $F:\mathcal{C}\rightarrow\mathcal{D}$ such that for any $s:S$ such that $F(s)$ is an isomorphism, then $F$ factors through $q$. That is to say that there is a natural isomorphism $\eta : F\rightarrow F'\circ q$ so that $\mathcal{C}[S^{-1}]$ is the universal category where morphisms in $S$ are isomorphisms.
+                    \end{itemize}
+                    \begin{center}
+                        \begin{tikzcd}[row sep = tiny, ampersand replacement=\&]
+                            \mathcal{C} \ar[""{name=U}]{rr}{F} \ar{rd}[below]{q} \& \& \mathcal{D} \\
+                            \& \mathcal{C}[S^{-1}] \ar[Rightarrow, from=U, "\eta"] \ar[dashed]{ru}[below]{F'}
+                        \end{tikzcd}
+                    \end{center}
+                \end{definition}
+            \end{frame}
+            \begin{frame}{Calculus of Fractions}
+                \begin{onlyenv}<1>
+                    \begin{definition}[Right multiplicative system]
+                        A set $S$ of morphisms in a category $\mathcal{C}$ is called right multiplicative if it satisfies the following conditions:
+                        \begin{itemize}
+                            \item $S$ is closed under composition, and has every identity morphism.
+                            \item (Right Ore condition) 
+                            \begin{flushleft}
+                                (1)
+                                \begin{tikzcd}[ampersand replacement=\&]
+                                    W \ar[dashed]{r}{f} \ar[blue, dashed]{d}{s} \& X \ar[blue]{d}{t} \\
+                                    Z \ar{r}{g} \& Y
+                                \end{tikzcd}
+                            \end{flushleft}
+                            \item (Left cancellation) Suppose $f,g:X\rightarrow Y$ are parallel morphisms in $\mathcal{C}$, then 1. $\implies$ 2.:
+                            \begin{enumerate}
+                                \item $sf = sg$ for som $s:S$ starting at $Y$
+                                \item $ft = gt$ for som $t:S$ ending at $X$
+                            \end{enumerate}
+                        \end{itemize}
+                    \end{definition}
+                \end{onlyenv}
+                \begin{onlyenv}<2->
+                    \begin{definition}[Right fractions]
+                        $S$ is a right multiplicative system
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                X \& Y \ar[blue]{l}{s} \ar{r}{t} \& Z
+                            \end{tikzcd}
+                        \end{center}
+                        Right fractions are denoted as $ts^{-1}$. \\
+                        \begin{onlyenv}<2>
+                            \begin{itemize}
+                                \item Let $\sim$ be the equivalence relation of right fractions such that $ts^{-1}\sim t's'^{-1}$ if and only if $\exists w,w':\mathcal{C}$ making the diagram below commute and the middle row a right fraction.
+                            \end{itemize}
+                            \begin{center}
+                                \begin{tikzcd}[ampersand replacement=\&]
+                                    \& Y \ar[blue]{ld}[above]{s} \ar{rd}{t} \\
+                                    X \& W \ar[dashed]{r} \ar[blue, dashed]{l} \ar[blue]{u}{w} \ar[blue]{d}{w'} \& Z \\
+                                    \& Y' \ar[blue]{lu}{s'} \ar{ru}[below]{t'}
+                                \end{tikzcd}
+                            \end{center}
+                        \end{onlyenv}
+                        \begin{onlyenv}<3>
+                            \begin{itemize}
+                                \item Let $S^{-1}\mathcal{C}$ denote the category with objects from $\mathcal{C}$ and arrows are right fractions modulo $\sim$.
+                            \end{itemize}
+                        \end{onlyenv}
+                    \end{definition}
+                    \begin{onlyenv}<3->
+                        \begin{alertblock}{Set theory issues}
+                            There is no reason for this category to have small homsets between objects.
+                        \end{alertblock}
+                    \end{onlyenv}
+                \end{onlyenv}
+            \end{frame}
+
+            \begin{frame}{Localization; II}
+                \begin{theorem}[Gabriel-Zisman]
+                    Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and it is the localization of $\mathcal{C}$ on $S$. This mean that there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $f\circ id_X^{-1}$.
+                \end{theorem}
+            \end{frame}
+
+            \begin{frame}{Subcategories}
+                \begin{definition}[Triangulated subcategory]
+                    A triangulated subcategory $\mathcal{S}$ of a triangulated category $\mathcal{T}$ is a full additive subcategory such that the inclusion functor is triangulated.
+                \end{definition}
+
+                \begin{definition}[$Mor_\mathcal{S}$]
+                    Let $\mathcal{C}$ be a triangulated category and $\mathcal{S} \subseteq \mathcal{C}$ be a triangulated subcategory. Define the collection $Mor_{\mathcal{S}}$ to be a collection of morphisms in $\mathcal{C}$ such that for any $f : Mor_{\mathcal{S}}$ there is a triangle with $C : \mathcal{S}$.
+                    \begin{center}
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            A \ar{r}{f} \& B \ar{r} \& C \ar{r} \& \Sigma_{\mathcal{C}}A 
+                        \end{tikzcd}
+                    \end{center}
+                \end{definition}
+            \end{frame}
+
+
+            \begin{frame}{Verdier quotient}
+                \begin{lemma}
+                    Let $\mathcal{S}\subseteq\mathcal{C}$ be triangulated categories, then $Mor_\mathcal{S}$ is a multiplicative system.
+                \end{lemma}
+
+                \begin{theorem}[Verdier Quotient]
+                    The Verdier quotient $\mathcal{C}/\mathcal{S}$, defined as $Mor_\mathcal{S}^{-1}\mathcal{C}$, together with the functor $q:\mathcal{C}\rightarrow\mathcal{C}/\mathcal{S}$ is the universal triangulated category where morphisms in $Mor_\mathcal{S}$ are isomorphisms.
+                \end{theorem}
+            \end{frame}
+
+    \section{Frobenius Categories}
+        \subsection{Exact categories}
+            \begin{frame}{Exact categories}
+                \begin{onlyenv}<1>
+                    \begin{definition}[Kernel-cokernel pair]
+                        \begin{itemize}
+                            \item $\mathcal{A}$ is an additive category
+                            \item $(p,q)$ is a kernel-cokernel pair if p is the kernel of q and q is the cokernel of p
+                            \item A morphism of kernel-cokernel pairs are diagrams 
+                        \end{itemize}
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                A \ar[tail]{r}{p} \ar{d}{f} \& B \ar[two heads]{r}{q} \ar{d}{g} \& C \ar{d}{h} \\
+                                A' \ar[tail]{r}{p'} \& B' \ar[two heads]{r}{q'} \& C'
+                            \end{tikzcd}
+                        \end{center}
+                    \end{definition}
+                \end{onlyenv}
+                \begin{onlyenv}<2>
+                    An exact structure for an additive category $\mathcal{A}$ is a class $\mathcal{E}$ of kernel-cokernel pairs which are closed under isomorphisms. A pair $(p,q):\mathcal{E}$ is called a conflation, here $p$ is called an inflation and $q$ is called a deflation. $(\mathcal{A},\mathcal{E})$ is called exact when the following axioms holds:
+                    \begin{itemize}
+                        \item (QE0) $\forall A:\mathcal{A}$, $id_A$ is both an inflation and a deflation.
+                        \item (QE1) Both inflations and deflations are closed under composition.
+                        \item (QE2) The push-out of an inflation is an inflation.
+                        \item (QE2$^{op}$) The pull-back of a deflation is a deflation.
+                    \end{itemize}
+
+                    An exact category is the additive category $\mathcal{A}$ together with an exact structure $\mathcal{E}$.
+                \end{onlyenv}
+            \end{frame}
+            \begin{frame}{Examples of exact categories}
+                \begin{example}
+                    Any abelian category is exact with every short exact sequence as the exact structure. This exact structure us $\mathcal{E}_{max}$.
+                \end{example}
+            
+                \begin{example}
+                    Any additive category is exact with every split short exact sequence as the exact structure. This structure will always be $\mathcal{E}_{min}$, and it is always contained inside another exact structure.
+                \end{example}
+            \end{frame}
+        \subsection{Stable Frobenius categories}
+            \begin{frame}{Projective and injective objects}
+                
+            \end{frame}
+            \begin{frame}{Stabilization and cosyzygies}
+                
+            \end{frame}
+            \begin{frame}{Triangulation}
+                
+            \end{frame}
+
+    \section{Constructions}
+        \subsection{Homotopy categories}
+            \begin{frame}{Homotopy categories are triangulated}
+                
+            \end{frame}
+        \subsection{Derived categories}
+            \begin{frame}{Derived categories are triangulated}
+                
+            \end{frame}
+\end{document}
