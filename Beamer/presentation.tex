@@ -13,6 +13,10 @@
 
 \usepackage{graphicx}
 
+\newcommand{\upside}[1]{\rotatebox[origin=c]{180}{#1}}
+\newcommand{\chain}[1]{#1^{\bullet}}
+
+
 \begin{document}
     
     \begin{frame}
@@ -400,7 +404,7 @@
             \end{frame}
             \begin{frame}{Examples of exact categories}
                 \begin{example}
-                    Any abelian category is exact with every short exact sequence as the exact structure. This exact structure us $\mathcal{E}_{max}$.
+                    Any abelian category is exact with every short exact sequence as the exact structure. This exact structure is $\mathcal{E}_{max}$.
                 \end{example}
             
                 \begin{example}
@@ -409,22 +413,170 @@
             \end{frame}
         \subsection{Stable Frobenius categories}
             \begin{frame}{Projective and injective objects}
-                
+                \begin{definition}[Exact functors]
+                    A functor $F:(\mathcal{A},\mathcal{E})\rightarrow (\mathcal{A}',\mathcal{E}')$ between exact categories is called exact if it is additive and $F(\mathcal{E})\subseteq \mathcal{E}'$.
+                \end{definition}
+                \begin{onlyenv}<1>
+                    \begin{definition}[Projective object]
+                        $P:\mathcal{A}$ is called projective if $\mathcal{A}(P,\_):(\mathcal{A},\mathcal{E})\rightarrow \textbf{Ab}$ is an exact functor.
+                    \end{definition}
+                    \begin{lemma}
+                        $P:\mathcal{A}$ is projective if and only if for every deflation $q:A\rightarrow B$ and morphism $f:P\rightarrow B$, there is a morphism $f':P\rightarrow A$ rendering the diagram below commutative.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                \& P \ar[dashed]{ld}[above]{f'} \ar{d}{f} \\
+                                A \ar[two heads]{r}[below]{q}[marking]{\circ} \& B
+                            \end{tikzcd}
+                        \end{center}
+                    \end{lemma}
+                \end{onlyenv}
+                \begin{onlyenv}<2>
+                    \begin{definition}[Injective object]
+                        $I:\mathcal{A}$ is called injective if $\mathcal{A}(\_,I):(\mathcal{A},\mathcal{E})^{op}\rightarrow \textbf{Ab}$ is an exact functor.
+                    \end{definition}
+                    \begin{lemma}
+                        $I:\mathcal{A}$ is injective if and only if for every inflation $p:B\rightarrow A$ and morphism $f:B\rightarrow I$, there is a morphism $f':A\rightarrow I$ rendering the diagram below commutative.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                \& I \\
+                                A \ar[dashed]{ur}[above]{f'} \& B \ar[tail]{l}[below]{p}[marking]{\circ} \ar{u}{f}
+                            \end{tikzcd}
+                        \end{center}
+                    \end{lemma}
+                \end{onlyenv}
             \end{frame}
-            \begin{frame}{Stabilization and cosyzygies}
-                
+            \begin{frame}{Cosyzygies and stabilization}
+                \begin{onlyenv}<1>
+                    \begin{definition}[Zysygy]
+                        A syzygy of an object $X$, if it exists, is denoted $\Omega X$. It is defined to be the kernel object of any deflation $p:P\rightarrow X$, where $P$ is projective.
+                    \end{definition}
+                    \alert<1>{Syzygy is not a functor}
+                \end{onlyenv}
+                \begin{onlyenv}<2->
+                    \begin{definition}[Cosyzygy]
+                        A cosyzygy of an object $X$, if it exists, is denoted \upside{$\Omega$}$X$. It is defined to be the cokernel object of any inflation $i:X\rightarrow I$, where $I$ is injective.
+                    \end{definition}
+                    \alert<2>{Cosyzygy is not a functor}
+                \end{onlyenv}
+                \begin{onlyenv}<3->
+                    \begin{definition}[Frobenius category]
+                        $\mathcal{A}$ is a Frobenius category if
+                        \begin{itemize}
+                            \item it has enough injectives and projectives
+                            \item injectives and projectives coincide
+                        \end{itemize}
+
+                        The quotient category $\underline{\mathcal{A}}=\mathcal{A}/\sim$ is the stable Frobenius category. $f\sim g \iff f-g$ factors over an injective/projective.
+                    \end{definition}
+                \end{onlyenv}
             \end{frame}
             \begin{frame}{Triangulation}
-                
+                \begin{itemize}
+                    \item $\underline{\mathcal{A}}$ is an additive category
+                    \item \upside{$\Omega$}$:\underline{\mathcal{A}}\rightarrow\underline{\mathcal{A}}$ is an additive autoequivalence
+                    \item<1> What is $\Delta_{\underline{\mathcal{A}}}$?
+                \end{itemize}
+                \begin{onlyenv}<2>
+                    \underbar{Triangles from morphisms}
+                    \begin{flushleft}
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            X \ar{r}{x} \& Y
+                        \end{tikzcd}
+                        $\implies$
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            X \ar{r}{x} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} \& Y \ar[tail]{d}{y}[marking]{\circ} \ar[bend left]{rdd}{0}\\
+                            I(X) \ar[bend right, two heads]{rrd}{p}[marking]{\circ} \ar{r}{p'} \& Z \ar[dashed, two heads]{dr}{z}[marking]{\circ} \\
+                            \& \& \rotatebox[origin=c]{180}{$\Omega$}X
+                        \end{tikzcd}
+                    \end{flushleft}
+                \end{onlyenv}
+                \begin{onlyenv}<3>
+                    \underbar{Triangles from conflations}
+                    \begin{flushleft}
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            \Omega Z \ar{r}{-\Omega z} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} \& X \ar[tail]{d}{x}[marking]{\circ} \ar[bend left]{rdd}{0}\\
+                            P(Z) \ar[bend right, two heads]{rrd}{p}[marking]{\circ} \ar{r}{p'} \& Y \ar[dashed, two heads]{dr}{y}[marking]{\circ} \\
+                            \& \& Z
+                        \end{tikzcd}
+                        $\impliedby$
+                        \begin{tikzcd}[ampersand replacement=\&]
+                            X \ar[tail]{d}{x}[marking]{\circ} \\
+                            Y \ar[two heads]{d}{y}[marking]{\circ} \\
+                            Z
+                        \end{tikzcd}
+                    \end{flushleft}
+                \end{onlyenv}
             \end{frame}
 
     \section{Constructions}
         \subsection{Homotopy categories}
             \begin{frame}{Homotopy categories are triangulated}
-                
+                \begin{onlyenv}<1>
+                    \begin{definition}[Chain complexes]
+                        Let $\mathcal{A}$ be an additive category. Define $Ch(\mathcal{A})$ to be the category of diagrams in $\mathcal{A}$ on the form
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                ... \ar{r}{d^{-2}_{\chain{A}}} \& A^{-1} \ar{r}{d^{-1}_{\chain{A}}} \& A^0 \ar{r}{d^0_{\chain{A}}} \& A^1 \ar{r}{d^1_{\chain{A}}} \& ...
+                            \end{tikzcd}
+                        \end{center}
+                        such that $d^i_{\chain{A}}\circ d^{i-1}_{\chain{A}}=0$ for every $i:\{-\infty,...,\infty\}$. A morphism $\chain{\phi} : \chain{A}\rightarrow \chain{B}$ between chain complexes is a collection of morphisms from $\mathcal{A}$, such that the diagram commutes.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                ... \ar{r}{d^{-2}_{\chain{A}}} \& A^{-1} \ar{d}{\phi^{-1}} \ar{r}{d^{-1}_{\chain{A}}} \& A^0 \ar{r}{d^0_{\chain{A}}} \ar{d}{\phi^0} \& A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{\phi^1} \& ... \\
+                                ... \ar{r}{d^{-2}_{\chain{B}}} \& B^{-1} \ar{r}{d^{-1}_{\chain{B}}} \& B^0 \ar{r}{d^0_{\chain{B}}} \& B^1 \ar{r}{d^1_{\chain{B}}} \& ...
+                            \end{tikzcd}
+                        \end{center}
+                    \end{definition}
+                \end{onlyenv}
+                \begin{onlyenv}<2>
+                    \begin{definition}[Homotopies]
+                        A chain map $f^{\bullet}:A^{\bullet}\rightarrow B^{\bullet}$ is called null-homotopic if there is a map $\varepsilon^{\bullet}:A^{\bullet}\rightarrow B^{\bullet}[-1]$ such that $f^{\bullet} = d_{B^{\bullet}}^{\bullet - 1}\varepsilon^{\bullet} + \varepsilon^{\bullet + 1}d_{A^{\bullet}}^{\bullet}$.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                ... \ar{r}{d^{-2}_{\chain{A}}} \& A^{-1} \ar{d}{f^{-1}} \ar{r}{d^{-1}_{\chain{A}}} \& A^0 \ar{ld}[above]{\varepsilon^{0}} \ar{r}{d^0_{\chain{A}}} \ar{d}{f^0} \& A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{f^1} \ar{ld}[above]{\varepsilon^1} \& ... \\
+                                ... \ar{r}{d^{-2}_{\chain{B}}} \& B^{-1} \ar{r}{d^{-1}_{\chain{B}}} \& B^0 \ar{r}{d^0_{\chain{B}}} \& B^1 \ar{r}{d^1_{\chain{B}}} \& ...
+                            \end{tikzcd}
+                        \end{center}
+                        $\chain{\varepsilon}$ is called the homotopy. Two chain maps $\chain{f}$ and $\chain{g}$ are said to be homotopic $\chain{f}\sim\chain{g}$ if their difference $\chain{f}-\chain{g}$ is null-homotopic.
+                    \end{definition}
+                \end{onlyenv}
+                \begin{onlyenv}<3>
+                    \begin{definition}[Homotopy category]
+                        $K(\mathcal{A})=Ch(\mathcal{A})/\sim$
+                    \end{definition}
+                    \begin{lemma}[Exact structure on $Ch(\mathcal{A})$]
+                        For every chain map $\chain{r}:\chain{A}\rightarrow\chain{B}$ there is a conflation as the diagram below. This makes $Ch(\mathcal{A})$ an exact category with structure $\mathcal{E}$.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                \chain{B} \ar[tail]{r}{\begin{pmatrix}1 \\ 0\end{pmatrix}}[marking]{\circ} \& cone(\chain{r}) \ar[two heads]{r}{\begin{pmatrix}0 & \chain{-1}\end{pmatrix}}[marking]{\circ} \& \chain{A}[1]
+                            \end{tikzcd}
+                        \end{center}
+                    \end{lemma}
+                \end{onlyenv}
+                \begin{onlyenv}<4>
+                    \begin{definition}[Homotopy category]
+                        $K(\mathcal{A})=Ch(\mathcal{A})/\sim$
+                    \end{definition}
+                    \begin{lemma}[Triangulation on $K(\mathcal{A})$]
+                        For every chain map $\chain{r}:\chain{A}\rightarrow\chain{B}$ there is a triangle as the diagram below.
+                        \begin{center}
+                            \begin{tikzcd}[ampersand replacement=\&]
+                                \chain{A} \ar{r}{\chain{r}} \& \chain{B} \ar[tail]{r}{\begin{pmatrix}1 \\ 0\end{pmatrix}}[marking]{\circ} \& cone(\chain{r}) \ar[two heads]{r}{\begin{pmatrix}0 & \chain{-1}\end{pmatrix}}[marking]{\circ} \& \chain{A}[1]
+                            \end{tikzcd}
+                        \end{center}
+                    \end{lemma}
+                \end{onlyenv}
             \end{frame}
         \subsection{Derived categories}
             \begin{frame}{Derived categories are triangulated}
-                
+                \begin{definition}
+                    Let $\mathcal{A}$ be an abelian category. Define the category $Ac(\mathcal{A})\subset K(\mathcal{A})$ to be the full category whose objects are exact sequences.
+                \end{definition}
+                \begin{lemma}
+                    Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map between acyclic chain complexes, then $cone(\chain{f})$ is acyclic as well.
+                \end{lemma}
+                \begin{theorem}
+                    The derived category is the Verdier quotient $K(\mathcal{A})/Ac(\mathcal{A})$
+                \end{theorem}
             \end{frame}
 \end{document}
