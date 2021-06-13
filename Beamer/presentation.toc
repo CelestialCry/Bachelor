@@ -1,0 +1,10 @@
+\beamer@sectionintoc {2}{Triangulated Categories}{3}{0}{1}
+\beamer@subsectionintoc {2}{1}{The axioms}{4}{0}{1}
+\beamer@subsectionintoc {2}{2}{Homological functors}{10}{0}{1}
+\beamer@subsectionintoc {2}{3}{Subcategories and Verdier Quotient}{15}{0}{1}
+\beamer@sectionintoc {3}{Frobenius Categories}{22}{0}{2}
+\beamer@subsectionintoc {3}{1}{Exact categories}{22}{0}{2}
+\beamer@subsectionintoc {3}{2}{Stable Frobenius categories}{25}{0}{2}
+\beamer@sectionintoc {4}{Constructions}{33}{0}{3}
+\beamer@subsectionintoc {4}{1}{Homotopy categories}{33}{0}{3}
+\beamer@subsectionintoc {4}{2}{Derived categories}{35}{0}{3}

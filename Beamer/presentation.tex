@@ -28,14 +28,6 @@
         \tableofcontents
     \end{frame}
 
-    \section{Introduction}
-    \begin{frame}{Introduction}
-        \begin{itemize}
-            \item Why study triangulated categories?
-            \item Stable Frobenius Categories vs. Stable Homotopy Categories
-        \end{itemize}
-    \end{frame}
-
     \section{Triangulated Categories}
         \begin{frame}{Candidate Triangles}
             Assume that:
@@ -333,7 +325,7 @@
                         \end{onlyenv}
                     \end{definition}
                     \begin{onlyenv}<3->
-                        \begin{alertblock}{Set theory issues}
+                        \begin{alertblock}{Set theoretic issues}
                             There is no reason for this category to have small homsets between objects.
                         \end{alertblock}
                     \end{onlyenv}
@@ -342,7 +334,7 @@
 
             \begin{frame}{Localization; II}
                 \begin{theorem}[Gabriel-Zisman]
-                    Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $\mathfrak{r}S^{-1}\mathcal{C}$ exists and it is the localization of $\mathcal{C}$ on $S$. This mean that there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq\mathfrak{r}S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow\mathfrak{r}S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $f\circ id_X^{-1}$.
+                    Let $S$ be a locally small right multiplicative system of morphisms in a category $\mathcal{C}$. Then the category $S^{-1}\mathcal{C}$ exists and it is the localization of $\mathcal{C}$ on $S$. This mean that there is an equivalence of categories $\mathcal{C}[S^{-1}]\simeq S^{-1}\mathcal{C}$ together with a functor $q: \mathcal{C}\rightarrow S^{-1}\mathcal{C}$ sending a morphism $f : X\rightarrow Y$ to the right fraction $f\circ id_X^{-1}$.
                 \end{theorem}
             \end{frame}
 
@@ -494,8 +486,8 @@
                     \underbar{Triangles from conflations}
                     \begin{flushleft}
                         \begin{tikzcd}[ampersand replacement=\&]
-                            \Omega Z \ar{r}{-\Omega z} \ar[phantom]{rd}[very near end]{\lrcorner} \ar[tail]{d}{i}[marking]{\circ} \& X \ar[tail]{d}{x}[marking]{\circ} \ar[bend left]{rdd}{0}\\
-                            P(Z) \ar[bend right, two heads]{rrd}{p}[marking]{\circ} \ar{r}{p'} \& Y \ar[dashed, two heads]{dr}{y}[marking]{\circ} \\
+                            \Omega Z \ar[two heads]{r}{-\Omega z}[marking]{\circ} \ar[phantom]{rd}[very near start]{\ulcorner} \ar[tail]{d}{i}[marking]{\circ} \& X \ar[tail]{d}{x}[marking]{\circ} \ar[bend left]{rdd}{0}\\
+                            P(Z) \ar[bend right, two heads]{rrd}{p}[marking]{\circ} \ar[two heads]{r}{p'}[marking]{\circ} \& Y \ar[dashed, two heads]{dr}{y}[marking]{\circ} \\
                             \& \& Z
                         \end{tikzcd}
                         $\impliedby$
@@ -512,35 +504,6 @@
         \subsection{Homotopy categories}
             \begin{frame}{Homotopy categories are triangulated}
                 \begin{onlyenv}<1>
-                    \begin{definition}[Chain complexes]
-                        Let $\mathcal{A}$ be an additive category. Define $Ch(\mathcal{A})$ to be the category of diagrams in $\mathcal{A}$ on the form
-                        \begin{center}
-                            \begin{tikzcd}[ampersand replacement=\&]
-                                ... \ar{r}{d^{-2}_{\chain{A}}} \& A^{-1} \ar{r}{d^{-1}_{\chain{A}}} \& A^0 \ar{r}{d^0_{\chain{A}}} \& A^1 \ar{r}{d^1_{\chain{A}}} \& ...
-                            \end{tikzcd}
-                        \end{center}
-                        such that $d^i_{\chain{A}}\circ d^{i-1}_{\chain{A}}=0$ for every $i:\{-\infty,...,\infty\}$. A morphism $\chain{\phi} : \chain{A}\rightarrow \chain{B}$ between chain complexes is a collection of morphisms from $\mathcal{A}$, such that the diagram commutes.
-                        \begin{center}
-                            \begin{tikzcd}[ampersand replacement=\&]
-                                ... \ar{r}{d^{-2}_{\chain{A}}} \& A^{-1} \ar{d}{\phi^{-1}} \ar{r}{d^{-1}_{\chain{A}}} \& A^0 \ar{r}{d^0_{\chain{A}}} \ar{d}{\phi^0} \& A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{\phi^1} \& ... \\
-                                ... \ar{r}{d^{-2}_{\chain{B}}} \& B^{-1} \ar{r}{d^{-1}_{\chain{B}}} \& B^0 \ar{r}{d^0_{\chain{B}}} \& B^1 \ar{r}{d^1_{\chain{B}}} \& ...
-                            \end{tikzcd}
-                        \end{center}
-                    \end{definition}
-                \end{onlyenv}
-                \begin{onlyenv}<2>
-                    \begin{definition}[Homotopies]
-                        A chain map $f^{\bullet}:A^{\bullet}\rightarrow B^{\bullet}$ is called null-homotopic if there is a map $\varepsilon^{\bullet}:A^{\bullet}\rightarrow B^{\bullet}[-1]$ such that $f^{\bullet} = d_{B^{\bullet}}^{\bullet - 1}\varepsilon^{\bullet} + \varepsilon^{\bullet + 1}d_{A^{\bullet}}^{\bullet}$.
-                        \begin{center}
-                            \begin{tikzcd}[ampersand replacement=\&]
-                                ... \ar{r}{d^{-2}_{\chain{A}}} \& A^{-1} \ar{d}{f^{-1}} \ar{r}{d^{-1}_{\chain{A}}} \& A^0 \ar{ld}[above]{\varepsilon^{0}} \ar{r}{d^0_{\chain{A}}} \ar{d}{f^0} \& A^1 \ar{r}{d^1_{\chain{A}}} \ar{d}{f^1} \ar{ld}[above]{\varepsilon^1} \& ... \\
-                                ... \ar{r}{d^{-2}_{\chain{B}}} \& B^{-1} \ar{r}{d^{-1}_{\chain{B}}} \& B^0 \ar{r}{d^0_{\chain{B}}} \& B^1 \ar{r}{d^1_{\chain{B}}} \& ...
-                            \end{tikzcd}
-                        \end{center}
-                        $\chain{\varepsilon}$ is called the homotopy. Two chain maps $\chain{f}$ and $\chain{g}$ are said to be homotopic $\chain{f}\sim\chain{g}$ if their difference $\chain{f}-\chain{g}$ is null-homotopic.
-                    \end{definition}
-                \end{onlyenv}
-                \begin{onlyenv}<3>
                     \begin{definition}[Homotopy category]
                         $K(\mathcal{A})=Ch(\mathcal{A})/\sim$
                     \end{definition}
@@ -553,7 +516,7 @@
                         \end{center}
                     \end{lemma}
                 \end{onlyenv}
-                \begin{onlyenv}<4>
+                \begin{onlyenv}<2>
                     \begin{definition}[Homotopy category]
                         $K(\mathcal{A})=Ch(\mathcal{A})/\sim$
                     \end{definition}
@@ -561,7 +524,7 @@
                         For every chain map $\chain{r}:\chain{A}\rightarrow\chain{B}$ there is a triangle as the diagram below.
                         \begin{center}
                             \begin{tikzcd}[ampersand replacement=\&]
-                                \chain{A} \ar{r}{\chain{r}} \& \chain{B} \ar[tail]{r}{\begin{pmatrix}1 \\ 0\end{pmatrix}}[marking]{\circ} \& cone(\chain{r}) \ar[two heads]{r}{\begin{pmatrix}0 & \chain{-1}\end{pmatrix}}[marking]{\circ} \& \chain{A}[1]
+                                \chain{A} \ar{r}{\chain{r}} \& \chain{B} \ar{r} \& cone(\chain{r}) \ar{r} \& \chain{A}[1]
                             \end{tikzcd}
                         \end{center}
                     \end{lemma}
@@ -569,14 +532,26 @@
             \end{frame}
         \subsection{Derived categories}
             \begin{frame}{Derived categories are triangulated}
-                \begin{definition}
-                    Let $\mathcal{A}$ be an abelian category. Define the category $Ac(\mathcal{A})\subset K(\mathcal{A})$ to be the full category whose objects are exact sequences.
-                \end{definition}
-                \begin{lemma}
-                    Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map between acyclic chain complexes, then $cone(\chain{f})$ is acyclic as well.
-                \end{lemma}
-                \begin{theorem}
-                    The derived category is the Verdier quotient $K(\mathcal{A})/Ac(\mathcal{A})$
-                \end{theorem}
+                \begin{onlyenv}<1->
+                    \begin{definition}[Derived category]
+                        $D(A)=K(A)[Q^{-1}]$, where $Q$ is the set of quasi-isomorphisms.
+                    \end{definition}
+                \end{onlyenv}
+                \begin{onlyenv}<1>
+                    \begin{lemma}
+                        A morphism $\chain{f}:\chain{A}\rightarrow\chain{B}$ is a quasi isomorphism if and only if $cone(\chain{f})$ is an exact sequence.
+                    \end{lemma}
+                \end{onlyenv}
+                \begin{onlyenv}<2->
+                    \begin{definition}
+                        Let $\mathcal{A}$ be an abelian category. Define the category $Ac(\mathcal{A})\subset K(\mathcal{A})$ to be the full category whose objects are exact sequences. The set $Mor_{Ac(\mathcal{A})}$ consists of quasi-isomorphisms.
+                    \end{definition}
+                    \begin{lemma}
+                        Let $\chain{f}:\chain{A}\rightarrow\chain{B}$ be a chain map between acyclic chain complexes, then $cone(\chain{f})$ is acyclic as well.
+                    \end{lemma}
+                    \begin{theorem}
+                        The derived category is the Verdier quotient $D(\mathcal{A})=K(\mathcal{A})/Ac(\mathcal{A})$
+                    \end{theorem}
+                \end{onlyenv}
             \end{frame}
 \end{document}
