@@ -1,2 +1,2 @@
 # Bachelor
-This is the bachelorthesis for Thomas Wilskow Thorbjørnsen year 2021.
+This is the bachelor thesis for Thomas Wilskow Thorbjørnsen year 2021.
